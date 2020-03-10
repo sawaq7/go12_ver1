@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>メンバーズ　中村</title>
+		<link rel="stylesheet" href="css/index.css" type="text/css">
+		<style type="text/css"> /* マウスポインタの設定（intense用）*/
+            .intense {
+            cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指定 */
+            display: inline-block;   /* 横方向に並べる指定 */
+            margin: 0px 5px 5px 0px; /* 周囲の余白量(右と下に5pxずつ) */
+            }
+        </style>
+		<script src="js/main.js"></script>
+		<script src="js/intense.js"> /* intense用 */ </script>
+	</head>
+	<body>
+		<nav>
+			<ul>
+			    <li>
+			      <div>
+			        <img src="images/illust_members_nakamura2.png" width="120" height="100" alt="ロゴ">
+			      </div>
+			    </li>
+                <li>
+				  <div>
+				    <form method="GET  method="GET" action="/member1_show" >
+                      <input type="image" src="images/illust_finger.png" width="80" height="80"
+                                                                           name="List" alt="png" />
+                    </form>
+                  </div>
+                </li>
+				<li><a href="music.html"  > music
+				    </a>
+				</li>
+				<li><a href="movie.html"> movie
+				    </a>
+				</li>
+				<li><a href="music2.html"   > music2
+				    </a>
+				</li>
+
+				<li>
+				  <div>
+				    <form method="GET  method="GET" action="/music_show" >
+				    <input type="image" src="images/illust_finger.png" width="40" height="40"
+                                                                           name="List" alt="png" />
+
+                    </form>
+                  </div>
+                </li>
+
+				<li><a href="member.html" > <img src="photo/bird.jpg"width="50" height="50" alt="広告">
+				    </a>
+				</li>
+			</ul>
+		</nav>
+		<article>
+		    <h1>お店の紹介</h1>
+			<p>
+			    気軽にカラオケと会話が楽しめるラウンジです。
+				天地真理似のきさくなママと５人の３０代の大人の女性
+				スタッフがいる庶民的なラウンジです。
+			</p>
+			<table align="center">
+				<thead>
+					<th>メニュー　一覧</th>
+				<thead>
+				<tbody>
+					<tr><th>オールド　　　</th><td>￥５０００　</td></tr>
+					<tr><th>リザーブ　　　</th><td>￥７０００　</td></tr>
+					<tr><th>山　　崎　　　</th><td>￥２００００</td></tr>
+					<tr><th>ヘネシー　　　</th><td>￥２００００</td></tr>
+					<tr><th>ボルドーワイン</th><td>￥３００００</td></tr>
+					<tr><th>各種ドリンク　</th><td>￥８００　　</td></tr>
+				</tbody>
+			</table>
+			<p>	<strong>注意：上記料金表は、消費税は含まれていません。</strong></p>
+			<p>更新日：2016年9月25日</p>
+
+		</article>
+		<section id="main">
+		   <h1>店舗写真</h1>
+			<div>
+			  <img src="photo/photo_building.jpg"  width="400" height="170"
+			           data-title="some animals" data-caption="parakeet1" class="intense">
+			  <img src="images/photo_cafe.png"   width="400" height="170"
+			           data-title="some animals" data-caption="parakeet1" class="intense">
+			  <img src="photo/photo_food.jpg"  width="400" height="170"
+			           data-title="some animals" data-caption="parakeet1" class="intense">
+			</div>
+		</section>
+		<aside>
+		    <h1>メンバー一覧</h1>
+			<div align="center">
+			  <img src="photo/bird.jpg"  width="90" height="100"
+			           data-title="some animals" data-caption="parakeet1" class="intense">
+			   <img src="photo/bird2.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="parakeet2" class="intense">
+			   <img src="photo/bird3.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="peafowl" class="intense">
+			  <img src="photo/fish.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="tropical fish" class="intense">
+			  <img src="photo/gorira.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="gorilla" class="intense">
+			  <img src="photo/kame.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="sea turtle" class="intense">
+			  <img src="photo/kirin.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="giraffe" class="intense">
+			  <img src="photo/lion.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="lion" class="intense">
+			  <img src="photo/pengin.jpg"   width="90" height="100"
+			           data-title="some animals" data-caption="penguin" class="intense">
+            <div align="center">
+              <form method="GET" action="/member1_show" >
+                <input type="image" src="images/illust_finger.png" width="200" height="200"
+                                                                           name="List" alt="png" />
+              </form>
+            </div>
+		</aside>
+		<footer align="right">
+			<div >
+			   <img src="images/illust_members_nakamura2.png"
+			                                                width="200" height="100" alt="ロゴ">
+			   <p>〒460　名古屋市中区錦3-8-6第2ワシントンビル７F</p>
+			</div>
+
+		</footer>
+		<script> /* intense用 */
+		   window.onload = function() {
+           var elements = document.querySelectorAll( '.intense' );
+           Intense( elements );
+           }
+        </script>
+	</body>
+</html>

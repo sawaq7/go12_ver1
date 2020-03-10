@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>オーディオブック</title>
+		<link rel="stylesheet" href="css/music2.css" type="text/css" media="all">
+		<script src="js/audio4.js"></script>
+	</head>
+	<body>
+		<div id="controller">
+			<img src="images/audio/play.png" id="playButton" alt="再生">
+			<img src="images/audio/stop.png" id="stopButton" alt="停止">
+			<img src="images/audio/rewind.png" id="rewindButton" alt="巻き戻し">
+			<img src="images/audio/normal.png" id="normalButton" alt="等倍">
+			<img src="images/audio/fast.png" id="fastButton" alt="高速">
+			<img src="images/audio/slow.png" id="slowButton" alt="低速">
+		</div>
+		<form>
+			URL：<input type="text" id="url" size="50"
+					value="https://drive.google.com/drive/my-drive/everything.mp3">
+
+			<br>
+			<input type="button" value="download music" id="loadButton">
+		</form>
+		<div id="status"></div>
+	</body>
+</html>

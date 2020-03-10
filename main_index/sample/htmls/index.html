@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>sawa Q</title>
+		<link rel="stylesheet" href="css/index.css" type="text/css">
+		<style type="text/css"> /* マウスポインタの設定（intense用）*/
+            .intense {
+            cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指定 */
+            display: inline-block;   /* 横方向に並べる指定 */
+            margin: 0px 5px 5px 0px; /* 周囲の余白量(右と下に5pxずつ) */
+            }
+        </style>
+		<script src="js/main.js"></script>
+		<script src="js/intense.js"> /* intense用 */ </script>
+
+	</head>
+	<body>
+
+
+	    <header>
+			<div><img src="images/logo.png" width="320" height="32" alt="ロゴ"></div>
+		</header>
+		<nav>
+			<ul>
+                <li><a href="calculate.html">calculate</a></li>
+				<li><a href="https://sample-7777.appspot.com/">Appri Start</a></li>
+				<li><a href="graph.html">グラフ</a></li>
+				<li><a href="https://www.google.co.jp">google</a></li>
+				<li><a href="news.html">お知らせ</a></li>
+				<li><a href="contact.html">お問い合わせ</a></li>
+				<li><a href="nakamura.html">members 中村</a></li>
+
+			</ul>
+		</nav>
+		<article>
+			<h1>電力事情について</h1>
+			<p>
+				現在、電力供給に不安があるため、各事業部は国内の
+				データセンターだけでなく海外のデータセンターへの
+				移行も視野に入れる必要がでてきました。
+			</p>
+			<p>
+				今後はリスク分散について早急に対処しなければいけません。
+			</p>
+		</article>
+		<section id="main">
+			<h1>新商品に関するお知らせ</h1>
+			<section>
+				<h2>sawaQコンバーター ver 2</h2>
+				<p>近日中にアナウンスする予定です。</p>
+			</section>
+			<section>
+				<h2>sawaQ API辞書</h2>
+				<p>好評発売中。現在、キャンペーン中につき半額セール実施中!</p>
+			</section>
+		</section>
+		<aside>
+			<div><img src="images/banner.png" width="200" height="200" alt="広告"></div>
+			<div><a href="member.html" >
+			        <img src="photo/bird.jpg"  width="90" height="100" alt="広告">
+			     </a>
+			     <img src="photo/bird3.jpg"   width="90" height="100" alt="広告">
+			     <img src="photo/bird.jpg" width="90" height="100" data-title="some animals"
+                                                                  data-caption="parakeet" class="intense">
+                 <img src="images/illust_finger.png" width="90" height="100" data-title="some animals"
+                                                                  data-caption="parakeet" class="intense">
+			</div>
+		</aside>
+		<footer>
+			<p><small>2011 &copy; (株)sawaQ</small></p>
+			<p>〒100-0014 東京都千代田区永田町1-7-1</p>
+		</footer>
+		<script> /* intense用 */
+		   window.onload = function() {
+           var elements = document.querySelectorAll( '.intense' );
+           Intense( elements );
+           }
+        </script>
+
+	</body>
+</html>

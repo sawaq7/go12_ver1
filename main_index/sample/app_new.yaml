@@ -1,0 +1,36 @@
+
+runtime: go112
+
+instance_class: F2
+
+env_variables:
+  BUCKET_NAME: "sample-7777 filesample3" 
+  
+
+handlers:
+
+- url: / 
+  static_files: htmls/appri_start.html 
+  upload: htmls/appri_start.html
+
+- url: /(.*\.(css|html|js|png|jpg|mp4|mp3))$
+  static_files: static/\1
+  upload: static/.*\.(css|html|js|png|jpg|mp4|mp3)$
+
+
+
+
+
+- url: /audio/(.*\.*)
+  static_files: audio/\1
+  upload: audio/(.*\.*)
+
+- url: /movie/(.*\.*)
+  static_files: movie/\1
+  upload: movie/(.*\.*)
+
+- url: /.*
+  script: auto
+  
+
+

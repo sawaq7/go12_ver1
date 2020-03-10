@@ -1,0 +1,190 @@
+body {
+	margin : 5px auto ;
+	padding: 0 ;
+	width: 1000px;
+	height: 750px;
+
+
+	/* background-color: white; */
+	background-color: #ccffff
+}
+
+header {
+	margin : 0;
+	padding: 3;
+  /*  border:1px solid black; */
+    border:2px solid red;
+	width: 996px;
+	height: 46px;
+
+	background-color: #57cd7b;
+}
+nav {
+	margin : 0;
+	padding: 0;
+    border:2px solid red;
+	width: 996px;
+	height: 96px;
+
+	background-color: #00bfff;
+}
+nav ul {
+	margin:0px;
+	padding:0px;
+	background-color:#00bfff;
+	list-style-type:none;
+}
+nav li {
+	float:left;
+	width: 130px;
+	height:50px;
+	list-style: none;
+    text-align: center;
+	background-color:#00bfff;
+}
+nav li a {
+	display:block;
+	height:100%;
+	font-size: 14pt;
+	font-weight: bold;
+	text-decoration: none;
+}
+nav li a:hover {
+	display:block;
+	height:100%;
+	font-size: 14pt;
+	font-weight: bold;
+	text-decoration: none;
+	background-color:#c2f5d2;
+}
+/* --------------  段落落ちするのでdivで囲んでください ---------------- */
+article {
+	margin : 0px;
+	padding: 0;
+    border:2px solid red;
+	width: 296px;
+	height: 596px;
+	background-color: #ff69b4;
+	font-size: 100%;
+/*	color: white;    */
+	float: left;
+}
+article h1 {
+	font-size: 14pt;
+	border-bottom:1px solid black;
+	text-shadow: 1px 1px 3px #777;
+}
+article h2 {
+	font-size: 12pt;
+	border-bottom:1px solid black;
+	text-shadow: 1px 1px 3px #777;
+}
+article p {
+	padding: 10px;
+	font-size: 12pt;
+	line-height: 150%;
+}
+article p strong {
+	font-size: 12pt;
+}
+section#main {
+	margin : 0;
+	padding: 0;
+    border:2px solid red;
+	width: 396px;
+	height: 596px;
+	background-color: #3cb371;
+	float: left;
+}
+#main h1 {
+	font-size: 14pt;
+	border-bottom:1px solid black;
+	text-shadow: 1px 1px 3px #777;
+}
+#main h2 {
+	font-size: 12pt;
+	border-bottom:1px solid black;
+	text-shadow: 1px 1px 3px #777;
+}
+#main p {
+	padding: 0px;
+	font-size: 12pt;
+	line-height: 150%;
+}
+#main p strong {
+	font-size: 12pt;
+}
+aside {
+	margin : 0;
+	padding: 0;
+    border:2px solid red;
+	width: 296px;
+	height: 596px;
+	background-color: #ff7e00;
+    float: left;
+
+
+}
+aside h1 {
+	font-size: 14pt;
+	border-bottom:1px solid black;
+	text-shadow: 1px 1px 3px #777;
+}
+footer {
+	clear: both;
+	margin : 0;
+    padding: 10;
+    border:2px solid red;
+	width: 996px;
+	height: 146px;
+	background-color: #00bfff;
+}
+footer p {
+	padding: 0;
+
+	font-size: 16pt;
+}
+canvas {
+	border: 1px solid black;
+}
+
+form p {
+	margin:0 0 -15px 0;
+	padding:0;
+}
+table {
+	width: 280px;
+	border:1px solid black;
+	font-size:10pt;
+	border-collapse: collapse;
+}
+th, td {
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	height: 14pt;
+	border:1px solid black;
+}
+td {
+	text-align: right;
+}
+#toggleSwitch {
+	color: blue;
+	cursor : pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
