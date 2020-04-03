@@ -7,7 +7,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -16,28 +16,27 @@ import (
                                                 )
 
 ///
-///    指定したcolumnNOのcsv情報をゲットする
+///    持E��したcolumnNOのcsv惁E��をゲチE��する
 ///
 
 func Csv_inf_column ( w http.ResponseWriter, r *http.Request ,column_no int )  ( []string ) {
 
 //     IN    w      　　　　: レスポンスライター
 //     IN    r      　　　　: リクエストパラメータ
-//     IN  column_no　      : 抽出したい行NOの情報
+//     IN  column_no　      : 抽出したぁE��NOの惁E��
 
-//     OUT csv_inf_column  : csv情報”
-
-//    fmt.Fprintf( w, "trans.csv_inf_column start \n" )  // デバック
+//     OUT csv_inf_column  : csv惁E�� E
+//    fmt.Fprintf( w, "trans.csv_inf_column start \n" )  // チE��チE��
 
     var string_wk string
 
 ///
-///   プロジェクト名をゲット
+///   プロジェクト名をゲチE��
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -74,7 +73,7 @@ func Csv_inf_column ( w http.ResponseWriter, r *http.Request ,column_no int )  (
 
 	for _, csv_infw := range csv_inf {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
      switch column_no {
 
           case 1 :
@@ -143,7 +142,7 @@ func Csv_inf_column ( w http.ResponseWriter, r *http.Request ,column_no int )  (
 
 	}
 
-//    fmt.Fprintf( w, "trans.csv_inf_column normal end )  // デバック
+//    fmt.Fprintf( w, "trans.csv_inf_column normal end )  // チE��チE��
 
     return	csv_inf_column
 }

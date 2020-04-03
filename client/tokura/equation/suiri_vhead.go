@@ -1,19 +1,17 @@
 ///
-/// 速度水頭を求める
-///   hv = v2剰 / 2g
+/// 速度水頭を求めめE///   hv = v2剰 / 2g
 
 package equation
 
 import (
 	    "fmt"
-//	    "basic/maths"
-	    "basic/declare"
+//	    "github.com/sawaq7/go12_ver1/basic/maths"
+	    "github.com/sawaq7/go12_ver1/basic/declare"
 	  		          )
 
 func Suiri_Vhead( velocity float64 ) float64 {
 
-//     IN    verocity(m/s）  : 流速
-//    OUT    one        : 速度水頭　＝　vの2剰　/2*g
+//     IN    verocity(m/s�E�E : 流E��E//    OUT    one        : 速度水頭　�E�　vの2剰　/2*g
 
    var hv float64
 

@@ -7,7 +7,7 @@ import (
 	      "net/http"
 //	      "fmt"
 
-	      "client/sgh/type2"
+	      "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
 	      "cloud.google.com/go/datastore"
 	      "context"
@@ -25,7 +25,7 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//   fmt.Fprintf( w, "initialize.sgh_ai start \n" )  // デバック
+//   fmt.Fprintf( w, "initialize.sgh_ai start \n" )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -54,7 +54,7 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-//    fmt.Fprintf( w, "initialize.sgh_ai count \n" ,count )  // デバック
+//    fmt.Fprintf( w, "initialize.sgh_ai count \n" ,count )  // チE��チE��
 
 	sgh_ai     := make([]type2.Sgh_Ai, 0, count)
 
@@ -90,7 +90,7 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 		  return
 	    }
 	  }
-//      fmt.Fprintf( w, "initialize.sgh_ai pos2 %v   \n" , pos2  )  // デバック
+//      fmt.Fprintf( w, "initialize.sgh_ai pos2 %v   \n" , pos2  )  // チE��チE��
 
     }
 

@@ -11,9 +11,9 @@ import (
 //        "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
 
-        "general/type5"
-        "general/process3"
-        "general/datastore5/initialize"
+        "github.com/sawaq7/go12_ver1/general/type5"
+        "github.com/sawaq7/go12_ver1/general/process3"
+        "github.com/sawaq7/go12_ver1/general/datastore5/initialize"
 //        "html/template"
         "log"
         "cloud.google.com/go/datastore"
@@ -22,14 +22,13 @@ import (
                                                   )
 
 ///
-/// オブジェクトリストを表示する。
-///
+/// オブジェクトリストを表示する、E///
 
 
 
 func Storage_object_list(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Printf( w, "storage_object_list start \n" )  // デバック
+//    fmt.Printf( w, "storage_object_list start \n" )  // チE��チE��
 // fmt.Printf("Saved %v: %v\n", taskKey, task.Description)
 
     var storage_b_o_temp type5.Storage_B_O_Temp
@@ -39,7 +38,7 @@ func Storage_object_list(w http.ResponseWriter, r *http.Request) {
 //    c := appengine.NewContext(r)
     ctx := context.Background()
 
-/// 指定したline-noをGETして整数化 ///
+/// 持E��したline-noをGETして整数匁E///
 
     select_id , err := strconv.Atoi(r.FormValue("line_no"))
 	if err  != nil {
@@ -51,13 +50,13 @@ func Storage_object_list(w http.ResponseWriter, r *http.Request) {
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if projectID == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       projectID = "sample-7777"
 
 	}
 
-//	fmt.Fprintf( w, "storage_bucket_list :  projectID %v\n" ,  projectID  )  // デバック
+//	fmt.Fprintf( w, "storage_bucket_list :  projectID %v\n" ,  projectID  )  // チE��チE��
 
     buckets_minor , _ := storage2.Storage_basic( "list" ,projectID ,sdmy, w , r  )
 
@@ -77,13 +76,13 @@ func Storage_object_list(w http.ResponseWriter, r *http.Request) {
             log.Fatalf("Failed to create client: %v", err)
         }
 
-        initialize.Storage_b_o_temp (w , r ) //  既存の　Storage_B_O_Temp コモン用のtemporary-fileをクリアー
+        initialize.Storage_b_o_temp (w , r ) //  既存�E　Storage_B_O_Temp コモン用のtemporary-fileをクリアー
 
         storage_b_o_temp.Line_No =  1
         storage_b_o_temp.Project_Name = projectID
         storage_b_o_temp.Bucket_Name = bucketsw
 
-/// コモン用のtemporary-fileにバケット名を再セット
+/// コモン用のtemporary-fileにバケチE��名を再セチE��
 
         new_key := datastore.IncompleteKey("Storage_B_O_Temp", nil)
 
@@ -105,7 +104,7 @@ func Storage_object_list(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	fmt.Fprintf( w, "storage_object_list : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "storage_object_list : normal end \n" )  // チE��チE��
 
 }
 

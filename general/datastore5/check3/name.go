@@ -9,20 +9,19 @@ import (
                      )
 
 ///                          ///
-/// データストアをコピーする  ///
+/// チE�Eタストアをコピ�Eする  ///
 ///                         ///
 
 func Name( w http.ResponseWriter, basic_name string  ) (err error ){
 
 //     IN    w        : レスポンスライター
-//     IN  basic_Name : 基本のデータストア名
+//     IN  basic_Name : 基本のチE�Eタストア吁E
 
-
-    fmt.Fprintf( w, "check3.name start \n" )  // デバック
-    fmt.Fprintf( w, "check3.name basic_name %v\n" ,basic_name)  // デバック
+    fmt.Fprintf( w, "check3.name start \n" )  // チE��チE��
+    fmt.Fprintf( w, "check3.name basic_name %v\n" ,basic_name)  // チE��チE��
 
 ///
-///  エラーメッセージ　セット
+///  エラーメチE��ージ　セチE��
 ///
 
 var (
@@ -31,7 +30,7 @@ var (
 
 	                                                                        )
 ///
-/// データストア名　チェック
+/// チE�Eタストア名　チェチE��
 ///
     ok_flag := 0
 
@@ -51,8 +50,8 @@ var (
 		return Err1
 	}
 
-    fmt.Fprintf( w, "check3.name ok_flag %v\n" ,ok_flag)  // デバック
-	fmt.Fprintf( w, "check3.name normal end \n" )  // デバック
+    fmt.Fprintf( w, "check3.name ok_flag %v\n" ,ok_flag)  // チE��チE��
+	fmt.Fprintf( w, "check3.name normal end \n" )  // チE��チE��
 
     return nil
 }

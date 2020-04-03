@@ -5,10 +5,10 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
-        "client/sgh/datastore2"
-	    "client/sgh/type2"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
+        "github.com/sawaq7/go12_ver1/client/sgh/datastore2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 	    "strconv"
 //	    "time"
 
@@ -19,20 +19,20 @@ import (
 
 func D_schedule_copy(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_schedule_copy start \n" )  // デバック
+//    fmt.Fprintf( w, "d_schedule_copy start \n" )  // チE��チE��
 
     var idmy int64
 
 	var g type2.D_Schedule
 
 	id := r.FormValue("id")
-//    fmt.Fprintf( w, "d_schedule_copy  : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "d_schedule_copy  : id %v\n", id )  // チE��チE��
 
 	copyidw ,_ := strconv.Atoi(id)
 	copyid := int64(copyidw)
 
-//    fmt.Fprintf( w, "d_schedule_copy  : copyidw %v\n", copyidw )  // デバック
-//    fmt.Fprintf( w, "d_schedule_copy  : copyid %v\n", copyid )  // デバック
+//    fmt.Fprintf( w, "d_schedule_copy  : copyidw %v\n", copyidw )  // チE��チE��
+//    fmt.Fprintf( w, "d_schedule_copy  : copyid %v\n", copyid )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -67,9 +67,9 @@ func D_schedule_copy(w http.ResponseWriter, r *http.Request) {
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
-//   	fmt.Fprintf( w, "d_schedule_copy : g.Course_332 %v\n", g.Course_332 )  // デバック
+//   	fmt.Fprintf( w, "d_schedule_copy : g.Course_332 %v\n", g.Course_332 )  // チE��チE��
 
-//  地区情報をGET
+//  地区惁E��をGET
 
     flexible_out := datastore2.Datastore_sgh( "D_District_Temp" ,"check" ,idmy , w , r  )
 
@@ -81,7 +81,7 @@ func D_schedule_copy(w http.ResponseWriter, r *http.Request) {
 
 	process.D_schedule_showall(w , r ,district_no)
 
-//	fmt.Fprintf( w, "d_schedule_copy : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "d_schedule_copy : normal end \n" )  // チE��チE��
 
 
 

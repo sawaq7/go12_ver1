@@ -36,7 +36,7 @@ package html1000
 		  <ul>
 			    <li>
 			      <div>
-			        <h1  align="center">マルチ構造体(2階層・登録)</h1>
+			        <h1  align="center">マルチ構造佁E2階層・登録)</h1>
 			        <form method="GET"  action="/d_district_showall2_sample" >
 
 			          <input type="image" src="images/illust_members_nakamura2.png" width="80" height="80"
@@ -48,7 +48,7 @@ package html1000
                 <li>
 				  <div>
 
-                    <h1  align="center">マルチ構造体(2階層・表示)</h1>
+                    <h1  align="center">マルチ構造佁E2階層・表示)</h1>
 				    <form method="GET"  action="/d_district_showall2_sample2" >
                       <input type="image" src="images/illust_finger.png" width="80" height="80"
                                                                            name="List" alt="png" />

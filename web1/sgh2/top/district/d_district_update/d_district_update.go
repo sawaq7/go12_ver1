@@ -7,9 +7,9 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 
-        "client/sgh/type2"
+        "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
         "os"
         "cloud.google.com/go/datastore"
@@ -20,7 +20,7 @@ func D_district_update(w http.ResponseWriter, r *http.Request) {
 
 	var g type2.D_District
 
-//    fmt.Fprintf( w, "d_district_update start \n" )  // デバック
+//    fmt.Fprintf( w, "d_district_update start \n" )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -42,15 +42,15 @@ func D_district_update(w http.ResponseWriter, r *http.Request) {
 	updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "d_district_update :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "d_district_update :error updidw %v\n", updidw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "d_district_update : updidw %v\n", updidw )  // デバック
-//    fmt.Fprintf( w, "d_district_update : updid %v\n", updid )  // デバック
+//    fmt.Fprintf( w, "d_district_update : updidw %v\n", updidw )  // チE��チE��
+//    fmt.Fprintf( w, "d_district_update : updid %v\n", updid )  // チE��チE��
 
 //	key := datastore.NewKey(c, "D_District", "", updid, nil)
     key := datastore.IDKey("D_District", updid, nil)
@@ -61,14 +61,13 @@ func D_district_update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    g.District_Name = r.FormValue("district_name")  // 地区名をゲット
+    g.District_Name = r.FormValue("district_name")  // 地区名をゲチE��
 
-	district_no := r.FormValue("district_no")         // 地区No.をゲット
-//	fmt.Fprintf( w, "d_district_update : district_no %v\n", district_no )  // デバック
-//	fmt.Fprintf( w, "d_district_update : district_name %v\n", g.District_Name )  // デバック
+	district_no := r.FormValue("district_no")         // 地区No.をゲチE��
+//	fmt.Fprintf( w, "d_district_update : district_no %v\n", district_no )  // チE��チE��
+//	fmt.Fprintf( w, "d_district_update : district_name %v\n", g.District_Name )  // チE��チE��
 
-	district_now ,err := strconv.Atoi(district_no)  // 文字の整数化
-	if err != nil {
+	district_now ,err := strconv.Atoi(district_no)  // 斁E���E整数匁E	if err != nil {
 //		http.Error(w,err.Error(), http.StatusInternalServerError)
 //       fmt.Fprintf( w, "d_district_update : a number must be half-width characters %v\n"  )
 		return
@@ -76,8 +75,8 @@ func D_district_update(w http.ResponseWriter, r *http.Request) {
 
 	g.District_No = int64(district_now)   // 整数の64ビット化
 
-//	fmt.Fprintf( w, "d_district_update : g.District_Name %v\n", g.District_Name )  // デバック
-//	fmt.Fprintf( w, "d_district_update : g.District_No %v\n", g.District_No )  // デバック
+//	fmt.Fprintf( w, "d_district_update : g.District_Name %v\n", g.District_Name )  // チE��チE��
+//	fmt.Fprintf( w, "d_district_update : g.District_No %v\n", g.District_No )  // チE��チE��
 
     if _, err := client.Put(ctx, key, &g ); err != nil {
 //	if _, err := datastore.Put(c, key, &g); err != nil {

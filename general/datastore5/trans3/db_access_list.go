@@ -6,7 +6,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
 	    "os"
 	    "log"
@@ -21,16 +21,16 @@ import (
 
 func Db_access_list( w http.ResponseWriter, r *http.Request )  ([]type5.Db_Access_List2 ) {
 
-//    fmt.Fprintf( w, "trans3.db_access_list2 start \n" )  // デバック
+//    fmt.Fprintf( w, "trans3.db_access_list2 start \n" )  // チE��チE��
 
 
 ///
-///   プロジェクト名をゲット
+///   プロジェクト名をゲチE��
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 

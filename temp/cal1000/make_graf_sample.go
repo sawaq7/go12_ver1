@@ -4,8 +4,8 @@ import (
 
 	    "net/http"
 	    "fmt"
-//	    "client/sgh/process"
-        "basic/type3"
+//	    "github.com/sawaq7/go12_ver1/client/sgh/process"
+        "github.com/sawaq7/go12_ver1/basic/type3"
         "math/rand"
         "image/color"
 //        "storage2"
@@ -22,8 +22,7 @@ import (
                                                    )
 
 ///
-/// 導水勾配線群よりグラフを作り、ストレッジに保存する。
-///
+/// 導水勾配線群よりグラフを作り、ストレチE��に保存する、E///
 
 func Make_graf_sample( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_eneup []type3.Point ,
                            ad_enedown []type3.Point ,ad_glineup []type3.Point ,ad_glinedown []type3.Point ) (f_name string) {
@@ -31,18 +30,14 @@ func Make_graf_sample( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
 //     IN  p_number 　　: 点の数
-//     IN  ad_eneup  　 : エネルギー線（up）のスライス   (pointの構造体）
-//     IN  ad_enedown   : エネルギー線（down）のスライス (pointの構造体）
-//     IN  ad_glineup   : 導水勾配線（up）のスライス     (pointの構造体）
-//     IN  ad_glinedown : 導水勾配線（down）のスライス   (pointの構造体）
+//     IN  ad_eneup  　 : エネルギー線！Ep�E��Eスライス   (pointの構造体！E//     IN  ad_enedown   : エネルギー線！Eown�E��Eスライス (pointの構造体！E//     IN  ad_glineup   : 導水勾配線！Ep�E��Eスライス     (pointの構造体！E//     IN  ad_glinedown : 導水勾配線！Eown�E��Eスライス   (pointの構造体！E
 
-
-   fmt.Fprintf( w, "make_graf_sample start \n" )  // デバック
+   fmt.Fprintf( w, "make_graf_sample start \n" )  // チE��チE��
 
    rand.Seed(int64(0))
 
 ///
-/// グラフの枠を作成　
+/// グラフ�E枠を作�E　
 ///
 
  	p, err := plot.New()
@@ -65,12 +60,12 @@ func Make_graf_sample( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_
 
     name1 := "sawamoto"
 
-//    p.NominalX( name1, "Two", "Three", "Four", "Five") // 各値のラベル(X軸)
+//    p.NominalX( name1, "Two", "Three", "Four", "Five") // 吁E��のラベル(X軸)
 
-    p.NominalY( name1, "two", "Three", "Four", "Five") // 各値のラベル(X軸)
+    p.NominalY( name1, "two", "Three", "Four", "Five") // 吁E��のラベル(X軸)
 
 ///
-/// 各種ラインの　点のワークエリアをＧＥＴ　
+/// 吁E��ラインの　点のワークエリアをＧ�E��E�　
 ///
 
     ad_eneup_xys     := make(plotter.XYs, p_number)
@@ -79,7 +74,7 @@ func Make_graf_sample( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_
     ad_glinedown_xys := make(plotter.XYs, p_number)
 
 ///
-/// 各種ラインの点のデータをSET　
+/// 吁E��ラインの点のチE�EタをSET　
 ///
 
  	for i := 0; i < p_number; i++ {
@@ -99,74 +94,67 @@ func Make_graf_sample( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_
  	}
 
 ///
-/// 各種ラインのグラフのデータをSET　
+/// 吁E��ラインのグラフ�EチE�EタをSET　
 ///
 
-	wide := vg.Points(10) // 棒グラフの幅
-
-  	// groupの各値について棒グラフを生成
+	wide := vg.Points(10) // 棒グラフ�E幁E
+  	// groupの吁E��につぁE��棒グラフを生�E
   	group := plotter.Values{20, 21, 22, 23, 24} // 描画対象
 
   	bars, _ := plotter.NewBarChart(group, wide)
 
 //  	bars, _ := plotter.NewBarChart_test( w ,group, wide)
 
-  	bars.LineStyle.Width = vg.Length(0) // 棒グラフの枠線の太さ
-
-  	bars.Color = plotutil.Color(3)      // 棒グラフの色。0から6まででplotutilにSoftColorsとして定義されている。
-
-//  	bars.Offset = wide * 2                    // 棒グラフを表示する位置のオフセット(X方向)。複数のグループを並べたいときは-wなどで位置を調整する。
-
+  	bars.LineStyle.Width = vg.Length(0) // 棒グラフ�E枠線�E太ぁE
+  	bars.Color = plotutil.Color(3)      // 棒グラフ�E色、Eから6まででplotutilにSoftColorsとして定義されてぁE��、E
+//  	bars.Offset = wide * 2                    // 棒グラフを表示する位置のオフセチE��(X方吁E。褁E��のグループを並べたいとき�E-wなどで位置を調整する、E
     bars.Offset = 0
 //    bars.XMin = 2
 
-// 	bars.Horizontal = false             // trueにすると横向きの棒グラフになる。
-
+// 	bars.Horizontal = false             // trueにすると横向きの棒グラフになる、E
  	bars.Horizontal = true
 
 //	p.Add(bars)
 
 	p.Add_test( w ,bars)
 
-// 	if err := plotutil.AddLinePoints(p, "エネルギー線(up)", ad_eneup_xys); err != nil {
+// 	if err := plotutil.AddLinePoints(p, "エネルギー緁Eup)", ad_eneup_xys); err != nil {
 // 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 //	   return " "
 // 	}
 
-//    if err := plotutil.AddLinePoints(p, "エネルギー線(down)", ad_enedown_xys ); err != nil {
+//    if err := plotutil.AddLinePoints(p, "エネルギー緁Edown)", ad_enedown_xys ); err != nil {
 // 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 //	   return " "
 // 	}
 
-// 	if err := plotutil.AddLinePoints(p, "動水勾配線(up)", ad_glineup_xys ); err != nil {
+// 	if err := plotutil.AddLinePoints(p, "動水勾配緁Eup)", ad_glineup_xys ); err != nil {
 // 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 //	   return " "
 // 	}
 
-// 	if err := plotutil.AddLinePoints(p, "動水勾配線(down)", ad_glinedown_xys ); err != nil {
+// 	if err := plotutil.AddLinePoints(p, "動水勾配緁Edown)", ad_glinedown_xys ); err != nil {
 // 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 //	   return " "
 // 	}
 
 ///
-///   グラフ-ファイル(画像ファイル）をストレッジに保存
+///   グラチEファイル(画像ファイル�E�をストレチE��に保孁E///
+
+ 	bucket := "sample-7777"     // バケチE��名セチE��
+
+///
+/// ファイル名を作�E
 ///
 
- 	bucket := "sample-7777"     // バケット名セット
-
-///
-/// ファイル名を作成
-///
-
- 	date_w := time.Now()        // 日付をセット
+ 	date_w := time.Now()        // 日付をセチE��
     unique_no := fmt.Sprintf("%04d%02d%02d%02d%02d%02d",
 		date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 
     f_name = "bar_graph_" + unique_no + ".png"
-    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )  // デバック
+    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )  // チE��チE��
 
-    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // 新ファイルを保存
-
+    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // 新ファイルを保孁E
        http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
 

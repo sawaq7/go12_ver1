@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -17,19 +17,19 @@ import (
                                                 )
 
 ///
-/// 指定した日付の予覚情報をゲットする
+/// 持E��した日付�E予覚情報をゲチE��する
 ///
 
 func Guest_reserve_minor3( reserve_date string ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Reserve_View ) {
 
-//     IN  reserve_date : 予約日
+//     IN  reserve_date : 予紁E��
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_reserve_minor3_slice  : 構造体　”エリア情報”のスライス
+//     OUT guest_reserve_minor3_slice  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.guest_reserve_minor3 start \n" )  // デバック
-//    fmt.Fprintf( w, "trans.guest_reserve_minor3 reserve_date \n" ,reserve_date)  // デバック
+//    fmt.Fprintf( w, "trans.guest_reserve_minor3 start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_reserve_minor3 reserve_date \n" ,reserve_date)  // チE��チE��
 
     var i_count int64
 
@@ -69,7 +69,7 @@ func Guest_reserve_minor3( reserve_date string ,w http.ResponseWriter, r *http.R
 //	keys, err := q.GetAll(c, &guest_reserve_minor)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -85,9 +85,9 @@ func Guest_reserve_minor3( reserve_date string ,w http.ResponseWriter, r *http.R
 
 	for pos, guest_reserve_minorw := range guest_reserve_minor {
 
-//	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)  // デバック
+//	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)  // チE��チE��
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
       if reserve_date == guest_reserve_minorw.Date {
 

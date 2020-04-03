@@ -2,16 +2,16 @@ package get
 
 import (
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 	    "net/http"
 //	    "fmt"
 
 	    "html/template"
-        "general/html5"
+        "github.com/sawaq7/go12_ver1/general/html5"
                          )
 
 ///
-/// 画像ファイルを、ウエブ上に表示する。 part2
+/// 画像ファイルを、ウエブ上に表示する、Epart2
 ///
 
 
@@ -19,14 +19,13 @@ func  Image_file_show2( w http.ResponseWriter ,r *http.Request ,image_show type5
 
 //     IN    w       : レスポンスライター
 //     IN    r       : リクエストパラメータ
-//     IN image_show : 構造体　”画像データ”
+//     IN image_show : 構造体　”画像データ E
+//    fmt.Fprintf( w, "image_file_show2 start \n" )  // チE��チE��
 
-//    fmt.Fprintf( w, "image_file_show2 start \n" )  // デバック
-
-//	fmt.Fprintf( w, "image_file_show2 : image_show.File_Name %v\n", image_show.File_Name )  // デバック
+//	fmt.Fprintf( w, "image_file_show2 : image_show.File_Name %v\n", image_show.File_Name )  // チE��チE��
 
 /// モニター　表示 ///
-    // テンプレートのヘッダーをGET
+    // チE��プレート�EヘッダーをGET
 
      monitor := template.Must(template.New("html").Parse(html5.Image_file_show))
 

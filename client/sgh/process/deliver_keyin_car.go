@@ -6,18 +6,18 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "client/sgh/html2"
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/html2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
                                                 )
-/// 配達データを表示する ///
+/// 配達チE�Eタを表示する ///
 
 func Deliver_keyin_car(w http.ResponseWriter, r *http.Request) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//    fmt.Fprintf( w, "deliver_keyin_car start \n" )  // デバック
+//    fmt.Fprintf( w, "deliver_keyin_car start \n" )  // チE��チE��
 
 var line_counter int64
 
@@ -31,7 +31,7 @@ var line_counter int64
 		return
 	}
 
-// import struct for accessing datastore get from client/sgh/type2/sgh.go
+// import struct for accessing datastore get from github.com/sawaq7/go12_ver1/client/sgh/type2/sgh.go
 
 	deliver      := make([]type2.Deliver, 0, count)
 	deliver_view := make([]type2.Deliver, 0)
@@ -66,7 +66,7 @@ var line_counter int64
 
 	}
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
      monitor := template.Must(template.New("html").Parse(html2.Deliver_keyin_car))
 

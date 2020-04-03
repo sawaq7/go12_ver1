@@ -1,6 +1,5 @@
 ///
-/// 水理学　管の内径を求める（ヘーゼン・ウイリアムスの公式）
-///
+/// 水琁E��　管の冁E��E��求める（�Eーゼン・ウイリアムスの公式！E///
 ///
 
 
@@ -14,16 +13,12 @@ import (
 
 func Suiri_Heizen3( ch float64 ,I float64 ,Q float64  ) float64 {
 
-//     IN    ch         : 流速係数
-//     IN    I          : 動水勾配
-//     IN    Q(m/s) : 流速
-//     IN    high（m)   : 損失水頭
-//    OUT    one（m)    : 管の長さ
-
+//     IN    ch         : 流E��係数
+//     IN    I          : 動水勾酁E//     IN    Q(m/s) : 流E��E//     IN    high�E�E)   : 損失水頭
+//    OUT    one�E�E)    : 管の長ぁE
    var D float64
 
-// 流量を求める
-
+// 流E��を求めめE
    rwork := math.Pow( ch ,-0.38)
    rwork2 := math.Pow( I,-0.205)
    rwork3 := math.Pow( Q,0.38)

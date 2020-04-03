@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "temp/type1000"
+	    "github.com/sawaq7/go12_ver1/temp/type1000"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///
-/// 指定した地区のエリアをゲット
+/// 持E��した地区のエリアをゲチE��
 ///
 
 func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)  ([]type1000.D_Area ) {
@@ -25,9 +25,9 @@ func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)
 //     IN    r      　　: リクエストパラメータ
 //     IN 　district_no : 地区No
 
-//     OUT d_area_view  : 構造体　”エリア情報”のスライス
+//     OUT d_area_view  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.d_area_district district_no \n" ,district_no)  // デバック
+//    fmt.Fprintf( w, "trans.d_area_district district_no \n" ,district_no)  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 

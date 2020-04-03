@@ -5,11 +5,11 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 	    "strconv"
-	    "basic/date1"
+	    "github.com/sawaq7/go12_ver1/basic/date1"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -18,37 +18,37 @@ import (
 
 func D_schedule_update(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_schedule_update start \n" )  // デバック
+//    fmt.Fprintf( w, "d_schedule_update start \n" )  // チE��チE��
 
 	var g type2.D_Schedule
 
 	updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "d_schedule_update :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "d_schedule_update :error updidw %v\n", updidw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "d_schedule_update : updidw %v\n", updidw )  // デバック
-//    fmt.Fprintf( w, "d_schedule_update : updid %v\n", updid )  // デバック
+//    fmt.Fprintf( w, "d_schedule_update : updidw %v\n", updidw )  // チE��チE��
+//    fmt.Fprintf( w, "d_schedule_update : updid %v\n", updid )  // チE��チE��
 
 
 
-	g.Course_01 = r.FormValue("course_no_01")  // 01号車の担当者ゲット
-	g.Course_02 = r.FormValue("course_no_02")  // 02号車の担当者ゲット
-	g.Course_03 = r.FormValue("course_no_03")  // 03号車の担当者ゲット
-	g.Course_04 = r.FormValue("course_no_04")  // 04号車の担当者ゲット
-    g.Date   = r.FormValue("date")               // 日付をゲット
+	g.Course_01 = r.FormValue("course_no_01")  // 01号車�E拁E��老E��チE��
+	g.Course_02 = r.FormValue("course_no_02")  // 02号車�E拁E��老E��チE��
+	g.Course_03 = r.FormValue("course_no_03")  // 03号車�E拁E��老E��チE��
+	g.Course_04 = r.FormValue("course_no_04")  // 04号車�E拁E��老E��チE��
+    g.Date   = r.FormValue("date")               // 日付をゲチE��
 
-    g.Date_Real = date1.Date_realdata_get( w  ,g.Date )   // タイムデータ作成
+    g.Date_Real = date1.Date_realdata_get( w  ,g.Date )   // タイムチE�Eタ作�E
 
     district_now , err := strconv.Atoi(r.FormValue("district_no"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "d_schedule_update :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "d_schedule_update :error updidw %v\n", updidw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
@@ -77,15 +77,15 @@ func D_schedule_update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-//   	fmt.Fprintf( w, "d_schedule_update : g.Area_Name %v\n", g.Area_Name )  // デバック
-//    fmt.Fprintf( w, "d_schedule_update : g.Number %v\n", g.Number )  // デバック
-//    fmt.Fprintf( w, "d_schedule_update : g.Date %v\n", g.Date )  // デバック
+//   	fmt.Fprintf( w, "d_schedule_update : g.Area_Name %v\n", g.Area_Name )  // チE��チE��
+//    fmt.Fprintf( w, "d_schedule_update : g.Number %v\n", g.Number )  // チE��チE��
+//    fmt.Fprintf( w, "d_schedule_update : g.Date %v\n", g.Date )  // チE��チE��
 
 /// モニター　再表示 ///
 
 	process.D_schedule_showall(w , r ,g.District_No)
 
-//	fmt.Fprintf( w, "d_schedule_update : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "d_schedule_update : normal end \n" )  // チE��チE��
 
 
 

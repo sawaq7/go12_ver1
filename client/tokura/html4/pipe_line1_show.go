@@ -16,7 +16,7 @@ const Pipe_line1_show = `
 
          <h2 align="center">List Of Deliverly Situation</h2>
 
-         <tr> <th>水路名</th> <th>水路高</th> <th>粗度係数</th> <th>変更</th> <th>削除</th> <th>実行</th> </tr>
+         <tr> <th>水路吁E/th> <th>水路髁E/th> <th>粗度係数</th> <th>変更</th> <th>削除</th> <th>実衁E/th> </tr>
          {{range .}}
            <tr>
 
@@ -63,7 +63,7 @@ const Pipe_line1_show = `
           <table border="2" cellpadding="8" align="center" bgcolor="#cd5c5c">
 
           <h2 align="center"> excute all </h2>
-          <tr> <th>水路名</th> <th>実行</th> </tr>
+          <tr> <th>水路吁E/th> <th>実衁E/th> </tr>
           {{range .}}
           <tr>
           <form method="GET" action="/pipe_line1_excute_all" >

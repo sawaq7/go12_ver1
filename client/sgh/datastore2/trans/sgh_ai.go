@@ -7,7 +7,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///                       　    ///
-/// コースNoの条件式をゲットする ///
+/// コースNoの条件式をゲチE��する ///
 ///                       　   ///
 
 
@@ -26,11 +26,11 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )  (sgh_ai_
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT sgh_ai_view  : 構造体　”条件式”のスライス
+//     OUT sgh_ai_view  : 構造体　”条件式”�Eスライス
 
-//    fmt.Fprintf( w, "trans.sgh_ai start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.sgh_ai start \n" )  // チE��チE��
 
-//    fmt.Fprintf( w, "trans.sgh_ai course_no %v\n" ,course_no )  // デバック
+//    fmt.Fprintf( w, "trans.sgh_ai course_no %v\n" ,course_no )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -107,12 +107,12 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )  (sgh_ai_
                                                                     sgh_aiw.Item5_Name    ,
                                                                     sgh_aiw.Item5_Factor           })
 
-//        fmt.Fprintf( w, "trans.sgh_ai sgh_aiw.Expression %v\n" ,sgh_aiw.Expression )  // デバック
+//        fmt.Fprintf( w, "trans.sgh_ai sgh_aiw.Expression %v\n" ,sgh_aiw.Expression )  // チE��チE��
 
       }
 	}
 
-//    fmt.Fprintf( w, "trans.sgh_ai normal end \n" )  // デバック
+//    fmt.Fprintf( w, "trans.sgh_ai normal end \n" )  // チE��チE��
     return	sgh_ai_view
 }
 

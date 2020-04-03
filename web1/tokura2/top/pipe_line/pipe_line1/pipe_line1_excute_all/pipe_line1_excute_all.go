@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////
 ///                                                                  ///
-///   動水勾配線データを作成する　　　　　　　　　　　　　　　　　　　  ///
+///   動水勾配線データを作�Eする　　　　　　　　　　　　　　　　　　　  ///
 ///                                                                  ///
 ////////////////////////////////////////////////////////////////////////
 
@@ -12,7 +12,7 @@ import (
 	      "strings"
 	      "net/http"
 	      "bufio"
-	      "client/tokura/suiri"
+	      "github.com/sawaq7/go12_ver1/client/tokura/suiri"
 	      "storage2"
 	      "cloud.google.com/go/storage"
                                          )
@@ -29,7 +29,7 @@ func Pipe_line1_excute_all(w http.ResponseWriter, r *http.Request) {
     filename1 := "water_inf.txt"
     filename2 := "grade_line.txt"
 
-// 導水勾配線ファイル（grade_line.txt）　（write file） クリエイト
+// 導水勾配線ファイル�E�Erade_line.txt�E�　�E�Erite file�E�EクリエイチE
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename2 , w , r  )
 
@@ -39,7 +39,7 @@ func Pipe_line1_excute_all(w http.ResponseWriter, r *http.Request) {
 
 	defer writer.Close()
 
-// 水路情報ファイル　（read file） オープン
+// 水路惁E��ファイル　�E�Eead file�E�Eオープン
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename1 , w , r  )
 
@@ -49,7 +49,7 @@ func Pipe_line1_excute_all(w http.ResponseWriter, r *http.Request) {
 
     defer reader.Close()
 
-// ファイルリーダー(string用）をＧＥＴ
+// ファイルリーダー(string用�E�を�E��E��E�
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -57,55 +57,55 @@ func Pipe_line1_excute_all(w http.ResponseWriter, r *http.Request) {
 
     for {
 
-      index ++     // レコードカウンターをカウント
+      index ++     // レコードカウンターをカウンチE
 
-//      fmt.Fprintf(w, "pipe_line1_excute_all : lndex %v\n", index )  // デバック
+//      fmt.Fprintf(w, "pipe_line1_excute_all : lndex %v\n", index )  // チE��チE��
 
 // ファイルを１行read
 
       line ,_  := sreader.ReadString('\n')
 
-//文字単位にスペースで分割
+//斁E��単位にスペ�Eスで刁E��
 
       str := strings.Fields(line)
 
       num := len(str)
 
-//      fmt.Fprintf(w, "pipe_line1_excute_all : num %v\n", num )  // デバック
+//      fmt.Fprintf(w, "pipe_line1_excute_all : num %v\n", num )  // チE��チE��
 
       if num != 0 {
          if index == 1{
 
 // ヘッダーは、スルーする
 
-//             fmt.Fprintf(w, "pipe_line1_excute_all (header) : line %s\n", line )  // デバック
+//             fmt.Fprintf(w, "pipe_line1_excute_all (header) : line %s\n", line )  // チE��チE��
 
           }else{
-//             fmt.Fprintf(w, "pipe_line1_excute_all (the other): line %s\n", line )  // デバック
+//             fmt.Fprintf(w, "pipe_line1_excute_all (the other): line %s\n", line )  // チE��チE��
 
-/// 動水勾配線データを作成
+/// 動水勾配線データを作�E
 
              ad_hp ,ad_hl ,ad_vhead ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := suiri.Kansui1( line  )
 
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_hp %s\n", ad_hp )  // デバック
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_hl %s\n", ad_hl )  // デバック
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_vhead %s\n", ad_vhead )  // デバック
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_eneup %s\n", ad_eneup )  // デバック
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_enedown %s\n", ad_enedown )  // デバック
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_glineup %s\n", ad_glineup )  // デバック
-//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_glinedown %s\n", ad_glinedown )  // デバック
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_hp %s\n", ad_hp )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_hl %s\n", ad_hl )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_vhead %s\n", ad_vhead )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_eneup %s\n", ad_eneup )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_enedown %s\n", ad_enedown )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_glineup %s\n", ad_glineup )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_all : ad_glinedown %s\n", ad_glinedown )  // チE��チE��
 
-// ポイント損失情報をwrite
+// ポイント損失惁E��をwrite
 
 //                 storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_hp )
                  storage2.File_write ( w ,writer ,ad_hp )
 
-// ライン損失情報をwrite
+// ライン損失惁E��をwrite
 
 //                 storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_hl )
                  storage2.File_write ( w ,writer ,ad_hl )
 
-// 速度水頭情報をwrite
+// 速度水頭惁E��をwrite
 
 //                 storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_vhead )
                  storage2.File_write ( w ,writer ,ad_vhead )
@@ -134,7 +134,7 @@ func Pipe_line1_excute_all(w http.ResponseWriter, r *http.Request) {
 
       } else if num == 0 {
 
-//          io.WriteString(w, "\n pipe_line1_excute_all : data end \n")   //デバック
+//          io.WriteString(w, "\n pipe_line1_excute_all : data end \n")   //チE��チE��
 
          break
 

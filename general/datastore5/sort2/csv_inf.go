@@ -4,31 +4,29 @@ import (
 
 	    "net/http"
 //	    "fmt"
-	    "general/datastore5/trans3"
+	    "github.com/sawaq7/go12_ver1/general/datastore5/trans3"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
                                                 )
 
 ///
-/// 　　　　	csv情報をソートする
-///
+/// 　　　　	csv惁E��をソートすめE///
 
 
 func Csv_inf(w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,sort_key_no []int  )  (csv_inf2 []type5.Csv_Inf ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN 　csv_inf     : csv情報
+//     IN 　csv_inf     : csv惁E��
 //     IN 　sort_key_no : ソートキーNO
 
-//     OUT  csv_inf2    : ソート後のcsv情報
+//     OUT  csv_inf2    : ソート後�Ecsv惁E��
 
-//    fmt.Fprintf( w, "sort.csv_inf start \n" )  // デバック
+//    fmt.Fprintf( w, "sort.csv_inf start \n" )  // チE��チE��
 
 ///
-///      ループ階層の判定
-///
+///      ループ階層の判宁E///
 
     loop_action := 0
 
@@ -54,7 +52,7 @@ func Csv_inf(w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,s
 
       }
 
-//      fmt.Fprintf( w, "sort2.csv_sort : loop_action %v\n", loop_action )  // デバック
+//      fmt.Fprintf( w, "sort2.csv_sort : loop_action %v\n", loop_action )  // チE��チE��
 
 ///
 ///      　階層別にソートを行う
@@ -64,20 +62,17 @@ func Csv_inf(w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,s
 
           case 1 :
 
-            csv_inf2 = Csv_inf_single( w ,r ,csv_inf ,sort_key_no   )   /// 1重ソートする
-
+            csv_inf2 = Csv_inf_single( w ,r ,csv_inf ,sort_key_no   )   /// 1重ソートすめE
           break;
 
           case 2 :
 
-            csv_inf2 = Csv_inf_double( w ,r ,csv_inf ,sort_key_no   )   /// 2重ソートする
-
+            csv_inf2 = Csv_inf_double( w ,r ,csv_inf ,sort_key_no   )   /// 2重ソートすめE
           break;
 
           case 3 :
 
-            csv_inf2 = Csv_inf_triple( w ,r ,csv_inf ,sort_key_no   )   /// 1重ソートする
-
+            csv_inf2 = Csv_inf_triple( w ,r ,csv_inf ,sort_key_no   )   /// 1重ソートすめE
           break;
 
       }
@@ -89,17 +84,16 @@ func Csv_inf(w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,s
 }
 
 ///
-/// 　　　　	csv情報を1重ソートする
-///
+/// 　　　　	csv惁E��めE重ソートすめE///
 
 func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,sort_key_no []int  )  (csv_inf2 []type5.Csv_Inf ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN 　csv_inf     : csv情報
+//     IN 　csv_inf     : csv惁E��
 //     IN 　sort_key_no : ソートキーNO
 
-//     OUT  csv_inf2    : ソート後のcsv情報
+//     OUT  csv_inf2    : ソート後�Ecsv惁E��
 
     var loop_2_flag ,loop_2_min int
 
@@ -107,24 +101,23 @@ func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
     var key_1_save  string
 
-//    fmt.Fprintf( w, "sort.csv_inf_single start \n" )  // デバック
+//    fmt.Fprintf( w, "sort.csv_inf_single start \n" )  // チE��チE��
 
-    count := len(csv_inf)    // レコード数ゲット
+    count := len(csv_inf)    // レコード数ゲチE��
 
-//     fmt.Fprintf( w, "sort2.sort.csv_inf_single : count %v\n", count )  // デバック
+//     fmt.Fprintf( w, "sort2.sort.csv_inf_single : count %v\n", count )  // チE��チE��
 
-     /// ソートテーブルを確保
-
+     /// ソートテーブルを確俁E
      sort_key1 := make( []string, count )
      sort_key2 := make( []string, count )
 
 ///
-/// 　　　ソートキーをセットする　
+/// 　　　ソートキーをセチE��する　
 ///
 
     for pos , sort_key_now := range sort_key_no {
 
-      string_wk := trans3.Csv_inf_column ( w ,r ,sort_key_now )   /// 　　ソートキーをセット
+      string_wk := trans3.Csv_inf_column ( w ,r ,sort_key_now )   /// 　　ソートキーをセチE��
 
       for pos2 , string_wkw := range string_wk {
 
@@ -137,17 +130,15 @@ func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
           sort_key2[pos2] = string_wkw
 
         }
-//        fmt.Fprintf( w, "sort2.csv_sort : string_wkw %v\n", string_wkw )  // デバック
+//        fmt.Fprintf( w, "sort2.csv_sort : string_wkw %v\n", string_wkw )  // チE��チE��
       }
     }
 
 ///
 /// 　　　ソートする　
 ///
-	csv_inf2 = make([]type5.Csv_Inf, 0)  /// ソートテーブルを確保
-
-	skip_check := make([]int ,count)        /// スキップの判定フラグテーブルを確保
-
+	csv_inf2 = make([]type5.Csv_Inf, 0)  /// ソートテーブルを確俁E
+	skip_check := make([]int ,count)        /// スキチE�Eの判定フラグチE�Eブルを確俁E
     line_counter = 0
 
 	for  loop_1 := 0 ; loop_1 < count ; loop_1++  {
@@ -156,23 +147,23 @@ func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
 	  for  loop_2 := 0 ; loop_2 < count ; loop_2 ++ {
 
-	    if skip_check[loop_2] != 1  {  /// ソート済みか否かのチェック
+	    if skip_check[loop_2] != 1  {  /// ソート済みか否か�EチェチE��
 
-	      if loop_2_flag  == -1  {     ///  初期値のセット
+	      if loop_2_flag  == -1  {     ///  初期値のセチE��
 
 	        loop_2_min = loop_2
 	        key_1_save = sort_key1[loop_2]
 
 	        loop_2_flag = 0
 
-	      /// 最小値、再セット
+	      /// 最小値、�EセチE��
 
 	      }  else if key_1_save >  sort_key1[loop_2]  {
 
 	        loop_2_min = loop_2
 	        key_1_save = sort_key1[loop_2]
 
-//            fmt.Fprintf( w, "sort2.csv_sort_single : key_1_save_single %v\n", key_1_save )  // デバック
+//            fmt.Fprintf( w, "sort2.csv_sort_single : key_1_save_single %v\n", key_1_save )  // チE��チE��
 
 	      }
 
@@ -181,7 +172,7 @@ func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
       }
 
 ///
-///   min値をテーブルにセット
+///   min値をテーブルにセチE��
 ///
       line_counter ++
       csv_inf[loop_2_min].Line_No = line_counter
@@ -189,7 +180,7 @@ func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
       csv_inf2 = append ( csv_inf2,  csv_inf[loop_2_min] )
 
 ///
-///  ソート済フラグをセット
+///  ソート済フラグをセチE��
 ///
 
       skip_check[loop_2_min] = 1
@@ -200,17 +191,16 @@ func Csv_inf_single( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 }
 
 ///
-/// 　　　　	csv情報を2重ソートする
-///
+/// 　　　　	csv惁E��めE重ソートすめE///
 
 func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,sort_key_no []int  )  (csv_inf2 []type5.Csv_Inf ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN 　csv_inf     : csv情報
+//     IN 　csv_inf     : csv惁E��
 //     IN 　sort_key_no : ソートキーNO
 
-//     OUT  csv_inf2    : ソート後のcsv情報
+//     OUT  csv_inf2    : ソート後�Ecsv惁E��
 
     var loop_2_flag ,loop_2_min int
 
@@ -218,24 +208,23 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
     var key_1_save ,key_2_save string
 
-//    fmt.Fprintf( w, "sort.csv_inf_double start \n" )  // デバック
+//    fmt.Fprintf( w, "sort.csv_inf_double start \n" )  // チE��チE��
 
-    count := len(csv_inf)    // レコード数ゲット
+    count := len(csv_inf)    // レコード数ゲチE��
 
-//     fmt.Fprintf( w, "sort2.sort.csv_inf_double : count %v\n", count )  // デバック
+//     fmt.Fprintf( w, "sort2.sort.csv_inf_double : count %v\n", count )  // チE��チE��
 
-     /// ソートテーブルを確保
-
+     /// ソートテーブルを確俁E
      sort_key1 := make( []string, count )
      sort_key2 := make( []string, count )
 
 ///
-/// 　　　ソートキーをセットする　
+/// 　　　ソートキーをセチE��する　
 ///
 
     for pos , sort_key_now := range sort_key_no {
 
-      string_wk := trans3.Csv_inf_column ( w ,r ,sort_key_now )   /// 　　ソートキーをセット
+      string_wk := trans3.Csv_inf_column ( w ,r ,sort_key_now )   /// 　　ソートキーをセチE��
 
       for pos2 , string_wkw := range string_wk {
 
@@ -255,10 +244,8 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 ///
 /// 　　　ソートする　
 ///
-	csv_inf2 = make([]type5.Csv_Inf, 0)  /// ソートテーブルを確保
-
-	skip_check := make([]int ,count)        /// スキップの判定フラグテーブルを確保
-
+	csv_inf2 = make([]type5.Csv_Inf, 0)  /// ソートテーブルを確俁E
+	skip_check := make([]int ,count)        /// スキチE�Eの判定フラグチE�Eブルを確俁E
     line_counter = 0
 
 	for  loop_1 := 0 ; loop_1 < count ; loop_1++  {
@@ -267,9 +254,9 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
 	  for  loop_2 := 0 ; loop_2 < count ; loop_2 ++ {
 
-	    if skip_check[loop_2] != 1  {  /// ソート済みか否かのチェック
+	    if skip_check[loop_2] != 1  {  /// ソート済みか否か�EチェチE��
 
-	      if loop_2_flag  == -1  {     ///  初期値のセット
+	      if loop_2_flag  == -1  {     ///  初期値のセチE��
 
 	        loop_2_min = loop_2
 	        key_1_save = sort_key1[loop_2]
@@ -277,7 +264,7 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
 	        loop_2_flag = 0
 
-	      /// 最小値、再セット
+	      /// 最小値、�EセチE��
 
 	      }  else if ( key_1_save >  sort_key1[loop_2] )                                    ||
 	                 ( key_1_save == sort_key1[loop_2] && key_2_save  > sort_key2[loop_2] )     {
@@ -286,8 +273,8 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 	        key_1_save = sort_key1[loop_2]
 	        key_2_save = sort_key2[loop_2]
 
-//            fmt.Fprintf( w, "sort2.csv_sort_double : key_1_save %v\n", key_1_save )  // デバック
-//            fmt.Fprintf( w, "sort2.csv_sort_double : key_2_save %v\n", key_2_save )  // デバック
+//            fmt.Fprintf( w, "sort2.csv_sort_double : key_1_save %v\n", key_1_save )  // チE��チE��
+//            fmt.Fprintf( w, "sort2.csv_sort_double : key_2_save %v\n", key_2_save )  // チE��チE��
 
 	      }
 
@@ -296,7 +283,7 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
       }
 
 ///
-///   min値をテーブルにセット
+///   min値をテーブルにセチE��
 ///
       line_counter ++
       csv_inf[loop_2_min].Line_No = line_counter
@@ -304,7 +291,7 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
       csv_inf2 = append ( csv_inf2,  csv_inf[loop_2_min] )
 
 ///
-///  ソート済フラグをセット
+///  ソート済フラグをセチE��
 ///
 
       skip_check[loop_2_min] = 1
@@ -315,17 +302,16 @@ func Csv_inf_double( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 }
 
 ///
-/// 　　　　	csv情報を3重ソートする
-///
+/// 　　　　	csv惁E��めE重ソートすめE///
 
 func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Csv_Inf ,sort_key_no []int  )  (csv_inf2 []type5.Csv_Inf ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN 　csv_inf     : csv情報
+//     IN 　csv_inf     : csv惁E��
 //     IN 　sort_key_no : ソートキーNO
 
-//     OUT  csv_inf2    : ソート後のcsv情報
+//     OUT  csv_inf2    : ソート後�Ecsv惁E��
 
     var loop_2_flag ,loop_2_min int
 
@@ -333,25 +319,24 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
     var key_1_save ,key_2_save ,key_3_save string
 
-//    fmt.Fprintf( w, "sort.csv_inf_triple start \n" )  // デバック
+//    fmt.Fprintf( w, "sort.csv_inf_triple start \n" )  // チE��チE��
 
-    count := len(csv_inf)    // レコード数ゲット
+    count := len(csv_inf)    // レコード数ゲチE��
 
-//     fmt.Fprintf( w, "sort2.sort.csv_inf_triple : count %v\n", count )  // デバック
+//     fmt.Fprintf( w, "sort2.sort.csv_inf_triple : count %v\n", count )  // チE��チE��
 
-     /// ソートテーブルを確保
-
+     /// ソートテーブルを確俁E
      sort_key1 := make( []string, count )
      sort_key2 := make( []string, count )
      sort_key3 := make( []string, count )
 
 ///
-/// 　　　ソートキーをセットする　
+/// 　　　ソートキーをセチE��する　
 ///
 
     for pos , sort_key_now := range sort_key_no {
 
-      string_wk := trans3.Csv_inf_column ( w ,r ,sort_key_now )   /// 　　ソートキーをセット
+      string_wk := trans3.Csv_inf_column ( w ,r ,sort_key_now )   /// 　　ソートキーをセチE��
 
       for pos2 , string_wkw := range string_wk {
 
@@ -368,17 +353,15 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
           sort_key3[pos2] = string_wkw
 
         }
-//        fmt.Fprintf( w, "sort2.csv_sort : string_wkw %v\n", string_wkw )  // デバック
+//        fmt.Fprintf( w, "sort2.csv_sort : string_wkw %v\n", string_wkw )  // チE��チE��
       }
     }
 
 ///
 /// 　　　ソートする　
 ///
-	csv_inf2 = make([]type5.Csv_Inf, 0)  /// ソートテーブルを確保
-
-	skip_check := make([]int ,count)        /// スキップの判定フラグテーブルを確保
-
+	csv_inf2 = make([]type5.Csv_Inf, 0)  /// ソートテーブルを確俁E
+	skip_check := make([]int ,count)        /// スキチE�Eの判定フラグチE�Eブルを確俁E
     line_counter = 0
 
 	for  loop_1 := 0 ; loop_1 < count ; loop_1++  {
@@ -387,9 +370,9 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
 	  for  loop_2 := 0 ; loop_2 < count ; loop_2 ++ {
 
-	    if skip_check[loop_2] != 1  {  /// ソート済みか否かのチェック
+	    if skip_check[loop_2] != 1  {  /// ソート済みか否か�EチェチE��
 
-	      if loop_2_flag  == -1  {     ///  初期値のセット
+	      if loop_2_flag  == -1  {     ///  初期値のセチE��
 
 	        loop_2_min = loop_2
 	        key_1_save = sort_key1[loop_2]
@@ -398,7 +381,7 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 
 	        loop_2_flag = 0
 
-	      /// 最小値、再セット
+	      /// 最小値、�EセチE��
 
 	      }  else if ( key_1_save >  sort_key1[loop_2] )                                      ||
 
@@ -411,9 +394,9 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
 	        key_2_save = sort_key2[loop_2]
 	        key_3_save = sort_key3[loop_2]
 
-//            fmt.Fprintf( w, "sort2.csv_sort : key_1_save %v\n", key_1_save )  // デバック
-//            fmt.Fprintf( w, "sort2.csv_sort : key_2_save %v\n", key_2_save )  // デバック
-//            fmt.Fprintf( w, "sort2.csv_sort : key_3_save %v\n", key_3_save )  // デバック
+//            fmt.Fprintf( w, "sort2.csv_sort : key_1_save %v\n", key_1_save )  // チE��チE��
+//            fmt.Fprintf( w, "sort2.csv_sort : key_2_save %v\n", key_2_save )  // チE��チE��
+//            fmt.Fprintf( w, "sort2.csv_sort : key_3_save %v\n", key_3_save )  // チE��チE��
 
 	      }
 
@@ -422,7 +405,7 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
       }
 
 ///
-///   min値をテーブルにセット
+///   min値をテーブルにセチE��
 ///
       line_counter ++
       csv_inf[loop_2_min].Line_No = line_counter
@@ -430,7 +413,7 @@ func Csv_inf_triple( w http.ResponseWriter , r *http.Request ,csv_inf []type5.Cs
       csv_inf2 = append ( csv_inf2,  csv_inf[loop_2_min] )
 
 ///
-///  ソート済フラグをセット
+///  ソート済フラグをセチE��
 ///
 
       skip_check[loop_2_min] = 1

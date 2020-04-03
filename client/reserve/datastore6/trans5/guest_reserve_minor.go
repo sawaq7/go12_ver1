@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -16,19 +16,19 @@ import (
                                                 )
 
 ///
-/// 地区のエリアデータをゲットする
+/// 地区のエリアチE�EタをゲチE��する
 ///
 
 func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Reserve_Minor ) {
 
-//     IN  guest_no  　 : ゲストNO.
+//     IN  guest_no  　 : ゲスチEO.
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_reserve_minor_slice  : 構造体　”エリア情報”のスライス
+//     OUT guest_reserve_minor_slice  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.guest_reserve_minor start \n" )  // デバック
-//    fmt.Fprintf( w, "trans.guest_reserve_minor guest_no \n" ,guest_no)  // デバック
+//    fmt.Fprintf( w, "trans.guest_reserve_minor start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_reserve_minor guest_no \n" ,guest_no)  // チE��チE��
 
     var i_count int64
 
@@ -66,7 +66,7 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 //	keys, err := q.GetAll(c, &guest_reserve_minor)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -82,9 +82,9 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 
 	for pos, guest_reserve_minorw := range guest_reserve_minor {
 
-//	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)  // デバック
+//	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)  // チE��チE��
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
       if guest_no == guest_reserve_minorw.Guest_No {
 

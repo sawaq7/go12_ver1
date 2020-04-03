@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -17,14 +17,14 @@ import (
 
 func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Medical_Record ) {
 
-//     IN  guest_no  　 : ゲストNO.
+//     IN  guest_no  　 : ゲスチEO.
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_medical_record_slice  : 構造体　”エリア情報”のスライス
+//     OUT guest_medical_record_slice  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.guest_medical_record start \n" )  // デバック
-//    fmt.Fprintf( w, "trans.guest_medical_record guest_no \n" ,guest_no)  // デバック
+//    fmt.Fprintf( w, "trans.guest_medical_record start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_medical_record guest_no \n" ,guest_no)  // チE��チE��
 
     var i_count int64
 
@@ -62,7 +62,7 @@ func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Reques
 //	keys, err := q.GetAll(c, &guest_medical_record)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -78,9 +78,9 @@ func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Reques
 
 	for pos, guest_medical_recordw := range guest_medical_record {
 
-//	  fmt.Fprintf( w, "trans.guest_medical_record guest_medical_recordw %v\n" ,guest_medical_recordw)  // デバック
+//	  fmt.Fprintf( w, "trans.guest_medical_record guest_medical_recordw %v\n" ,guest_medical_recordw)  // チE��チE��
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
       if guest_no == guest_medical_recordw.Guest_No {
 

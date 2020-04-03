@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strconv"
 //	"fmt"
-	"client/tokura/suiri/process2"
-	"client/tokura/suiri/type4"
+	"github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
+	"github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
 	"cloud.google.com/go/datastore"
     "context"
@@ -18,7 +18,7 @@ import (
 
 func Pipe_line_ds_wl_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "pipe_line_ds_wl_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "pipe_line_ds_wl_delete start \n" )  // チE��チE��
 
     var g  type4.Water_Line
 
@@ -40,13 +40,13 @@ func Pipe_line_ds_wl_delete(w http.ResponseWriter, r *http.Request) {
     }
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "pipe_line_ds_wl_delete : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "pipe_line_ds_wl_delete : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "pipe_line_ds_wl_delete : delidw %v\n", delidw )  // デバック
-//    fmt.Fprintf( w, "pipe_line_ds_wl_delete : delid %v\n", delid )  // デバック
+//    fmt.Fprintf( w, "pipe_line_ds_wl_delete : delidw %v\n", delidw )  // チE��チE��
+//    fmt.Fprintf( w, "pipe_line_ds_wl_delete : delid %v\n", delid )  // チE��チE��
 
     key := datastore.IDKey("Water_Line", delid, nil)
 

@@ -7,7 +7,7 @@ import (
         "cloud.google.com/go/datastore"
 
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 	    "context"
 	    "os"
 
@@ -22,7 +22,7 @@ func Csv_inf(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//    fmt.Fprintf( w, "init/csv_inf start \n" )  // デバック
+//    fmt.Fprintf( w, "init/csv_inf start \n" )  // チE��チE��
 
    projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 

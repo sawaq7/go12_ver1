@@ -7,8 +7,8 @@ import (
 	"net/http"
 //	"strconv"
 //	"fmt"
-//	"client/sgh/process"
-	"temp/type1000"
+//	"github.com/sawaq7/go12_ver1/client/sgh/process"
+	"github.com/sawaq7/go12_ver1/temp/type1000"
 
 	"cloud.google.com/go/datastore"
 	"context"
@@ -17,7 +17,7 @@ import (
 
 func D_district_showall2_sample3(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_district_showall2_sample3 start \n" )  // „Éá„Éê„ÉÉ„ÇØ
+//    fmt.Fprintf( w, "d_district_showall2_sample3 start \n" )  // „ÉÅEÉê„ÉÅEÇØ
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 

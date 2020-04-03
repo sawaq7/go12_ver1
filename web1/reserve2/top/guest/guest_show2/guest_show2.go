@@ -7,8 +7,8 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "client/reserve/process4"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/process4"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 	    "strconv"
 
 	    "cloud.google.com/go/datastore"
@@ -18,19 +18,18 @@ import (
 
 func Guest_show2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "guest_show2 start \n" )  // デバック
+//    fmt.Fprintf( w, "guest_show2 start \n" )  // チE��チE��
 
 
 
 	var guest type6.Guest
 
-	guest.Guest_Name = r.FormValue("guest_name")  // 地区名をゲット
+	guest.Guest_Name = r.FormValue("guest_name")  // 地区名をゲチE��
 
-	guest_no := r.FormValue("guest_no")         // 地区No.をゲット
-//	fmt.Fprintf( w, "guest_show2 : guest_no %v\n", guest_no )  // デバック
+	guest_no := r.FormValue("guest_no")         // 地区No.をゲチE��
+//	fmt.Fprintf( w, "guest_show2 : guest_no %v\n", guest_no )  // チE��チE��
 
-	guest_now ,err := strconv.Atoi(guest_no)  // 文字の整数化
-	if err != nil {
+	guest_now ,err := strconv.Atoi(guest_no)  // 斁E���E整数匁E	if err != nil {
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 //       fmt.Fprintf( w, "guest_show2 : a number must be half-width characters %v\n"  )
 		return
@@ -38,7 +37,7 @@ func Guest_show2(w http.ResponseWriter, r *http.Request) {
 
 	guest.Guest_No = int64(guest_now)   // 整数の64ビット化
 
-/// データストアーにデータをセット ///
+/// チE�EタストアーにチE�EタをセチE�� ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -69,7 +68,7 @@ func Guest_show2(w http.ResponseWriter, r *http.Request) {
 
     process4.Guest_show(w , r )
 
-//	fmt.Fprintf( w, "guest_show2 : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "guest_show2 : normal end \n" )  // チE��チE��
 
 
 

@@ -7,9 +7,9 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "client/reserve/process4"
-	    "client/reserve/type6"
-	    "client/reserve/datastore6/initialize3"
+	    "github.com/sawaq7/go12_ver1/client/reserve/process4"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/initialize3"
 
 	    "strconv"
 
@@ -21,7 +21,7 @@ import (
 
 func Medical_record_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "medical_record_show start \n" )  // デバック
+//    fmt.Fprintf( w, "medical_record_show start \n" )  // チE��チE��
 
     var guest type6.Guest
 
@@ -30,14 +30,14 @@ func Medical_record_show(w http.ResponseWriter, r *http.Request) {
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
     if err  != nil {
-//	   fmt.Fprintf( w, "reserve_register :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "reserve_register :error updidw %v\n", updidw )  // チE��チE��
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "reserve_register : updidw %v\n", updidw )  // デバック
-//    fmt.Fprintf( w, "reserve_register : updid %v\n", updid )  // デバック
+//    fmt.Fprintf( w, "reserve_register : updidw %v\n", updidw )  // チE��チE��
+//    fmt.Fprintf( w, "reserve_register : updid %v\n", updid )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -67,7 +67,7 @@ func Medical_record_show(w http.ResponseWriter, r *http.Request) {
 	}
 
 
-// temporary-fileをイニシャライズ  & セット//
+// temporary-fileをイニシャライズ  & セチE��//
 
 //    _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
@@ -85,6 +85,6 @@ func Medical_record_show(w http.ResponseWriter, r *http.Request) {
 	}
     process4.Medical_record_show(w , r ,guest.Guest_No)
 
-//	fmt.Fprintf( w, "medical_record_show : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "medical_record_show : normal end \n" )  // チE��チE��
 
 }

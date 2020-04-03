@@ -6,7 +6,7 @@ package html4
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>

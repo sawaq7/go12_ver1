@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 //	"fmt"
-	"client/sgh/process"
-	"client/sgh/datastore2"
-	"general/type5"
+	"github.com/sawaq7/go12_ver1/client/sgh/process"
+	"github.com/sawaq7/go12_ver1/client/sgh/datastore2"
+	"github.com/sawaq7/go12_ver1/general/type5"
 
 	"cloud.google.com/go/datastore"
 	"context"
@@ -20,15 +20,15 @@ func D_schedule_delete(w http.ResponseWriter, r *http.Request) {
 
     var idmy int64
 
-//    fmt.Fprintf( w, "d_schedule_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "d_schedule_delete start \n" )  // チE��チE��
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "d_schedule_delete : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "d_schedule_delete : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "d_schedule_delete : delidw %v\n", delidw )  // デバック
+//    fmt.Fprintf( w, "d_schedule_delete : delidw %v\n", delidw )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -56,7 +56,7 @@ func D_schedule_delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-//地区情報をGET
+//地区惁E��をGET
 
     flexible_out := datastore2.Datastore_sgh( "D_District_Temp" ,"check" ,idmy , w , r  )
 

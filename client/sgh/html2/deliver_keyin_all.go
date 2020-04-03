@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -32,17 +32,17 @@ package html2
 
             <td >
               <form method="GET"  align="center" action="/deliver_showall2">
-                <input type="submit" value="配達履歴（all)" />
+                <input type="submit" value="配達履歴�E�Ell)" />
               </form>
                                                                              </td>
             <td >
               <form method="GET" align="center" action="/deliver_keyin_car">
-                <input type="submit" value="配達履歴（car)" />
+                <input type="submit" value="配達履歴�E�Ear)" />
               </form>
                                                                              </td>
             <td >
               <form method="GET" align="center" action="/deliver_keyin_private">
-                <input type="submit" value="配達履歴（private)" />
+                <input type="submit" value="配達履歴�E�Erivate)" />
               /form>
                                                                              </td>
            </section>

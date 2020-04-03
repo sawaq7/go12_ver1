@@ -8,7 +8,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 	    "context"
 	    "os"
 
@@ -23,7 +23,7 @@ func Storage_b_o_temp(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//    fmt.Fprintf( w, "init/storage_b_o_temp start \n" )  // 繝�繝舌ャ繧ｯ
+//    fmt.Fprintf( w, "init/storage_b_o_temp start \n" )  // 繝・ヰ繝・け
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -47,7 +47,7 @@ func Storage_b_o_temp(w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-//    fmt.Fprintf( w, "init/storage_b_o_temp count \n" ,count )  // 繝�繝舌ャ繧ｯ
+//    fmt.Fprintf( w, "init/storage_b_o_temp count \n" ,count )  // 繝・ヰ繝・け
 
 	storage_b_o_temp     := make([]type5.Storage_B_O_Temp, 0, count)
 

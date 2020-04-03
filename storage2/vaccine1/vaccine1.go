@@ -26,7 +26,7 @@ func File_Pack ( w http.ResponseWriter , r *http.Request ,bucket_name string ,fi
 
 	defer writer.Close()
 
-// 水路情報ファイル　（read file） オープン
+// 水路惁E��ファイル　�E�Eead file�E�Eオープン
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket_name ,file_name , w , r  )
 
@@ -34,7 +34,7 @@ func File_Pack ( w http.ResponseWriter , r *http.Request ,bucket_name string ,fi
 
     defer reader.Close()
 
-// ファイルリーダー(string用）をＧＥＴ
+// ファイルリーダー(string用�E�を�E��E��E�
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -42,9 +42,9 @@ func File_Pack ( w http.ResponseWriter , r *http.Request ,bucket_name string ,fi
 
     for {
 
-      index ++     // レコードカウンターをカウント
+      index ++     // レコードカウンターをカウンチE
 
-//      fmt.Fprintf(w, "File_Pack : lndex %v\n", index )  // デバック
+//      fmt.Fprintf(w, "File_Pack : lndex %v\n", index )  // チE��チE��
 
 // ファイルを１行read
 
@@ -63,16 +63,16 @@ func File_Pack ( w http.ResponseWriter , r *http.Request ,bucket_name string ,fi
 
 	  }
 
-//	  line = strings.Replace( line, ",", " ", -1)     /// 区切り文字を変更
+//	  line = strings.Replace( line, ",", " ", -1)     /// 区刁E��斁E��を変更
 
       column := strings.Count( line ,",") + 1
 
-//      fmt.Fprintf(w, "File_Pack : column %v\n", column )  // デバック
+//      fmt.Fprintf(w, "File_Pack : column %v\n", column )  // チE��チE��
 
-      if  column > 1 {      //   レコードがスペースでないファイルに書き込み
+      if  column > 1 {      //   レコードがスペ�EスでなぁE��ァイルに書き込み
 
-          line2 := strings.Trim(line, " ")           ///   両端スペースをトリム
-//          fmt.Fprintf(w, "File_Pack :line2 [%s]\n", line2 )  // デバック
+          line2 := strings.Trim(line, " ")           ///   両端スペ�Eスをトリム
+//          fmt.Fprintf(w, "File_Pack :line2 [%s]\n", line2 )  // チE��チE��
 
           storage2.File_Write_Line ( w ,writer ,line2 )
 
@@ -81,12 +81,12 @@ func File_Pack ( w http.ResponseWriter , r *http.Request ,bucket_name string ,fi
    }
 
 ///
-/// 　　　　ファイル名の変更
+/// 　　　　ファイル名�E変更
 ///
 
    storage2.File_Delete ( w , r ,bucket_name ,file_name  )    //  旧ファイルを削除
 
-   storage2.File_Rename ( w , r  ,bucket_name ,file_name2 ,file_name ) //  新ファイルをリネーム
+   storage2.File_Rename ( w , r  ,bucket_name ,file_name2 ,file_name ) //  新ファイルをリネ�Eム
 
 
 //	fmt.Fprintf(w, " File_Pack : Calculate succeeded.\n" )

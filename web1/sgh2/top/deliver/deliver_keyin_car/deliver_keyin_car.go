@@ -3,10 +3,10 @@ package sky
 import (
 
 	    "net/http"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
                                                   )
 
-/// main 車両番号を入力する ///
+/// main 車両番号を�E力すめE///
 
 
 func init() {

@@ -9,8 +9,8 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -19,7 +19,7 @@ import (
                                               )
 
 ///                         　　　　
-/// 指定したゲストNO・ゲスト名をゲットする
+/// 持E��したゲスチEO・ゲスト名をゲチE��する
 ///                         　　　　
 
 func Guest_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work) {
@@ -27,9 +27,9 @@ func Guest_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work)
 
 //     IN    w      　　     : レスポンスライター
 //     IN    r      　　     : リクエストパラメータ
-//     OUT general_work_out  : ゲストNO・ゲスト名
+//     OUT general_work_out  : ゲスチEO・ゲスト名
 
-//    fmt.Fprintf( w, "check5/guest_temp start \n" )  // デバック
+//    fmt.Fprintf( w, "check5/guest_temp start \n" )  // チE��チE��
 
     var guest_no int64
     var guest_name string
@@ -61,7 +61,7 @@ func Guest_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work)
 		return nil
 	}
 
-//    fmt.Fprintf( w, "check5/guest_temp count \n" ,count )  // デバック
+//    fmt.Fprintf( w, "check5/guest_temp count \n" ,count )  // チE��チE��
 
 	guest_temp     := make([]type6.Guest_Temp, 0, count)
 
@@ -76,11 +76,11 @@ func Guest_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work)
         guest_no =    guest_tempw.Guest_No
         guest_name =    guest_tempw.Guest_Name
 
-//        fmt.Fprintf( w, "check5/guest_temp pos2 %v   \n" , pos2  )  // デバック
+//        fmt.Fprintf( w, "check5/guest_temp pos2 %v   \n" , pos2  )  // チE��チE��
 
       }
-//      fmt.Fprintf( w, "check5/guest_temp guest_no \n" ,guest_no )  // デバック
-//      fmt.Fprintf( w, "check5/guest_temp guest_name \n" ,guest_name )  // デバック
+//      fmt.Fprintf( w, "check5/guest_temp guest_no \n" ,guest_no )  // チE��チE��
+//      fmt.Fprintf( w, "check5/guest_temp guest_name \n" ,guest_name )  // チE��チE��
     }
 
     general_work_out := make([]type5.General_Work, 1)

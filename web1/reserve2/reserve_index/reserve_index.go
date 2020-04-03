@@ -3,7 +3,7 @@ package reserve_index
 import (
 
 	    "net/http"
-	    "client/reserve/html6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/html6"
 	    "html/template"
                                                   )
 
@@ -15,7 +15,7 @@ func Reserve_index(w http.ResponseWriter, r *http.Request) {
 
    var cdmy string
 
-/// テンプレートのヘッダーをGET
+/// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html6.Reserve_index))
 

@@ -28,7 +28,7 @@ package html4
        </form>
 
        <form method="GET"  action="/water_slope_show" >
-         <input type="submit" value="導水勾配線" />
+         <input type="submit" value="導水勾配緁E />
        </form>
 
 	</body>

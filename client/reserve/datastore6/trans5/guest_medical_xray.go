@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -16,19 +16,19 @@ import (
                                                 )
 
 ///
-/// 地区のエリアデータをゲットする
+/// 地区のエリアチE�EタをゲチE��する
 ///
 
 func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Medical_Xray ) {
 
-//     IN  guest_no  　 : ゲストNO.
+//     IN  guest_no  　 : ゲスチEO.
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_medical_xray_slice  : 構造体　”エリア情報”のスライス
+//     OUT guest_medical_xray_slice  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.guest_medical_xray start \n" )  // デバック
-//    fmt.Fprintf( w, "trans.guest_medical_xray guest_no \n" ,guest_no)  // デバック
+//    fmt.Fprintf( w, "trans.guest_medical_xray start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_medical_xray guest_no \n" ,guest_no)  // チE��チE��
 
     var i_count int64
 
@@ -66,7 +66,7 @@ func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request 
 //	keys, err := q.GetAll(c, &guest_medical_xray)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -82,9 +82,9 @@ func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request 
 
 	for pos, guest_medical_xrayw := range guest_medical_xray {
 
-//	  fmt.Fprintf( w, "trans.guest_medical_xray guest_medical_xrayw %v\n" ,guest_medical_xrayw)  // デバック
+//	  fmt.Fprintf( w, "trans.guest_medical_xray guest_medical_xrayw %v\n" ,guest_medical_xrayw)  // チE��チE��
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
       if guest_no == guest_medical_xrayw.Guest_No {
 

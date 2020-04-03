@@ -5,7 +5,7 @@ package html5
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
 
         <link rel="stylesheet" href="css/sgh/deliver_showall1.css" type="text/css">
      </head>
@@ -76,7 +76,7 @@ package html5
              <form method="GET"  >
                <td>
                   <input type="hidden" name="line_no"  value="{{.Line_No|html}}"/>
-                  <input type="submit"  size="2" value="コピー"  />
+                  <input type="submit"  size="2" value="コピ�E"  />
                </td>
              </form>
            </tr>

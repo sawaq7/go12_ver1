@@ -3,33 +3,33 @@ package pipe_line_st_wl_show
 import (
 
 	    "net/http"
-	    "client/tokura/suiri/process2"
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "strconv"
 //	    "fmt"
 
-//	    "client/tokura/storage3/trans4"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/storage3/trans4"
 
-//	    "client/tokura/storage3/check4"
-	    "client/tokura/storage3"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/storage3/check4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/storage3"
                                                   )
 
 ///
-///         入力した水路ラインのデータを表示する
+///         入力した水路ラインのチE�Eタを表示する
 ///
 
 func Pipe_line_st_wl_show(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "sky/pipe_line_st_wl_show start \n"  )  // デバック
+//   fmt.Fprintf( w, "sky/pipe_line_st_wl_show start \n"  )  // チE��チE��
 
-/// key-in データをGET ///
+/// key-in チE�EタをGET ///
 
    var water_line type4.Water_Line
 
    var idmy ,idmy2 int64
 
 ///
-///         テンポラリーファイルより、水路名をゲット
+///         チE��ポラリーファイルより、水路名をゲチE��
 ///
      water2_temp_minor , _ := storage3.Storage_tokura( "Water2_Temp" ,"trans" ,idmy , idmy2 , w , r  )
 
@@ -38,7 +38,7 @@ func Pipe_line_st_wl_show(w http.ResponseWriter, r *http.Request) {
 //   water2_temp := trans4.Water2_temp ( w ,r )
 
 ///
-///         指示した水路の既存の水路ラインの数をゲット
+///         持E��した水路の既存�E水路ラインの数をゲチE��
 ///
 
     record_number_temp , _ := storage3.Storage_tokura( "Water_Line" ,"check" ,water2_temp[0].Name , idmy , w , r  )
@@ -49,35 +49,34 @@ func Pipe_line_st_wl_show(w http.ResponseWriter, r *http.Request) {
 
 	for _, water2_tempw := range water2_temp {
 
-       water_line.Name = water2_tempw.Name          /// 水路名のセット
-       water_line.Id   = record_number + int64( 1 ) /// idのセット
+       water_line.Name = water2_tempw.Name          /// 水路名�EセチE��
+       water_line.Id   = record_number + int64( 1 ) /// idのセチE��
 
     }
 
-	water_line.Section = r.FormValue("section")  // 区間名をゲット
+	water_line.Section = r.FormValue("section")  // 区間名をゲチE��
 
-	f_facter := r.FormValue("f_facter")                   // 摩擦係数をゲット
+	f_facter := r.FormValue("f_facter")                   // 摩擦係数をゲチE��
 	water_line.Friction_Factor,_ =strconv.ParseFloat(f_facter,64)  //　float64　に変換
 
-	velocity := r.FormValue("velocity")                   // 速度をゲット
+	velocity := r.FormValue("velocity")                   // 速度をゲチE��
 	water_line.Velocity,_ =strconv.ParseFloat(velocity,64)         //　float64　に変換
 
-	p_diameter := r.FormValue("p_diameter")      // 摩擦係数をゲット
+	p_diameter := r.FormValue("p_diameter")      // 摩擦係数をゲチE��
 	water_line.Pipe_Diameter,_ =strconv.ParseFloat(p_diameter,64)  //　float64　に変換
 
-	p_length := r.FormValue("p_length")      // 摩擦係数をゲット
+	p_length := r.FormValue("p_length")      // 摩擦係数をゲチE��
 	water_line.Pipe_Length,_ =strconv.ParseFloat(p_length,64)  //　float64　に変換
 
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Name %v\n", water_line.Name )  // デバック
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Section %v\n", water_line.Section )  // デバック
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Friction_Factor %v\n", water_line.Friction_Factor )  // デバック
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Velocity %v\n", water_line.Velocity )  // デバック
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Diameter %v\n", water_line.Pipe_Diameter )  // デバック
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Length %v\n", water_line.Pipe_Length )  // デバック
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Name %v\n", water_line.Name )  // チE��チE��
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Section %v\n", water_line.Section )  // チE��チE��
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Friction_Factor %v\n", water_line.Friction_Factor )  // チE��チE��
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Velocity %v\n", water_line.Velocity )  // チE��チE��
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Diameter %v\n", water_line.Pipe_Diameter )  // チE��チE��
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Length %v\n", water_line.Pipe_Length )  // チE��チE��
 
 ///                           　　　　　　　　　　　
-///   ストレッジファイルに水路ラインファイル情報を書く
-///                          　　　　　　　　　　　
+///   ストレチE��ファイルに水路ラインファイル惁E��を書ぁE///                          　　　　　　　　　　　
 
     _ , _ = storage3.Storage_tokura( "Water_Line" ,"put" ,water_line , idmy , w , r  )
 

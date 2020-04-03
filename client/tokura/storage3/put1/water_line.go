@@ -9,14 +9,13 @@ import (
 
 	    "io"
 
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "cloud.google.com/go/storage"
 
                                                 )
 
 ///                           　　　　　　　　　　　
-///   ストレッジファイルに新しく水路情報を書く
-///                          　　　　　　　　　　　
+///   ストレチE��ファイルに新しく水路惁E��を書ぁE///                          　　　　　　　　　　　
 
 func Water_line( w http.ResponseWriter, r *http.Request ,water_inf type4.Water_Line ) {
 
@@ -24,7 +23,7 @@ func Water_line( w http.ResponseWriter, r *http.Request ,water_inf type4.Water_L
 //     IN     r         : リクエストパラメーター
 //     IN   water_inf   : 水路ラインのスライス　　struct : Water_Line
 
-//    fmt.Fprintf( w, "put1.water_line start \n" )  // デバック
+//    fmt.Fprintf( w, "put1.water_line start \n" )  // チE��チE��
 
     var lf_flag int64
 
@@ -33,13 +32,13 @@ func Water_line( w http.ResponseWriter, r *http.Request ,water_inf type4.Water_L
     filename2 := "Water_Line_2.txt"
 
 ///
-/// 　　　ファイルのリネーム
+/// 　　　ファイルのリネ�Eム
 ///
 
     storage2.File_Rename ( w ,r ,bucket ,filename1 ,filename2 )
 
 ///
-///      差し替えた、水路ファイルを　（read file） オープン
+///      差し替えた、水路ファイルを　�E�Eead file�E�Eオープン
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename2 , w , r  )
@@ -51,14 +50,14 @@ func Water_line( w http.ResponseWriter, r *http.Request ,water_inf type4.Water_L
     sreader := bufio.NewReaderSize(reader, 4096)
 
 ///
-///      新しく水路ファイルを作成
+///      新しく水路ファイルを作�E
 ///
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename1 , w , r  )
 
     writer, _ := writer_minor.(*storage.Writer)  // インターフェイス型を型変換
 
-//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water_Line.txt"を再度作成
+//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water_Line.txt"を�E度作�E
 
     defer writer.Close()
 
@@ -68,7 +67,7 @@ func Water_line( w http.ResponseWriter, r *http.Request ,water_inf type4.Water_L
 
     for {
 
-//      fmt.Fprintf(w, "put1.water_line : lndex %v\n", index )  // デバック
+//      fmt.Fprintf(w, "put1.water_line : lndex %v\n", index )  // チE��チE��
 
 // ファイルを１行read
 
@@ -76,24 +75,22 @@ func Water_line( w http.ResponseWriter, r *http.Request ,water_inf type4.Water_L
 
       num := len(line)
 
-//      fmt.Fprintf(w, "put1.water_line : num %v\n", num )  // デバック
+//      fmt.Fprintf(w, "put1.water_line : num %v\n", num )  // チE��チE��
 
       if num > 1 {
 
-         index ++     // レコードカウンターをカウント
-
-//         fmt.Fprintf(w, "put1.water_line : line %s\n", line )  // デバック
+         index ++     // レコードカウンターをカウンチE
+//         fmt.Fprintf(w, "put1.water_line : line %s\n", line )  // チE��チE��
          storage2.File_Write_Struct ( w ,writer ,lf_flag ,line )
 
       } else if num == 0 {
 
-          index ++     // レコードカウンターをカウント
-
+          index ++     // レコードカウンターをカウンチE
           lf_flag = 1
 
           storage2.File_Write_Struct ( w ,writer ,lf_flag ,water_inf )
 
-//         io.WriteString(w, "\n put1.water_line : data end \n")   //デバック
+//         io.WriteString(w, "\n put1.water_line : data end \n")   //チE��チE��
 
          break
 

@@ -8,8 +8,8 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "general/type5"
-	    "basic/array"
+	    "github.com/sawaq7/go12_ver1/general/type5"
+	    "github.com/sawaq7/go12_ver1/basic/array"
 //	    "time"
                                                 )
 
@@ -20,27 +20,25 @@ import (
 func Csv_inf(funct int64 ,column_no int64 ,csv_inf []type5.Csv_Inf ,w http.ResponseWriter, r *http.Request )  ([]type5.Csv_Inf ) {
 
 //     IN  funct  　　　: ファンクション
-//     　　　　　：０  削除
-//     　　　　　：１  挿入
-//     IN  column_no  　　: 対象の行
-//     IN    w      　　: レスポンスライター
+//     　　　　　�E�！E 削除
+//     　　　　　�E�！E 挿入
+//     IN  column_no  　　: 対象の衁E//     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT csv_inf_new  : フォーマット変更後のcsv情報”のスライス
+//     OUT csv_inf_new  : フォーマット変更後�Ecsv惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "reformat.csv_inf start \n" )  // デバック
-//    fmt.Fprintf( w, "reformat.csv_inf funct \n" ,funct )  // デバック
-//    fmt.Fprintf( w, "reformat.csv_inf column_no \n" ,column_no)  // デバック
+//    fmt.Fprintf( w, "reformat.csv_inf start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "reformat.csv_inf funct \n" ,funct )  // チE��チE��
+//    fmt.Fprintf( w, "reformat.csv_inf column_no \n" ,column_no)  // チE��チE��
 
     var column_wk int64
 
-    str_work := make([]string ,10 )  // ワークエリアを確保
-
+    str_work := make([]string ,10 )  // ワークエリアを確俁E
 	csv_inf2 := make([]type5.Csv_Inf, 0)
 
 	for _, csv_infw := range csv_inf {
 
-//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // デバック
+//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // チE��チE��
 
         str_work[0]  = csv_infw.Column1
 	    str_work[1]  = csv_infw.Column2

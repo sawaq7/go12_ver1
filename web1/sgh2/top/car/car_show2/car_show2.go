@@ -5,11 +5,11 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
-//	    "client/sgh/datastore2/check"
-	    "client/sgh/datastore2"
-	    "client/sgh/type2"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
+//	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2/check"
+	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -18,7 +18,7 @@ import (
 
 func Car_show2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "car_show2 start \n" )  // デバック
+//    fmt.Fprintf( w, "car_show2 start \n" )  // チE��チE��
 
 	var car type2.Car
 
@@ -35,29 +35,29 @@ func Car_show2(w http.ResponseWriter, r *http.Request) {
     car.District_Name = value2[0].String_Work
 
 
-//	fmt.Fprintf( w, "car_show2 : g.District_No %v\n", g.District_No )  // デバック
-//	fmt.Fprintf( w, "car_show2 : g.District_Name %v\n", g.District_Name )  // デバック
+//	fmt.Fprintf( w, "car_show2 : g.District_No %v\n", g.District_No )  // チE��チE��
+//	fmt.Fprintf( w, "car_show2 : g.District_Name %v\n", g.District_Name )  // チE��チE��
 
-//  カーNO　の既存のMAX値をGET
+//  カーNO　の既存�EMAX値をGET
 
 	count := datastore2.Datastore_sgh( "Car" ,"check" ,car.District_No , w , r  )
 
-     // 空インターフェイス変数よりバリュー値をゲット
+     // 空インターフェイス変数よりバリュー値をゲチE��
 
      value, _ := count.(int64)
 
-//	fmt.Fprintf( w, "car_show2 value %v   \n" , value  )  // デバック
-//	fmt.Fprintf( w, "car_show2 district_no %v   \n" , district_no  )  // デバック
+//	fmt.Fprintf( w, "car_show2 value %v   \n" , value  )  // チE��チE��
+//	fmt.Fprintf( w, "car_show2 district_no %v   \n" , district_no  )  // チE��チE��
 
     car.Car_No     = car.Car_No + int64(value + 1)
     car.Car_Name   = r.FormValue("car_name")
 	car.Car_Explain = r.FormValue("car_explain")
 
-//    fmt.Fprintf( w, "car_show2 : car.Car_No %v\n", car.Car_No )  // デバック
-//	fmt.Fprintf( w, "car_show2 : car.Car_Name %v\n", car.Car_Name )  // デバック
-//	fmt.Fprintf( w, "car_show2 : car.Car_Explain %v\n", car.Car_Explain )  // デバック
+//    fmt.Fprintf( w, "car_show2 : car.Car_No %v\n", car.Car_No )  // チE��チE��
+//	fmt.Fprintf( w, "car_show2 : car.Car_Name %v\n", car.Car_Name )  // チE��チE��
+//	fmt.Fprintf( w, "car_show2 : car.Car_Explain %v\n", car.Car_Explain )  // チE��チE��
 
-/// データストアーにデータをセット ///
+/// チE�EタストアーにチE�EタをセチE�� ///
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -88,6 +88,6 @@ func Car_show2(w http.ResponseWriter, r *http.Request) {
 
 	process.Car_show( w , r ,car.District_No )
 
-//	fmt.Fprintf( w, "car_show2 : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "car_show2 : normal end \n" )  // チE��チE��
 
 }

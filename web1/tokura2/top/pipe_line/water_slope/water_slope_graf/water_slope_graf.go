@@ -10,8 +10,8 @@ import (
 
 	    "storage2"
 
-	    "client/tokura/suiri/type4"
-        "general/type5"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
+        "github.com/sawaq7/go12_ver1/general/type5"
 
         "cloud.google.com/go/datastore"
         "context"
@@ -21,7 +21,7 @@ import (
 
 func Water_slope_graf(w http.ResponseWriter, r *http.Request) {
 
-//	fmt.Fprintf( w, "sky_water_slope_graf start %v\n" )  // デバック
+//	fmt.Fprintf( w, "sky_water_slope_graf start %v\n" )  // チE��チE��
 
 	var water_slope  type4.Water_Slope
 
@@ -46,12 +46,12 @@ func Water_slope_graf(w http.ResponseWriter, r *http.Request) {
        return
     }
 
-/// 指定したデータidをGET ///
+/// 持E��したデータidをGET ///
 
     select_idw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "sky_water_slope_graf :error select_idw %v\n", select_idw )  // デバック
+//	   fmt.Fprintf( w, "sky_water_slope_graf :error select_idw %v\n", select_idw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return

@@ -5,23 +5,23 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "general/html5"
+	    "github.com/sawaq7/go12_ver1/general/html5"
 
-	    "general/datastore5/trans3"
+	    "github.com/sawaq7/go12_ver1/general/datastore5/trans3"
                                                 )
 
 func Db_access_list(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "process3.db_access_list start \n" )  // デバック
+//    fmt.Fprintf( w, "process3.db_access_list start \n" )  // チE��チE��
 
 ///
-///    テンプレートのヘッダーをGET
+///    チE��プレート�EヘッダーをGET
 ///
 
      monitor := template.Must(template.New("html").Parse(html5.Db_access_list))
 
 ///
-///     データストアーから、表示用データをGET
+///     チE�Eタストアーから、表示用チE�EタをGET
 ///
 
      db_access_list := trans3.Db_access_list ( w ,r )

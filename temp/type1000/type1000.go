@@ -4,7 +4,7 @@ import (
 
 //	    "google.golang.org/appengine/datastore"
 //        "time"
-//        "client/sgh/type2"
+//        "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
                                                 )
 //
@@ -27,79 +27,68 @@ type Book_Test struct {
 }
 
 //
-// deliver district information　（地区情報・マルチ構造体バーション）
-//
+// deliver district information　�E�地区惁E��・マルチ構造体バーション�E�E//
 
-type D_District struct {               /// データストア用
+type D_District struct {               /// チE�Eタストア用
 
-       Id               int64           //　データid
+       Id               int64           //　チE�Eタid
        District_No      int64           // 配達地域NO.
 	   District_Name    string          // 配達地域名
-//       D_Area_Slice   []type2.D_Area    // エリア情報
-       D_Area_Slice     []D_Area    // エリア情報
-     D_Area_Small_Slice []D_Area_Small  // スモールエリア情報
+//       D_Area_Slice   []type2.D_Area    // エリア惁E��
+       D_Area_Slice     []D_Area    // エリア惁E��
+     D_Area_Small_Slice []D_Area_Small  // スモールエリア惁E��
 
    }
 
 //
-// deliver area information　（エリア情報）
-//
+// deliver area information　�E�エリア惁E���E�E//
 
 type D_Area struct {               /// 常用ファイル用
 
-       Id              int64           // データid
+       Id              int64           // チE�Eタid
        Course_No       int64           // コースNO.
        District_No     int64           // 配達地域NO.
        District_Name   string          // 配達地域名
        Area_No         int64           // 配達エリアNO.
-	   Area_Name       string          // 配達エリア名
-	   Area_Detail     string          // 配達エリアの詳細
-	   Number_Total    int64           // 宅配配達総数
-	   Time_Total      float64         // 宅配配達総時間
-	   Productivity    float64         // 宅配生産性
-       Car_No          int64           // レギュラー号車
-//    D_Area_Small_Slice []D_Area_Small  // スモールエリア情報
+	   Area_Name       string          // 配達エリア吁E	   Area_Detail     string          // 配達エリアの詳細
+	   Number_Total    int64           // 宁E�E配達総数
+	   Time_Total      float64         // 宁E�E配達総時閁E	   Productivity    float64         // 宁E�E生産性
+       Car_No          int64           // レギュラー号軁E//    D_Area_Small_Slice []D_Area_Small  // スモールエリア惁E��
 
    }
 
 type D_Area_Small struct {               /// 常用ファイル用
 
-	   Area_Name       string          // 配達エリア名
-	   Area_Small_Name string          // 配達エリアの詳細
+	   Area_Name       string          // 配達エリア吁E	   Area_Small_Name string          // 配達エリアの詳細
 
    }
 
 //
-// deliver district information　（地区情報・マルチ構造体バーション）
-//
+// deliver district information　�E�地区惁E��・マルチ構造体バーション�E�E//
 
-type D_District_2 struct {               /// データストア用
+type D_District_2 struct {               /// チE�Eタストア用
 
-       Id               int64           //　データid
+       Id               int64           //　チE�Eタid
        District_No      int64           // 配達地域NO.
 	   District_Name    string          // 配達地域名
-       D_Area_Slice     []D_Area_2    // エリア情報
-//     D_Area_Small_Slice []D_Area_Small  // スモールエリア情報
+       D_Area_Slice     []D_Area_2    // エリア惁E��
+//     D_Area_Small_Slice []D_Area_Small  // スモールエリア惁E��
 
    }
 
 //
-// deliver area information　（エリア情報）
-//
+// deliver area information　�E�エリア惁E���E�E//
 
 type D_Area_2 struct {               /// 常用ファイル用
 
-       Id              int64           // データid
+       Id              int64           // チE�Eタid
        Course_No       int64           // コースNO.
        District_No     int64           // 配達地域NO.
        District_Name   string          // 配達地域名
        Area_No         int64           // 配達エリアNO.
-	   Area_Name       string          // 配達エリア名
-	   Area_Detail     string          // 配達エリアの詳細
-	   Number_Total    int64           // 宅配配達総数
-	   Time_Total      float64         // 宅配配達総時間
-	   Productivity    float64         // 宅配生産性
-       Car_No          int64           // レギュラー号車
-    D_Area_Small_Slice []D_Area_Small  // スモールエリア情報
+	   Area_Name       string          // 配達エリア吁E	   Area_Detail     string          // 配達エリアの詳細
+	   Number_Total    int64           // 宁E�E配達総数
+	   Time_Total      float64         // 宁E�E配達総時閁E	   Productivity    float64         // 宁E�E生産性
+       Car_No          int64           // レギュラー号軁E    D_Area_Small_Slice []D_Area_Small  // スモールエリア惁E��
 
    }

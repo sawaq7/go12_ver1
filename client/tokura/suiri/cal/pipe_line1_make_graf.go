@@ -4,8 +4,8 @@ import (
 
 	    "net/http"
 	    "fmt"
-//	    "client/sgh/process"
-        "basic/type3"
+//	    "github.com/sawaq7/go12_ver1/client/sgh/process"
+        "github.com/sawaq7/go12_ver1/basic/type3"
         "math/rand"
         "image/color"
 //        "storage2"
@@ -18,8 +18,7 @@ import (
                                                    )
 
 ///
-/// 導水勾配線群よりグラフを作り、ストレッジに保存する。
-///
+/// 導水勾配線群よりグラフを作り、ストレチE��に保存する、E///
 
 func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_eneup []type3.Point ,
                            ad_enedown []type3.Point ,ad_glineup []type3.Point ,ad_glinedown []type3.Point ) (f_name string) {
@@ -27,18 +26,14 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
 //     IN  p_number 　　: 点の数
-//     IN  ad_eneup  　 : エネルギー線（up）のスライス   (pointの構造体）
-//     IN  ad_enedown   : エネルギー線（down）のスライス (pointの構造体）
-//     IN  ad_glineup   : 導水勾配線（up）のスライス     (pointの構造体）
-//     IN  ad_glinedown : 導水勾配線（down）のスライス   (pointの構造体）
+//     IN  ad_eneup  　 : エネルギー線！Ep�E��Eスライス   (pointの構造体！E//     IN  ad_enedown   : エネルギー線！Eown�E��Eスライス (pointの構造体！E//     IN  ad_glineup   : 導水勾配線！Ep�E��Eスライス     (pointの構造体！E//     IN  ad_glinedown : 導水勾配線！Eown�E��Eスライス   (pointの構造体！E
 
-
-//   fmt.Fprintf( w, "pipe_line1_make_graf start \n" )  // デバック
+//   fmt.Fprintf( w, "pipe_line1_make_graf start \n" )  // チE��チE��
 
    rand.Seed(int64(0))
 
 ///
-/// グラフの枠を作成　
+/// グラフ�E枠を作�E　
 ///
 
  	p, err := plot.New()
@@ -60,7 +55,7 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
     p.BackgroundColor = color.RGBA{R: 102,G: 204, B: 255}
 
 ///
-/// 各種ラインの　点のワークエリアをＧＥＴ　
+/// 吁E��ラインの　点のワークエリアをＧ�E��E�　
 ///
 
     ad_eneup_xys     := make(plotter.XYs, p_number)
@@ -69,7 +64,7 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
     ad_glinedown_xys := make(plotter.XYs, p_number)
 
 ///
-/// 各種ラインの点のデータをSET　
+/// 吁E��ラインの点のチE�EタをSET　
 ///
 
  	for i := 0; i < p_number; i++ {
@@ -89,51 +84,49 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
  	}
 
 ///
-/// 各種ラインのグラフのデータをSET　
+/// 吁E��ラインのグラフ�EチE�EタをSET　
 ///
 
- 	if err := plotutil.AddLinePoints(p, "エネルギー線(up)", ad_eneup_xys); err != nil {
+ 	if err := plotutil.AddLinePoints(p, "エネルギー緁Eup)", ad_eneup_xys); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
-    if err := plotutil.AddLinePoints(p, "エネルギー線(down)", ad_enedown_xys ); err != nil {
+    if err := plotutil.AddLinePoints(p, "エネルギー緁Edown)", ad_enedown_xys ); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
- 	if err := plotutil.AddLinePoints(p, "動水勾配線(up)", ad_glineup_xys ); err != nil {
+ 	if err := plotutil.AddLinePoints(p, "動水勾配緁Eup)", ad_glineup_xys ); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
- 	if err := plotutil.AddLinePoints(p, "動水勾配線(down)", ad_glinedown_xys ); err != nil {
+ 	if err := plotutil.AddLinePoints(p, "動水勾配緁Edown)", ad_glinedown_xys ); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
 ///
-///   グラフ-ファイル(画像ファイル）をストレッジに保存
+///   グラチEファイル(画像ファイル�E�をストレチE��に保孁E///
+
+ 	bucket := "sample-7777"     // バケチE��名セチE��
+
+///
+/// ファイル名を作�E
 ///
 
- 	bucket := "sample-7777"     // バケット名セット
-
-///
-/// ファイル名を作成
-///
-
- 	date_w := time.Now()        // 日付をセット
+ 	date_w := time.Now()        // 日付をセチE��
     unique_no := fmt.Sprintf("%04d%02d%02d%02d%02d%02d",
 		date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 
     f_name = "water_slope_" + unique_no + ".png"
 
-//    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )  // デバック
+//    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )  // チE��チE��
 
 //    storage2.File_Delete ( w , r  ,bucket ,f_name  ) // 旧ファイルを削除
 
-    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // 新ファイルを保存
-
+    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // 新ファイルを保孁E
        http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
 

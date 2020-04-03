@@ -5,46 +5,39 @@ import (
         "net/http"
 //	    "fmt"
 
-	    "general/type5"
-	    "storage2/get"
+	    "github.com/sawaq7/go12_ver1/general/type5"
+	    "github.com/sawaq7/go12_ver1/storage2/get"
 
-//	    "client/tokura/suiri/type4"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
         "cloud.google.com/go/storage"
 
                                         )
 
 ///
-///     ストレッジアクセスの基本ルーチン
+///     ストレチE��アクセスの基本ルーチン
 ///
 
 
 func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 interface{} ,w http.ResponseWriter, r *http.Request )  (flexible_out1 interface{} ,flexible_out2 interface{}) {
 
 //     IN    function    : ファンクション　
-//        　　　　　　　　　＊　trans ,check ,initialize ,sort　etc
-//     IN flexible_in1　  : 各種インプットデータ　（別紙参照）
-//     IN flexible_in2　  : 各種インプットデータ　（別紙参照）
-//     IN    w      　　 : レスポンスライター
+//        　　　　　　　　　�E�　trans ,check ,initialize ,sort　etc
+//     IN flexible_in1　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN flexible_in2　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN    w      　　 : レスポンスライター
 //     IN    r      　　 : リクエストパラメータ
 
-//     out flexible_out1  : 各種アウトプットデータ　（別紙参照）
-//     out flexible_out2  : 各種アウトプットデータ　（別紙参照）
-
-//    fmt.Fprintf( w, "storage_basic start \n" )  // デバック
-//    fmt.Fprintf( w, "storage_basic function \n" ,function )  // デバック
+//     out flexible_out1  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E//     out flexible_out2  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E
+//    fmt.Fprintf( w, "storage_basic start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_basic function \n" ,function )  // チE��チE��
 
 ///
-///  ファンクションにより各種処理を分岐して行う。
-///
+///  ファンクションにより吁E��処琁E��刁E��して行う、E///
 
 	switch function {
 
 ///
-///  オープンの場合
-///
+///  オープンの場吁E///
 
-      case "open" :     // trans の場合
-
+      case "open" :     // trans の場吁E
          value1, _ := flexible_in1.(string)
          value2, _ := flexible_in2.(string)
 
@@ -53,8 +46,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  クリエイトの場合
-///
+///  クリエイト�E場吁E///
 
       case "create" :
 
@@ -68,8 +60,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
 
 
 ///
-///  デリートの場合
-///
+///  チE��ート�E場吁E///
 
       case "delete" :
 
@@ -81,8 +72,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  コピーの場合
-///
+///  コピ�Eの場吁E///
 
       case "copy" :
 
@@ -94,8 +84,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リネームの場合
-///
+///  リネ�Eムの場吁E///
 
       case "rename" :
 
@@ -107,8 +96,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  ライトの場合 （string型1行を書く）
-///
+///  ライト�E場吁E�E�Etring垁E行を書く！E///
 
       case "write" :
 
@@ -120,8 +108,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  ライト２の場合 （構造体型1行を書く）
-///
+///  ライト２�E場吁E�E�構造体型1行を書く！E///
 
       case "write2" :
 
@@ -132,8 +119,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リストの場合 （バケットリストを出す）
-///
+///  リスト�E場吁E�E�バケチE��リストを出す！E///
 
       case "list" :
 
@@ -144,8 +130,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リスト2の場合 （オブジェクトリストを出す）
-///
+///  リスチEの場吁E�E�オブジェクトリストを出す！E///
 
       case "list2" :
 
@@ -156,8 +141,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リスト3の場合 （オブジェクトリスト(詳細）を出す）
-///
+///  リスチEの場吁E�E�オブジェクトリスチE詳細�E�を出す！E///
 
       case "list3" :
 
@@ -168,8 +152,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  ショウ1の場合 （グラフ表示１）
-///
+///  ショウ1の場吁E�E�グラフ表示�E�！E///
 
       case "show1" :
 
@@ -181,8 +164,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 //
-///  ショウ2の場合 （グラフ表示2）
-///
+///  ショウ2の場吁E�E�グラフ表示2�E�E///
 
       case "show2" :
 

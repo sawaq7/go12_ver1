@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -24,7 +24,7 @@ func Guest_temp(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//    fmt.Fprintf( w, "init3/guest_temp start \n" )  // デバック
+//    fmt.Fprintf( w, "init3/guest_temp start \n" )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -53,7 +53,7 @@ func Guest_temp(w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-//    fmt.Fprintf( w, "init3/guest_temp count \n" ,count )  // デバック
+//    fmt.Fprintf( w, "init3/guest_temp count \n" ,count )  // チE��チE��
 
 	guest_temp     := make([]type6.Guest_Temp, 0, count)
 
@@ -77,7 +77,7 @@ func Guest_temp(w http.ResponseWriter, r *http.Request )   {
 		  http.Error(w, err.Error(), http.StatusInternalServerError)
 		  return
 	  }
-//      fmt.Fprintf( w, "init3/guest_temp pos2 %v   \n" , pos2  )  // デバック
+//      fmt.Fprintf( w, "init3/guest_temp pos2 %v   \n" , pos2  )  // チE��チE��
 
     }
 	return

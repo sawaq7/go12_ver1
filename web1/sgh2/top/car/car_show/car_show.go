@@ -6,10 +6,10 @@ import (
 	    "net/http"
 //	    "fmt"
 
-        "client/sgh/process"
-        "client/sgh/type2"
+        "github.com/sawaq7/go12_ver1/client/sgh/process"
+        "github.com/sawaq7/go12_ver1/client/sgh/type2"
 	    "strconv"
-	    "client/sgh/datastore2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -20,7 +20,7 @@ import (
 
 func Car_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintln( w, "car_show start \n" )  // デバック
+//    fmt.Fprintln( w, "car_show start \n" )  // チE��チE��
 
     var d_district      type2.D_District
 
@@ -31,14 +31,14 @@ func Car_show(w http.ResponseWriter, r *http.Request) {
     select_idw , err := strconv.Atoi(r.FormValue("id"))
 
 	if err  != nil {
-//	   fmt.Fprintf( w, "car_show :error select_idw %v\n", select_idw )  // デバック
+//	   fmt.Fprintf( w, "car_show :error select_idw %v\n", select_idw )  // チE��チE��
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     select_id := int64(select_idw)
 
-//    fmt.Fprintf( w, "car_show : select_idw %v\n", select_idw )  // デバック
-//    fmt.Fprintf( w, "car_show : select_id %v\n", select_id )  // デバック
+//    fmt.Fprintf( w, "car_show : select_idw %v\n", select_idw )  // チE��チE��
+//    fmt.Fprintf( w, "car_show : select_id %v\n", select_id )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -67,7 +67,7 @@ func Car_show(w http.ResponseWriter, r *http.Request) {
 	}
 
 
-// temporary-fileをイニシャライズ  & セット (選択した地域情報をセット
+// temporary-fileをイニシャライズ  & セチE�� (選択した地域情報をセチE��
 
 //    initialize.D_district_temp (w , r ) // temporary-fileをイニシャライズ
 
@@ -89,7 +89,7 @@ func Car_show(w http.ResponseWriter, r *http.Request) {
 
 	process.Car_show(w , r ,d_district.District_No)
 
-//	fmt.Fprintf( w, "d_district_area : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "d_district_area : normal end \n" )  // チE��チE��
 
 
 

@@ -68,8 +68,8 @@ var (
 
 func Reserve() {
 
-//    fmt.Println ("Reserve start ヘッダーwrite " ,line)  // デバック
-    fmt.Println ("Reserve start " )  // デバック
+//    fmt.Println ("Reserve start ヘッダーwrite " ,line)  // チE��チE��
+    fmt.Println ("Reserve start " )  // チE��チE��
 
 
 // func reserve( w http.ResponseWriter ,r *http.Request ,ad_eneup []type3.Point ) {
@@ -77,7 +77,7 @@ func Reserve() {
     rand.Seed(int64(0))
 
 ///
-/// グラフの枠を作成　
+/// グラフ�E枠を作�E　
 ///
 
  	p, err := plot.New()
@@ -100,15 +100,15 @@ func Reserve() {
 
     name1 := "sawamoto"
 
-    p.NominalY( name1, "yoshida", "tanaka", "kikuti", "okada") // 各値のラベル(X軸)
+    p.NominalY( name1, "yoshida", "tanaka", "kikuti", "okada") // 吁E��のラベル(X軸)
 
 
 
     size :=10.
 
-    wide := vg.Points(size) // 棒グラフの幅
+    wide := vg.Points(size) // 棒グラフ�E幁E
 
-  	// time_maxの各値について棒グラフを生成
+  	// time_maxの吁E��につぁE��棒グラフを生�E
 
 //  	time_max1 := 20
 
@@ -121,9 +121,9 @@ func Reserve() {
 
 //    wide_num :=  guest_num / vg.Inch
 
-    fmt.Println ("Reserve start ,vg.Inch" ,vg.Inch )  // デバック
-    fmt.Println ("Reserve start ,vg.Inch2" ,vg.Inch*2 )  // デバック
-    fmt.Println ("Reserve start ,wide_num" ,wide_num )  // デバック
+    fmt.Println ("Reserve start ,vg.Inch" ,vg.Inch )  // チE��チE��
+    fmt.Println ("Reserve start ,vg.Inch2" ,vg.Inch*2 )  // チE��チE��
+    fmt.Println ("Reserve start ,wide_num" ,wide_num )  // チE��チE��
 
 
 
@@ -140,18 +140,18 @@ func Reserve() {
 
   	bars, _ := NewBarChart(time_max, wide)
 
-  	bars.LineStyle.Width = vg.Length(0) // 棒グラフの枠線の太さ
+  	bars.LineStyle.Width = vg.Length(0) // 棒グラフ�E枠線�E太ぁE
 
-  	bars.Color = plotutil.Color(3)      // 棒グラフの色。0から6まででplotutilにSoftColorsとして定義されている。
+  	bars.Color = plotutil.Color(3)      // 棒グラフ�E色、Eから6まででplotutilにSoftColorsとして定義されてぁE��、E
 
-//    fmt.Println ("Reserve main bars.Values " ,bars.Values )  // デバック
+//    fmt.Println ("Reserve main bars.Values " ,bars.Values )  // チE��チE��
 
-//  	bars.Offset = wide * 2                    // 棒グラフを表示する位置のオフセット(X方向)。複数のグループを並べたいときは-wなどで位置を調整する。
+//  	bars.Offset = wide * 2                    // 棒グラフを表示する位置のオフセチE��(X方吁E。褁E��のグループを並べたいとき�E-wなどで位置を調整する、E
 
     bars.Offset = 0
 //    bars.XMin = 2
 
-// 	bars.Horizontal = false             // trueにすると横向きの棒グラフになる。
+// 	bars.Horizontal = false             // trueにすると横向きの棒グラフになる、E
 
  	bars.Horizontal = true
 
@@ -163,10 +163,10 @@ func Reserve() {
 
 
 	if err != nil {
-		fmt.Println ("Reserve err " ,err)  // デバック
+		fmt.Println ("Reserve err " ,err)  // チE��チE��
 	}
 
-    fmt.Println ("Reserve end " )  // デバック
+    fmt.Println ("Reserve end " )  // チE��チE��
 
 }
 
@@ -175,7 +175,7 @@ func Reserve() {
 // to the index of their value in the Valuer.
 func NewBarChart(vs plotter.Valuer, width vg.Length) (*BarChart, error) {
 
-    fmt.Println ("NewBarChart start " )  // デバック
+    fmt.Println ("NewBarChart start " )  // チE��チE��
 
 	if width <= 0 {
 		return nil, errors.New("Width parameter was not positive")
@@ -185,7 +185,7 @@ func NewBarChart(vs plotter.Valuer, width vg.Length) (*BarChart, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println ("NewBarChart end " )  // デバック
+	fmt.Println ("NewBarChart end " )  // チE��チE��
 
 	return &BarChart{
 		Values:    values,
@@ -202,14 +202,14 @@ func NewBarChart(vs plotter.Valuer, width vg.Length) (*BarChart, error) {
 // which it is stacked.
 func (b *BarChart) BarHeight(i int) float64 {
 
-    fmt.Println (" BarHeight start i" ,i)  // デバック
+    fmt.Println (" BarHeight start i" ,i)  // チE��チE��
 
 	ht := 0.0
 	if b == nil {
 
 //	   ht= ht + 2.
 
-	   fmt.Println (" BarHeight ht " ,ht )  // デバック
+	   fmt.Println (" BarHeight ht " ,ht )  // チE��チE��
 
 		return ht
 	}
@@ -220,7 +220,7 @@ func (b *BarChart) BarHeight(i int) float64 {
 		ht += b.stackedOn.BarHeight(i)
 	}
 
-	fmt.Println (" BarHeight end"  )  // デバック
+	fmt.Println (" BarHeight end"  )  // チE��チE��
 
 	return ht
 }
@@ -230,7 +230,7 @@ func (b *BarChart) BarHeight(i int) float64 {
 // chart upon which it is being stacked.
 func (b *BarChart) StackOn(on *BarChart) {
 
-    fmt.Println ("StackOn start " )  // デバック
+    fmt.Println ("StackOn start " )  // チE��チE��
 
 	b.XMin = on.XMin
 	b.Offset = on.Offset
@@ -239,7 +239,7 @@ func (b *BarChart) StackOn(on *BarChart) {
 // Plot implements the plot.Plotter interface.
 func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 
-    fmt.Println ("Plot start " )  // デバック
+    fmt.Println ("Plot start " )  // チE��チE��
 
    Values2 := make([]float64 ,20 ,50)
 
@@ -272,7 +272,7 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 
 
 
-		fmt.Println ("Plot bottom " ,bottom )  // デバック
+		fmt.Println ("Plot bottom " ,bottom )  // チE��チE��
 
 //		valMin := trVal(bottom)
 
@@ -280,13 +280,13 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 
 		valMax := trVal(bottom + ht)
 
-//		fmt.Println ("Plot valMin " ,valMin )  // デバック
+//		fmt.Println ("Plot valMin " ,valMin )  // チE��チE��
 
 		var pts []vg.Point
 		var poly []vg.Point
-		if !b.Horizontal {                // ノーマルタイプの場合
+		if !b.Horizontal {                // ノ�Eマルタイプ�E場吁E
 
-		   fmt.Println ("Plot type1 "  )  // デバック
+		   fmt.Println ("Plot type1 "  )  // チE��チE��
 
 			pts = []vg.Point{
 				{catMin, valMin},
@@ -295,9 +295,9 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 				{catMax, valMin},
 			}
 			poly = c.ClipPolygonY(pts)
-		} else {                        // XY軸逆の場合
+		} else {                        // XY軸送E�E場吁E
 
-		   fmt.Println ("Plot type2 "  )  // デバック
+		   fmt.Println ("Plot type2 "  )  // チE��チE��
 
 			pts = []vg.Point{
 				{valMin, catMin},
@@ -308,35 +308,35 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 				{valMax, catMin},
 			}
 
-			fmt.Println ("Plot 1" ,valMin, catMin)  // デバック
-            fmt.Println ("Plot 2" ,valMin, catMax)  // デバック
-            fmt.Println ("Plot 3" ,valMax, catMax)  // デバック
-            fmt.Println ("Plot 4" ,valMax, catMax)  // デバック
+			fmt.Println ("Plot 1" ,valMin, catMin)  // チE��チE��
+            fmt.Println ("Plot 2" ,valMin, catMax)  // チE��チE��
+            fmt.Println ("Plot 3" ,valMax, catMax)  // チE��チE��
+            fmt.Println ("Plot 4" ,valMax, catMax)  // チE��チE��
 
 			poly = c.ClipPolygonX(pts)
 		}
 
-		fmt.Println ("Plot pts " ,pts )  // デバック
+		fmt.Println ("Plot pts " ,pts )  // チE��チE��
 
 		c.FillPolygon(b.Color, poly)
 
 		var outline [][]vg.Point
-		if !b.Horizontal {              // ノーマルタイプの場合
+		if !b.Horizontal {              // ノ�Eマルタイプ�E場吁E
 
 			pts = append(pts, vg.Point{X: catMin, Y: valMin})
 			outline = c.ClipLinesY(pts)
-		} else {                       // XY軸逆の場合
+		} else {                       // XY軸送E�E場吁E
 
 			pts = append(pts, vg.Point{X: valMin, Y: catMin})
 			outline = c.ClipLinesX(pts)
 		}
 
-//		fmt.Println ("Plot outline " ,outline )  // デバック
+//		fmt.Println ("Plot outline " ,outline )  // チE��チE��
 
 		c.StrokeLines(b.LineStyle, outline...)
 	}
 
-	fmt.Println ("Plot end " )  // デバック
+	fmt.Println ("Plot end " )  // チE��チE��
 
 }
 
@@ -344,7 +344,7 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 // DataRange implements the plot.DataRanger interface.
 func (b *BarChart) DataRange() (xmin, xmax, ymin, ymax float64) {
 
-    fmt.Println ("DataRange start " )  // デバック
+    fmt.Println ("DataRange start " )  // チE��チE��
 
 
 	catMin := b.XMin
@@ -358,15 +358,15 @@ func (b *BarChart) DataRange() (xmin, xmax, ymin, ymax float64) {
 		valMin = math.Min(valMin, math.Min(valBot, valTop))
 		valMax = math.Max(valMax, math.Max(valBot, valTop))
 	}
-	if !b.Horizontal {                              // ノーマルタイプの場合
+	if !b.Horizontal {                              // ノ�Eマルタイプ�E場吁E
 		return catMin, catMax, valMin, valMax
 	}
-	fmt.Println ("DataRange  valMin" ,valMin)  // デバック
-    fmt.Println ("DataRange  valMax" ,valMax)  // デバック
-    fmt.Println ("DataRange  catMin" ,catMin)  // デバック
-    fmt.Println ("DataRange  catMax" ,catMax)  // デバック
+	fmt.Println ("DataRange  valMin" ,valMin)  // チE��チE��
+    fmt.Println ("DataRange  valMax" ,valMax)  // チE��チE��
+    fmt.Println ("DataRange  catMin" ,catMin)  // チE��チE��
+    fmt.Println ("DataRange  catMax" ,catMax)  // チE��チE��
 
-    fmt.Println ("DataRange end " )  // デバック
+    fmt.Println ("DataRange end " )  // チE��チE��
 
 	return valMin, valMax, catMin, catMax
 }
@@ -374,8 +374,8 @@ func (b *BarChart) DataRange() (xmin, xmax, ymin, ymax float64) {
 // GlyphBoxes implements the GlyphBoxer interface.
 func (b *BarChart) GlyphBoxes(plt *plot.Plot) []plot.GlyphBox {
 
-    fmt.Println ("GlyphBoxes start " )  // デバック
-//    fmt.Println ("GlyphBoxes plt " ,plt )  // デバック
+    fmt.Println ("GlyphBoxes start " )  // チE��チE��
+//    fmt.Println ("GlyphBoxes plt " ,plt )  // チE��チE��
 
 	boxes := make([]plot.GlyphBox, len(b.Values))
 	for i := range b.Values {
@@ -389,7 +389,7 @@ func (b *BarChart) GlyphBoxes(plt *plot.Plot) []plot.GlyphBox {
 		} else {
 			boxes[i].Y = plt.Y.Norm(cat)
 
-			fmt.Println ( "GlyphBoxes boxes[i].Y" ,boxes[i].Y)  // デバック
+			fmt.Println ( "GlyphBoxes boxes[i].Y" ,boxes[i].Y)  // チE��チE��
 
 			boxes[i].Rectangle = vg.Rectangle{
 				Min: vg.Point{Y: b.Offset - b.Width/2},
@@ -398,7 +398,7 @@ func (b *BarChart) GlyphBoxes(plt *plot.Plot) []plot.GlyphBox {
 		}
 	}
 
-	fmt.Println ("GlyphBoxes end "  )  // デバック
+	fmt.Println ("GlyphBoxes end "  )  // チE��チE��
 
 	return boxes
 }
@@ -406,7 +406,7 @@ func (b *BarChart) GlyphBoxes(plt *plot.Plot) []plot.GlyphBox {
 // Thumbnail fulfills the plot.Thumbnailer interface.
 func (b *BarChart) Thumbnail(c *draw.Canvas) {
 
-    fmt.Println ("Thumbnail start "  )  // デバック
+    fmt.Println ("Thumbnail start "  )  // チE��チE��
 
 	pts := []vg.Point{
 		{c.Min.X, c.Min.Y},
@@ -421,5 +421,5 @@ func (b *BarChart) Thumbnail(c *draw.Canvas) {
 	outline := c.ClipLinesY(pts)
 	c.StrokeLines(b.LineStyle, outline...)
 
-	fmt.Println ("Thumbnail end "  )  // デバック
+	fmt.Println ("Thumbnail end "  )  // チE��チE��
 }

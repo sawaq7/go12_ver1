@@ -6,38 +6,36 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
 //	    "time"
                                                 )
 
 ///
-/// csvファイルに列単位でデータをセットする
+/// csvファイルに列単位でチE�EタをセチE��する
 ///
 
 func Csv_inf ( csv_inf []type5.Csv_Inf ,csv_inf_join []string ,column_no int ,w http.ResponseWriter, r *http.Request )  ([]type5.Csv_Inf ) {
 
-//     IN  csv_inf  　　: csv情報”のスライス
+//     IN  csv_inf  　　: csv惁E��”�Eスライス
 //     IN  csv_inf_join : 追加する列情報　　　　
-//     IN  column_no  　　: 対象の行
-//     IN    w      　　: レスポンスライター
+//     IN  column_no  　　: 対象の衁E//     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT csv_inf_new  : データ追加後のcsv情報”のスライス
+//     OUT csv_inf_new  : チE�Eタ追加後�Ecsv惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "set1.csv_inf start %v\n" )  // デバック
-//    fmt.Fprintf( w, "set1.csv_inf csv_inf_join %v\n" ,csv_inf_join )  // デバック
-//    fmt.Fprintf( w, "set1.csv_inf column_no %v\n" ,column_no)  // デバック
+//    fmt.Fprintf( w, "set1.csv_inf start %v\n" )  // チE��チE��
+//    fmt.Fprintf( w, "set1.csv_inf csv_inf_join %v\n" ,csv_inf_join )  // チE��チE��
+//    fmt.Fprintf( w, "set1.csv_inf column_no %v\n" ,column_no)  // チE��チE��
 
-    str_work := make([]string ,10 )  // ワークエリアを確保
-
+    str_work := make([]string ,10 )  // ワークエリアを確俁E
 	csv_inf2 := make([]type5.Csv_Inf, 0)
 
 	index := 0
 
 	for _, csv_infw := range csv_inf {
 
-//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // デバック
+//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // チE��チE��
 
       str_work[0]  = csv_infw.Column1
 	  str_work[1]  = csv_infw.Column2
@@ -74,7 +72,7 @@ func Csv_inf ( csv_inf []type5.Csv_Inf ,csv_inf_join []string ,column_no int ,w 
 
 	}
 
-//    fmt.Fprintf( w, "set1.csv_inf csv_inf2 %v\n" ,csv_inf2)  // デバック
+//    fmt.Fprintf( w, "set1.csv_inf csv_inf2 %v\n" ,csv_inf2)  // チE��チE��
 
     return	csv_inf2
 }

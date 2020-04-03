@@ -1,5 +1,5 @@
 ///                                           ///
-/// スライス(float) を一行にしてファイルに書く ///
+/// スライス(float) を一行にしてファイルに書ぁE///
 ///                                          ///
 
 package rw
@@ -12,12 +12,12 @@ import (
 func Wrline1(  writer *os.File ,ldata []float64  ) {
 
 //     IN  writer : ファイルポインター
-//     IN  ldeta  : スライス（float）データ
+//     IN  ldeta  : スライス�E�Eloat�E�データ
 
 fmt.Println ("func wrline1 ライター　",writer )
 fmt.Println ("func wrline1 ldata　",ldata )
 
-// データをファイルに書き込む
+// チE�Eタをファイルに書き込む
 
    for  i := 0 ; i < len(ldata) ; i++ {
 
@@ -25,8 +25,7 @@ fmt.Println ("func wrline1 ldata　",ldata )
 
    }
 
-// 改行する
-
+// 改行すめE
    fmt.Fprintf(writer ,"\n" )
 
    return

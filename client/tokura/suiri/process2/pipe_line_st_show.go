@@ -5,14 +5,14 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "client/tokura/html4"
-        "client/tokura/suiri/type4"
-	    "client/tokura/storage3"
+	    "github.com/sawaq7/go12_ver1/client/tokura/html4"
+        "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/storage3"
 	    "storage2"
                                                 )
 func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "process2.pipe_line_st_show start \n" )  // デバック
+//    fmt.Fprintf( w, "process2.pipe_line_st_show start \n" )  // チE��チE��
 
     var idmy1 ,idmy2 int64
 
@@ -21,10 +21,10 @@ func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
     bucket := "sample-7777"
 
 ///
-///             Water2　ファイルがあるかチェック
+///             Water2　ファイルがあるかチェチE��
 ///
 
-    objects :=  storage2.Object_List ( w  ,r , bucket )  // バケット内のオブジェクトをゲットする
+    objects :=  storage2.Object_List ( w  ,r , bucket )  // バケチE��冁E�EオブジェクトをゲチE��する
 
     for _ , objectsw := range objects {
 
@@ -36,10 +36,10 @@ func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
 
     }
 
-//    fmt.Fprintf(w, "process2.pipe_line_st_show : skip_flag %v\n", skip_flag )  // デバック
+//    fmt.Fprintf(w, "process2.pipe_line_st_show : skip_flag %v\n", skip_flag )  // チE��チE��
 
 ///
-///            、表示用データ・テンプレートのヘッダーをGETして表示
+///            、表示用チE�Eタ・チE��プレート�EヘッダーをGETして表示
 ///
 
      monitor := template.Must(template.New("html").Parse(html4.Pipe_line_st_keyin))
@@ -62,8 +62,7 @@ func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
 
      } else {
 
-       water2_view := make([]type4.Water2, 0)   //   Water2　の表示エリアを確保
-
+       water2_view := make([]type4.Water2, 0)   //   Water2　の表示エリアを確俁E
        err := monitor.Execute(w, water2_view)
 
        if err != nil {

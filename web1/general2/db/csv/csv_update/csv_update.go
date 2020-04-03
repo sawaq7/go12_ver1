@@ -7,21 +7,21 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-//        "general/type5"
-        "general/process3"
+//        "github.com/sawaq7/go12_ver1/general/type5"
+        "github.com/sawaq7/go12_ver1/general/process3"
 
                                                    )
 
 func Csv_update(w http.ResponseWriter, r *http.Request) {
 
-//	   fmt.Fprintf( w, "sky_csv_update start %v\n" )  // デバック
+//	   fmt.Fprintf( w, "sky_csv_update start %v\n" )  // チE��チE��
 
-/// 指定したデータidをGET ///
+/// 持E��したデータidをGET ///
 
     updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "sky_csv_update :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "sky_csv_update :error updidw %v\n", updidw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
@@ -29,7 +29,7 @@ func Csv_update(w http.ResponseWriter, r *http.Request) {
     updid := int64(updidw)
 
 ///
-///    配達情報の変更
+///    配達惁E��の変更
 ///
 
 	process3.Csv_update(w , r ,updid)
@@ -40,6 +40,6 @@ func Csv_update(w http.ResponseWriter, r *http.Request) {
 
 	process3.Csv_inf ( w , r )
 
-//	fmt.Fprintf( w, "csv_update normal end \n" )  // デバック
+//	fmt.Fprintf( w, "csv_update normal end \n" )  // チE��チE��
 
 }

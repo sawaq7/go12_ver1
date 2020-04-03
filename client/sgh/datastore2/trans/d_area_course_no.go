@@ -7,12 +7,12 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
                                                 )
 
 ///
-/// 該当するコースNOのエリア情報をゲットする
+/// 該当するコースNOのエリア惁E��をゲチE��する
 ///
 
 func D_area_course_no(w http.ResponseWriter, r *http.Request ,course_no  int64)  (d_area_course_no []type2.D_Area ) {
@@ -20,9 +20,9 @@ func D_area_course_no(w http.ResponseWriter, r *http.Request ,course_no  int64) 
 //     IN    w      　　     : レスポンスライター
 //     IN    r      　　     : リクエストパラメータ
 //     IN 　course_no        : コースNo
-//     OUT d_area_course_no  : 該当するコースNOのエリア情報　(構造体　”エリア情報”のスライス)
+//     OUT d_area_course_no  : 該当するコースNOのエリア惁E��　(構造体　”エリア惁E��”�Eスライス)
 
-//    fmt.Fprintf( w, "trans.d_area_course_no start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.d_area_course_no start \n" )  // チE��チE��
 
 	c := appengine.NewContext(r)
 
@@ -67,7 +67,7 @@ func D_area_course_no(w http.ResponseWriter, r *http.Request ,course_no  int64) 
         }
 	  }
 	}
-//    fmt.Fprintf( w, "trans.d_area_course_no normal end \n" )  // デバック
+//    fmt.Fprintf( w, "trans.d_area_course_no normal end \n" )  // チE��チE��
 
 	return d_area_course_no
 }

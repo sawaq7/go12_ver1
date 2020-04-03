@@ -7,11 +7,11 @@ package html6
 		<meta charset="utf-8">
 		<title>sawa Q</title>
 		<link rel="stylesheet" href="css/index.css" type="text/css">
-		<style type="text/css"> /* マウスポインタの設定（intense用）*/
+		<style type="text/css"> /* マウスポインタの設定！Entense用�E�E/
             .intense {
-            cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指定 */
-            display: inline-block;   /* 横方向に並べる指定 */
-            margin: 0px 5px 5px 0px; /* 周囲の余白量(右と下に5pxずつ) */
+            cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指宁E*/
+            display: inline-block;   /* 横方向に並べる指宁E*/
+            margin: 0px 5px 5px 0px; /* 周囲の余白釁E右と下に5pxずつ) */
             }
         </style>
 		<script src="js/main.js"></script>
@@ -31,39 +31,37 @@ package html6
 				<li><a href="https://sample-7777.appspot.com/sgh_index">Sgh Management System</a></li>
 				<li><a href="https://sample-7777.appspot.com/tokura_index">Tokura Scientific Calculation System</a></li>
 				<li><a href="https://sample-7777.appspot.com/general_index">General Soft</a></li>
-				<li><a href="contact.html">お問い合わせ</a></li>
-				<li><a href="nakamura.html">members 中村</a></li>
+				<li><a href="contact.html">お問ぁE��わせ</a></li>
+				<li><a href="nakamura.html">members 中杁E/a></li>
 
 			</ul>
 		</nav>
 		<article>
-			<h1>電力事情について</h1>
+			<h1>電力事情につぁE��</h1>
 			<p>
-				現在、電力供給に不安があるため、各事業部は国内の
-				データセンターだけでなく海外のデータセンターへの
-				移行も視野に入れる必要がでてきました。
-			</p>
+				現在、E��力供給に不安があるため、各事業部は国冁E�E
+				チE�Eタセンターだけでなく海外�EチE�Eタセンターへの
+				移行も視野に入れる忁E��がでてきました、E			</p>
 			<p>
-				今後はリスク分散について早急に対処しなければいけません。
-			</p>
+				今後�Eリスク刁E��につぁE��早急に対処しなければぁE��ません、E			</p>
 		</article>
 		<section id="main">
-			<h1>新商品に関するお知らせ</h1>
+			<h1>新啁E��に関するお知らせ</h1>
 			<section>
-				<h2>sawaQコンバーター ver 2</h2>
-				<p>近日中にアナウンスする予定です。</p>
+				<h2>sawaQコンバ�Eター ver 2</h2>
+				<p>近日中にアナウンスする予定です、E/p>
 			</section>
 			<section>
 				<h2>sawaQ API辞書</h2>
-				<p>好評発売中。現在、キャンペーン中につき半額セール実施中!</p>
+				<p>好評発売中。現在、キャンペ�Eン中につき半額セール実施中!</p>
 			</section>
 		</section>
 		<aside>
-			<div><img src="images/banner.png" width="200" height="200" alt="広告"></div>
+			<div><img src="images/banner.png" width="200" height="200" alt="庁E��"></div>
 			<div><a href="member.html" >
-			        <img src="photo/bird.jpg"  width="90" height="100" alt="広告">
+			        <img src="photo/bird.jpg"  width="90" height="100" alt="庁E��">
 			     </a>
-			     <img src="photo/bird3.jpg"   width="90" height="100" alt="広告">
+			     <img src="photo/bird3.jpg"   width="90" height="100" alt="庁E��">
 			     <img src="photo/bird.jpg" width="90" height="100" data-title="some animals"
                                                                   data-caption="parakeet" class="intense">
                  <img src="images/illust_finger.png" width="90" height="100" data-title="some animals"
@@ -72,7 +70,7 @@ package html6
 		</aside>
 		<footer>
 			<p><small>2011 &copy; (株)sawaQ</small></p>
-			<p>〒100-0014 東京都千代田区永田町1-7-1</p>
+			<p>、E00-0014 東京都十E��田区永田町1-7-1</p>
 		</footer>
 		<script> /* intense用 */
 		   window.onload = function() {

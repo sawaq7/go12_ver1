@@ -90,7 +90,7 @@ package html6
 
 				<li>
 				  <div>
-				  <h1  align="center">導水勾配線</h1>
+				  <h1  align="center">導水勾配緁E/h1>
 				    <form method="GET"  action="/water_slope_show" >
 				      <input type="image" src="images/illust_finger.png" width="80" height="80"
                                                                            name="List" alt="png" />

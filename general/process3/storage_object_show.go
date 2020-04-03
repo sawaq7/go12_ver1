@@ -5,36 +5,33 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "general/html5"
+	    "github.com/sawaq7/go12_ver1/general/html5"
 	    "storage2"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 //	    "time"
                                                 )
 
 ///
-/// 指示したバケット内のオブジェクトを、ウエブ上に表示する。
-///
+/// 持E��したバケチE��冁E�Eオブジェクトを、ウエブ上に表示する、E///
 
 func Storage_object_show ( w http.ResponseWriter, r *http.Request ,project string ,bucket string ) {
 
 //     IN    w      : レスポンスライター
 //     IN    r      : リクエストパラメータ
 //     IN  project  : プロジェクト名
-//     IN  bucket   : バケット名
-
-//    fmt.Fprintf( w, "process3.storage_object_show start \n" )  // デバック
+//     IN  bucket   : バケチE��吁E
+//    fmt.Fprintf( w, "process3.storage_object_show start \n" )  // チE��チE��
 
 //    var t_dmy   time.Time
 
 //    var idmy int64
 
-    storage_b_o_view := make([]type5.Storage_B_O_View, 0) // バケットリストの表示用エリアを確保
-
+    storage_b_o_view := make([]type5.Storage_B_O_View, 0) // バケチE��リスト�E表示用エリアを確俁E
 //    objects_minor , _ := storage2.Storage_basic( "list3" ,bucket ,idmy, w , r  )
 
 //    objects, _ := objects_minor.([]type5.Storage_B_O_View)  // インターフェイス型を型変換
 
-    objects :=  storage2.Object_List_Detail ( w  ,r , bucket )  // 指示したバケット内のオブジェクト情報をゲットする
+    objects :=  storage2.Object_List_Detail ( w  ,r , bucket )  // 持E��したバケチE��冁E�Eオブジェクト情報をゲチE��する
 
     for pos , objectsw := range objects {
 
@@ -56,6 +53,6 @@ func Storage_object_show ( w http.ResponseWriter, r *http.Request ,project strin
 	   return
 	}
 
-//	fmt.Fprintf( w, "process3.storage_object_show normal end \n" )  // デバック
+//	fmt.Fprintf( w, "process3.storage_object_show normal end \n" )  // チE��チE��
 }
 

@@ -3,9 +3,9 @@ package sky
 import (
 
 	    "net/http"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
                                                   )
-/// main 配達データを入力 ///
+/// main 配達チE�Eタを�E劁E///
 
 func init() {
 	http.HandleFunc("/deliver_keyin_all", handler)

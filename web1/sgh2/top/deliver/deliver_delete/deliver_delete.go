@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strconv"
 //	"fmt"
-	"client/sgh/process"
+	"github.com/sawaq7/go12_ver1/client/sgh/process"
 
 	"cloud.google.com/go/datastore"
     "context"
@@ -16,7 +16,7 @@ import (
 
 func Deliver_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "deliver_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "deliver_delete start \n" )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -36,13 +36,13 @@ func Deliver_delete(w http.ResponseWriter, r *http.Request) {
     }
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "deliver_delete : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "deliver_delete : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "deliver_delete : delidw %v\n", delidw )  // デバック
-//    fmt.Fprintf( w, "deliver_delete : delid %v\n", delid )  // デバック
+//    fmt.Fprintf( w, "deliver_delete : delidw %v\n", delidw )  // チE��チE��
+//    fmt.Fprintf( w, "deliver_delete : delid %v\n", delid )  // チE��チE��
 
     key := datastore.IDKey("Deliver", delid, nil)
 

@@ -8,12 +8,12 @@ import (
 	    "bufio"
 	    "io"
 
-	    "client/tokura/storage3/struct_set"
+	    "github.com/sawaq7/go12_ver1/client/tokura/storage3/struct_set"
 	    "cloud.google.com/go/storage"
                                                 )
 
 ///                           　　　　　　　　　　　
-///   ストレッジファイルから指定した水路情報を削除する
+///   ストレチE��ファイルから持E��した水路惁E��を削除する
 ///                          　　　　　　　　　　　
 
 func Water2( w http.ResponseWriter, r *http.Request ,delid int64 ) {
@@ -22,7 +22,7 @@ func Water2( w http.ResponseWriter, r *http.Request ,delid int64 ) {
 //     IN     r         : リクエストパラメーター
 //     IN   delid       : 削除するラインNO　　struct : Water2
 
-//    fmt.Fprintf( w, "delete1.water2 start \n" )  // デバック
+//    fmt.Fprintf( w, "delete1.water2 start \n" )  // チE��チE��
 
     var lf_flag int64
 
@@ -31,13 +31,13 @@ func Water2( w http.ResponseWriter, r *http.Request ,delid int64 ) {
     filename2 := "Water2_2.txt"
 
 ///
-/// 　　　ファイルのリネーム
+/// 　　　ファイルのリネ�Eム
 ///
 
     storage2.File_Rename ( w ,r ,bucket ,filename1 ,filename2 )
 
 ///
-///      差し替えた、水路ファイルを　（read file） オープン
+///      差し替えた、水路ファイルを　�E�Eead file�E�Eオープン
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename2 , w , r  )
@@ -49,14 +49,14 @@ func Water2( w http.ResponseWriter, r *http.Request ,delid int64 ) {
     sreader := bufio.NewReaderSize(reader, 4096)
 
 ///
-///      新しく水路ファイルを作成
+///      新しく水路ファイルを作�E
 ///
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename1 , w , r  )
 
     writer, _ := writer_minor.(*storage.Writer)  // インターフェイス型を型変換
 
-//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water2.txt"を再度作成
+//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water2.txt"を�E度作�E
 
     defer writer.Close()
 
@@ -74,20 +74,19 @@ func Water2( w http.ResponseWriter, r *http.Request ,delid int64 ) {
 
       num := len(line)
 
-//      fmt.Fprintf(w, "delete1.water2 : line %s\n", line )  // デバック
-//      fmt.Fprintf(w, "delete1.water2 : num %v\n", num )  // デバック
+//      fmt.Fprintf(w, "delete1.water2 : line %s\n", line )  // チE��チE��
+//      fmt.Fprintf(w, "delete1.water2 : num %v\n", num )  // チE��チE��
 
       if num  > 1 {
 
          id_count ++
 
-         if delid != int64(id_count)     {  // 削除レコードをスキップ
+         if delid != int64(id_count)     {  // 削除レコードをスキチE�E
 
-           index ++     // レコードカウンターをカウント
+           index ++     // レコードカウンターをカウンチE
+//           fmt.Fprintf(w, "delete1.water2 : lndex %v\n", index )  // チE��チE��
 
-//           fmt.Fprintf(w, "delete1.water2 : lndex %v\n", index )  // デバック
-
-           water2_struct := struct_set.Water2( w , line )  //　ラインデータをWater2のフォーマットに変換
+           water2_struct := struct_set.Water2( w , line )  //　ラインチE�EタをWater2のフォーマットに変換
 
            water2_struct.Id = int64(index)
 
@@ -95,9 +94,9 @@ func Water2( w http.ResponseWriter, r *http.Request ,delid int64 ) {
 
          }
 
-      } else if num == 0 {    // リード終了かチェック
+      } else if num == 0 {    // リード終亁E��チェチE��
 
-//         io.WriteString(w, "\n delete1.water2 : data end \n")   //デバック
+//         io.WriteString(w, "\n delete1.water2 : data end \n")   //チE��チE��
 
          break
 

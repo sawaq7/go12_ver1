@@ -4,11 +4,11 @@ import (
 
 	    "net/http"
 	    "fmt"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 	    "strconv"
                          )
 
-/// main car no ごとの　配達データを表示する　///
+/// main car no ごとの　配達チE�Eタを表示する　///
 
 func init() {
 	http.HandleFunc("/deliver_showcar", handler)
@@ -16,13 +16,12 @@ func init() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "deliver_showcar start \n" )  // デバック
+//    fmt.Fprintf( w, "deliver_showcar start \n" )  // チE��チE��
 
-	car_no := r.FormValue("car_no")         // car Noをゲット
-//	fmt.Fprintf( w, "deliver_showcar : car_no %v\n", car_no )  // デバック
+	car_no := r.FormValue("car_no")         // car NoをゲチE��
+//	fmt.Fprintf( w, "deliver_showcar : car_no %v\n", car_no )  // チE��チE��
 
-	car_now ,err := strconv.Atoi(car_no)  // 個人Noの整数化
-	if err != nil {
+	car_now ,err := strconv.Atoi(car_no)  // 個人Noの整数匁E	if err != nil {
 //		http.Error(w,err.Error(), http.StatusInternalServerError)
        fmt.Fprintf( w, "deliver_showcar : a car_no must be half-width characters %v\n"  )
 		return
@@ -35,7 +34,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	process.Deliver_showcar(w , r ,car_now2 )
 
 //	http.Redirect(w, r, "/", http.StatusFound)
-//	fmt.Fprintf( w, "deliver_showcar : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "deliver_showcar : normal end \n" )  // チE��チE��
 
 
 

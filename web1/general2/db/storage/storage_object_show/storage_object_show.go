@@ -7,11 +7,11 @@ import (
 //	    "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
 
-//	    "storage2/get"
+//	    "github.com/sawaq7/go12_ver1/storage2/get"
 	    "storage2"
 	    "strconv"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 	    "os"
         "cloud.google.com/go/datastore"
         "context"
@@ -19,12 +19,11 @@ import (
                                                   )
 
 ///
-/// オブジェクトの内容を表示する。
-///
+/// オブジェクト�E冁E��を表示する、E///
 
 func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_show start \n" )  // デバック
+//    fmt.Fprintf( w, "storage_object_show start \n" )  // チE��チE��
 
     var bucket ,filename string
 
@@ -38,15 +37,15 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 
     line_no := r.FormValue("line_no")
 
-//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // デバック
+//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // チE��チE��
 
 	select_id ,_ := strconv.Atoi(line_no)
 
-//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // デバック
+//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // チE��チE��
 
 
 ///
-///   バケット名をゲット
+///   バケチE��名をゲチE��
 ///
 
 //    c := appengine.NewContext(r)
@@ -76,14 +75,14 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
       for pos, storage_b_o_tempw := range storage_b_o_temp {
 
         if pos == 0 {
-           bucket    = storage_b_o_tempw.Bucket_Name    // バケット名をゲット
+           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
 
         }
 	  }
 	}
 
 ///
-///   ファイル名をゲット
+///   ファイル名をゲチE��
 ///
 
 	objects :=  storage2.Object_List ( w  ,r , bucket )
@@ -107,7 +106,7 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 
 //    get.Image_file_show( w ,r ,bucket ,filename )
 
-//	fmt.Fprintf( w, "storage_object_show : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "storage_object_show : normal end \n" )  // チE��チE��
 
 }
 

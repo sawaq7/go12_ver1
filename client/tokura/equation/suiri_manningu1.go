@@ -1,6 +1,5 @@
 ///
-/// 水理学　（マンニングの公式：流速を求める）
-///     v = 1/n * Rの2/3剰 * Iの1/2剰
+/// 水琁E��　�E��Eンニングの公式：流E��を求める！E///     v = 1/n * Rの2/3剰 * Iの1/2剰
 
 package equation
 
@@ -13,9 +12,8 @@ import (
 func Suiri_Manningu1( n float64 ,R float64 ,I float64 ) float64 {
 
 //     IN    n          : マンニング粗度係数
-//     IN    R(ｍ）     : 径深
-//     IN    I          : 動水勾配
-//    OUT    one（m/s)  : 速度
+//     IN    R(�E�！E    : 征E��
+//     IN    I          : 動水勾酁E//    OUT    one�E�E/s)  : 速度
 
    var cons ,cons2 ,V float64
 
@@ -30,9 +28,9 @@ func Suiri_Manningu1( n float64 ,R float64 ,I float64 ) float64 {
 
        V = 1/n * rwork * rwork2
 
-       fmt.Println ("Suiri_Manningu1 径深部　" ,rwork)
+       fmt.Println ("Suiri_Manningu1 征E��部　" ,rwork)
        fmt.Println ("Suiri_Manningu1 動水勾配部　" ,rwork2)
-       fmt.Println ("Suiri_Manningu1 V (マーニング）" ,V)
+       fmt.Println ("Suiri_Manningu1 V (マ�Eニング�E�E ,V)
 
 
 

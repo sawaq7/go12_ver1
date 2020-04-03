@@ -1,7 +1,7 @@
     ///////////////////////////////////////////////////////
    ///    main_kansui1_2                               ///
-  ///     水路情報を　GET                              ///
- ///      データはstring型                            ///
+  ///     水路惁E��を　GET                              ///
+ ///      チE�Eタはstring垁E                           ///
 ////////////////////////////////////////////////////////
 
 package main
@@ -11,20 +11,20 @@ import (
 	     "os"
 	     "strings"
 	     "bufio"
-	     "client/tokura/suiri"
+	     "github.com/sawaq7/go12_ver1/client/tokura/suiri"
 	                  )
 
 func main() {
 
 // ファイルオープン
 
-   fname  := "C:/Go_Original/src/client/tokura/file/water_inf.txt"
+   fname  := "C:/Go_Original/src/github.com/sawaq7/go12_ver1/client/tokura/file/water_inf.txt"
 
-// 水路情報ファイル、オープン
+// 水路惁E��ファイル、オープン
 
    freader , _ := os.OpenFile(fname, os.O_CREATE|os.O_RDWR, 0666)
 
-// ファイルリーダーをＧＥＴ
+// ファイルリーダーをＧ�E��E�
 
    reader := bufio.NewReaderSize(freader, 4096)
 
@@ -35,40 +35,38 @@ func main() {
 
    for {
 
-      index ++     // レコードカウンターをカウント
-
-      fmt.Println ("main_kansui1_2 index " ,index)  // デバック
+      index ++     // レコードカウンターをカウンチE
+      fmt.Println ("main_kansui1_2 index " ,index)  // チE��チE��
 
 // ファイルを１行read
 
       line ,_  := reader.ReadString('\n')
 
 
-//文字単位にスペースで分割
+//斁E��単位にスペ�Eスで刁E��
 
       str := strings.Fields(line)
 
       num := len(str)
 
-      fmt.Println ("main_kansui1_2 num " ,num)  // デバック
+      fmt.Println ("main_kansui1_2 num " ,num)  // チE��チE��
 
       if num != 0 {
          if index == 1 {  // ヘッダーを表示
 
-             fmt.Println ("main_kansui1_2 ヘッダーwrite " ,line)  // デバック
+             fmt.Println ("main_kansui1_2 ヘッダーwrite " ,line)  // チE��チE��
 
-          }else{         // 読み飛ばす
-
+          }else{         // 読み飛�EぁE
              suiro_name ,water_high ,roughness_factor := suiri.Kansui1_2( line  )
-             fmt.Println ("main_kansui1_2 水路名 " ,suiro_name)  // デバック
-             fmt.Println ("main_kansui1_2 水路 高 " ,water_high)  // デバック
-             fmt.Println ("main_kansui1_2 粗度係数 " ,roughness_factor)  // デバック
+             fmt.Println ("main_kansui1_2 水路吁E" ,suiro_name)  // チE��チE��
+             fmt.Println ("main_kansui1_2 水路 髁E" ,water_high)  // チE��チE��
+             fmt.Println ("main_kansui1_2 粗度係数 " ,roughness_factor)  // チE��チE��
 
           }
 
       } else if num == 0 { // End check
 
-          fmt.Println ("main_kansui1_2 normal end" )   //デバック
+          fmt.Println ("main_kansui1_2 normal end" )   //チE��チE��
          break
 
       }
@@ -79,7 +77,7 @@ func main() {
 //   END :
 
 
-//   os.Remove(fname) // 既存の静水ファイルを削除
+//   os.Remove(fname) // 既存�E静水ファイルを削除
 
    defer freader.Close()
 

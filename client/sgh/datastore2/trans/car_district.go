@@ -7,7 +7,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///                           ///
-/// 地区のエリア数をゲットする ///
+/// 地区のエリア数をゲチE��する ///
 ///                          ///
 
 func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request )  ( car_district_view []type2.Car ) {
@@ -25,9 +25,9 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT car_district_view  : 構造体　”エリア情報”のスライス
+//     OUT car_district_view  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.car_district start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.car_district start \n" )  // チE��チE��
 
      project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -63,7 +63,7 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 //	keys, err := q.GetAll(c, &car_district)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -77,7 +77,7 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 
 	for pos, car_districtw := range car_district {
 
-//	  fmt.Fprintf( w, "trans.car_district car_districtw %v\n" ,car_districtw)  // デバック
+//	  fmt.Fprintf( w, "trans.car_district car_districtw %v\n" ,car_districtw)  // チE��チE��
 
 
       if district_no == car_districtw.District_No {

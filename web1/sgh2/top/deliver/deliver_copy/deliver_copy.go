@@ -5,9 +5,9 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 	    "strconv"
 //	    "time"
 
@@ -18,7 +18,7 @@ import (
 
 func Deliver_copy(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "deliver_copy start \n" )  // デバック
+//    fmt.Fprintf( w, "deliver_copy start \n" )  // チE��チE��
 
 	var g type2.Deliver
 
@@ -40,13 +40,13 @@ func Deliver_copy(w http.ResponseWriter, r *http.Request) {
     }
 
 	id := r.FormValue("id")
-//    fmt.Fprintf( w, "deliver_copy  : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "deliver_copy  : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "deliver_copy  : delidw %v\n", delidw )  // デバック
-//    fmt.Fprintf( w, "deliver_copy  : delid %v\n", delid )  // デバック
+//    fmt.Fprintf( w, "deliver_copy  : delidw %v\n", delidw )  // チE��チE��
+//    fmt.Fprintf( w, "deliver_copy  : delid %v\n", delid )  // チE��チE��
 
     key := datastore.IDKey("Deliver", delid, nil)
 
@@ -70,6 +70,6 @@ func Deliver_copy(w http.ResponseWriter, r *http.Request) {
 
 	process.Deliver_showall1(w , r )
 
-//	fmt.Fprintf( w, "deliver_copy : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "deliver_copy : normal end \n" )  // チE��チE��
 
 }

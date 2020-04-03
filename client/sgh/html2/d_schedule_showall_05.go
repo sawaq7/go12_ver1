@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -21,8 +21,8 @@ package html2
               {{range .}}
                 {{ if eq .Id 77}}
 
-                  <tr> <th>{{.Car_Name_01|html}}号車</th> <th>{{.Car_Name_02|html}}号車</th>  <th>{{.Car_Name_03|html}}号車</th> <th>{{.Car_Name_04|html}}号車</th>
-                       <th>{{.Car_Name_05|html}}号車</th> <th>access1</th> </tr>
+                  <tr> <th>{{.Car_Name_01|html}}号軁E/th> <th>{{.Car_Name_02|html}}号軁E/th>  <th>{{.Car_Name_03|html}}号軁E/th> <th>{{.Car_Name_04|html}}号軁E/th>
+                       <th>{{.Car_Name_05|html}}号軁E/th> <th>access1</th> </tr>
 
                 {{end}}
               {{end}}
@@ -49,8 +49,8 @@ package html2
            {{range .}}
              {{ if eq .Id 77}}
 
-               <tr> <th>district-no</th> <th>date</th>  <th>{{.Car_Name_01|html}}号車</th> <th>{{.Car_Name_02|html}}号車</th>  <th>{{.Car_Name_03|html}}号車</th> <th>{{.Car_Name_04|html}}号車</th>
-                                                        <th>{{.Car_Name_05|html}}号車</th>
+               <tr> <th>district-no</th> <th>date</th>  <th>{{.Car_Name_01|html}}号軁E/th> <th>{{.Car_Name_02|html}}号軁E/th>  <th>{{.Car_Name_03|html}}号軁E/th> <th>{{.Car_Name_04|html}}号軁E/th>
+                                                        <th>{{.Car_Name_05|html}}号軁E/th>
 
                                                     <th>ex-num</th>  <th>judge</th> <th>access1</th><th>access2</th> <th>access3</th></tr>
 
@@ -111,7 +111,7 @@ package html2
                <form method="GET" action="/d_schedule_copy" >
                  <td>
                    <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                   <input type="submit"  size="2" value="コピー"  />
+                   <input type="submit"  size="2" value="コピ�E"  />
                  </td>
                </form>
              </tr>

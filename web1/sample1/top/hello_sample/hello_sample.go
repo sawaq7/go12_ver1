@@ -9,7 +9,7 @@ import (
 
 func Hello_sample(w http.ResponseWriter, r *http.Request) {
 
-    fmt.Fprintf( w, "hello_sample start \n" )  // ãƒ‡ãƒãƒƒã‚¯
+    fmt.Fprintf( w, "hello_sample start \n" )  // ãƒEƒãƒE‚¯
 
     var circle_circum ,radius float64
 

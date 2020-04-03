@@ -6,7 +6,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
 	    "cloud.google.com/go/datastore"
         "context"
@@ -14,16 +14,15 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　　
-/// データストアーから導水勾配線の情報をGETする（導水勾配線ファイル）
-///                          　　　　　　　　　　　
+/// チE�Eタストアーから導水勾配線�E惁E��をGETする�E�導水勾配線ファイル�E�E///                          　　　　　　　　　　　
 
 func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope ) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     OUT        　　  : 導水勾配線のスライス
+//     OUT        　　  : 導水勾配線�Eスライス
 
-//    fmt.Fprintf( w, "trans2.Water_slope start \n" )  // デバック
+//    fmt.Fprintf( w, "trans2.Water_slope start \n" )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -56,7 +55,7 @@ func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope
 //	keys, err := q.GetAll(c, &water_slope)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "water_slope err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "water_slope err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -70,7 +69,7 @@ func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope
 
 	for pos, water_slopew := range water_slope {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
          water_slope_view = append(water_slope_view, type4.Water_Slope { keys_wk[pos]       ,
                                                                          water_slopew.File_Name  ,

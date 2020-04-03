@@ -6,7 +6,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-        "client/sgh/type2"
+        "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
         "os"
         "cloud.google.com/go/datastore"
@@ -15,23 +15,19 @@ import (
                                                 )
 
 ///
-/// データストアをコピーする  (　ベーシック名　：　Deliver　）
-///
+/// チE�Eタストアをコピ�Eする  (　ベ�EシチE��名　�E�　Deliver　�E�E///
 
 func Deliver( w http.ResponseWriter, r *http.Request ,basic_name string ,copy_file string ,new_file string ) {
 
 //     IN    w        : レスポンスライター
 //     IN    r        : リクエストパラメータ
-//     IN  basic_name : 基本のデータストア名
-//     IN  copy_file  : コピー元のデータストア名
-//     IN  new_file   : ニューデータストア名
-//    OUT  err        : エラーメッセージ
+//     IN  basic_name : 基本のチE�Eタストア吁E//     IN  copy_file  : コピ�E允E�EチE�Eタストア吁E//     IN  new_file   : ニューチE�Eタストア吁E//    OUT  err        : エラーメチE��ージ
 
-//    fmt.Fprintf( w, "copy3.deliver start \n" )  // デバック
-//    fmt.Fprintf( w, "copy3.deliver basic_name %v\n" ,basic_name)  // デバック
+//    fmt.Fprintf( w, "copy3.deliver start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "copy3.deliver basic_name %v\n" ,basic_name)  // チE��チE��
 
 ///
-///  プロジェクトID　ゲット
+///  プロジェクチED　ゲチE��
 ///
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -56,22 +52,21 @@ func Deliver( w http.ResponseWriter, r *http.Request ,basic_name string ,copy_fi
 		return
 	}
 
-//    fmt.Fprintf( w, "copy3.deliver count %v\n" ,count)  // デバック
+//    fmt.Fprintf( w, "copy3.deliver count %v\n" ,count)  // チE��チE��
 
 ///
-/// クローン情報をSETするワークエリアを確保
-///
+/// クローン惁E��をSETするワークエリアを確俁E///
 
     ds_data := make([]type2.Deliver, 0, count)
 
     if _, err := client.GetAll(ctx, query , &ds_data);  err != nil {
-//	if _, err := q.GetAll(c, &ds_data);  err != nil {         // クローン情報をGET
+//	if _, err := q.GetAll(c, &ds_data);  err != nil {         // クローン惁E��をGET
 
 	  http.Error(w, err.Error(), http.StatusInternalServerError)
 	  return
 
 	} else{
-      for _, ds_dataw := range ds_data {                       //　ニューファイルにクローン情報をセット
+      for _, ds_dataw := range ds_data {                       //　ニューファイルにクローン惁E��をセチE��
 
 //	    if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, new_file, nil), &ds_dataw); err != nil {
         new_key := datastore.IncompleteKey( new_file , nil)
@@ -86,7 +81,7 @@ func Deliver( w http.ResponseWriter, r *http.Request ,basic_name string ,copy_fi
 	  }
 	}
 
-//	fmt.Fprintf( w, "copy3.deliver normal end \n" )  // デバック
+//	fmt.Fprintf( w, "copy3.deliver normal end \n" )  // チE��チE��
 
     return
 }

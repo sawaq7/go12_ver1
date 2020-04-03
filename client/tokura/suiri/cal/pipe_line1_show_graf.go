@@ -5,16 +5,16 @@ import (
 //	    "strconv"
 //	    "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "net/http"
 	    "fmt"
-//	    "storage2/get"
+//	    "github.com/sawaq7/go12_ver1/storage2/get"
 
 	    "html/template"
-        "client/tokura/html4"
+        "github.com/sawaq7/go12_ver1/client/tokura/html4"
 
-//        "general/type5"
-//        "general/html5"
+//        "github.com/sawaq7/go12_ver1/general/type5"
+//        "github.com/sawaq7/go12_ver1/general/html5"
 
         "os"
         "cloud.google.com/go/datastore"
@@ -23,20 +23,17 @@ import (
                                                    )
 
 ///
-/// グラフ-ファイル（導水勾配線群）を、ウエブ上に表示するとともに
-/// データストアにグラフ-ファイル情報を登録する。
-///
+/// グラチEファイル�E�導水勾配線群�E�を、ウエブ上に表示するとともに
+/// チE�EタストアにグラチEファイル惁E��を登録する、E///
 
 
 func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name string) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     IN  f_name 　　  : ファイル名
-
-	var g type4.Water_Slope // 画像ファイル表示用構造体　”type5.Image_Show”と同フォーマット
-
-//    fmt.Fprintf( w, "pipe_line1_show_graf start \n" )  // デバック
+//     IN  f_name 　　  : ファイル吁E
+	var g type4.Water_Slope // 画像ファイル表示用構造体　”type5.Image_Show”と同フォーマッチE
+//    fmt.Fprintf( w, "pipe_line1_show_graf start \n" )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -62,11 +59,11 @@ func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name strin
 	const publicURL = "https://storage.googleapis.com/%s/%s"
 	g.Url = fmt.Sprintf(publicURL, bucket, g.File_Name)
 
-//	fmt.Fprintf( w, "pipe_line1_show_graf : g.File_Name %v\n", g.File_Name )  // デバック
-//	fmt.Fprintf( w, "pipe_line1_show_graf : g.Url %v\n", g.Url )  // デバック
+//	fmt.Fprintf( w, "pipe_line1_show_graf : g.File_Name %v\n", g.File_Name )  // チE��チE��
+//	fmt.Fprintf( w, "pipe_line1_show_graf : g.Url %v\n", g.Url )  // チE��チE��
 
 ///
-/// データストアーにニューデータをセット
+/// チE�EタストアーにニューチE�EタをセチE��
 ///
 
     new_key := datastore.IncompleteKey("Water_Slope", nil)
@@ -78,7 +75,7 @@ func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name strin
 	}
 
 ///
-/// テンプレートのヘッダーをGET
+/// チE��プレート�EヘッダーをGET
 ///
 
 //     monitor := template.Must(template.New("html").Parse(html5.Image_file_show))

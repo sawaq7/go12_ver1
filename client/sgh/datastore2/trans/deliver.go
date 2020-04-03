@@ -7,8 +7,8 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/sgh/type2"
-	    "client/sgh/datastore2/sort"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2/sort"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -16,30 +16,30 @@ import (
                                                 )
 
 ///
-///   　　　　　該当する配達情報をゲットする
+///   　　　　　該当する�E達情報をゲチE��する
 ///
 
 
 func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )  (deliver2 []type2.Deliver ) {
 
 //     IN  funct  　　　: ファンクション
-//     　　　　　：０  地区NO
-//     　　　　　：１  カーNO
-//     　　　　　：２  プライベートNO
-//     IN  some_no  　　: 各種NO
+//     　　　　　�E�！E 地区NO
+//     　　　　　�E�！E カーNO
+//     　　　　　�E�！E プライベ�EチEO
+//     IN  some_no  　　: 吁E��NO
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT deliver_view : 構造体　”配達情報”のスライス
+//     OUT deliver_view : 構造体　”�E達情報”�Eスライス
 
-//    fmt.Fprintf( w, "trans.Deliver start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.Deliver start \n" )  // チE��チE��
 
     var check_no  int64
 
     var line_counter int64
 
 ///
-///     配達情報をゲットする
+///     配達惁E��をゲチE��する
 ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
@@ -73,7 +73,7 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
     keys, err := client.GetAll(ctx, query , &deliver)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
         return	nil
 	}
 
@@ -89,18 +89,15 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
 	for pos, deliverw := range deliver {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
-	  if funct == 0 {   // コースNOの場合
-
+	  if funct == 0 {   // コースNOの場吁E
 	     check_no = deliverw.Course_No
 
-	  }else if funct == 1 {   // カーNOの場合
-
+	  }else if funct == 1 {   // カーNOの場吁E
 	     check_no = deliverw.Car_No
 
-	  }else if funct == 2 {   // 個人NOの場合
-
+	  }else if funct == 2 {   // 個人NOの場吁E
 	     check_no = deliverw.Private_No
 
 	  }
@@ -108,8 +105,8 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
          line_counter ++
 
-         deliverw.Id      = keys_wk[pos]    //  データストアidをセット
-         deliverw.Line_No = line_counter         //  行NOをセット
+         deliverw.Id      = keys_wk[pos]    //  チE�EタストアidをセチE��
+         deliverw.Line_No = line_counter         //  行NOをセチE��
 
          deliver_view = append ( deliver_view, deliverw )
 
@@ -132,8 +129,8 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
          line_counter ++
 
-         deliverw.Id      = keys_wk[pos]    //  データストアidをセット
-         deliverw.Line_No = line_counter         //  行NOをセット
+         deliverw.Id      = keys_wk[pos]    //  チE�EタストアidをセチE��
+         deliverw.Line_No = line_counter         //  行NOをセチE��
 
          deliver_view = append ( deliver_view, deliverw )
 
@@ -142,7 +139,7 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 	}
 
 ///
-/// 配達情報を、2重sortする
+/// 配達惁E��を、E重sortする
 ///           key1 : Date  , key2 : Car_No
 
     deliver2 = sort.Deliver( w ,deliver_view  )

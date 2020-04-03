@@ -7,23 +7,23 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
         "cloud.google.com/go/datastore"
 	    "context"
 	    "os"                                       )
 
 ///
-///  private ファイルから　プライベート情報をゲットする
+///  private ファイルから　プライベ�Eト情報をゲチE��する
 ///
 
 func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Private ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     OUT private_view  : 構造体　”エリア情報”のスライス
+//     OUT private_view  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.private start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.private start \n" )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -55,7 +55,7 @@ func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Pr
 //	keys, err := q.GetAll(c, &private)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -69,7 +69,7 @@ func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Pr
 
 	for pos, privatew := range private {
 
-//	  fmt.Fprintf( w, "trans.private privatew %v\n" ,privatew)  // デバック
+//	  fmt.Fprintf( w, "trans.private privatew %v\n" ,privatew)  // チE��チE��
 
       private_view = append(private_view, type2.Private { keys_wk[pos]            ,
                                                           privatew.Worker_No      ,

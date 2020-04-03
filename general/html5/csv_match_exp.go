@@ -5,9 +5,9 @@ package html5
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
 
-        <link rel="stylesheet" href="css/general/csv_show.css" type="text/css">
+        <link rel="stylesheet" href="css/github.com/sawaq7/go12_ver1/general/csv_show.css" type="text/css">
      </head>
      <body>
        <header>

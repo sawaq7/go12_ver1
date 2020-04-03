@@ -3,14 +3,14 @@ package d_schedule_keyin
 import (
 
 	    "net/http"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 //	    "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
-	    "client/sgh/datastore2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2"
   	    "strconv"
 //	    "fmt"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
 	    "cloud.google.com/go/datastore"
         "context"
@@ -18,7 +18,7 @@ import (
                                                  )
 
 ///
-/// 指定した地域のスケジュールを表示
+/// 持E��した地域�Eスケジュールを表示
 ///
 
 func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
@@ -47,7 +47,7 @@ func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
     }
 
 
-/// 地区情報ファイルから地区NO をGET
+/// 地区惁E��ファイルから地区NO をGET
 
 	idw , err := strconv.Atoi(r.FormValue("id"))
 	if err != nil {
@@ -56,7 +56,7 @@ func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
 	}
 
     id := int64(idw)
-//    fmt.Fprintf( w, "sky d_schedule_keyin : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "sky d_schedule_keyin : id %v\n", id )  // チE��チE��
 
     key := datastore.IDKey("D_District", id, nil)
 
@@ -69,12 +69,11 @@ func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
 	}
 
 ///
-/// カレントの地区情報をアップデート
-///
+/// カレント�E地区惁E��をアチE�EチE�EチE///
 
     g2.District_No   = g.District_No
     g2.District_Name = g.District_Name
-//    fmt.Fprintf( w, "sky d_schedule_keyin : g2.District_No %v\n", g2.District_No )  // デバック
+//    fmt.Fprintf( w, "sky d_schedule_keyin : g2.District_No %v\n", g2.District_No )  // チE��チE��
 
 // temporary-fileをイニシャライズ
 

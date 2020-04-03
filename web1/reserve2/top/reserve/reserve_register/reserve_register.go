@@ -6,13 +6,13 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-//	    "client/sgh"
+//	    "github.com/sawaq7/go12_ver1/client/sgh"
 
-        "client/reserve/process4"
-        "client/reserve/type6"
+        "github.com/sawaq7/go12_ver1/client/reserve/process4"
+        "github.com/sawaq7/go12_ver1/client/reserve/type6"
 	    "strconv"
 
-        "client/reserve/datastore6/initialize3"
+        "github.com/sawaq7/go12_ver1/client/reserve/datastore6/initialize3"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -21,7 +21,7 @@ import (
 
 func Reserve_register(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "reserve_register start \n" )  // デバック
+//    fmt.Fprintf( w, "reserve_register start \n" )  // チE��チE��
 
     var guest type6.Guest
 
@@ -30,14 +30,14 @@ func Reserve_register(w http.ResponseWriter, r *http.Request) {
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
 	if err  != nil {
-//	   fmt.Fprintf( w, "reserve_register :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "reserve_register :error updidw %v\n", updidw )  // チE��チE��
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "reserve_register : updidw %v\n", updidw )  // デバック
-//    fmt.Fprintf( w, "reserve_register : updid %v\n", updid )  // デバック
+//    fmt.Fprintf( w, "reserve_register : updidw %v\n", updidw )  // チE��チE��
+//    fmt.Fprintf( w, "reserve_register : updid %v\n", updid )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -66,7 +66,7 @@ func Reserve_register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-// temporary-fileをイニシャライズ  & セット//
+// temporary-fileをイニシャライズ  & セチE��//
 
 //    _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
@@ -87,6 +87,6 @@ func Reserve_register(w http.ResponseWriter, r *http.Request) {
 
 	process4.Reserve_register(w , r ,guest.Guest_No)
 
-//	fmt.Fprintf( w, "reserve_register : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "reserve_register : normal end \n" )  // チE��チE��
 
 }

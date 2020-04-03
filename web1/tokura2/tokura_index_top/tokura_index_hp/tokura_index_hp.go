@@ -3,7 +3,7 @@ package tokura_index_hp
 import (
 
 	    "net/http"
-	    "client/tokura/html4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/html4"
 	    "html/template"
                                                   )
 
@@ -17,7 +17,7 @@ func Tokura_index_hp(w http.ResponseWriter, r *http.Request) {
 
    var cdmy string
 
-/// テンプレートのヘッダーをGET
+/// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html4.Tokura_index_hp))
 

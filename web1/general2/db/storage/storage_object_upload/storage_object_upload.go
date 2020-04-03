@@ -11,8 +11,8 @@ import (
 	    "context"
 	    "log"
 
-        "general/type5"
-        "general/process3"
+        "github.com/sawaq7/go12_ver1/general/type5"
+        "github.com/sawaq7/go12_ver1/general/process3"
 	    "storage2"
 
 	    "os"
@@ -24,7 +24,7 @@ import (
 
 func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_upload start \n" )  // デバック
+//    fmt.Fprintf( w, "storage_object_upload start \n" )  // チE��チE��
 
     var bucket string
 
@@ -66,8 +66,8 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
       for pos, storage_b_o_tempw := range storage_b_o_temp {
 
         if pos == 0 {
-           bucket    = storage_b_o_tempw.Bucket_Name    // バケット名をゲット
-           projectID = storage_b_o_tempw.Project_Name   // プロジェクト名をゲット
+           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           projectID = storage_b_o_tempw.Project_Name   // プロジェクト名をゲチE��
 
         }
 	  }
@@ -87,7 +87,7 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 //	w2 := storage2.File_Create ( w ,r ,bucket  ,fh.Filename )
 
 
-/// ストレッジファイルに既存のファイルの情報をコピー　　///
+/// ストレチE��ファイルに既存�Eファイルの惁E��をコピ�E　　///
 
 	if _, err := io.Copy(w2, file_data); err != nil {
 	    http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -102,7 +102,7 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 
     process3.Storage_object_show ( w , r ,projectID  ,bucket )
 
-//	fmt.Fprintf( w, "storage_object_upload : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "storage_object_upload : normal end \n" )  // チE��チE��
 
 }
 

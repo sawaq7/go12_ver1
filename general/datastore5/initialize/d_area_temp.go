@@ -7,7 +7,7 @@ import (
 	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
                                                 )
 
@@ -20,7 +20,7 @@ func D_area_temp(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-    fmt.Fprintf( w, "init/D_area_temp start \n" )  // デバック
+    fmt.Fprintf( w, "init/D_area_temp start \n" )  // チE��チE��
 
 	c := appengine.NewContext(r)
 
@@ -32,8 +32,8 @@ func D_area_temp(w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-// import struct for accessing datastore get from client/sgh/type2/sgh.go
-    fmt.Fprintf( w, "init/D_area_temp count \n" ,count )  // デバック
+// import struct for accessing datastore get from github.com/sawaq7/go12_ver1/client/sgh/type2/sgh.go
+    fmt.Fprintf( w, "init/D_area_temp count \n" ,count )  // チE��チE��
 
 	d_area_temp     := make([]type2.D_Area_Temp, 0, count)
 	keys, err := q.GetAll(c, &d_area_temp )
@@ -52,7 +52,7 @@ func D_area_temp(w http.ResponseWriter, r *http.Request )   {
 		  http.Error(w, err.Error(), http.StatusInternalServerError)
 		  return
 	  }
-      fmt.Fprintf( w, "init/d_area_temp pos2 %v   \n" , pos2  )  // デバック
+      fmt.Fprintf( w, "init/d_area_temp pos2 %v   \n" , pos2  )  // チE��チE��
 
 
     }

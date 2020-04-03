@@ -8,8 +8,8 @@ import (
 	    "net/http"
 //	    "fmt"
         "html/template"
-        "temp/type1000"
-	    "temp/html1000"
+        "github.com/sawaq7/go12_ver1/temp/type1000"
+	    "github.com/sawaq7/go12_ver1/temp/html1000"
 
 //	    "strconv"
 
@@ -20,7 +20,7 @@ import (
 
 func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "d_district_showall2_sample2 start \n" )  // デバック
+//   fmt.Fprintf( w, "d_district_showall2_sample2 start \n" )  // チE��チE��
 
    projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -78,7 +78,7 @@ func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
    monitor := template.Must(template.New("html").Parse(html1000.D_district_showall1_sample))
 
@@ -89,6 +89,6 @@ func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-//	fmt.Fprintf( w, "d_district_showall2_sample2 normal end \n" )  // デバック
+//	fmt.Fprintf( w, "d_district_showall2_sample2 normal end \n" )  // チE��チE��
 
 }

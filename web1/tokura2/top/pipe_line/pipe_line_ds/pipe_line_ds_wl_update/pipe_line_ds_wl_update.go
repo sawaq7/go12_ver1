@@ -7,9 +7,9 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/tokura/suiri/process2"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
 
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
 	    "cloud.google.com/go/datastore"
          "context"
@@ -20,7 +20,7 @@ import (
 
 func Pipe_line_ds_wl_update(w http.ResponseWriter, r *http.Request) {
 
-//	fmt.Fprintf( w, "sky_pipe_line_ds_wl_update start %v\n" )  // デバック
+//	fmt.Fprintf( w, "sky_pipe_line_ds_wl_update start %v\n" )  // チE��チE��
 
 	var g  type4.Water_Line
 
@@ -41,19 +41,19 @@ func Pipe_line_ds_wl_update(w http.ResponseWriter, r *http.Request) {
        return
     }
 
-/// 指定したデータidをGET ///
+/// 持E��したデータidをGET ///
 
     updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "sky_pipe_line_ds_wl_update :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "sky_pipe_line_ds_wl_update :error updidw %v\n", updidw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-/// 配達情報の変更 ///
+/// 配達惁E��の変更 ///
 
 	process2.Pipe_line_ds_wl_update(w , r ,updid)
 

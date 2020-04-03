@@ -5,13 +5,13 @@ package html6
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
         <link rel="stylesheet" href="css/sgh/d_district_area.css" type="text/css">
-        <style type="text/css"> /* マウスポインタの設定（intense用）*/
+        <style type="text/css"> /* マウスポインタの設定！Entense用�E�E/
             .intense {
-            cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指定 */
-            display: inline-block;   /* 横方向に並べる指定 */
-            margin: 0px 5px 5px 0px; /* 周囲の余白量(右と下に5pxずつ) */
+            cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指宁E*/
+            display: inline-block;   /* 横方向に並べる指宁E*/
+            margin: 0px 5px 5px 0px; /* 周囲の余白釁E右と下に5pxずつ) */
             }
         </style>
 		<script src="js/main.js"></script>

@@ -7,8 +7,8 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/sgh/type2"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///                         　　　　  ///
-/// 指定した地区NO・地区名をゲットする ///
+/// 持E��した地区NO・地区名をゲチE��する ///
 ///                         　　　　 ///
 
 func D_district_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work) {
@@ -24,9 +24,8 @@ func D_district_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_
 
 //     IN    w      　　     : レスポンスライター
 //     IN    r      　　     : リクエストパラメータ
-//     OUT general_work_out  : 地区NO・地区名
-
-//    fmt.Fprintf( w, "check/d_district_temp start \n" )  // デバック
+//     OUT general_work_out  : 地区NO・地区吁E
+//    fmt.Fprintf( w, "check/d_district_temp start \n" )  // チE��チE��
 
     var district_no int64
     var district_name string
@@ -58,7 +57,7 @@ func D_district_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_
 		return nil
 	}
 
-//    fmt.Fprintf( w, "check/d_district_temp count \n" ,count )  // デバック
+//    fmt.Fprintf( w, "check/d_district_temp count \n" ,count )  // チE��チE��
 
 	d_district_temp     := make([]type2.D_District_Temp, 0, count)
 
@@ -73,11 +72,11 @@ func D_district_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_
         district_no =    d_district_tempw.District_No
         district_name =    d_district_tempw.District_Name
 
-//        fmt.Fprintf( w, "check/d_district_temp pos2 %v   \n" , pos2  )  // デバック
+//        fmt.Fprintf( w, "check/d_district_temp pos2 %v   \n" , pos2  )  // チE��チE��
 
       }
-//      fmt.Fprintf( w, "check/d_district_temp district_no \n" ,district_no )  // デバック
-//      fmt.Fprintf( w, "check/d_district_temp district_name \n" ,district_name )  // デバック
+//      fmt.Fprintf( w, "check/d_district_temp district_no \n" ,district_no )  // チE��チE��
+//      fmt.Fprintf( w, "check/d_district_temp district_name \n" ,district_name )  // チE��チE��
     }
 
     general_work_out := make([]type5.General_Work, 1)

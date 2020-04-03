@@ -1,6 +1,5 @@
 ///
-/// 水理学　管の長さを求める（ヘーゼン・ウイリアムスの公式）
-///
+/// 水琁E��　管の長さを求める（�Eーゼン・ウイリアムスの公式！E///
 ///
 
 
@@ -10,21 +9,17 @@ package equation
 import (
 	    "fmt"
         "math"
-        "basic/maths/sum"
+        "github.com/sawaq7/go12_ver1/basic/maths/sum"
 	  		              )
 
 func Suiri_Heizen2( ch float64 ,D float64 ,velocity float64  ,high float64 ) float64 {
 
-//     IN    ch         : 流速係数
-//     IN    D(ｍ）     : 管の内径
-//     IN velocity(m/s) : 流速
-//     IN    high（m)   : 損失水頭
-//    OUT    one（m)    : 管の長さ
-
+//     IN    ch         : 流E��係数
+//     IN    D(�E�！E    : 管の冁E��E//     IN velocity(m/s) : 流E��E//     IN    high�E�E)   : 損失水頭
+//    OUT    one�E�E)    : 管の長ぁE
    var length ,Q float64
 
-// 流量を求める
-
+// 流E��を求めめE
    Q = sum.Circle_Area(D/2.0 ) * velocity
 
    rwork := math.Pow( ch ,-1.85)

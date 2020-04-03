@@ -7,8 +7,8 @@ import (
 //	    "fmt"
 	    "strconv"
         "errors"
-	    "general/datastore5/copy3"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/datastore5/copy3"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
 	    "os"
 
@@ -19,10 +19,10 @@ import (
 
 func Datastore_copy_excute(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "datastore_copy_excute start \n" )  // デバック
+//    fmt.Fprintf( w, "datastore_copy_excute start \n" )  // チE��チE��
 
 ///
-///  エラーメッセージ　セット
+///  エラーメチE��ージ　セチE��
 ///
 
 var (
@@ -31,27 +31,26 @@ var (
 
 	                                                                        )
 
-var g type5.Ds_Copy_List /// データストアのコピーリストのワークエリア確保
-
+var g type5.Ds_Copy_List /// チE�Eタストアのコピ�Eリスト�Eワークエリア確俁E
 ///                      ///
-/// 指定したデータidをGET ///
+/// 持E��したデータidをGET ///
 ///                      ///
 
     copyidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
-//	   fmt.Fprintf( w, "datastore_copy_excute :error copyidw %v\n", copyidw )  // デバック
+//	   fmt.Fprintf( w, "datastore_copy_excute :error copyidw %v\n", copyidw )  // チE��チE��
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     copyid := int64(copyidw)
 
 ///
-///   プロジェクト名をゲット
+///   プロジェクト名をゲチE��
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "datastore_copy_excute :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "datastore_copy_excute :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -67,7 +66,7 @@ var g type5.Ds_Copy_List /// データストアのコピーリストのワーク
     }
 
 ///
-///       コピーリスト情報をGET
+///       コピ�Eリスト情報をGET
 ///
 
     key := datastore.IDKey("Ds_Copy_List", copyid, nil)
@@ -79,26 +78,25 @@ var g type5.Ds_Copy_List /// データストアのコピーリストのワーク
 		return
 	}
 
-//    fmt.Fprintf( w, "datastore_copy_excut g.Basic_Name %v\n" ,g.Basic_Name)  // デバック
-//	fmt.Fprintf( w, "datastore_copy_excut g.New_Name %v\n" ,g.New_Name)  // デバック
+//    fmt.Fprintf( w, "datastore_copy_excut g.Basic_Name %v\n" ,g.Basic_Name)  // チE��チE��
+//	fmt.Fprintf( w, "datastore_copy_excut g.New_Name %v\n" ,g.New_Name)  // チE��チE��
 
 ///
-/// コピーして、ニューファイルを作成　///
+/// コピ�Eして、ニューファイルを作�E　///
 ///
 
 
     switch g.Basic_Name {
 
-      case "Deliver" :                   // 配達情報　（sgh )
+      case "Deliver" :                   // 配達惁E��　�E�Egh )
 
         copy3.Deliver( w , r  ,g.Basic_Name ,g.Copy_Name ,g.New_Name )
 
-      case "D_District" :                // 地区情報　（sgh )
+      case "D_District" :                // 地区惁E��　�E�Egh )
 
         copy3.D_district( w , r  ,g.Basic_Name ,g.Copy_Name ,g.New_Name )
 
-      default :                          // 該当するファイルなし
-        http.Error(w, Err1.Error(), http.StatusInternalServerError)
+      default :                          // 該当するファイルなぁE        http.Error(w, Err1.Error(), http.StatusInternalServerError)
         return
 
     }
@@ -108,5 +106,5 @@ var g type5.Ds_Copy_List /// データストアのコピーリストのワーク
 //		return
 //	}
 
-//	fmt.Fprintf( w, "datastore_copy_excute normal end \n" )  // デバック
+//	fmt.Fprintf( w, "datastore_copy_excute normal end \n" )  // チE��チE��
 }

@@ -7,9 +7,9 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "client/reserve/process4"
-        "client/reserve/datastore6/check5"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/process4"
+        "github.com/sawaq7/go12_ver1/client/reserve/datastore6/check5"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
 //	    "strconv"
 
@@ -21,7 +21,7 @@ import (
 
 func Reserve_register_excute (w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "reserve_register_excute start \n" )  // デバック
+//    fmt.Fprintf( w, "reserve_register_excute start \n" )  // チE��チE��
 
 	var guest_reserve_minor type6.Guest_Reserve_Minor
 
@@ -40,24 +40,24 @@ func Reserve_register_excute (w http.ResponseWriter, r *http.Request) {
 //    guest_reserve_minor.Guest_No = value2[0].Int64_Work
 //    guest_reserve_minor.Guest_Name = value2[0].String_Work
 
-//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.Guest_No %v\n", guest_reserve_minor.Guest_No )  // デバック
-//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.Guest_Name %v\n", guest_reserve_minor.Guest_Name )  // デバック
+//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.Guest_No %v\n", guest_reserve_minor.Guest_No )  // チE��チE��
+//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.Guest_Name %v\n", guest_reserve_minor.Guest_Name )  // チE��チE��
 
-// 空インターフェイス変数よりバリュー値をゲット
+// 空インターフェイス変数よりバリュー値をゲチE��
 
 //    value, _ := count.(int64)
 
-//	fmt.Fprintf( w, "reserve_register_excute count %v   \n" , count  )  // デバック
-//	fmt.Fprintf( w, "reserve_register_excute district_no %v   \n" , district_no  )  // デバック
+//	fmt.Fprintf( w, "reserve_register_excute count %v   \n" , count  )  // チE��チE��
+//	fmt.Fprintf( w, "reserve_register_excute district_no %v   \n" , district_no  )  // チE��チE��
 
     guest_reserve_minor.Date   = r.FormValue("date")
     guest_reserve_minor.Start_Time   = r.FormValue("start_time")
 	guest_reserve_minor.End_Time = r.FormValue("end_time")
 
-//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.Start_Time %v\n", guest_reserve_minor.Start_Time )  // デバック
-//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.End_Time %v\n", guest_reserve_minor.End_Time )  // デバック
+//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.Start_Time %v\n", guest_reserve_minor.Start_Time )  // チE��チE��
+//	fmt.Fprintf( w, "reserve_register_excute : guest_reserve_minor.End_Time %v\n", guest_reserve_minor.End_Time )  // チE��チE��
 
-/// データストアーにデータをセット ///
+/// チE�EタストアーにチE�EタをセチE�� ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -88,6 +88,6 @@ func Reserve_register_excute (w http.ResponseWriter, r *http.Request) {
 
 	process4.Reserve_register(w , r ,guest_reserve_minor.Guest_No)
 
-//	fmt.Fprintf( w, "reserve_register_excute : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "reserve_register_excute : normal end \n" )  // チE��チE��
 
 }

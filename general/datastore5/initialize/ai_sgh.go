@@ -7,7 +7,7 @@ import (
 	      "net/http"
 	      "fmt"
 
-	      "client/sgh/type2"
+	      "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
                                                 )
 
@@ -21,7 +21,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-    fmt.Fprintf( w, "initialize.Ai_sgh start \n" )  // デバック
+    fmt.Fprintf( w, "initialize.Ai_sgh start \n" )  // チE��チE��
 
 	c := appengine.NewContext(r)
 
@@ -33,7 +33,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-    fmt.Fprintf( w, "initialize.Ai_sgh count \n" ,count )  // デバック
+    fmt.Fprintf( w, "initialize.Ai_sgh count \n" ,count )  // チE��チE��
 
 	sgh_ai     := make([]type2.Sgh_Ai, 0, count)
 	keys, err := q.GetAll(c, &sgh_ai )
@@ -58,7 +58,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 		  return
 	    }
 	  }
-//      fmt.Fprintf( w, "initialize.Ai_sgh pos2 %v   \n" , pos2  )  // デバック
+//      fmt.Fprintf( w, "initialize.Ai_sgh pos2 %v   \n" , pos2  )  // チE��チE��
 
     }
 

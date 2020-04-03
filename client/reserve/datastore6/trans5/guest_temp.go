@@ -8,14 +8,14 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
         "cloud.google.com/go/datastore"
 	    "context"
 	    "os"                                       )
 
 ///
-/// 地区のエリアデータをゲットする
+/// 地区のエリアチE�EタをゲチE��する
 ///
 
 func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp ) {
@@ -23,9 +23,9 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_temp_slice  : 構造体　”エリア情報”のスライス
+//     OUT guest_temp_slice  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.guest_temp start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.guest_temp start \n" )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -61,7 +61,7 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 //	keys, err := q.GetAll(c, &guest_temp)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -75,7 +75,7 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 
 	for pos, guest_tempw := range guest_temp {
 
-//	  fmt.Fprintf( w, "trans.guest_temp guest_tempw %v\n" ,guest_tempw)  // デバック
+//	  fmt.Fprintf( w, "trans.guest_temp guest_tempw %v\n" ,guest_tempw)  // チE��チE��
 
       guest_temp_slice = append(guest_temp_slice, type6.Guest_Temp { keys_wk[pos]            ,
                                                                      guest_tempw.Guest_No    ,
@@ -83,9 +83,9 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 
 	}
 
-//	fmt.Fprintf( w, "trans.guest_temp : guest_temp_slice %v\n", guest_temp_slice )  // デバック
+//	fmt.Fprintf( w, "trans.guest_temp : guest_temp_slice %v\n", guest_temp_slice )  // チE��チE��
 
-//    fmt.Fprintf( w, "trans.guest_temp : normal end \n" )  // デバック
+//    fmt.Fprintf( w, "trans.guest_temp : normal end \n" )  // チE��チE��
 
     return	guest_temp_slice
 }

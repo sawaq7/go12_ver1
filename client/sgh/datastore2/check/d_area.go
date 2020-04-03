@@ -7,7 +7,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///                           ///
-/// 地区のエリア数をゲットする ///
+/// 地区のエリア数をゲチE��する ///
 ///                          ///
 
 func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 ) {
@@ -25,7 +25,7 @@ func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 )
 //     IN    r      　　: リクエストパラメータ
 //     IN 　district_no : 地区No
 
-//    fmt.Fprintf( w, "d_area start \n" )  // デバック
+//    fmt.Fprintf( w, "d_area start \n" )  // チE��チE��
 
     var area_number int64
 
@@ -70,7 +70,7 @@ func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 )
         }
 	  }
 	}
-//    fmt.Fprintf( w, "d_area area_number \n" , area_number)  // デバック
+//    fmt.Fprintf( w, "d_area area_number \n" , area_number)  // チE��チE��
 	return area_number
 }
 

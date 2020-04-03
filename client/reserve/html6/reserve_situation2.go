@@ -1,11 +1,11 @@
-ï»¿package html6
+package html6
 
    const Reserve_situation2 = `
    <!DOCTYPE html>
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆã‚¢ã®æ›´æ–°ãƒ»å‰Šé™¤</title>
+        <title>ƒf[ƒ^ƒXƒgƒA‚ÌXVEíœ</title>
         <link rel="stylesheet" href="css/medical/reserve_situation.css" type="text/css">
      </head>
      <body>

@@ -10,9 +10,9 @@ import (
 //        "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
 
-	    "client/reserve/type6"
-	    "client/reserve/datastore6/initialize3"
-	    "client/reserve/process4"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/initialize3"
+	    "github.com/sawaq7/go12_ver1/client/reserve/process4"
 
 	    "cloud.google.com/go/datastore"
 	    "context"
@@ -22,13 +22,13 @@ import (
 
 func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "medical_xray_show start \n" )  // デバック
+//    fmt.Fprintf( w, "medical_xray_show start \n" )  // チE��チE��
 
     var guest type6.Guest
 
     var guest2 type6.Guest_Temp
 
-/// 指定したline-noをGETして整数化 ///
+/// 持E��したline-noをGETして整数匁E///
 
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
@@ -65,7 +65,7 @@ func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-// temporary-fileをイニシャライズ  & セット//
+// temporary-fileをイニシャライズ  & セチE��//
 
 //    _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
@@ -88,7 +88,7 @@ func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
 
     process4.Medical_xray_show(w , r ,guest.Guest_No)
 
-//	fmt.Fprintf( w, "medical_xray_show : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "medical_xray_show : normal end \n" )  // チE��チE��
 
 }
 

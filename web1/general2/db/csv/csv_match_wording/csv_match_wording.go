@@ -5,13 +5,13 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "general/html5"
+	    "github.com/sawaq7/go12_ver1/general/html5"
 	    "html/template"
                                                   )
 
 func Csv_match_wording(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_match_wording start \n" )  // 繝�繝舌ャ繧ｯ
+//    fmt.Fprintf( w, "csv_match_wording start \n" )  // 繝・ヰ繝・け
 
      var s_dmy string
 
@@ -23,6 +23,6 @@ func Csv_match_wording(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-//	fmt.Fprintf( w, "csv_match_wording : normal end \n" )  // 繝�繝舌ャ繧ｯ
+//	fmt.Fprintf( w, "csv_match_wording : normal end \n" )  // 繝・ヰ繝・け
 
 }

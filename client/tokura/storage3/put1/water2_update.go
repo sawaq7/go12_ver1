@@ -8,25 +8,25 @@ import (
 	    "bufio"
 
 	    "io"
-        "client/tokura/storage3/struct_set"
-	    "client/tokura/suiri/type4"
+        "github.com/sawaq7/go12_ver1/client/tokura/storage3/struct_set"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "cloud.google.com/go/storage"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
                                                 )
 
 ///                           　　　　　　　　　　　
-///   ストレッジファイルに水路ファイル情報を書き換える
+///   ストレチE��ファイルに水路ファイル惁E��を書き換える
 ///                          　　　　　　　　　　　
 
 func Water2_update( w http.ResponseWriter, r *http.Request ,updid int64 ,water_inf type4.Water2 ) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     IN     updid     : アップデートするレコードid
-//     IN   water_inf   : 水路情報のスライス　　struct : Water2
+//     IN     updid     : アチE�EチE�Eトするレコードid
+//     IN   water_inf   : 水路惁E��のスライス　　struct : Water2
 
-//    fmt.Fprintf( w, "put1.water2_update start \n" )  // デバック
+//    fmt.Fprintf( w, "put1.water2_update start \n" )  // チE��チE��
 
     var lf_flag int64
 
@@ -37,13 +37,13 @@ func Water2_update( w http.ResponseWriter, r *http.Request ,updid int64 ,water_i
     lf_flag   = 1
 
 ///
-/// 　　　ファイルのリネーム
+/// 　　　ファイルのリネ�Eム
 ///
 
     storage2.File_Rename ( w ,r ,bucket ,filename1 ,filename2 )
 
 ///
-///      差し替えた、水路ファイルを　（read file） オープン
+///      差し替えた、水路ファイルを　�E�Eead file�E�Eオープン
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename2 , w , r  )
@@ -55,14 +55,14 @@ func Water2_update( w http.ResponseWriter, r *http.Request ,updid int64 ,water_i
     sreader := bufio.NewReaderSize(reader, 4096)
 
 ///
-///      新しく水路ファイルを作成
+///      新しく水路ファイルを作�E
 ///
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename1 , w , r  )
 
     writer, _ := writer_minor.(*storage.Writer)  // インターフェイス型を型変換
 
-//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water2.txt"を再度作成
+//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water2.txt"を�E度作�E
 
     defer writer.Close()
 
@@ -70,7 +70,7 @@ func Water2_update( w http.ResponseWriter, r *http.Request ,updid int64 ,water_i
 
     for {
 
-//      fmt.Fprintf(w, "put1.water2_update : lndex %v\n", index )  // デバック
+//      fmt.Fprintf(w, "put1.water2_update : lndex %v\n", index )  // チE��チE��
 
 // ファイルを１行read
 
@@ -78,20 +78,18 @@ func Water2_update( w http.ResponseWriter, r *http.Request ,updid int64 ,water_i
 
       num := len(line)
 
-//      fmt.Fprintf(w, "put1.water2_update : num %v\n", num )  // デバック
+//      fmt.Fprintf(w, "put1.water2_update : num %v\n", num )  // チE��チE��
 
       if num > 1 {
 
-         index ++     // レコードカウンターをカウント
-
-//         fmt.Fprintf(w, "put1.water2_update : line %s\n", line )  // デバック
+         index ++     // レコードカウンターをカウンチE
+//         fmt.Fprintf(w, "put1.water2_update : line %s\n", line )  // チE��チE��
 
          water2_struct := struct_set.Water2( w , line )
 
-         general_work := make([]type5.General_Work, 1 )    // ワークエリア確保
-
-         general_work[0].Sw_Work    = writer     //　ストレッジライターをセット
-         general_work[0].Int64_Work = lf_flag    //　改行フラグをセット
+         general_work := make([]type5.General_Work, 1 )    // ワークエリア確俁E
+         general_work[0].Sw_Work    = writer     //　ストレチE��ライターをセチE��
+         general_work[0].Int64_Work = lf_flag    //　改行フラグをセチE��
 
          if  water2_struct.Id == updid {
 
@@ -109,7 +107,7 @@ func Water2_update( w http.ResponseWriter, r *http.Request ,updid int64 ,water_i
 
       } else if num == 0 {
 
-//          io.WriteString(w, "\n put1.water2_update : data end \n")   //デバック
+//          io.WriteString(w, "\n put1.water2_update : data end \n")   //チE��チE��
 
          break
 

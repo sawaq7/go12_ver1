@@ -8,7 +8,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///
-///    ゲストリストをゲットする
+///    ゲストリストをゲチE��する
 ///
 
 func Reserve( w http.ResponseWriter, r *http.Request )  ([]type6.Guest ) {
@@ -24,9 +24,9 @@ func Reserve( w http.ResponseWriter, r *http.Request )  ([]type6.Guest ) {
 //     IN    w      　　　　: レスポンスライター
 //     IN    r      　　　　: リクエストパラメータ
 
-//     OUT guest_slice  : 構造体　”ゲストリスト”のスライス
+//     OUT guest_slice  : 構造体　”ゲストリスト”�Eスライス
 
-//    fmt.Fprintf( w, "trans5.reserve start \n" )  // デバック
+//    fmt.Fprintf( w, "trans5.reserve start \n" )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -62,7 +62,7 @@ func Reserve( w http.ResponseWriter, r *http.Request )  ([]type6.Guest ) {
 //	keys, err := q.GetAll(c, &guest)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "reserve err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "reserve err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -76,7 +76,7 @@ func Reserve( w http.ResponseWriter, r *http.Request )  ([]type6.Guest ) {
 
 	for pos, guestw := range guest {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
          guest_slice = append(guest_slice, type6.Guest { keys_wk[pos]      ,
                                                          guestw.Guest_No   ,

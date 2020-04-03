@@ -7,9 +7,9 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 
-        "client/sgh/type2"
+        "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -20,7 +20,7 @@ func D_district_area_update(w http.ResponseWriter, r *http.Request) {
 
 	var g type2.D_Area
 
-//    fmt.Fprintf( w, "d_district_area_update start \n" )  // デバック
+//    fmt.Fprintf( w, "d_district_area_update start \n" )  // チE��チE��
 
 	 projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -43,15 +43,15 @@ func D_district_area_update(w http.ResponseWriter, r *http.Request) {
 	updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "d_district_area_update :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "d_district_area_update :error updidw %v\n", updidw )  // チE��チE��
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "d_district_area_update : updidw %v\n", updidw )  // デバック
-//    fmt.Fprintf( w, "d_district_area_update : updid %v\n", updid )  // デバック
+//    fmt.Fprintf( w, "d_district_area_update : updidw %v\n", updidw )  // チE��チE��
+//    fmt.Fprintf( w, "d_district_area_update : updid %v\n", updid )  // チE��チE��
 
     key := datastore.IDKey("D_Area", updid, nil)
 
@@ -63,14 +63,13 @@ func D_district_area_update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    g.Area_Name = r.FormValue("area_name")          // エリア名をゲット
-    g.Area_Detail = r.FormValue("area_detail")      // エリア詳細をゲット
+    g.Area_Name = r.FormValue("area_name")          // エリア名をゲチE��
+    g.Area_Detail = r.FormValue("area_detail")      // エリア詳細をゲチE��
 
-//	fmt.Fprintf( w, "d_district_area_update : g.Area_Name %v\n", g.Area_Name )  // デバック
-//	fmt.Fprintf( w, "d_district_area_update : g.Area_Detail %v\n", g.Area_Detail )  // デバック
+//	fmt.Fprintf( w, "d_district_area_update : g.Area_Name %v\n", g.Area_Name )  // チE��チE��
+//	fmt.Fprintf( w, "d_district_area_update : g.Area_Detail %v\n", g.Area_Detail )  // チE��チE��
 
-// データストアの1レコードアップデート
-
+// チE�Eタストアの1レコードアチE�EチE�EチE
     if _, err = client.Put(ctx, key, &g ); err != nil {
 //	if _, err := datastore.Put(c, key, &g); err != nil {
 		http.Error(w,err.Error(), http.StatusInternalServerError)

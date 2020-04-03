@@ -5,26 +5,26 @@ import (
 	"net/http"
 	"strconv"
 //	"fmt"
-	"general/process3"
+	"github.com/sawaq7/go12_ver1/general/process3"
 
 	"cloud.google.com/go/datastore"
 
 	"os"
 	"context"
 
-//	"general/type5"
+//	"github.com/sawaq7/go12_ver1/general/type5"
                                             )
 
 func Datastore_copy_list_delete (w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "datastore_copy_list_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "datastore_copy_list_delete start \n" )  // チE��チE��
 
 
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if projectID == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       projectID = "sample-7777"
 
@@ -55,7 +55,7 @@ func Datastore_copy_list_delete (w http.ResponseWriter, r *http.Request) {
 	}
 //	  if err := datastore.Delete(c, key  ); err != nil {
 
-//         fmt.Fprintf( w, "datastore_copy_list_delete : err %v\n", err )  // デバック
+//         fmt.Fprintf( w, "datastore_copy_list_delete : err %v\n", err )  // チE��チE��
 
 //		 http.Error(w, err.Error(), http.StatusInternalServerError)
 //		 return

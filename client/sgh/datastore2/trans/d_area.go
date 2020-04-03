@@ -7,7 +7,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -16,24 +16,24 @@ import (
                                                 )
 
 ///
-/// 地区のエリアデータをゲットする
+/// 地区のエリアチE�EタをゲチE��する
 ///
 
 func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type2.D_Area ) {
 
 //     IN  funct  　　　: ファンクション
-//     　　　　　：０  地区NO
-//     　　　　　：１  カーNO
-//     　　　　　：２  プライベートNO
-//     IN  some_no  　　: 各種NO
+//     　　　　　�E�！E 地区NO
+//     　　　　　�E�！E カーNO
+//     　　　　　�E�！E プライベ�EチEO
+//     IN  some_no  　　: 吁E��NO
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT d_area_view  : 構造体　”エリア情報”のスライス
+//     OUT d_area_view  : 構造体　”エリア惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.d_area start \n" )  // デバック
-//    fmt.Fprintf( w, "trans.d_area funct \n" ,funct )  // デバック
-//    fmt.Fprintf( w, "trans.d_area some_no \n" ,some_no)  // デバック
+//    fmt.Fprintf( w, "trans.d_area start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.d_area funct \n" ,funct )  // チE��チE��
+//    fmt.Fprintf( w, "trans.d_area some_no \n" ,some_no)  // チE��チE��
 
     var check_no int64
 
@@ -72,7 +72,7 @@ func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )
 	keys, err := client.GetAll(ctx, query , &d_area)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -86,20 +86,17 @@ func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )
 
 	for pos, d_areaw := range d_area {
 
-//	  fmt.Fprintf( w, "trans.d_area d_areaw %v\n" ,d_areaw)  // デバック
+//	  fmt.Fprintf( w, "trans.d_area d_areaw %v\n" ,d_areaw)  // チE��チE��
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
-	  if funct == 0 {   // 地区NOの場合
-
+	  if funct == 0 {   // 地区NOの場吁E
 	     check_no = d_areaw.District_No
 
-	  }else if funct == 1 {   // カーNOの場合
-
+	  }else if funct == 1 {   // カーNOの場吁E
 	     check_no = 1
 
-	  }else if funct == 2 {   // 個人NOの場合
-
+	  }else if funct == 2 {   // 個人NOの場吁E
 	     check_no = 2
 
 	  }

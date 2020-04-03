@@ -5,21 +5,21 @@ import (
 	"net/http"
 	"strconv"
 //	"fmt"
-	"client/tokura/suiri/process2"
-	"client/tokura/suiri/type4"
-//	"client/tokura/storage3/trans4"
-	"client/tokura/storage3"
+	"github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
+	"github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
+//	"github.com/sawaq7/go12_ver1/client/tokura/storage3/trans4"
+	"github.com/sawaq7/go12_ver1/client/tokura/storage3"
 
                                             )
 
 func Pipe_line_st_wl_delete(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "pipe_line_st_wl_delete start \n" )  // デバック
+//   fmt.Fprintf( w, "pipe_line_st_wl_delete start \n" )  // チE��チE��
 
     var idmy1 ,idmy2 int64
 
 ///
-///       カレントの水路情報をゲット
+///       カレント�E水路惁E��をゲチE��
 ///
 
       water2_temp_minor , _ := storage3.Storage_tokura( "Water2_Temp" ,"trans" ,idmy1 , idmy2 , w , r  )
@@ -29,20 +29,20 @@ func Pipe_line_st_wl_delete(w http.ResponseWriter, r *http.Request) {
 //    water2_temp := trans4.Water2_temp( w , r  )
 
 ///
-///       指示したidをGET
+///       持E��したidをGET
 ///
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "pipe_line_st_wl_delete : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "pipe_line_st_wl_delete : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "pipe_line_st_wl_delete : delidw %v\n", delidw )  // デバック
-//    fmt.Fprintf( w, "pipe_line_st_wl_delete : delid %v\n", delid )  // デバック
+//    fmt.Fprintf( w, "pipe_line_st_wl_delete : delidw %v\n", delidw )  // チE��チE��
+//    fmt.Fprintf( w, "pipe_line_st_wl_delete : delid %v\n", delid )  // チE��チE��
 
 ///
-///     指示した水路ラインデータを削除
+///     持E��した水路ラインチE�Eタを削除
 ///
 
       _ , _ = storage3.Storage_tokura( "Water_Line" ,"delete" ,delid , water2_temp[0].Name , w , r  )

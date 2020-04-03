@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strconv"
 //	"fmt"
-	"client/tokura/suiri/process2"
-	"client/tokura/suiri/type4"
+	"github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
+	"github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	"storage2"
 
 	"cloud.google.com/go/datastore"
@@ -22,7 +22,7 @@ import (
 
 func Water_slope_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "water_slope_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "water_slope_delete start \n" )  // チE��チE��
 
     var g type4.Water_Slope
 
@@ -44,18 +44,18 @@ func Water_slope_delete(w http.ResponseWriter, r *http.Request) {
     }
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "water_slope_delete : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "water_slope_delete : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "water_slope_delete : delidw %v\n", delidw )  // デバック
-//    fmt.Fprintf( w, "water_slope_delete : delid %v\n", delid )  // デバック
+//    fmt.Fprintf( w, "water_slope_delete : delidw %v\n", delidw )  // チE��チE��
+//    fmt.Fprintf( w, "water_slope_delete : delid %v\n", delid )  // チE��チE��
 
 
 
 ///
-///   バケット名・ファイル名をセット
+///   バケチE��名�Eファイル名をセチE��
 ///
 
     key := datastore.IDKey("Water_Slope", delid, nil)

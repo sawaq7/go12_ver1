@@ -1,4 +1,4 @@
-ï»¿package html5
+package html5
 
 
    const Image_file_show = `
@@ -6,7 +6,7 @@
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆã‚¢ã®æ›´æ–°ãƒ»å‰Šé™¤</title>
+        <title>ƒf[ƒ^ƒXƒgƒA‚ÌXVEíœ</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>

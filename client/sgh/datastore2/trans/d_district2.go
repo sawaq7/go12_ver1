@@ -5,7 +5,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -13,7 +13,7 @@ import (
         "os"                                      )
 
 ///                           ///
-/// 地区情報をゲットする ///
+/// 地区惁E��をゲチE��する ///
 ///                          ///
 
 func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_View ) {
@@ -21,14 +21,14 @@ func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_
 //     IN    w      　　　　: レスポンスライター
 //     IN    r      　　　　: リクエストパラメータ
 
-//     OUT d_district_view  : 構造体　”地区情報”のスライス
+//     OUT d_district_view  : 構造体　”地区惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.d_district2 start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.d_district2 start \n" )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "trans.d_district2 :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "trans.d_district2 :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -56,7 +56,7 @@ func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_
     keys, err := client.GetAll(ctx, query , &d_district)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district2 err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "d_district2 err \n" ,err)  // チE��チE��
 		return	nil
 	}
 
@@ -70,7 +70,7 @@ func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_
 
 	for pos, d_districtw := range d_district {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
         d_area_slice :=   D_area_district ( w ,r ,d_districtw.District_No )
 

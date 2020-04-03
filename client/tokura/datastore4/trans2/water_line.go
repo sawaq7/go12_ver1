@@ -8,7 +8,7 @@ import (
 
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -17,22 +17,20 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　
-/// データストアーから水路ライン情報をGETする（水路ラインファイル）
-///                          　　　　　　　　　　　
+/// チE�Eタストアーから水路ライン惁E��をGETする�E�水路ラインファイル�E�E///                          　　　　　　　　　　　
 
 
 func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Request )  ([]type4.Water_Line ) {
 
 //     IN  funct : ファンクション　0:すべての水路ラインを表示
-//               　　　　　　　　　1:指定した水路名の水路ラインを表示
-//     IN  wname : 水路名
-//     IN    w   : レスポンスライター
+//               　　　　　　　　　1:持E��した水路名�E水路ラインを表示
+//     IN  wname : 水路吁E//     IN    w   : レスポンスライター
 //     IN    r   : リクエストパラメータ
 //     OUT  one  : 水路ラインのスライス
 
-//    fmt.Fprintf( w, "trans.water_line start \n" )  // デバック
-//    fmt.Fprintf( w, "trans.water_line funct %v   \n" , funct  )  // デバック
-//    fmt.Fprintf( w, "trans.water_line wname %v   \n" , wname  )  // デバック
+//    fmt.Fprintf( w, "trans.water_line start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.water_line funct %v   \n" , funct  )  // チE��チE��
+//    fmt.Fprintf( w, "trans.water_line wname %v   \n" , wname  )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -66,7 +64,7 @@ func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Reque
 	keys, err := client.GetAll(ctx, query , &water_line)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "water_line err \n" ,err)  // デバック
+//		fmt.Fprintf( w, "water_line err \n" ,err)  // チE��チE��
 //		return	water_line_view
 	}
 
@@ -80,7 +78,7 @@ func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Reque
 
 	for pos, water_linew := range water_line {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
       if  funct == 0 {
 
          water_line_view = append(water_line_view, type4.Water_Line {  keys_wk[pos]         ,

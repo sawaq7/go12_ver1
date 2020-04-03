@@ -5,9 +5,9 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "client/reserve/html6"
-//	    "client/reserve/type6"
-	    "client/reserve/datastore6/trans5"
+	    "github.com/sawaq7/go12_ver1/client/reserve/html6"
+//	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/trans5"
                                                 )
 
 
@@ -15,26 +15,26 @@ func Reserve_register(w http.ResponseWriter, r *http.Request ,guest_no int64) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN  guest_no     : ゲストNo
+//     IN  guest_no     : ゲスチEo
 
-//    fmt.Fprintf( w, "reserve_register start \n" )  // デバック}
+//    fmt.Fprintf( w, "reserve_register start \n" )  // チE��チE��}
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html6.Reserve_register))
 
-// データストアーから、表示用データをGET
+// チE�Eタストアーから、表示用チE�EタをGET
 
 //    d_area_view := datastore2.Datastore_sgh( "D_Area","trans" ,district_no , w , r  )
 
     guest_reserve_minor_slice := trans5.Guest_reserve_minor( guest_no , w , r  )
 
-// 空インターフェイス変数よりバリュー値をゲット
+// 空インターフェイス変数よりバリュー値をゲチE��
 
 //    value, _ := d_area_view.([]type2.D_Area)
 
 // モニターに表示
-//   fmt.Fprintf( w, "reserve_register d_area_view %v\n" ,d_area_view)  // デバック
+//   fmt.Fprintf( w, "reserve_register d_area_view %v\n" ,d_area_view)  // チE��チE��
 
 //	err := monitor.Execute(w, value)
 

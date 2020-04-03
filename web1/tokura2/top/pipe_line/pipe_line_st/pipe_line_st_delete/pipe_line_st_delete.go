@@ -3,10 +3,10 @@ package pipe_line_st_delete
 import (
 
 	    "net/http"
-	    "client/tokura/suiri/process2"
-//	    "client/tokura/storage3/delete1"
-	    "client/tokura/storage3"
-//	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/storage3/delete1"
+	    "github.com/sawaq7/go12_ver1/client/tokura/storage3"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "strconv"
 //	    "fmt"
 
@@ -14,12 +14,12 @@ import (
 
 func Pipe_line_st_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "sky.pipe_line_st_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "sky.pipe_line_st_delete start \n" )  // チE��チE��
 
     var idmy int64
 
 ///
-///       指示したidをGET
+///       持E��したidをGET
 ///
 
 	id := r.FormValue("id")
@@ -27,10 +27,10 @@ func Pipe_line_st_delete(w http.ResponseWriter, r *http.Request) {
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//	fmt.Fprintf( w, "pipe_line_ds_delete : delid %v\n", delid )  // デバック
+//	fmt.Fprintf( w, "pipe_line_ds_delete : delid %v\n", delid )  // チE��チE��
 
 ///
-///     指示した水路データを削除
+///     持E��した水路チE�Eタを削除
 ///
 
     _ , _ = storage3.Storage_tokura( "Water2" ,"delete" ,delid , idmy , w , r  )

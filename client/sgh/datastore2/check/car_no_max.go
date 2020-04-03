@@ -7,7 +7,7 @@ import (
 //	    "fmt"
 //	    "html/template"
 //	    "web/htmls/sgh"
-	    "client/sgh/type2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
         "cloud.google.com/go/datastore"
 	    "context"
@@ -16,7 +16,7 @@ import (
                                                 )
 
 ///
-/// 　　　　　登録号車数をゲットする
+/// 　　　　　登録号車数をゲチE��する
 ///
 
 func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car_number int64 ) {
@@ -25,7 +25,7 @@ func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car
 //     IN    r      　　: リクエストパラメータ
 //     IN 　district_no : 地区No
 
-//    fmt.Fprintf( w, "car_no_max start \n" )  // デバック
+//    fmt.Fprintf( w, "car_no_max start \n" )  // チE��チE��
 
     var idmy int64
 
@@ -70,7 +70,7 @@ func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car
         }
 	  }
 	}
-//    fmt.Fprintf( w, "car_no_max car_number \n" , car_number)  // デバック
+//    fmt.Fprintf( w, "car_no_max car_number \n" , car_number)  // チE��チE��
 	return car_number
 }
 

@@ -8,9 +8,9 @@ import (
 	"strconv"
 //	"fmt"
 
-	"client/reserve/process4"
+	"github.com/sawaq7/go12_ver1/client/reserve/process4"
 
-    "client/reserve/datastore6/check5"
+    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/check5"
 
     "cloud.google.com/go/datastore"
 	"context"
@@ -20,16 +20,16 @@ import (
 
 func Payment_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "payment_delete start \n" )  // デバック
+//    fmt.Fprintf( w, "payment_delete start \n" )  // チE��チE��
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "payment_delete : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "payment_delete : id %v\n", id )  // チE��チE��
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "payment_delete : delidw %v\n", delidw )  // デバック
-//    fmt.Fprintf( w, "payment_delete : delid %v\n", delid )  // デバック
+//    fmt.Fprintf( w, "payment_delete : delidw %v\n", delidw )  // チE��チE��
+//    fmt.Fprintf( w, "payment_delete : delid %v\n", delid )  // チE��チE��
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -48,7 +48,7 @@ func Payment_delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    key := datastore.IDKey("Guest_Payment", delid, nil)           ///    xray情報をゲット
+    key := datastore.IDKey("Guest_Payment", delid, nil)           ///    xray惁E��をゲチE��
 
     if err := client.Delete(ctx, key ); err != nil {
 //	key := datastore.NewKey(c, "Guest_Payment", "", delid, nil)

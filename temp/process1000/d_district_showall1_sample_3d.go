@@ -6,13 +6,13 @@ import (
 	    "net/http"
 	    "fmt"
 	    "html/template"
-	    "client/sgh/datastore2/trans"
-	    "temp/datastore1000/trans1000"
-// 	    "client/sgh/html2"
-	    "temp/type1000"
-	    "temp/html1000"
+	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2/trans"
+	    "github.com/sawaq7/go12_ver1/temp/datastore1000/trans1000"
+// 	    "github.com/sawaq7/go12_ver1/client/sgh/html2"
+	    "github.com/sawaq7/go12_ver1/temp/type1000"
+	    "github.com/sawaq7/go12_ver1/temp/html1000"
 
-//	    "client/sgh/type2"
+//	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
                                                 )
 
@@ -22,7 +22,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-    fmt.Fprintf( w, "d_district_showall1_sample_3d start \n" )  // デバック
+    fmt.Fprintf( w, "d_district_showall1_sample_3d start \n" )  // チE��チE��
 
 //    d_district_view := make([]type1000.D_District, 0)
 
@@ -31,13 +31,13 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 
     c := appengine.NewContext(r)
 
-// データストアーから、表示用データをGET
+// チE�Eタストアーから、表示用チE�EタをGET
 
     d_district := trans.D_district ( 0 ,0 ,w ,r )
 
     for _, d_districtw := range d_district {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
       d_area_slice := trans1000.D_area_district ( w ,r ,d_districtw.District_No )
 
@@ -45,7 +45,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 
       d_area_small_slice := make([]type1000.D_Area_Small, 1)
 
-      fmt.Fprintf( w, "d_district_showall1_sample_3d len( d_area_slice ) %v\n" ,len( d_area_slice ))  // デバック
+      fmt.Fprintf( w, "d_district_showall1_sample_3d len( d_area_slice ) %v\n" ,len( d_area_slice ))  // チE��チE��
       if len( d_area_slice ) != 0 {
 
         d_area_small_slice[0].Area_Name = d_area_slice[0].Area_Name
@@ -60,7 +60,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
                                                                       d_area_slice_3d               })
 
 
-/// データストアーにデータをセット ///
+/// チE�EタストアーにチE�EタをセチE�� ///
       var d_district_work type1000.D_District
 
       d_district_work.District_No   = d_districtw.District_No
@@ -75,7 +75,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html1000.D_district_showall1_sample_3d))
 

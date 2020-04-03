@@ -6,11 +6,11 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-//	    "client/sgh"
-        "client/sgh/process"
-        "client/sgh/type2"
+//	    "github.com/sawaq7/go12_ver1/client/sgh"
+        "github.com/sawaq7/go12_ver1/client/sgh/process"
+        "github.com/sawaq7/go12_ver1/client/sgh/type2"
 	    "strconv"
-	    "client/sgh/datastore2"
+	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -20,7 +20,7 @@ import (
 
 func D_district_area(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_district_area start \n" )  // デバック
+//    fmt.Fprintf( w, "d_district_area start \n" )  // チE��チE��
 
     var g type2.D_District
 
@@ -48,14 +48,14 @@ func D_district_area(w http.ResponseWriter, r *http.Request) {
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
 	if err  != nil {
-//	   fmt.Fprintf( w, "d_district_area :error updidw %v\n", updidw )  // デバック
+//	   fmt.Fprintf( w, "d_district_area :error updidw %v\n", updidw )  // チE��チE��
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "d_district_area : updidw %v\n", updidw )  // デバック
-//    fmt.Fprintf( w, "d_district_area : updid %v\n", updid )  // デバック
+//    fmt.Fprintf( w, "d_district_area : updidw %v\n", updidw )  // チE��チE��
+//    fmt.Fprintf( w, "d_district_area : updid %v\n", updid )  // チE��チE��
 
     key := datastore.IDKey("D_District", updid, nil)
 
@@ -67,7 +67,7 @@ func D_district_area(w http.ResponseWriter, r *http.Request) {
 	}
 
 
-// temporary-fileをイニシャライズ  & セット//
+// temporary-fileをイニシャライズ  & セチE��//
 
 //    _ = datastore2.D_store( "D_District_Temp" ,"initialize" ,idmy , w , r  )
     _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
@@ -87,7 +87,7 @@ func D_district_area(w http.ResponseWriter, r *http.Request) {
 
 	process.D_district_area(w , r ,g.District_No)
 
-//	fmt.Fprintf( w, "d_district_area : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "d_district_area : normal end \n" )  // チE��チE��
 
 
 

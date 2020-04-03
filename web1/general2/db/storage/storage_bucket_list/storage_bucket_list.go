@@ -5,8 +5,8 @@ import (
 	     "net/http"
 	     "html/template"
 
-         "general/type5"
-         "general/html5"
+         "github.com/sawaq7/go12_ver1/general/type5"
+         "github.com/sawaq7/go12_ver1/general/html5"
 
          "time"
          "os"
@@ -25,7 +25,7 @@ func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
    projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
    if projectID == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       projectID = "sample-7777"
 
@@ -62,12 +62,12 @@ func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html5.Storage_bucket_list))
 
 
-// 各種入力データを表示
+// 吁E��入力データを表示
 
 
 //    var str_dmy string

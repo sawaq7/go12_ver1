@@ -5,7 +5,7 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -14,7 +14,7 @@ import (
                                                 )
 
 ///
-///    csv情報をゲットする
+///    csv惁E��をゲチE��する
 ///
 
 func Csv_inf ( w http.ResponseWriter, r *http.Request )  ( []type5.Csv_Inf ) {
@@ -22,9 +22,9 @@ func Csv_inf ( w http.ResponseWriter, r *http.Request )  ( []type5.Csv_Inf ) {
 //     IN    w      　　　　: レスポンスライター
 //     IN    r      　　　　: リクエストパラメータ
 
-//     OUT csv_inf_view  : csv情報”のスライス
+//     OUT csv_inf_view  : csv惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "trans.csv_inf start \n" )  // デバック
+//    fmt.Fprintf( w, "trans.csv_inf start \n" )  // チE��チE��
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -69,7 +69,7 @@ func Csv_inf ( w http.ResponseWriter, r *http.Request )  ( []type5.Csv_Inf ) {
 
 	for pos, csv_infw := range csv_inf {
 
-///  機能によりチェック項目をセット
+///  機�EによりチェチE��頁E��をセチE��
 
          csv_inf_view = append(csv_inf_view, type5.Csv_Inf {        keys_wk[pos]           ,
                                                                     csv_infw.Line_No    ,
@@ -91,7 +91,7 @@ func Csv_inf ( w http.ResponseWriter, r *http.Request )  ( []type5.Csv_Inf ) {
 
 	}
 
-//    fmt.Fprintf( w, "trans.csv_inf : csv_inf_view %v\n", csv_inf_view )  // デバック
+//    fmt.Fprintf( w, "trans.csv_inf : csv_inf_view %v\n", csv_inf_view )  // チE��チE��
 
     return	csv_inf_view
 }

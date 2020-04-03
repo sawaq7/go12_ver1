@@ -7,9 +7,9 @@ import (
 	    "net/http"
 //	    "fmt"
 
-	    "general/process3"
+	    "github.com/sawaq7/go12_ver1/general/process3"
 
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 	    "strconv"
 //	    "time"
 
@@ -21,17 +21,17 @@ import (
 
 func Csv_copy(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_copy start \n" )  // デバック
+//    fmt.Fprintf( w, "csv_copy start \n" )  // チE��チE��
 
     var csv_inf type5.Csv_Inf
 
 ///
-///   プロジェクト名をゲット
+///   プロジェクト名をゲチE��
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -47,13 +47,13 @@ func Csv_copy(w http.ResponseWriter, r *http.Request) {
     }
 
 	id := r.FormValue("id")
-//    fmt.Fprintf( w, "csv_copy  : id %v\n", id )  // デバック
+//    fmt.Fprintf( w, "csv_copy  : id %v\n", id )  // チE��チE��
 
 	copy_idw ,_ := strconv.Atoi(id)
 	copy_id := int64(copy_idw)
 
-//    fmt.Fprintf( w, "csv_copy  : copy_idw %v\n", copy_idw )  // デバック
-//    fmt.Fprintf( w, "csv_copy  : copy_id %v\n", copy_id )  // デバック
+//    fmt.Fprintf( w, "csv_copy  : copy_idw %v\n", copy_idw )  // チE��チE��
+//    fmt.Fprintf( w, "csv_copy  : copy_id %v\n", copy_id )  // チE��チE��
 
 
 
@@ -85,7 +85,7 @@ func Csv_copy(w http.ResponseWriter, r *http.Request) {
 
 	process3.Csv_inf ( w , r )
 
-//	fmt.Fprintf( w, "csv_copy : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "csv_copy : normal end \n" )  // チE��チE��
 
 
 

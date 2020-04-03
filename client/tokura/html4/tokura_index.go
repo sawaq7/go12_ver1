@@ -5,7 +5,7 @@ package html4
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>チE�Eタストアの更新・削除</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -31,21 +31,21 @@ package html4
 
             <td >
               <form method="GET" action="/pipe_line1_excute_all">
-                <input type="submit" value="管水路all(ストレッジ)" />
+                <input type="submit" value="管水路all(ストレチE��)" />
               </form>
             </td>
             <td >
               <form method="GET" action="/pipe_line1_show">
-                <input type="submit" value="管水路シングル(ストレッジ)" />
+                <input type="submit" value="管水路シングル(ストレチE��)" />
               </form>
             <td >
               <form method="GET" action="/pipe_line_ds_keyin">
-                <input type="submit" value="管水路(データストア)" />
+                <input type="submit" value="管水路(チE�Eタストア)" />
               </form>
             </td>
             <td >
               <form method="GET" action="/water_slope_show">
-                <input type="submit" value="導水勾配線" />
+                <input type="submit" value="導水勾配緁E />
               </form>
             </td>
 

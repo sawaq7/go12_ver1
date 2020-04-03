@@ -3,13 +3,13 @@ package hydrostatic_pressure1_excute
 import (
 	     "net/http"
 	     "html/template"
-	     "client/tokura/suiri"
-	     "basic/maths/sum"
+	     "github.com/sawaq7/go12_ver1/client/tokura/suiri"
+	     "github.com/sawaq7/go12_ver1/basic/maths/sum"
 	     "strconv"
-	     "client/tokura/suiri/type4"
+	     "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
-//        "client/tokura/html4"
-         "general/html5"
+//        "github.com/sawaq7/go12_ver1/client/tokura/html4"
+         "github.com/sawaq7/go12_ver1/general/html5"
 	                                  )
 
 func Hydrostatic_pressure1_excute(w http.ResponseWriter, r *http.Request) {
@@ -37,12 +37,12 @@ func Hydrostatic_pressure1_excute(w http.ResponseWriter, r *http.Request) {
 
     seisui.P2 =  suiri.Seisui1( a1 ,a2  ,r_p  ,r_omega  ,r_h  )
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html5.Storage_bucket_list))
 //    monitor := template.Must( template.New("html").Parse( html4.Hydrostatic_pressure2_show) )
 
-// 各種入力データを表示
+// 吁E��入力データを表示
 
 //    err := monitor.Execute(w, seisui)
     var str_dmy string

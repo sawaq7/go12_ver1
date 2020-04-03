@@ -7,9 +7,9 @@ import (
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
-	    "client/sgh/process"
+	    "github.com/sawaq7/go12_ver1/client/sgh/process"
 
-//	    "client/sgh/type2"
+//	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
                                                    )
 
 func init() {
@@ -18,9 +18,9 @@ func init() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-//	   fmt.Fprintf( w, "sky_deliver_update_all start %v\n" )  // デバック
+//	   fmt.Fprintf( w, "sky_deliver_update_all start %v\n" )  // チE��チE��
 
-/// 配達情報の変更 ///
+/// 配達惁E��の変更 ///
 
 	process.Deliver_update_all(w , r )
 

@@ -1,7 +1,7 @@
     ///////////////////////////////////////////////////////
    ///                main_kansui1                     ///
-  ///     管水路　エネルギー線・動水勾配線を描く        ///
- ///          データはstring型                        ///
+  ///     管水路　エネルギー線�E動水勾配線を描く        ///
+ ///          チE�Eタはstring垁E                       ///
 ////////////////////////////////////////////////////////
 
 package main
@@ -11,13 +11,13 @@ import (
 	     "os"
 	     "strings"
 	     "bufio"
-	     "client/tokura/suiri"
-	     "basic/rw"
+	     "github.com/sawaq7/go12_ver1/client/tokura/suiri"
+	     "github.com/sawaq7/go12_ver1/basic/rw"
 	                  )
 
 func main() {
 
-// 単位容積重量　（ω）をセット
+// 単位容積重量　�E�ω）をセチE��
 
    var fname ,fname2 ,line  string
    var index  ,num int
@@ -25,8 +25,8 @@ func main() {
 // ファイルオープン
 
 
-   fname  = "C:/Go_Original/src/client/tokura/file/water_inf.txt"
-   fname2  = "C:/Go_Original/src/client/tokura/file/grade_line.txt"
+   fname  = "C:/Go_Original/src/github.com/sawaq7/go12_ver1/client/tokura/file/water_inf.txt"
+   fname2  = "C:/Go_Original/src/github.com/sawaq7/go12_ver1/client/tokura/file/grade_line.txt"
 
 // 水路ファイル、オープン
 
@@ -39,52 +39,50 @@ func main() {
 //   writer , _ := os.Open(fname2)
    index = 0        // レコードカウンターをinitialize
 
-// ファイルリーダーをＧＥＴ
+// ファイルリーダーをＧ�E��E�
    reader := bufio.NewReaderSize(freader, 4096)
 
    for {
 
-      index ++     // レコードカウンターをカウント
-
-      fmt.Println ("main_kansui1 index " ,index)  // デバック
+      index ++     // レコードカウンターをカウンチE
+      fmt.Println ("main_kansui1 index " ,index)  // チE��チE��
 
 // ファイルを１行read
 
       line ,_  = reader.ReadString('\n')
 
 
-//文字単位にスペースで分割
+//斁E��単位にスペ�Eスで刁E��
 
       str := strings.Fields(line)
 
       num = len(str)
 
-      fmt.Println ("main_kansui1 num " ,num)  // デバック
+      fmt.Println ("main_kansui1 num " ,num)  // チE��チE��
 
       if num != 0 {
          if index == 1{
 
-// ヘッダーを書く(データ間のブランクは次のコードで調整）
-             writer.WriteString(line)
-             fmt.Println ("main_kansui1 ヘッダーwrite " ,line)  // デバック
+// ヘッダーを書ぁEチE�Eタ間�Eブランクは次のコードで調整�E�E             writer.WriteString(line)
+             fmt.Println ("main_kansui1 ヘッダーwrite " ,line)  // チE��チE��
 
           }else{
 
-             fmt.Println ("main_kansui1 データwrite " ,line)  // デバック
+             fmt.Println ("main_kansui1 チE�Eタwrite " ,line)  // チE��チE��
 
-/// 動水勾配線もテータを作成
+/// 動水勾配線もチE�Eタを作�E
 
              ad_hp ,ad_hl ,ad_vhead ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := suiri.Kansui1( line  )
 
-// ポイント損失情報をwrite
+// ポイント損失惁E��をwrite
 
              rw.Wrline2(  writer , ad_hp )
 
-// ライン損失情報をwrite
+// ライン損失惁E��をwrite
 
              rw.Wrline2(  writer , ad_hl )
 
-// 速度水頭情報をwrite
+// 速度水頭惁E��をwrite
 
              rw.Wrline2(  writer , ad_vhead )
 
@@ -107,7 +105,7 @@ func main() {
           }
 
       } else if num == 0 {
-          fmt.Println ("main_kansui1 normal end" )   //デバック
+          fmt.Println ("main_kansui1 normal end" )   //チE��チE��
          break
 
       }
@@ -118,7 +116,7 @@ func main() {
 //   END :
 
 
-//   os.Remove(fname) // 既存の静水ファイルを削除
+//   os.Remove(fname) // 既存�E静水ファイルを削除
 //   os.Rename(fname2 ,fname) //ワークファイルを静水ファイルとして	再登録
 
    defer freader.Close()

@@ -4,19 +4,19 @@ import (
 //
 	    "net/http"
 //	    "fmt"
-//	    "client/sgh"
+//	    "github.com/sawaq7/go12_ver1/client/sgh"
 
-        "client/reserve/process4"
-//        "client/reserve/type6"
+        "github.com/sawaq7/go12_ver1/client/reserve/process4"
+//        "github.com/sawaq7/go12_ver1/client/reserve/type6"
 //	    "strconv"
 
                                                   )
 
-/// main 予約状況を表示する ///
+/// main 予紁E��況を表示する ///
 
 func Reserve_situation(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "reserve_situation start \n" )  // デバック
+//    fmt.Fprintf( w, "reserve_situation start \n" )  // チE��チE��
 
     reserve_date  := r.FormValue("reserve_date")
 
@@ -24,7 +24,7 @@ func Reserve_situation(w http.ResponseWriter, r *http.Request) {
 
 	process4.Reserve_situation(w , r ,reserve_date)
 
-//	fmt.Fprintf( w, "reserve_situation : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "reserve_situation : normal end \n" )  // チE��チE��
 
 
 

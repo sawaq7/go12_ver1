@@ -36,7 +36,7 @@ package html4
 		  <ul>
 			    <li>
 			      <div>
-			        <h1  align="center">静 水 圧</h1>
+			        <h1  align="center">靁E水 圧</h1>
 			        <form method="GET"  action="/tokura_index_hp" >
 
 			          <input type="image" src="images/illust_members_nakamura2.png" width="80" height="80"

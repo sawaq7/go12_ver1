@@ -7,66 +7,50 @@ import (
 	                                   )
 
 ///
-///    ツール コマンド用　フォーマット集
+///    チE�Eル コマンド用　フォーマット集
 ///
 
 ///
-///    データストア　コピー　リスト
-///
+///    チE�Eタストア　コピ�E　リスチE///
 
 type  Ds_Copy_List    struct           {
 
-          Id             int64    //　データid
-	      Basic_Name     string   // 基本のデータストア名     ＊＊ 未使用のため廃止予定　＊＊
-	      Copy_Name      string   // コピー元のデータストア名
-	      New_Name       string   // ニューデータストア名
-
+          Id             int64    //　チE�Eタid
+	      Basic_Name     string   // 基本のチE�Eタストア吁E    �E�！E未使用のため廁E��予定　�E�！E	      Copy_Name      string   // コピ�E允E�EチE�Eタストア吁E	      New_Name       string   // ニューチE�Eタストア吁E
 }
 
 ///
-///    データベース　アクセス　リスト
-///
+///    チE�Eタベ�Eス　アクセス　リスチE///
 
 type  Db_Access_List    struct           {
 
-          Id              int64       //　データid
+          Id              int64       //　チE�Eタid
           Line_No         int64    // 行NO.
-          Db_Type         string      // データベースタイプ
-                                      //  ds : データストア
-                                      //  sr : ストレッジ
+          Db_Type         string      // チE�Eタベ�EスタイチE                                      //  ds : チE�Eタストア
+                                      //  sr : ストレチE��
 
-          Access_Type        string   // アクセスタイプ
-                                      //  copy
+          Access_Type        string   // アクセスタイチE                                      //  copy
                                       //  rename
 
           Project_Name     string     // プロジェクト名
-	      Bucket_Name     string      // バケット名
-	      Basic_File_Name    string   // 基本のファイル名
-	      New_File_Name      string   // ニューファイル名
-
+	      Bucket_Name     string      // バケチE��吁E	      Basic_File_Name    string   // 基本のファイル吁E	      New_File_Name      string   // ニューファイル吁E
 }
 
 ///
-///    データベース　アクセス　リスト
-///
+///    チE�Eタベ�Eス　アクセス　リスチE///
 
 type  Db_Access_List2    struct           {
 
-          Id              int64       //　データid
+          Id              int64       //　チE�Eタid
           Line_No         int64    // 行NO.
-          Db_Type         string      // データベースタイプ
-                                      //  ds : データストア
-                                      //  sr : ストレッジ
+          Db_Type         string      // チE�Eタベ�EスタイチE                                      //  ds : チE�Eタストア
+                                      //  sr : ストレチE��
 
-          Access_Type        string   // アクセスタイプ
-                                      //  copy
+          Access_Type        string   // アクセスタイチE                                      //  copy
                                       //  rename
 
           Project_Name     string     // プロジェクト名
-	      Bucket_Name     string      // バケット名
-	      Basic_File_Name    string   // 基本のファイル名
-	      New_File_Name      string   // ニューファイル名
-
+	      Bucket_Name     string      // バケチE��吁E	      Basic_File_Name    string   // 基本のファイル吁E	      New_File_Name      string   // ニューファイル吁E
 }
 
 ///
@@ -77,19 +61,8 @@ type  Csv_Inf    struct           {
 
           Id            int64
           Line_No       int64    // 行NO.
-          File_Name     string   // ファイル名
-          Column_Num    int64    // 列数
-	      Column1       string   // 列１
-	      Column2       string   // 列２
-	      Column3       string   // 列３
-	      Column4       string   // 列４
-	      Column5       string   // 列５
-	      Column6       string   // 列６
-	      Column7       string   // 列７
-	      Column8       string   // 列８
-	      Column9       string   // 列９
-	      Column10      string   // 列１０
-
+          File_Name     string   // ファイル吁E          Column_Num    int64    // 列数
+	      Column1       string   // 列！E	      Column2       string   // 列！E	      Column3       string   // 列！E	      Column4       string   // 列！E	      Column5       string   // 列！E	      Column6       string   // 列！E	      Column7       string   // 列！E	      Column8       string   // 列！E	      Column9       string   // 列！E	      Column10      string   // 列１！E
 }
 
 ///
@@ -111,12 +84,11 @@ type  Interpret    struct           {
 
 type  Csv_Records    struct           {
 
-      Records_Num    int64   // csvレコードの構造体の数
+      Records_Num    int64   // csvレコード�E構造体�E数
 
 //          Id            int64
 //          Line_No       int64       // 行NO.
-      Records[10]    []Csv_Inf   // csvレコードの構造体
-
+      Records[10]    []Csv_Inf   // csvレコード�E構造佁E
 }
 
 ///
@@ -125,47 +97,42 @@ type  Csv_Records    struct           {
 
 type  Image_Show    struct           {
 
-          Id              int64    // データid
-	      File_Name       string   // ファイル名
-	      Url             string   // url
+          Id              int64    // チE�Eタid
+	      File_Name       string   // ファイル吁E	      Url             string   // url
 }
 ///
-///  ストレッジのバケット・オブジェクト（ファイル）の表示用
+///  ストレチE��のバケチE��・オブジェクト（ファイル�E��E表示用
 ///
 
 type  Storage_B_O_View    struct           {
 
           Line_No         int64    // 行NO.
           Project_Name     string   // プロジェクト名
-	      Bucket_Name     string   // バケット名
-	      Object_Name     string   // オブジェクト名
-	      Created       time.Time  //作成時間
+	      Bucket_Name     string   // バケチE��吁E	      Object_Name     string   // オブジェクト名
+	      Created       time.Time  //作�E時間
 
 }
 
 ///
-///  ストレッジのバケット・オブジェクト（ファイル）のコモン用(データストア）
-///
+///  ストレチE��のバケチE��・オブジェクト（ファイル�E��Eコモン用(チE�Eタストア�E�E///
 
 type  Storage_B_O_Temp    struct           {
 
-          Id              int64    // データid
+          Id              int64    // チE�Eタid
           Line_No         int64    // 行NO.
           Project_Name     string   // プロジェクト名
-	      Bucket_Name     string   // バケット名
-	      Object_Name     string   // オブジェクト名
-	      Created       time.Time  //作成時間
+	      Bucket_Name     string   // バケチE��吁E	      Object_Name     string   // オブジェクト名
+	      Created       time.Time  //作�E時間
 
 }
 
 type  Storage_B_O    struct           {
 
-          Id              int64    // データid
+          Id              int64    // チE�Eタid
           Line_No         int64    // 行NO.
           Project_Name     string   // プロジェクト名
-	      Bucket_Name     string   // バケット名
-	      Object_Name     string   // オブジェクト名
-	      Created       time.Time  //作成時間
+	      Bucket_Name     string   // バケチE��吁E	      Object_Name     string   // オブジェクト名
+	      Created       time.Time  //作�E時間
 
 }
 ///
@@ -177,6 +144,5 @@ type  General_Work    struct           {
           Int64_Work     int64           // int型ワークエリア
           Float64_Work   float64         // float型ワークエリア
 	      String_Work    string          // string型ワークエリア
-	      Sw_Work        *storage.Writer // ストレッジライター型
-
+	      Sw_Work        *storage.Writer // ストレチE��ライター垁E
 }

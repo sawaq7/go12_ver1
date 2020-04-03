@@ -5,9 +5,9 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "client/reserve/html6"
-//	    "client/reserve/type6"
-	    "client/reserve/datastore6/trans5"
+	    "github.com/sawaq7/go12_ver1/client/reserve/html6"
+//	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/trans5"
 
                                                 )
 
@@ -16,11 +16,11 @@ func Medical_record_show(w http.ResponseWriter, r *http.Request ,guest_no int64)
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN  guest_no     : ゲストNo
+//     IN  guest_no     : ゲスチEo
 
-//    fmt.Fprintf( w, "medical_record_show start \n" )  // デバック}
+//    fmt.Fprintf( w, "medical_record_show start \n" )  // チE��チE��}
 
-// テンプレートのヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html6.Medical_record_show))
 

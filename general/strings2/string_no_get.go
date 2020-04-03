@@ -11,18 +11,18 @@ import (
                       )
 
 ///
-///     文字列より、数字を抽出する
+///     斁E���Eより、数字を抽出する
 ///
 
 func String_no_get ( w http.ResponseWriter, r *http.Request , string_data string  )  ([]string ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN  string_data  : 文字列
+//     IN  string_data  : 斁E���E
 
-//     OUT strings  : 分割後の文字列群
+//     OUT strings  : 刁E��後�E斁E���E群
 
-//    fmt.Fprintf( w, "string_no_get start \n" )  // デバック
+//    fmt.Fprintf( w, "string_no_get start \n" )  // チE��チE��
 
     string_data2 := strings.Split ( string_data, " "  )
 
@@ -37,14 +37,14 @@ func String_no_get ( w http.ResponseWriter, r *http.Request , string_data string
 //    rep := regexp.MustCompile(`[0-9]`)
 //    str := rep.ReplaceAllString(str_test, "C")
 
-//    fmt.Fprintf( w, "string_no_get str %c\n" ,str )  // デバック
+//    fmt.Fprintf( w, "string_no_get str %c\n" ,str )  // チE��チE��
 
 
 //    string_work := string_data2[0]
 
 //    for _, string_workw := range string_work {
 
-//      fmt.Fprintf( w, "string_no_get string_workw %c\n" ,string_workw )  // デバック
+//      fmt.Fprintf( w, "string_no_get string_workw %c\n" ,string_workw )  // チE��チE��
 
 //	}
 
@@ -54,37 +54,36 @@ func String_no_get ( w http.ResponseWriter, r *http.Request , string_data string
 
       if judge == false {
 
-//	     fmt.Fprintf( w, "string_no_get string isn't numeric \n"  )  // デバック
+//	     fmt.Fprintf( w, "string_no_get string isn't numeric \n"  )  // チE��チE��
 
 	     return string_data2
 
 	  }
     }
 
-//    fmt.Fprintf( w, "string_no_get normal end \n" )  // デバック
+//    fmt.Fprintf( w, "string_no_get normal end \n" )  // チE��チE��
 
     return	string_data2
 }
 
 ///
-///     正規表現より、文字列を判定する
-///
+///     正規表現より、文字�Eを判定すめE///
 
 func String_check ( w http.ResponseWriter, r *http.Request , reg_exp string, string_data string  )  ( bool ) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 //     IN  reg_exp      : 正規表現
-//     IN  string_data  : 文字列
+//     IN  string_data  : 斁E���E
 
 //     OUT judge        : true
 //                      : false
 
-//    fmt.Fprintf( w, "string_check start \n" )  // デバック
+//    fmt.Fprintf( w, "string_check start \n" )  // チE��チE��
 
     judge := regexp.MustCompile( reg_exp ).Match( []byte(string_data) )
 
-//    fmt.Fprintf( w, "string_check normal end \n" )  // デバック
+//    fmt.Fprintf( w, "string_check normal end \n" )  // チE��チE��
 
     return	judge
 }

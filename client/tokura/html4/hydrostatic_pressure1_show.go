@@ -14,18 +14,18 @@ const Hydrostatic_pressure1_show = `
 
      <form method="GET" action="/hydrostatic_pressure1_excute">
 
-      <p>&nbsp;&nbsp;&nbsp; 静水圧の各種データを入力してください。   </p>
-      <p>&nbsp;&nbsp;&nbsp;  単位容積重量 ω（t/㎡）&nbsp;&nbsp;&nbsp; ：<input type="text" name="omega" /> </p>
-　    <p>&nbsp;&nbsp;  U字管１の直径 D1（ｍ）&nbsp;&nbsp;  ：<input type="text" name="d1" /> </p>
-　    <p>&nbsp;&nbsp;  U字管２の直径 D2（ｍ) &nbsp;&nbsp;  ：<input type="text" name="d2" /> </p>
-　    <p>&nbsp;&nbsp;  荷重の重さ P（t）&nbsp;&nbsp;&nbsp;&nbsp;
+      <p>&nbsp;&nbsp;&nbsp; 静水圧の吁E��チE�Eタを�E力してください、E  </p>
+      <p>&nbsp;&nbsp;&nbsp;  単位容積重釁Eω！E/㎡�E�Enbsp;&nbsp;&nbsp; �E�Einput type="text" name="omega" /> </p>
+　    <p>&nbsp;&nbsp;  U字管�E��E直征ED1�E�ｍ！Enbsp;&nbsp;  �E�Einput type="text" name="d1" /> </p>
+　    <p>&nbsp;&nbsp;  U字管�E��E直征ED2�E�ａE &nbsp;&nbsp;  �E�Einput type="text" name="d2" /> </p>
+　    <p>&nbsp;&nbsp;  荷重�E重さ P�E�E�E�Enbsp;&nbsp;&nbsp;&nbsp;
                    &nbsp;&nbsp;&nbsp;&nbsp;
-                   &nbsp;&nbsp;&nbsp;&nbsp;      ：<input type="text" name="p" /> </p>
-　    <p>&nbsp;&nbsp;  高度差は H（ｍ） &nbsp;&nbsp;&nbsp;
+                   &nbsp;&nbsp;&nbsp;&nbsp;      �E�Einput type="text" name="p" /> </p>
+　    <p>&nbsp;&nbsp;  高度差は H�E�ｍ！E&nbsp;&nbsp;&nbsp;
                    &nbsp;&nbsp;&nbsp;&nbsp;
-                   &nbsp;&nbsp;&nbsp;&nbsp; ：<input type="text" name="h" /> </p>
+                   &nbsp;&nbsp;&nbsp;&nbsp; �E�Einput type="text" name="h" /> </p>
 
-      <input type="submit" value="静水圧（key-in)" />
+      <input type="submit" value="静水圧�E�Eey-in)" />
      </form>
      </section>
   </body>

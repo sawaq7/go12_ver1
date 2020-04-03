@@ -5,22 +5,21 @@ import (
 	    "strconv"
 	    "strings"
 	    "bufio"
-	    "client/tokura/suiri"
-	    "basic/maths/sum"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri"
+	    "github.com/sawaq7/go12_ver1/basic/maths/sum"
 	    "storage2"
 	    "net/http"
 	    "io"
 	    "cloud.google.com/go/storage"
     	                 )
 ///
-/// 静水圧　U字管の計算    type2　（ファイル入力）
-///
+/// 静水圧　U字管の計箁E   type2　�E�ファイル入力！E///
 
 ///  main process ///
 
 func Hydrostatic_pressure2(w http.ResponseWriter, r *http.Request) {
 
-// 単位容積重量　（ω）をセット
+// 単位容積重量　�E�ω）をセチE��
 
    var omega ,drad1 ,drad2 ,press1 ,press2,high ,area1 ,area2 float64
    var fname ,fname2  string
@@ -33,7 +32,7 @@ func Hydrostatic_pressure2(w http.ResponseWriter, r *http.Request) {
 
    ad_fdata := make([]string ,6)        // keep work data for etc float data
 
-// 静水情報ファイル、オープン
+// 静水惁E��ファイル、オープン
 
 //   reader  := storage2.File_Open(w ,r ,bucket ,fname)
 
@@ -43,7 +42,7 @@ func Hydrostatic_pressure2(w http.ResponseWriter, r *http.Request) {
 
    defer reader.Close()
 
-// ファイルリーダーをＧＥＴ
+// ファイルリーダーをＧ�E��E�
 
    sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -60,29 +59,28 @@ func Hydrostatic_pressure2(w http.ResponseWriter, r *http.Request) {
 
    for {
 
-      index ++     // レコードカウンターをカウント
-
-//      fmt.Fprintf (w, "hydrostatic-pressure2　index " ,index)  // デバック
+      index ++     // レコードカウンターをカウンチE
+//      fmt.Fprintf (w, "hydrostatic-pressure2　index " ,index)  // チE��チE��
 
 // ファイルを１行read
 
       line ,_  := sreader.ReadString('\n')
 
-//文字単位にスペースで分割
+//斁E��単位にスペ�Eスで刁E��
 
       str := strings.Fields(line)
 
       num = len(str)
 
-//      fmt.Fprintf (w,"hydrostatic-pressure2　num " ,num)  // デバック
+//      fmt.Fprintf (w,"hydrostatic-pressure2　num " ,num)  // チE��チE��
 
-      if num == 0 {  //　END　チェック
+      if num == 0 {  //　END　チェチE��
 
-//         fmt.Fprintf (w,"hydrostatic-pressure2 normal end")  // デバック
+//         fmt.Fprintf (w,"hydrostatic-pressure2 normal end")  // チE��チE��
          goto END
       }
 
-      if index != 1{   // 見出し以外をmake
+      if index != 1{   // 見�Eし以外をmake
 
          omega ,_ =strconv.ParseFloat(str[0],64)
          drad1 ,_ =strconv.ParseFloat(str[1],64)
@@ -91,18 +89,17 @@ func Hydrostatic_pressure2(w http.ResponseWriter, r *http.Request) {
 
          high ,_ =strconv.ParseFloat(str[5],64)
 
-//         fmt.Fprintf ( w,"hydrostatic-pressure2 file data " ,omega, drad1 , drad2 ,press1  ,high ) // デバック
+//         fmt.Fprintf ( w,"hydrostatic-pressure2 file data " ,omega, drad1 , drad2 ,press1  ,high ) // チE��チE��
 
-// U字管の面積を計算する
-
+// U字管の面積を計算すめE
          area1 = sum.Circle_Area(drad1/2)
          area2 = sum.Circle_Area(drad2/2)
 
          press2 =  suiri.Seisui1( area1 ,area2  ,press1  ,omega  ,high  )
 
-//         fmt.Fprintf(w,"hydrostatic-pressure2 圧力２　",press2,"ｔ")   //デバック
+//         fmt.Fprintf(w,"hydrostatic-pressure2 圧力２　",press2,"�E�E)   //チE��チE��
 
-// U字管の各種情報を文字列に変換
+// U字管の吁E��惁E��を文字�Eに変換
 
          ad_fdata[0] = strconv.FormatFloat( omega ,  'f' ,8 ,64 )
          ad_fdata[1] = strconv.FormatFloat( drad1 ,  'f' ,8 ,64 )

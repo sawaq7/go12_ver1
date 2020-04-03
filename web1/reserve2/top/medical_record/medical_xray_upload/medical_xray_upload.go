@@ -8,11 +8,11 @@ import (
 	    "net/http"
 	    "fmt"
 	    "io"
-        "client/reserve/process4"
+        "github.com/sawaq7/go12_ver1/client/reserve/process4"
 	    "storage2"
 
-	    "client/reserve/type6"
-	    "client/reserve/datastore6/trans5"
+	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
+	    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/trans5"
 	    "time"
 
 	    "cloud.google.com/go/datastore"
@@ -23,16 +23,16 @@ import (
 
 func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "medical_xray_upload start \n" )  // デバック
+//    fmt.Fprintf( w, "medical_xray_upload start \n" )  // チE��チE��
 
     var bucket  string
 
     var guest_medical_xray type6.Guest_Medical_Xray
 
-    bucket    = "sample-7777"    // バケット名をゲット
+    bucket    = "sample-7777"    // バケチE��名をゲチE��
 
 ///
-///     指定したファイル情報をゲット
+///     持E��したファイル惁E��をゲチE��
 ///
 
 	file_data, fh, err := r.FormFile("image")
@@ -42,7 +42,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	fmt.Fprintf( w, "medical_xray_upload : fh %v\n", fh )  // デバック
+//	fmt.Fprintf( w, "medical_xray_upload : fh %v\n", fh )  // チE��チE��
 
 
 //	st_writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,fh.Filename , w , r  )
@@ -60,7 +60,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
     st_writer := storage2.File_Create2 ( w ,r ,bucket  ,f_name ,content_type )
 
 ///
-/// ストレッジファイルに既存のファイルの情報をコピー
+/// ストレチE��ファイルに既存�Eファイルの惁E��をコピ�E
 ///
 
 	if _, err := io.Copy(st_writer, file_data); err != nil {
@@ -73,7 +73,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 	}
 
 ///
-///     カレントのゲスト名をゲット
+///     カレント�Eゲスト名をゲチE��
 ///
 
     guest_temp_slice := trans5.Guest_temp (  w , r  )
@@ -81,7 +81,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 //    guest_name := guest_temp_slice[0].Guest_Name
 //        _ = guest_temp_slice[0].Guest_Name
 
-    date_w := time.Now()        // 日付をセット
+    date_w := time.Now()        // 日付をセチE��
 
     guest_medical_xray.Date   = fmt.Sprintf("%04d/%02d/%02d/%02d/%02d/%02d",date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 
@@ -95,7 +95,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 	guest_medical_xray.Url = fmt.Sprintf(publicURL, bucket , f_name )
 
 ///
-///         データストアーにデータをセット
+///         チE�EタストアーにチE�EタをセチE��
 ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
@@ -129,7 +129,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 
     process4.Medical_xray_show(w , r ,guest_medical_xray.Guest_No)
 
-//	fmt.Fprintf( w, "medical_xray_upload : normal end \n" )  // デバック
+//	fmt.Fprintf( w, "medical_xray_upload : normal end \n" )  // チE��チE��
 
 }
 

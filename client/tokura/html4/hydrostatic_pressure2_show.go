@@ -17,15 +17,15 @@ const Hydrostatic_pressure2_show = `
   <table border="2" cellpadding="8" align="center" bgcolor="#00ced1">
   <p>&nbsp;&nbsp;&nbsp; etc. input information                  </p>
 
-  <p>&nbsp;&nbsp;&nbsp; 単位容積重量 ω   &nbsp;&nbsp;&nbsp;  {{.Omega|html}} （t/㎡）</p>
-  <p>&nbsp;&nbsp;&nbsp; U字管１の直径 D1  &nbsp;&nbsp;&nbsp;  {{.D1|html}} （ｍ）  </p>
-  <p>&nbsp;&nbsp;&nbsp; U字管 2の直径 D2  &nbsp;&nbsp;&nbsp;  {{.D2|html}}  （ｍ）  </p>
-  <p>&nbsp;&nbsp;&nbsp; 荷重 P           &nbsp;&nbsp;&nbsp;   {{.P|html}} （t）    </p>
-  <p>&nbsp;&nbsp;&nbsp; 高度差は H       &nbsp;&nbsp;&nbsp;   {{.H|html}}  （ｍ）   </p>
+  <p>&nbsp;&nbsp;&nbsp; 単位容積重釁EρE  &nbsp;&nbsp;&nbsp;  {{.Omega|html}} �E�E/㎡�E�E/p>
+  <p>&nbsp;&nbsp;&nbsp; U字管�E��E直征ED1  &nbsp;&nbsp;&nbsp;  {{.D1|html}} �E�ｍ！E </p>
+  <p>&nbsp;&nbsp;&nbsp; U字管 2の直征ED2  &nbsp;&nbsp;&nbsp;  {{.D2|html}}  �E�ｍ！E </p>
+  <p>&nbsp;&nbsp;&nbsp; 荷釁EP           &nbsp;&nbsp;&nbsp;   {{.P|html}} �E�E�E�E   </p>
+  <p>&nbsp;&nbsp;&nbsp; 高度差は H       &nbsp;&nbsp;&nbsp;   {{.H|html}}  �E�ｍ！E  </p>
 
   <p>&nbsp;&nbsp;&nbsp; the result of calculate                 </p>
 
-  <p>&nbsp;&nbsp;&nbsp; 必要な荷重 P2    &nbsp;&nbsp;&nbsp;  {{.P2|html}} （t）   </p>
+  <p>&nbsp;&nbsp;&nbsp; 忁E��な荷釁EP2    &nbsp;&nbsp;&nbsp;  {{.P2|html}} �E�E�E�E  </p>
   </section>
 </body>
 

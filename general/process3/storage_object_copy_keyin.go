@@ -5,10 +5,10 @@ import (
 	    "net/http"
 //	    "fmt"
 	    "html/template"
-	    "general/html5"
+	    "github.com/sawaq7/go12_ver1/general/html5"
 //	    "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
-	    "general/type5"
+	    "github.com/sawaq7/go12_ver1/general/type5"
 
 	    "storage2"
 	    "strconv"
@@ -20,7 +20,7 @@ import (
 
 func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "process3.storage_object_copy_keyin start \n" )  // デバック
+//    fmt.Fprintf( w, "process3.storage_object_copy_keyin start \n" )  // チE��チE��
 
     var sdmy  string
 
@@ -28,20 +28,20 @@ func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 
     line_no := r.FormValue("line_no")
 
-//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // デバック
+//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // チE��チE��
 
 	select_id ,_ := strconv.Atoi(line_no)
 
-//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // デバック
+//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // チE��チE��
 
 ///
-///   バケット名をゲット
+///   バケチE��名をゲチE��
 ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if projectID == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // デバック
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       projectID = "sample-7777"
 
@@ -97,7 +97,7 @@ func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 
 
 
-//           fmt.Fprintf( w, "storage_object_show : storage_b_o_temp2.Object_Name %v\n", storage_b_o_temp2.Object_Name )  // デバック
+//           fmt.Fprintf( w, "storage_object_show : storage_b_o_temp2.Object_Name %v\n", storage_b_o_temp2.Object_Name )  // チE��チE��
 
            if _, err := client.Put(ctx, update_key, &storage_b_o_temp2 ); err != nil {
 
@@ -117,7 +117,7 @@ func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 //	}
 
 ///
-///    テンプレートのヘッダーをGET
+///    チE��プレート�EヘッダーをGET
 ///
 
      monitor := template.Must(template.New("html").Parse(html5.Storage_object_copy_keyin))

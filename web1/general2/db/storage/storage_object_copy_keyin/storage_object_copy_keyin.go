@@ -3,11 +3,11 @@ package storage_object_copy_keyin
 import (
 
 	    "net/http"
-	    "general/process3"
+	    "github.com/sawaq7/go12_ver1/general/process3"
                                                   )
 
 ///
-///    main　データーベースのアクセスリストを表示する
+///    main　チE�Eターベ�Eスのアクセスリストを表示する
 ///
 
 

@@ -23,7 +23,7 @@ const Pipe_line1_show2 = `
           <table border="2" cellpadding="8" align="center" bgcolor="#cd5c5c">
 
           <h2 align="center"> excute all </h2>
-          <tr> <th>水路名</th> <th>実行</th> </tr>
+          <tr> <th>水路吁E/th> <th>実衁E/th> </tr>
 
           <tr>
 

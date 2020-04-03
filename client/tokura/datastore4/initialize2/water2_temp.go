@@ -7,7 +7,7 @@ import (
 
 //	    "fmt"
 
-	    "client/tokura/suiri/type4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 //	    "time"
 
         "cloud.google.com/go/datastore"
@@ -24,10 +24,10 @@ func Water2_temp(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      : レスポンスライター
 //     IN    r      : リクエストパラメータ
 
-//    fmt.Fprintf( w, "init/water2_temp start \n" )  // デバック
+//    fmt.Fprintf( w, "init/water2_temp start \n" )  // チE��チE��
 
 ///
-///   プロジェクト名をゲット
+///   プロジェクト名をゲチE��
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -56,7 +56,7 @@ func Water2_temp(w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-//    fmt.Fprintf( w, "init/water2_temp count \n" ,count )  // デバック
+//    fmt.Fprintf( w, "init/water2_temp count \n" ,count )  // チE��チE��
 
 	water2_temp     := make([]type4.Water2_Temp, 0, count)
 
@@ -80,7 +80,7 @@ func Water2_temp(w http.ResponseWriter, r *http.Request )   {
 		  http.Error(w, err.Error(), http.StatusInternalServerError)
 		  return
 	  }
-//      fmt.Fprintf( w, "init/water2_temp pos2 %v   \n" , pos2  )  // デバック
+//      fmt.Fprintf( w, "init/water2_temp pos2 %v   \n" , pos2  )  // チE��チE��
 
     }
 	return
