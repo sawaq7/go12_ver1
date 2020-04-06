@@ -1,7 +1,7 @@
 package storage_object_rename_excute
 
 import (
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 //	    "fmt"
 	    "net/http"
 //	    "google.golang.org/appengine"
@@ -18,24 +18,24 @@ import (
 
 func Storage_object_rename_excute(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_rename_excute start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_rename_excute start \n" )  // チE��チE��
 
     var project_name ,bucket_name ,basic_file_name string
 
-    var db_access_list2 type5.Db_Access_List2      //D.B. アクセスリスト�E用のワークエリアを確俁E
+    var db_access_list2 type5.Db_Access_List2      //D.B. アクセスリスト�E用のワークエリアを確俁E
 ///
 /// 入力データをGET 　
 ///
 
-    new_file_name := r.FormValue("new_file_name")  // ニューファイル名をゲチE��
+    new_file_name := r.FormValue("new_file_name")  // ニューファイル名をゲチE��
 
 ///
-///   プロジェクト名をゲチE��
+///   プロジェクト名をゲチE��
 ///
     project_name = os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -73,16 +73,16 @@ func Storage_object_rename_excute(w http.ResponseWriter, r *http.Request) {
 
         if pos == 0 {
 
-           project_name       = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
-           bucket_name        = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
-           basic_file_name    = storage_b_o_tempw.Object_Name    // ベ�EシチE��ファイル名をゲチE��
+           project_name       = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
+           bucket_name        = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           basic_file_name    = storage_b_o_tempw.Object_Name    // ベ�EシチE��ファイル名をゲチE��
 
         }
 	  }
 	}
 
 ///
-/// 　　　ストレチE��ファイルをリネ�Eムする　
+/// 　　　ストレチE��ファイルをリネ�Eムする　
 ///
 
     storage2.File_Rename ( w , r  ,bucket_name ,basic_file_name ,new_file_name  )
@@ -91,7 +91,7 @@ func Storage_object_rename_excute(w http.ResponseWriter, r *http.Request) {
 /// 　　　　アクセスリストに登録　
 ///
 
-///  吁E��アクセス惁E��をセチE��
+///  吁E��アクセス惁E��をセチE��
 
     db_access_list2.Db_Type = "sr"
     db_access_list2.Access_Type = "rename"
@@ -100,7 +100,7 @@ func Storage_object_rename_excute(w http.ResponseWriter, r *http.Request) {
     db_access_list2.Basic_File_Name = basic_file_name
     db_access_list2.New_File_Name = new_file_name
 
-/// チE�Eタストアに、Eレコードを追加
+/// チE�Eタストアに、Eレコードを追加
 
    new_key := datastore.IncompleteKey("Db_Access_List2", nil)
 
@@ -115,5 +115,5 @@ func Storage_object_rename_excute(w http.ResponseWriter, r *http.Request) {
 ///
     process3.Storage_object_show ( w , r ,project_name  ,bucket_name )
 
-//	fmt.Fprintf( w, "storage_object_rename_excute normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "storage_object_rename_excute normal end \n" )  // チE��チE��
 }

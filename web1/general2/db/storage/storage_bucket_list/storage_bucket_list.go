@@ -13,7 +13,7 @@ import (
 //         "fmt"
 //         "context"
 //         "cloud.google.com/go/storage"
-         "storage2"
+         "github.com/sawaq7/go12_ver1/storage2"
 	                                    )
 
 func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +25,7 @@ func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
    projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
    if projectID == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       projectID = "sample-7777"
 
@@ -62,12 +62,12 @@ func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-// チE��プレート�EヘッダーをGET
+// チE��プレート�EヘッダーをGET
 
     monitor := template.Must(template.New("html").Parse(html5.Storage_bucket_list))
 
 
-// 吁E��入力データを表示
+// 吁E��入力データを表示
 
 
 //    var str_dmy string

@@ -8,7 +8,7 @@ import (
 
 	"github.com/sawaq7/go12_ver1/general/type5"
 	"github.com/sawaq7/go12_ver1/general/process3"
-	"storage2"
+	"github.com/sawaq7/go12_ver1/storage2"
 //	"github.com/sawaq7/go12_ver1/storage2/get"
 
     "cloud.google.com/go/datastore"
@@ -19,12 +19,12 @@ import (
                                             )
 
 ///
-///   持E��したオブジェクトを削除する
+///   持E��したオブジェクトを削除する
 ///
 
 func Storage_object_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_delete start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_delete start \n" )  // チE��チE��
 
     var bucket ,filename ,project string
 
@@ -40,14 +40,14 @@ func Storage_object_delete(w http.ResponseWriter, r *http.Request) {
 
     line_no := r.FormValue("line_no")
 
-//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // チE��チE��
 
 	select_id ,_ := strconv.Atoi(line_no)
 
-//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // チE��チE��
 
 //
-///   バケチE��名をゲチE��
+///   バケチE��名をゲチE��
 ///
 
 	query := datastore.NewQuery("Storage_B_O_Temp")
@@ -75,15 +75,15 @@ func Storage_object_delete(w http.ResponseWriter, r *http.Request) {
       for pos, storage_b_o_tempw := range storage_b_o_temp {
 
         if pos == 0 {
-           project   = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
-           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           project   = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
+           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
 
         }
 	  }
 	}
 
 ///
-///   ファイル名をゲチE��
+///   ファイル名をゲチE��
 ///
 
 	objects :=  storage2.Object_List ( w  ,r , bucket )

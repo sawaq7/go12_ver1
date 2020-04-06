@@ -1,7 +1,7 @@
 package storage_object_copy_excute
 
 import (
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 //	    "fmt"
 	    "net/http"
 //	    "google.golang.org/appengine"
@@ -17,26 +17,26 @@ import (
 
 func Storage_object_copy_excute(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_copy_excute start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_copy_excute start \n" )  // チE��チE��
 
     var project_name ,bucket_name ,basic_file_name string
 
-    var db_access_list2 type5.Db_Access_List2      //D.B. アクセスリスト�E用のワークエリアを確俁E
+    var db_access_list2 type5.Db_Access_List2      //D.B. アクセスリスト�E用のワークエリアを確俁E
 ///
 /// 入力データをGET 　
 ///
 
-//    basic_file_name := r.FormValue("basic_file_name")  // ベ�EシチE��ファイル名をゲチE��
+//    basic_file_name := r.FormValue("basic_file_name")  // ベ�EシチE��ファイル名をゲチE��
 
-    new_file_name := r.FormValue("new_file_name")  // ニューファイル名をゲチE��
+    new_file_name := r.FormValue("new_file_name")  // ニューファイル名をゲチE��
 
 ///
-///   バケチE��名をゲチE��
+///   バケチE��名をゲチE��
 ///
     project_name = os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -72,27 +72,27 @@ func Storage_object_copy_excute(w http.ResponseWriter, r *http.Request) {
 
         if pos == 0 {
 
-           project_name       = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
-           bucket_name        = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
-           basic_file_name    = storage_b_o_tempw.Object_Name    // ベ�EシチE��ファイル名をゲチE��
+           project_name       = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
+           bucket_name        = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           basic_file_name    = storage_b_o_tempw.Object_Name    // ベ�EシチE��ファイル名をゲチE��
 
         }
 	  }
 	}
 
 ///
-/// ストレチE��ファイルをコピ�Eする　
+/// ストレチE��ファイルをコピ�Eする　
 ///
 
 //    general_work := make([]type5.General_Work, 2 )    // ワークエリア確俁E
-//    general_work[0].String_Work = basic_file_name     //　ベ�EシチE��ファイルネ�EムセチE��
-//    general_work[1].String_Work = new_file_name       //　ニューファイルネ�EムセチE��
+//    general_work[0].String_Work = basic_file_name     //　ベ�EシチE��ファイルネ�EムセチE��
+//    general_work[1].String_Work = new_file_name       //　ニューファイルネ�EムセチE��
 
 //    _ ,_ = storage2.Storage_basic( "copy" ,bucket_name ,general_work , w , r  )
 
-//    fmt.Fprintf(w, "storage_object_copy_excute: bucket_name %v\n", bucket_name )  // チE��チE��
-//    fmt.Fprintf(w, "storage_object_copy_excute: basic_file_name %v\n", basic_file_name )  // チE��チE��
-//    fmt.Fprintf(w, "storage_object_copy_excute: new_file_name %v\n", new_file_name )  // チE��チE��
+//    fmt.Fprintf(w, "storage_object_copy_excute: bucket_name %v\n", bucket_name )  // チE��チE��
+//    fmt.Fprintf(w, "storage_object_copy_excute: basic_file_name %v\n", basic_file_name )  // チE��チE��
+//    fmt.Fprintf(w, "storage_object_copy_excute: new_file_name %v\n", new_file_name )  // チE��チE��
 
     storage2.File_Copy ( w , r  ,bucket_name ,basic_file_name ,new_file_name  )
 
@@ -101,7 +101,7 @@ func Storage_object_copy_excute(w http.ResponseWriter, r *http.Request) {
 /// アクセスリストに登録　
 ///
 
-///  吁E��アクセス惁E��をセチE��
+///  吁E��アクセス惁E��をセチE��
 
     db_access_list2.Db_Type = "sr"
     db_access_list2.Access_Type = "copy"
@@ -110,15 +110,15 @@ func Storage_object_copy_excute(w http.ResponseWriter, r *http.Request) {
     db_access_list2.Basic_File_Name = basic_file_name
     db_access_list2.New_File_Name = new_file_name
 
-/// チE�Eタストアに、Eレコードを追加
+/// チE�Eタストアに、Eレコードを追加
 
     new_key := datastore.IncompleteKey("Db_Access_List2", nil)
 
-//    fmt.Fprintf(w, "storage_object_copy_excute: new_key %v\n", new_key )  // チE��チE��
+//    fmt.Fprintf(w, "storage_object_copy_excute: new_key %v\n", new_key )  // チE��チE��
 
     _, err = client.Put(ctx, new_key, &db_access_list2 )
 
-//    fmt.Fprintf(w, "storage_object_copy_excute: key2 %v\n", key2 )  // チE��チE��
+//    fmt.Fprintf(w, "storage_object_copy_excute: key2 %v\n", key2 )  // チE��チE��
 
     if err != nil {
 //   if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Db_Access_List2", nil) , &db_access_list2); err != nil {
@@ -144,5 +144,5 @@ func Storage_object_copy_excute(w http.ResponseWriter, r *http.Request) {
     process3.Storage_object_show ( w , r ,project_name  ,bucket_name )
 
 
-//	fmt.Fprintf( w, "storage_object_copy_excute normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "storage_object_copy_excute normal end \n" )  // チE��チE��
 }
