@@ -7,7 +7,7 @@ import (
 
 
 //	    "github.com/sawaq7/go12_ver1/storage2/get"
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 	    "strconv"
 	    "strings"
 	    "io"
@@ -29,7 +29,7 @@ import (
 
 func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
 
-    fmt.Fprintf( w, "csv_show_test start \n" )  // チE��チE��
+    fmt.Fprintf( w, "csv_show_test start \n" )  // チE��チE��
 
     var bucket ,filename string
 
@@ -40,20 +40,20 @@ func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
 
     line_no := r.FormValue("line_no")
 
-//    fmt.Fprintf( w, "csv_show : line_no %v\n", line_no )  // チE��チE��
+//    fmt.Fprintf( w, "csv_show : line_no %v\n", line_no )  // チE��チE��
 
 	select_id ,_ := strconv.Atoi(line_no)
 
-//    fmt.Fprintf( w, "csv_show : select_id %v\n", select_id )  // チE��チE��
+//    fmt.Fprintf( w, "csv_show : select_id %v\n", select_id )  // チE��チE��
 
 
 ///
-///   バケチE��名をゲチE��
+///   バケチE��名をゲチE��
 ///
      projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if projectID == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       projectID = "sample-7777"
 
@@ -88,7 +88,7 @@ func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
       for pos, storage_b_o_tempw := range storage_b_o_temp {
 
         if pos == 0 {
-           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
 
         }
 	  }
@@ -97,7 +97,7 @@ func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
 //    fmt.Fprintf( w, "csv_show : bucket2: %v\n", bucket2 )
 
 ///
-///   ファイル名をゲチE��
+///   ファイル名をゲチE��
 ///
 
 	objects :=  storage2.Object_List ( w  ,r , bucket )
@@ -122,7 +122,7 @@ func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
     initialize.Csv_inf (w , r )
 
 ///
-///      csvファイル　惁E��をゲチE��して表示
+///      csvファイル　惁E��をゲチE��して表示
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename , w , r  )
@@ -140,7 +140,7 @@ func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
         index ++     // レコードカウンターをカウンチE
 	    record ,err  := csv_reader.ReadString('\n')
 
-	    fmt.Fprintf( w, "csv_show : record %v\n", record )  // チE��チE��
+	    fmt.Fprintf( w, "csv_show : record %v\n", record )  // チE��チE��
 
 	    if err == io.EOF {
 
@@ -154,25 +154,25 @@ func Csv_show_test1(w http.ResponseWriter, r *http.Request) {
 
 		}
 
-		record = strings.Replace( record, ",", " ", -1)     /// 区刁E��斁E��を変更
+		record = strings.Replace( record, ",", " ", -1)     /// 区刁E��斁E��を変更
 
-		if index == 1 {   // 列数をゲチE��
+		if index == 1 {   // 列数をゲチE��
 
 		  column = strings.Count( record ," ") + 1
 
-		  fmt.Fprintf( w, "csv_show : column %v\n", column )  // チE��チE��
+		  fmt.Fprintf( w, "csv_show : column %v\n", column )  // チE��チE��
 
 		}
 
 
 
 
-///    ワークエリア(チE�Eタストア�E�にcsv惁E��をセチE��
+///    ワークエリア(チE�Eタストア�E�にcsv惁E��をセチE��
 
 
 	}
 
-//	fmt.Fprintf( w, "csv_show : normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "csv_show : normal end \n" )  // チE��チE��
 
 }
 

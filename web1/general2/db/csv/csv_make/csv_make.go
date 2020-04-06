@@ -1,7 +1,7 @@
 package csv_make
 
 import (
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 //	    "fmt"
 	    "net/http"
 
@@ -21,7 +21,7 @@ import (
 
 func Csv_make(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_make start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "csv_make start \n" )  // チE��チE��
 
     var bucket ,filename  ,project_name string
 
@@ -31,10 +31,10 @@ func Csv_make(w http.ResponseWriter, r *http.Request) {
 /// 入力データをGET 　
 ///
 
-    filename = r.FormValue("file_name")  // ニューファイル名をゲチE��
+    filename = r.FormValue("file_name")  // ニューファイル名をゲチE��
 
 ///
-///   プロジェクト名をゲチE��
+///   プロジェクト名をゲチE��
 ///
 
     project_name = os.Getenv("GOOGLE_CLOUD_PROJECT")
@@ -74,15 +74,15 @@ func Csv_make(w http.ResponseWriter, r *http.Request) {
 
         if pos == 0 {
 
-           project_name       = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
-           bucket   = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           project_name       = storage_b_o_tempw.Project_Name    // プロジェクト名をゲチE��
+           bucket   = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
 
         }
 	  }
 	}
 
 ///
-/// 　　　csvファイルを作�Eする　
+/// 　　　csvファイルを作�Eする　
 ///
 
      writer := storage2.File_Create2( w ,r ,bucket ,filename ,"text/plain" )
@@ -90,24 +90,24 @@ func Csv_make(w http.ResponseWriter, r *http.Request) {
 
 	defer writer.Close()
 
-	csv_inf := trans3.Csv_inf ( w ,r )  ///      csv惁E��をゲチE��
+	csv_inf := trans3.Csv_inf ( w ,r )  ///      csv惁E��をゲチE��
 
-	colum_num := int ( csv_inf[0].Column_Num )  // 列数をゲチE��
-	filename2 := csv_inf[0].File_Name            // ファイル名をゲチE��
+	colum_num := int ( csv_inf[0].Column_Num )  // 列数をゲチE��
+	filename2 := csv_inf[0].File_Name            // ファイル名をゲチE��
 	first_id  :=  csv_inf[0].Id
 
 
-//	fmt.Fprintf( w, "csv_make : colum_num %v\n", colum_num )  // チE��チE��
-//	fmt.Fprintf( w, "csv_make : record_num %v\n", len(csv_inf) )  // チE��チE��
+//	fmt.Fprintf( w, "csv_make : colum_num %v\n", colum_num )  // チE��チE��
+//	fmt.Fprintf( w, "csv_make : record_num %v\n", len(csv_inf) )  // チE��チE��
 
-	record := make ( []string ,colum_num )   //　レコード�Eワークエリアを確俁E
+	record := make ( []string ,colum_num )   //　レコード�Eワークエリアを確俁E
 ///
-///    csvファイルを作�E
+///    csvファイルを作�E
 ///
 
     for _ , csv_infw := range csv_inf {
 
-      for ii := 0 ; ii < colum_num ; ii++ {  //　レコードをセチE��
+      for ii := 0 ; ii < colum_num ; ii++ {  //　レコードをセチE��
 
         switch ii {
 
@@ -174,7 +174,7 @@ func Csv_make(w http.ResponseWriter, r *http.Request) {
         }
       }
 
-//      fmt.Fprintf( w, "csv_make : record %v\n", record )  // チE��チE��
+//      fmt.Fprintf( w, "csv_make : record %v\n", record )  // チE��チE��
 
       storage2.File_Write_Csv2 ( w  ,writer ,record )  // csvレコードを書き込む
 //      storage2.File_Write_Csv ( w  ,writer ,record )  // csvレコードを書き込む
@@ -205,18 +205,18 @@ func Csv_make(w http.ResponseWriter, r *http.Request) {
     }
 
 ///
-///　　web にcsv惁E��を表示
+///　　web にcsv惁E��を表示
 ///
 
-     csv_inf_view := trans3.Csv_inf ( w ,r )  ///      csv惁E��をゲチE��
+     csv_inf_view := trans3.Csv_inf ( w ,r )  ///      csv惁E��をゲチE��
 
-     monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // チE��プレート�EヘッダーをGET
+     monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // チE��プレート�EヘッダーをGET
 
      err = monitor.Execute ( w, csv_inf_view )
 	 if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	 }
 
-//	fmt.Fprintf( w, "csv_make normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "csv_make normal end \n" )  // チE��チE��
 
 }
