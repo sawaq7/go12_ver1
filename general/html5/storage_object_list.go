@@ -5,7 +5,7 @@ package html5
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>チE�Eタストアの更新・削除</title>
+        <title>datastore's update/delete</title>
 
         <link rel="stylesheet" href="css/sgh/deliver_showall1.css" type="text/css">
      </head>
@@ -112,7 +112,7 @@ package html5
              <form method="GET" action="/storage_object_copy_keyin" >
                <td>
                   <input type="hidden" name="line_no"  value="{{.Line_No|html}}"/>
-                  <input type="submit"  size="2" value="コピ�E"  />
+                  <input type="submit"  size="2" value="copy"  />
                </td>
              </form>
 

@@ -5,7 +5,7 @@ package html5
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>チE�Eタストアの更新・削除</title>
+        <title>datastore's update/delete</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>

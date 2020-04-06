@@ -14,23 +14,23 @@ import (
                                         )
 
 ///
-///     ストレチE��アクセスの基本ルーチン
+///    storage's basic routine
 ///
 
 
 func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 interface{} ,w http.ResponseWriter, r *http.Request )  (flexible_out1 interface{} ,flexible_out2 interface{}) {
 
 //     IN    function    : ファンクション　
-//        　　　　　　　　　�E�　trans ,check ,initialize ,sort　etc
-//     IN flexible_in1　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN flexible_in2　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN    w      　　 : レスポンスライター
+//        　　　　　　　　　�E�　trans ,check ,initialize ,sort　etc
+//     IN flexible_in1　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN flexible_in2　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN    w      　　 : レスポンスライター
 //     IN    r      　　 : リクエストパラメータ
 
-//     out flexible_out1  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E//     out flexible_out2  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E
-//    fmt.Fprintf( w, "storage_basic start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "storage_basic function \n" ,function )  // チE��チE��
+//     out flexible_out1  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E//     out flexible_out2  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E
+//    fmt.Fprintf( w, "storage_basic start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_basic function \n" ,function )  // チE��チE��
 
 ///
-///  ファンクションにより吁E��処琁E��刁E��して行う、E///
+///  ファンクションにより吁E��処琁E��刁E��して行う、E///
 
 	switch function {
 
@@ -46,7 +46,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  クリエイト�E場吁E///
+///  クリエイト�E場吁E///
 
       case "create" :
 
@@ -60,7 +60,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
 
 
 ///
-///  チE��ート�E場吁E///
+///  チE��ート�E場吁E///
 
       case "delete" :
 
@@ -72,7 +72,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  コピ�Eの場吁E///
+///  コピ�Eの場吁E///
 
       case "copy" :
 
@@ -84,7 +84,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リネ�Eムの場吁E///
+///  リネ�Eムの場吁E///
 
       case "rename" :
 
@@ -96,7 +96,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  ライト�E場吁E�E�Etring垁E行を書く！E///
+///  ライト�E場吁E�E�Etring垁E行を書く！E///
 
       case "write" :
 
@@ -108,7 +108,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  ライト２�E場吁E�E�構造体型1行を書く！E///
+///  ライト２�E場吁E�E�構造体型1行を書く！E///
 
       case "write2" :
 
@@ -119,7 +119,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リスト�E場吁E�E�バケチE��リストを出す！E///
+///  リスト�E場吁E�E�バケチE��リストを出す！E///
 
       case "list" :
 
@@ -130,7 +130,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リスチEの場吁E�E�オブジェクトリストを出す！E///
+///  リスチEの場吁E�E�オブジェクトリストを出す！E///
 
       case "list2" :
 
@@ -141,7 +141,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  リスチEの場吁E�E�オブジェクトリスチE詳細�E�を出す！E///
+///  リスチEの場吁E�E�オブジェクトリスチE詳細�E�を出す！E///
 
       case "list3" :
 
@@ -152,7 +152,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 ///
-///  ショウ1の場吁E�E�グラフ表示�E�！E///
+///  ショウ1の場吁E�E�グラフ表示�E�！E///
 
       case "show1" :
 
@@ -164,7 +164,7 @@ func Storage_basic( function string ,flexible_in1 interface{} ,flexible_in2 inte
       break;
 
 //
-///  ショウ2の場吁E�E�グラフ表示2�E�E///
+///  ショウ2の場吁E�E�グラフ表示2�E�E///
 
       case "show2" :
 

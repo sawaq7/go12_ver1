@@ -6,7 +6,7 @@ package html5
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>show image file</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
