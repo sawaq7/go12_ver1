@@ -12,7 +12,7 @@ func Appri_index(w http.ResponseWriter, r *http.Request) {
 
    var cdmy string
 
-/// チE��プレート�EヘッダーをGET
+/// get template
 
     monitor := template.Must(template.New("html").Parse(html5.Appri_index))
 

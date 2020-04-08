@@ -7,13 +7,14 @@ import (
 
          "github.com/sawaq7/go12_ver1/general/type5"
          "github.com/sawaq7/go12_ver1/general/html5"
+         "github.com/sawaq7/go12_ver1/storage2"
 
          "time"
          "os"
 //         "fmt"
 //         "context"
 //         "cloud.google.com/go/storage"
-         "github.com/sawaq7/go12_ver1/storage2"
+
 	                                    )
 
 func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
