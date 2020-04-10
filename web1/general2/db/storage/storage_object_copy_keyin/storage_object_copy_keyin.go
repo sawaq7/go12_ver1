@@ -4,13 +4,12 @@ import (
 
 	    "net/http"
 	    "github.com/sawaq7/go12_ver1/general/process3"
-                                                  )
+
+                                                         )
 
 ///
 ///    show access list
 ///
-
-
 
 func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 
@@ -20,6 +19,4 @@ func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 
     process3.Storage_object_copy_keyin(w , r )
 
-
 }
-

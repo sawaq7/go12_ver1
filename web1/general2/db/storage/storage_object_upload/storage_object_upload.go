@@ -2,8 +2,6 @@ package storage_object_upload
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
         "cloud.google.com/go/datastore"
         "cloud.google.com/go/storage"
 
@@ -24,7 +22,7 @@ import (
 
 func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_upload start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_upload start \n" )
 
     var bucket string
 
@@ -36,7 +34,6 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//    c := appengine.NewContext(r)
     ctx := context.Background()
 
 	query := datastore.NewQuery("Storage_B_O_Temp")
@@ -46,7 +43,6 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
        log.Fatalf("Failed to create client: %v", err)
     }
 
-//	count, err := q.Count(c)
     count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -56,7 +52,6 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 	storage_b_o_temp      := make([]type5.Storage_B_O_Temp, 0, count)
 
     if _, err = client.GetAll(ctx, query , &storage_b_o_temp) ; err != nil {
-//	if _, err := q.GetAll(c, &storage_b_o_temp);  err != nil {
 
 	  http.Error(w, err.Error(), http.StatusInternalServerError)
 	  return
@@ -66,8 +61,8 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
       for pos, storage_b_o_tempw := range storage_b_o_temp {
 
         if pos == 0 {
-           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
-           projectID = storage_b_o_tempw.Project_Name   // プロジェクト名をゲチE��
+           bucket    = storage_b_o_tempw.Bucket_Name    // get bucket name
+           projectID = storage_b_o_tempw.Project_Name   // get project name
 
         }
 	  }
@@ -82,12 +77,13 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 
 	w2_minor , _ := storage2.Storage_basic( "create" ,bucket ,fh.Filename , w , r  )
 
-    w2, _ := w2_minor.(*storage.Writer)  // インターフェイス型を型変換
+    w2, _ := w2_minor.(*storage.Writer)  //   convert data type
 
 //	w2 := storage2.File_Create ( w ,r ,bucket  ,fh.Filename )
 
-
-/// ストレチE��ファイルに既存�Eファイルの惁E��をコピ�E　　///
+///
+///    copy file data
+///
 
 	if _, err := io.Copy(w2, file_data); err != nil {
 	    http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -98,11 +94,13 @@ func Storage_object_upload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-/// モニター　再表示 ///
+///
+///     show web
+///
 
     process3.Storage_object_show ( w , r ,projectID  ,bucket )
 
-//	fmt.Fprintf( w, "storage_object_upload : normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "storage_object_upload : normal end \n" )
 
 }
 

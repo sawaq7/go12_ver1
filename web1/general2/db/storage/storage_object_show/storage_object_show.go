@@ -4,8 +4,6 @@ import (
 
 	    "net/http"
 //	    "fmt"
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 
 //	    "github.com/sawaq7/go12_ver1/storage2/get"
 	    "github.com/sawaq7/go12_ver1/storage2"
@@ -19,11 +17,12 @@ import (
                                                   )
 
 ///
-/// オブジェクト�E冁E��を表示する、E///
+///    show object list
+///
 
 func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "storage_object_show start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_show start \n" )
 
     var bucket ,filename string
 
@@ -37,25 +36,22 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 
     line_no := r.FormValue("line_no")
 
-//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )  // チE��チE��
+//    fmt.Fprintf( w, "storage_object_show : line_no %v\n", line_no )
 
 	select_id ,_ := strconv.Atoi(line_no)
 
-//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )  // チE��チE��
-
+//    fmt.Fprintf( w, "storage_object_show : select_id %v\n", select_id )
 
 ///
-///   バケチE��名をゲチE��
+///      get bucket name
 ///
 
-//    c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
 	query := datastore.NewQuery("Storage_B_O_Temp")
 
-//	count, err := q.Count(c)
 	count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -65,7 +61,6 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 	storage_b_o_temp      := make([]type5.Storage_B_O_Temp, 0, count)
 
     if _, err = client.GetAll(ctx, query , &storage_b_o_temp) ; err != nil {
-//	if _, err := q.GetAll(c, &storage_b_o_temp);  err != nil {
 
 	  http.Error(w, err.Error(), http.StatusInternalServerError)
 	  return
@@ -75,14 +70,14 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
       for pos, storage_b_o_tempw := range storage_b_o_temp {
 
         if pos == 0 {
-           bucket    = storage_b_o_tempw.Bucket_Name    // バケチE��名をゲチE��
+           bucket    = storage_b_o_tempw.Bucket_Name    //  get bucket name
 
         }
 	  }
 	}
 
 ///
-///   ファイル名をゲチE��
+///    get file name
 ///
 
 	objects :=  storage2.Object_List ( w  ,r , bucket )
@@ -99,14 +94,15 @@ func Storage_object_show(w http.ResponseWriter, r *http.Request) {
 
     }
 
-
-/// モニター　表示 ///
+///
+///     show web
+///
 
     storage2.Storage_basic( "show1" ,bucket ,filename , w , r  )
 
 //    get.Image_file_show( w ,r ,bucket ,filename )
 
-//	fmt.Fprintf( w, "storage_object_show : normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "storage_object_show : normal end \n" )
 
 }
 
