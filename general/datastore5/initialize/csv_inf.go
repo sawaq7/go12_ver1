@@ -22,7 +22,7 @@ func Csv_inf(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//    fmt.Fprintf( w, "init/csv_inf start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "init/csv_inf start \n" )
 
    projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 

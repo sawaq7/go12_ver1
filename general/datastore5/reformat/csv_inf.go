@@ -20,16 +20,17 @@ import (
 func Csv_inf(funct int64 ,column_no int64 ,csv_inf []type5.Csv_Inf ,w http.ResponseWriter, r *http.Request )  ([]type5.Csv_Inf ) {
 
 //     IN  funct  　　　: ファンクション
-//     　　　　　�E�！E 削除
-//     　　　　　�E�！E 挿入
-//     IN  column_no  　　: 対象の衁E//     IN    w      　　: レスポンスライター
+//     　　　　　delete
+//     　　　　　insert
+//     IN  column_no  　　
+//     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT csv_inf_new  : フォーマット変更後�Ecsv惁E��”�Eスライス
+//     OUT csv_inf_new  : after reformating csv inf
 
-//    fmt.Fprintf( w, "reformat.csv_inf start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "reformat.csv_inf funct \n" ,funct )  // チE��チE��
-//    fmt.Fprintf( w, "reformat.csv_inf column_no \n" ,column_no)  // チE��チE��
+//    fmt.Fprintf( w, "reformat.csv_inf start \n" )
+//    fmt.Fprintf( w, "reformat.csv_inf funct \n" ,funct )
+//    fmt.Fprintf( w, "reformat.csv_inf column_no \n" ,column_no)
 
     var column_wk int64
 
@@ -38,7 +39,7 @@ func Csv_inf(funct int64 ,column_no int64 ,csv_inf []type5.Csv_Inf ,w http.Respo
 
 	for _, csv_infw := range csv_inf {
 
-//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // チE��チE��
+//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // チE��チE��
 
         str_work[0]  = csv_infw.Column1
 	    str_work[1]  = csv_infw.Column2

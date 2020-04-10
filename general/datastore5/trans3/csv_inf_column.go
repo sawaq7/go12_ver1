@@ -16,27 +16,27 @@ import (
                                                 )
 
 ///
-///    持E��したcolumnNOのcsv惁E��をゲチE��する
+///    get csv data in column
 ///
 
 func Csv_inf_column ( w http.ResponseWriter, r *http.Request ,column_no int )  ( []string ) {
 
 //     IN    w      　　　　: レスポンスライター
 //     IN    r      　　　　: リクエストパラメータ
-//     IN  column_no　      : 抽出したぁE��NOの惁E��
+//     IN  column_no　      : 抽出したぁE��NOの惁E��
 
-//     OUT csv_inf_column  : csv惁E�� E
-//    fmt.Fprintf( w, "trans.csv_inf_column start \n" )  // チE��チE��
+//     OUT csv_inf_column  : csv惁E�� E
+//    fmt.Fprintf( w, "trans.csv_inf_column start \n" )  // チE��チE��
 
     var string_wk string
 
 ///
-///   プロジェクト名をゲチE��
+///   プロジェクト名をゲチE��
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
 
       project_name = "sample-7777"
 
@@ -73,7 +73,7 @@ func Csv_inf_column ( w http.ResponseWriter, r *http.Request ,column_no int )  (
 
 	for _, csv_infw := range csv_inf {
 
-///  機�EによりチェチE��頁E��をセチE��
+///  機�EによりチェチE��頁E��をセチE��
      switch column_no {
 
           case 1 :
@@ -142,7 +142,7 @@ func Csv_inf_column ( w http.ResponseWriter, r *http.Request ,column_no int )  (
 
 	}
 
-//    fmt.Fprintf( w, "trans.csv_inf_column normal end )  // チE��チE��
+//    fmt.Fprintf( w, "trans.csv_inf_column normal end )  // チE��チE��
 
     return	csv_inf_column
 }

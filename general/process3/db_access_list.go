@@ -12,22 +12,22 @@ import (
 
 func Db_access_list(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "process3.db_access_list start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "process3.db_access_list start \n" )  // チE��チE��
 
 ///
-///    チE��プレート�EヘッダーをGET
+///    set template
 ///
 
      monitor := template.Must(template.New("html").Parse(html5.Db_access_list))
 
 ///
-///     チE�Eタストアーから、表示用チE�EタをGET
+///     get d.b. access list
 ///
 
      db_access_list := trans3.Db_access_list ( w ,r )
 
 ///
-///       モニターに表示
+///      set web
 ///
 
 	err := monitor.Execute(w, db_access_list)

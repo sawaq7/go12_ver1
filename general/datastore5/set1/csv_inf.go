@@ -12,21 +12,21 @@ import (
                                                 )
 
 ///
-/// csvファイルに列単位でチE�EタをセチE��する
+///    set csv file for column
 ///
 
 func Csv_inf ( csv_inf []type5.Csv_Inf ,csv_inf_join []string ,column_no int ,w http.ResponseWriter, r *http.Request )  ([]type5.Csv_Inf ) {
 
-//     IN  csv_inf  　　: csv惁E��”�Eスライス
+//     IN  csv_inf  　　: csv惁E��”�Eスライス
 //     IN  csv_inf_join : 追加する列情報　　　　
 //     IN  column_no  　　: 対象の衁E//     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT csv_inf_new  : チE�Eタ追加後�Ecsv惁E��”�Eスライス
+//     OUT csv_inf_new  : チE�Eタ追加後�Ecsv惁E��”�Eスライス
 
-//    fmt.Fprintf( w, "set1.csv_inf start %v\n" )  // チE��チE��
-//    fmt.Fprintf( w, "set1.csv_inf csv_inf_join %v\n" ,csv_inf_join )  // チE��チE��
-//    fmt.Fprintf( w, "set1.csv_inf column_no %v\n" ,column_no)  // チE��チE��
+//    fmt.Fprintf( w, "set1.csv_inf start %v\n" )  // チE��チE��
+//    fmt.Fprintf( w, "set1.csv_inf csv_inf_join %v\n" ,csv_inf_join )  // チE��チE��
+//    fmt.Fprintf( w, "set1.csv_inf column_no %v\n" ,column_no)  // チE��チE��
 
     str_work := make([]string ,10 )  // ワークエリアを確俁E
 	csv_inf2 := make([]type5.Csv_Inf, 0)
@@ -35,7 +35,7 @@ func Csv_inf ( csv_inf []type5.Csv_Inf ,csv_inf_join []string ,column_no int ,w 
 
 	for _, csv_infw := range csv_inf {
 
-//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // チE��チE��
+//	  fmt.Fprintf( w, "trans.csv_inf csv_infw %v\n" ,csv_infw)  // チE��チE��
 
       str_work[0]  = csv_infw.Column1
 	  str_work[1]  = csv_infw.Column2
@@ -72,7 +72,7 @@ func Csv_inf ( csv_inf []type5.Csv_Inf ,csv_inf_join []string ,column_no int ,w 
 
 	}
 
-//    fmt.Fprintf( w, "set1.csv_inf csv_inf2 %v\n" ,csv_inf2)  // チE��チE��
+//    fmt.Fprintf( w, "set1.csv_inf csv_inf2 %v\n" ,csv_inf2)  // チE��チE��
 
     return	csv_inf2
 }

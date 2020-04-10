@@ -1,8 +1,7 @@
 package initialize
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
         "cloud.google.com/go/datastore"
 
 	    "net/http"
@@ -23,7 +22,7 @@ func Storage_b_o_temp(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//    fmt.Fprintf( w, "init/storage_b_o_temp start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "init/storage_b_o_temp start \n" )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -47,7 +46,7 @@ func Storage_b_o_temp(w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-//    fmt.Fprintf( w, "init/storage_b_o_temp count \n" ,count )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "init/storage_b_o_temp count \n" ,count )
 
 	storage_b_o_temp     := make([]type5.Storage_B_O_Temp, 0, count)
 

@@ -21,22 +21,21 @@ import (
 
 func Db_access_list( w http.ResponseWriter, r *http.Request )  ([]type5.Db_Access_List2 ) {
 
-//    fmt.Fprintf( w, "trans3.db_access_list2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans3.db_access_list2 start \n" )
 
 
 ///
-///   繝励Ο繧ｸ繧ｧ繧ｯ繝亥錐繧偵ご繝・ヨ
+///   get project name
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // 繝・ヰ繝・け
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )
 
       project_name = "sample-7777"
 
 	}
     ctx := context.Background()
-//    c := appengine.NewContext(r)
 
 	query := datastore.NewQuery("Db_Access_List2")
 
@@ -50,14 +49,12 @@ func Db_access_list( w http.ResponseWriter, r *http.Request )  ([]type5.Db_Acces
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return  nil
 	}
-//	count, err := q.Count(c)
 
 	db_access_list2      := make([]type5.Db_Access_List2, 0, count)
 
 	db_access_list2_view := make([]type5.Db_Access_List2, 0)
 
     keys, err := client.GetAll(ctx, query , &db_access_list2 )
-//	keys, err := q.GetAll(c, &db_access_list2)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
 

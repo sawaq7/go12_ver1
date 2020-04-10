@@ -1,8 +1,7 @@
 package process3
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 	    "html/template"
@@ -19,21 +18,21 @@ func Csv_inf(w http.ResponseWriter, r *http.Request ) {
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 //     IN  district_no  : 蝨ｰ蝓櫻o
 
-//    fmt.Fprintf( w, "csv_inf start \n" )  // 繝・ヰ繝・け}
+//    fmt.Fprintf( w, "csv_inf start \n" )
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+//    set template
 
      monitor := template.Must(template.New("html").Parse(html5.Csv_show))
 
 
-// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲…sv諠・ｱ繧偵ご繝・ヨ
+//    get csv inf.
 
 //    d_area_view := datastore2.Datastore_sgh( "D_Area","trans" ,district_no , w , r  )
 
     csv_inf := trans3.Csv_inf ( w ,r )
 
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
-//   fmt.Fprintf( w, "csv_inf csv_inf %v\n" ,csv_inf)  // 繝・ヰ繝・け
+//  set web
+//   fmt.Fprintf( w, "csv_inf csv_inf %v\n" ,csv_inf)
 
 	err := monitor.Execute( w, csv_inf )
 

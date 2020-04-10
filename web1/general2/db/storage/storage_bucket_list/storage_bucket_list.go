@@ -63,12 +63,12 @@ func Storage_bucket_list(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-// チE��プレート�EヘッダーをGET
+// set template
 
     monitor := template.Must(template.New("html").Parse(html5.Storage_bucket_list))
 
 
-// 吁E��入力データを表示
+//  show web
 
 
 //    var str_dmy string

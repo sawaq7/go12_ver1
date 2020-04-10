@@ -5,8 +5,7 @@ import (
 	    "google.golang.org/appengine/datastore"
 	    "net/http"
 	    "fmt"
-//	    "html/template"
-//	    "web/htmls/sgh"
+
 	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
                                                 )
@@ -20,7 +19,7 @@ func D_area_temp(w http.ResponseWriter, r *http.Request )   {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-    fmt.Fprintf( w, "init/D_area_temp start \n" )  // 繝・ヰ繝・け
+    fmt.Fprintf( w, "init/D_area_temp start \n" )
 
 	c := appengine.NewContext(r)
 
@@ -32,8 +31,7 @@ func D_area_temp(w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-// import struct for accessing datastore get from github.com/sawaq7/go12_ver1/client/sgh/type2/sgh.go
-    fmt.Fprintf( w, "init/D_area_temp count \n" ,count )  // 繝・ヰ繝・け
+    fmt.Fprintf( w, "init/D_area_temp count \n" ,count )
 
 	d_area_temp     := make([]type2.D_Area_Temp, 0, count)
 	keys, err := q.GetAll(c, &d_area_temp )
@@ -52,7 +50,7 @@ func D_area_temp(w http.ResponseWriter, r *http.Request )   {
 		  http.Error(w, err.Error(), http.StatusInternalServerError)
 		  return
 	  }
-      fmt.Fprintf( w, "init/d_area_temp pos2 %v   \n" , pos2  )  // 繝・ヰ繝・け
+      fmt.Fprintf( w, "init/d_area_temp pos2 %v   \n" , pos2  )
 
 
     }

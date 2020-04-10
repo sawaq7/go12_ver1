@@ -2,8 +2,6 @@ package process3
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 	    "github.com/sawaq7/go12_ver1/general/type5"
 //	    "fmt"
@@ -18,13 +16,13 @@ func Csv_update(w http.ResponseWriter, r *http.Request ,updid int64) {
 
 //     IN    w      : レスポンスライター
 //     IN    r      : リクエストパラメータ
-//     IN  updid　  : 修正するチE�Eタストアのレコード�Eid
+//     IN  updid　  : 修正するチE�Eタストアのレコード�Eid
 
-//    fmt.Fprintf( w, "csv_update start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "csv_update start \n" )
     var csv_inf type5.Csv_Inf
 
 ///
-///   プロジェクト名をゲチE��
+///     get project name
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -61,9 +59,7 @@ func Csv_update(w http.ResponseWriter, r *http.Request ,updid int64) {
     csv_inf.Column9 = r.FormValue("column9")
     csv_inf.Column10 = r.FormValue("column10")
 
-
-
-//	fmt.Fprintf( w, "csv_update : csv_inf.Column1 %v\n", csv_inf.Column1 )  // チE��チE��
+//	fmt.Fprintf( w, "csv_update : csv_inf.Column1 %v\n", csv_inf.Column1 )
 
     if _, err := client.Put(ctx, key, &csv_inf ); err != nil {
 		http.Error(w,err.Error(), http.StatusInternalServerError)

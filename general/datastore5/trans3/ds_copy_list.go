@@ -15,17 +15,17 @@ import (
                                                 )
 
 ///                           ///
-/// åœ°åŒºã®ã‚¨ãƒªã‚¢æ•°ã‚’ã‚²ãƒEƒˆã™ã‚‹ ///
+///    get copy list data
 ///                          ///
 
 func Ds_copy_list( w http.ResponseWriter, r *http.Request )  ([]type5.Ds_Copy_List ) {
 
-//    fmt.Fprintf( w, "trans.Ds_copy_list start \n" )  // ãƒEƒãƒE‚¯
+//    fmt.Fprintf( w, "trans.Ds_copy_list start \n" )  // ãƒEï¿½ï¿½ãƒEï¿½ï¿½
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "trans.Ds_copy_list :  projectID unset \n"  )  // ãƒEƒãƒE‚¯
+//      fmt.Fprintf( w, "trans.Ds_copy_list :  projectID unset \n"  )  // ãƒEï¿½ï¿½ãƒEï¿½ï¿½
 
       project_name = "sample-7777"
 
@@ -59,7 +59,7 @@ func Ds_copy_list( w http.ResponseWriter, r *http.Request )  ([]type5.Ds_Copy_Li
 //	keys, err := q.GetAll(c, &ds_copy_list)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // ãƒEƒãƒE‚¯
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // ãƒEï¿½ï¿½ãƒEï¿½ï¿½
        return	nil
 	}
 

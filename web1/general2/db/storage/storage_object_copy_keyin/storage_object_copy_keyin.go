@@ -7,7 +7,7 @@ import (
                                                   )
 
 ///
-///    main　チE�Eターベ�Eスのアクセスリストを表示する
+///    show access list
 ///
 
 
@@ -18,7 +18,6 @@ func Storage_object_copy_keyin(w http.ResponseWriter, r *http.Request) {
 /// モニター表示
 ///
 
-//    process3.Db_access_list(w , r )
     process3.Storage_object_copy_keyin(w , r )
 
 

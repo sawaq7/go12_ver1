@@ -12,18 +12,17 @@ import (
 
 func Datastore_copy_list_keyin(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "process.datastore_copy_list_keyin start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "process.datastore_copy_list_keyin start \n" )
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+//    set template
 
      monitor := template.Must(template.New("html").Parse(html5.Datastore_copy_list_keyin))
 
-// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲∬｡ｨ遉ｺ逕ｨ繝・・繧ｿ繧竪ET
-
+//    get copy list
 
      ds_copy_list_view := trans3.Ds_copy_list ( w ,r )
 
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+//    set web
 
 	err := monitor.Execute(w, ds_copy_list_view)
 	if err != nil {

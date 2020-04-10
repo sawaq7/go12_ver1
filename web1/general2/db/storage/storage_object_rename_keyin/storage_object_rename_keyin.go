@@ -7,13 +7,13 @@ import (
                                                   )
 
 ///
-///    main　チE�Eターベ�Eスのアクセスリストを表示する
+///    show access list
 ///
 
 func Storage_object_rename_keyin(w http.ResponseWriter, r *http.Request) {
 
 ///
-/// モニター表示
+///     show web
 ///
 
     process3.Storage_object_rename_keyin(w , r )
