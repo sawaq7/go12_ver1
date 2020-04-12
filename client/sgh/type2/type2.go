@@ -13,27 +13,27 @@ import (
 type D_District struct {               ///  for datastore
 
        Id               int64           //
-       District_No      int64           // 配達地域NO.
-	   District_Name    string          // 配達地域名
+       District_No      int64           //
+	   District_Name    string          //
 
 
    }
 
-type D_District_Temp struct {         /// 一時ファイル用
+type D_District_Temp struct {         ///  for temp.
 
-       Id             int64           //　
-       District_No    int64           // 配達地域NO.
-	   District_Name  string          // 配達地域名
+       Id             int64           //
+       District_No    int64           //
+	   District_Name  string          //
 
 
    }
 
 type D_District_View struct {               ///  for showing
 
-       Id               int64           //　
-       District_No      int64           // 配達地域NO.
-	   District_Name    string          // 配達地域名
-       D_Area_Slice     []D_Area        //　slice for area
+       Id               int64           //
+       District_No      int64           //
+	   District_Name    string          //
+       D_Area_Slice     []D_Area        // slice for area
 
    }
 
@@ -43,12 +43,12 @@ type D_District_View struct {               ///  for showing
 type D_Area struct {               ///    for datastore
 
        Id             int64           //
-       Course_No      int64           // コースNO.
-       District_No    int64           // 配達地域NO.
-       District_Name  string          // 配達地域名
-       Area_No        int64           // 配達エリアNO.
-	   Area_Name      string          // 配達エリア吁E
-	   Area_Detail    string          // 配達エリアの詳細
+       Course_No      int64           //
+       District_No    int64           //
+       District_Name  string          //
+       Area_No        int64           //
+	   Area_Name      string          //
+	   Area_Detail    string          // detail inf. for area
 	   Number_Total   int64           // total delivery number
 	   Time_Total     float64         // total deliver time
 	   Productivity   float64         //
@@ -62,9 +62,9 @@ type D_Area struct {               ///    for datastore
 type D_Area_Temp struct {           ///   for temp.
 
        Id           int64           //
-       Course_No    int64           // コースNO.
-       District_No    int64         // 配達地域NO.
-       District_Name  string          // 配達地域名
+       Course_No    int64           //
+       District_No    int64         // .
+       District_Name  string        //
        Area_No      int64           // 配達エリアNO.
 	   Area_Name    string          //
 	   Area_Detail  string          // 配達エリアの詳細
