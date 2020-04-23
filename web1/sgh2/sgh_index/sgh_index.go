@@ -15,11 +15,11 @@ func Sgh_index(w http.ResponseWriter, r *http.Request) {
 
    var cdmy string
 
-/// チE��プレート�EヘッダーをGET
+///     set template
 
     monitor := template.Must(template.New("html").Parse(html2.Sgh_index))
 
-// モニターに表示
+///   show sgh menu on web
 
 	err := monitor.Execute(w, cdmy)
 	if err != nil {
