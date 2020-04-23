@@ -8,13 +8,14 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/tokura/storage3"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "strconv"
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 //	    "fmt"
 
                                                   )
 
 ///
-///     sky 水路チE�Eタをファイルに追加 (ストレチE���E�E///
+///     put new water inf. in storage
+///
 
 func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
 
@@ -27,29 +28,29 @@ func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
     bucket := "sample-7777"
 
 ///
-/// key-in チE�EタをGET
+/// key-in チE�EタをGET
 ///
 
-	water2.Name = r.FormValue("water_name")  // 水路名をゲチE��
+	water2.Name = r.FormValue("water_name")
 
-	water_high := r.FormValue("water_high")      // 水路高をゲチE��
-	water2.High,_ =strconv.ParseFloat(water_high,64)  //　float64　に変換
+	water_high := r.FormValue("water_high")
+	water2.High,_ =strconv.ParseFloat(water_high,64)
 
-	r_facter := r.FormValue("r_facter")      // 粗粒係数をゲチE��
-	water2.Roughness_Factor,_ =strconv.ParseFloat(r_facter,64)  //　float64　に変換
+	r_facter := r.FormValue("r_facter")
+	water2.Roughness_Factor,_ =strconv.ParseFloat(r_facter,64)
 
-//	fmt.Fprintf( w, "pipe_line_ds_keyin : water2.Name %v\n", water2.Name )  // チE��チE��
-//	fmt.Fprintf( w, "pipe_line_ds_keyin : water2.High %v\n", water2.High )  // チE��チE��
+//	fmt.Fprintf( w, "pipe_line_ds_keyin : water2.Name %v\n", water2.Name )
+//	fmt.Fprintf( w, "pipe_line_ds_keyin : water2.High %v\n", water2.High )
 
 ///
-///             Water2　ファイルがあるかチェチE��
+///      check whether or not exist file "Water2"
 ///
 
     objects_minor , _ := storage2.Storage_basic( "list2" ,bucket ,idmy, w , r  )
 
-    objects, _ := objects_minor.([]string)  // インターフェイス型を型変換
+    objects, _ := objects_minor.([]string)
 
-//    objects :=  storage2.Object_List ( w  ,r , bucket )  // バケチE��冁E�EオブジェクトをゲチE��する
+//    objects :=  storage2.Object_List ( w  ,r , bucket )
 
     for _ , objectsw := range objects {
 
@@ -61,19 +62,19 @@ func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
 
     }
 
-//    fmt.Fprintf(w, "process2.pipe_line_ds_keyin : new_flag %v\n", new_flag )  // チE��チE��
+//    fmt.Fprintf(w, "process2.pipe_line_ds_keyin : new_flag %v\n", new_flag )
 
 ///
-///         ストレチE��にチE�EタをセチE��
+///         put Water2 inf. in storage
 ///
 
     if new_flag == 0 {
 
       _ , _ = storage3.Storage_tokura( "Water2" ,"put" ,water2 , idmy , w , r  )
 
-//      put1.Water2 ( w , r ,water2 )   //  ファイルに追加
+//      put1.Water2 ( w , r ,water2 )   //  add an existing file
 
-    } else {                          //  ファイルを新規作�E
+    } else {                          //  make a new file
 
       _ , _ = storage3.Storage_tokura( "Water2" ,"put2" ,water2 , idmy , w , r  )
 
@@ -82,7 +83,7 @@ func Pipe_line_st_show(w http.ResponseWriter, r *http.Request) {
 	}
 
 ///
-///           モニター表示
+///           show water inf. on web
 ///
 
    process2.Pipe_line_st_show(w , r )

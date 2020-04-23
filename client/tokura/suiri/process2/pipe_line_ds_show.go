@@ -13,18 +13,18 @@ import (
                                                 )
 func Pipe_line_ds_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "process2.pipe_line_ds_show start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "process2.pipe_line_ds_show start \n" )
 
     var idmy int64
 
 ///
-///      繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+///      set template
 ///
 
      monitor := template.Must(template.New("html").Parse(html4.Pipe_line_ds_keyin))
 
 ///
-///   繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲∬｡ｨ遉ｺ逕ｨ繝・・繧ｿ繧竪ET
+///      get water-inf.
 ///
 
 
@@ -32,11 +32,11 @@ func Pipe_line_ds_show(w http.ResponseWriter, r *http.Request) {
 
      water2_view := datastore4.Datastore_tokura( "Water2"  ,"trans"  ,idmy , w , r  )
 
-     value, _ := water2_view.([]type4.Water2)    // 遨ｺ繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繧､繧ｹ螟画焚繧医ｊ繝舌Μ繝･繝ｼ蛟､繧偵ご繝・ヨ
+     value, _ := water2_view.([]type4.Water2)
 
 
 ///
-///             繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+///           show water-inf. on web
 ///
 
 	err := monitor.Execute(w, value)

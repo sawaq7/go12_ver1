@@ -12,10 +12,12 @@ import (
 
 func Circle_Circum(radius float64 )float64 {
 
-//     IN    radius(m)  : 蜊雁ｾ・//    OUT    one        : 蜀・捉
+//     IN    radius(m)
 
-//    pai:= maths. Math_Pai_Get() //ﾏ繧暖et
-    pai := declare.Math_Const_Pai //蜀・捉邇・ｒGET
+//    OUT    one        : circumference of circle
+
+    pai := declare.Math_Const_Pai  ///   get pai
+
     fmt.Println("Circle_Circum",pai)
 
     return(2*pai*radius)

@@ -18,21 +18,21 @@ func Private_showall1(w http.ResponseWriter, r *http.Request) {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//    fmt.Fprintf( w, "process.deliver1_show_all1 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "process.deliver1_show_all1 start \n" )
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+//     set template
 
     monitor := template.Must(template.New("html").Parse(html2.Private_showall1))
 
-// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲∬｡ｨ遉ｺ逕ｨ繝・・繧ｿ繧竪ET
+//    get private inf in d.s.
 
     private_view := datastore2.Datastore_sgh( "Private" ,"trans" ,nil ,w , r  )
 
-    // 遨ｺ繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繧､繧ｹ螟画焚繧医ｊ繝舌Μ繝･繝ｼ蛟､繧偵ご繝・ヨ
+    // get value from interface data
 
     value, _ := private_view.([]type2.Private)
 
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+//    show private inf. on web
 
 	err := monitor.Execute(w, value)
 	if err != nil {

@@ -14,22 +14,22 @@ import (
 
 func Csv_match_exp(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_match_exp start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "csv_match_exp start \n" )
 
 ///
-///縲縲web 縺ｫcsv諠・ｱ繧定｡ｨ遉ｺ
+///縲縲show csv inf. on web
 ///
 
-     csv_inf_view := trans3.Csv_inf ( w ,r )  ///      csv諠・ｱ繧偵ご繝・ヨ
+     csv_inf_view := trans3.Csv_inf ( w ,r )  ///      get csv inf.
 
-     monitor := template.Must( template.New("html").Parse( html5.Csv_match_exp )) // 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+     monitor := template.Must( template.New("html").Parse( html5.Csv_match_exp )) // set template
 
      err := monitor.Execute ( w, csv_inf_view )
 	 if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	 }
 
-//	fmt.Fprintf( w, "csv_match_exp : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "csv_match_exp : normal end \n" )
 
 }
 

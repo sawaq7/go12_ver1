@@ -10,10 +10,10 @@ import (
 
 func Pipe_line_ds_keyin(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "pipe_line_ds_keyin start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "pipe_line_ds_keyin start \n" )
 
 
-/// モニター表示 ///
+///   show water-line inf.
 
    process2.Pipe_line_ds_show(w , r )
 

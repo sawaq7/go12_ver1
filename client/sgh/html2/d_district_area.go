@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>チE�Eタストアの更新・削除</title>
+        <title>datastore update/delete</title>
         <link rel="stylesheet" href="css/sgh/d_district_area.css" type="text/css">
      </head>
      <body>

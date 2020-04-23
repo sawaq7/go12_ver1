@@ -11,21 +11,20 @@ import (
 //	    "strconv"
                                                   )
 
-/// main 莠育ｴ・憾豕√ｒ陦ｨ遉ｺ縺吶ｋ ///
+///
+///     show reserve situation2 inf.
+///
 
 func Reserve_situation2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "reserve_situation2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "reserve_situation2 start \n" )
 
 ///
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ
+///     show reserve situation2 inf.
 ///
 
    reserve.Reserve( w , r)
 
-//	fmt.Fprintf( w, "reserve_situation2 : normal end \n" )  // 繝・ヰ繝・け
-
-
-
+//	fmt.Fprintf( w, "reserve_situation2 : normal end \n" )
 
 }

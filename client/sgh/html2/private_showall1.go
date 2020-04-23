@@ -27,7 +27,7 @@ package html2
 
               <td > <input type="text" name="worker_salary" size="5" />      </td>
 
-              <td > <input type="submit" size="2"  value="登録" />            </td>
+              <td > <input type="submit" size="2"  value="register" />            </td>
             </form>
        </section>
        <section id="main">
@@ -64,7 +64,7 @@ package html2
                   <input type="text" name="hourly_pay" size="5" align="center" value="{{.Worker_H_Pay|html}}" />
                </td>
                <td>
-                  <input type="submit"  size="2" value="変更"  />
+                  <input type="submit"  size="2" value="change"  />
                </td>
              </form>
 
@@ -72,7 +72,7 @@ package html2
 
                <td>
                   <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                  <input type="submit"  size="2" value="削除"  />
+                  <input type="submit"  size="2" value="delete"  />
                </td>
              </form>
 

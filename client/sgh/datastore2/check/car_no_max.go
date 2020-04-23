@@ -1,12 +1,10 @@
 package check
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
-//	    "html/template"
-//	    "web/htmls/sgh"
+
 	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 
         "cloud.google.com/go/datastore"
@@ -16,7 +14,7 @@ import (
                                                 )
 
 ///
-/// 縲縲縲縲縲逋ｻ骭ｲ蜿ｷ霆頑焚繧偵ご繝・ヨ縺吶ｋ
+/// 縲縲縲縲 get car number which was registed
 ///
 
 func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car_number int64 ) {
@@ -25,7 +23,7 @@ func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 //     IN 縲district_no : 蝨ｰ蛹ｺNo
 
-//    fmt.Fprintf( w, "car_no_max start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "car_no_max start \n" )
 
     var idmy int64
 
@@ -37,16 +35,14 @@ func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("Car").Order("Car_No")
-//	q := datastore.NewQuery("Car").Order("Car_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return idmy
@@ -55,7 +51,7 @@ func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car
 	car := make([]type2.Car, 0, count)
 
     if _, err := client.GetAll(ctx, query , &car) ; err != nil {
-//	if _, err := q.GetAll(c, &car); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return idmy
 	} else {
@@ -70,7 +66,7 @@ func Car_no_max(w http.ResponseWriter, r *http.Request ,district_no int64)  (car
         }
 	  }
 	}
-//    fmt.Fprintf( w, "car_no_max car_number \n" , car_number)  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "car_no_max car_number \n" , car_number)
 	return car_number
 }
 

@@ -2,8 +2,6 @@ package guest_show2
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 
@@ -18,26 +16,27 @@ import (
 
 func Guest_show2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "guest_show2 start \n" )  // 繝・ヰ繝・け
-
-
+//    fmt.Fprintf( w, "guest_show2 start \n" )
 
 	var guest type6.Guest
 
-	guest.Guest_Name = r.FormValue("guest_name")  // 蝨ｰ蛹ｺ蜷阪ｒ繧ｲ繝・ヨ
+	guest.Guest_Name = r.FormValue("guest_name")  //    get guest name
 
-	guest_no := r.FormValue("guest_no")         // 蝨ｰ蛹ｺNo.繧偵ご繝・ヨ
-//	fmt.Fprintf( w, "guest_show2 : guest_no %v\n", guest_no )  // 繝・ヰ繝・け
+	guest_no := r.FormValue("guest_no")         //    get guest no
 
-	guest_now ,err := strconv.Atoi(guest_no)  // 譁・ｭ励・謨ｴ謨ｰ蛹・	if err != nil {
+//	fmt.Fprintf( w, "guest_show2 : guest_no %v\n", guest_no )
+
+	guest_now ,err := strconv.Atoi(guest_no)  // make an integer
+	if err != nil {
 		http.Error(w,err.Error(), http.StatusInternalServerError)
+
 //       fmt.Fprintf( w, "guest_show2 : a number must be half-width characters %v\n"  )
 		return
 	}
 
-	guest.Guest_No = int64(guest_now)   // 謨ｴ謨ｰ縺ｮ64繝薙ャ繝亥喧
+	guest.Guest_No = int64(guest_now)   //     make an integer64
 
-/// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺ｫ繝・・繧ｿ繧偵そ繝・ヨ ///
+///     set guest .inf. in d.s
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -47,7 +46,6 @@ func Guest_show2(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -59,16 +57,17 @@ func Guest_show2(w http.ResponseWriter, r *http.Request) {
     new_key := datastore.IncompleteKey("Guest", nil)
 
     if _, err = client.Put(ctx, new_key, &guest ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Guest", nil), &guest); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ ///
-
+///
+///     show guest inf. on web
+///
     process4.Guest_show(w , r )
 
-//	fmt.Fprintf( w, "guest_show2 : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "guest_show2 : normal end \n" )
 
 
 

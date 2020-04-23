@@ -2,8 +2,6 @@ package payment_delete
 
 import (
 
-//	"google.golang.org/appengine"
-//	"google.golang.org/appengine/datastore"
 	"net/http"
 	"strconv"
 //	"fmt"
@@ -18,18 +16,22 @@ import (
 
                                             )
 
+///                         縲縲縲縲
+///     delete payment inf. in d.s.
+///
+
 func Payment_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "payment_delete start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "payment_delete start \n" )
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "payment_delete : id %v\n", id )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "payment_delete : id %v\n", id )
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "payment_delete : delidw %v\n", delidw )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "payment_delete : delid %v\n", delid )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "payment_delete : delidw %v\n", delidw )
+//    fmt.Fprintf( w, "payment_delete : delid %v\n", delid )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -39,7 +41,6 @@ func Payment_delete(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -48,11 +49,10 @@ func Payment_delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    key := datastore.IDKey("Guest_Payment", delid, nil)           ///    xray諠・ｱ繧偵ご繝・ヨ
+    key := datastore.IDKey("Guest_Payment", delid, nil)
 
     if err := client.Delete(ctx, key ); err != nil {
-//	key := datastore.NewKey(c, "Guest_Payment", "", delid, nil)
-//	if err := datastore.Delete(c, key); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -62,7 +62,7 @@ func Payment_delete(w http.ResponseWriter, r *http.Request) {
     guest_no   := general_work[0].Int64_Work
 
 ///
-/// 繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ
+///      show payment inf. on web
 ///
 
     process4.Payment_register( w , r ,guest_no )

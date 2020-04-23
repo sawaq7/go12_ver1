@@ -23,7 +23,7 @@ import (
                                                 )
 
 ///
-///   　　　　　配達スケジュールを表示する
+///   　　　　make deliver schdule
 ///
 
 
@@ -31,20 +31,22 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN 　district_no : 地区No
+//     IN 　district_no : district no
 
 
-//    fmt.Fprintf( w, "d_schedule_showall start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "d_schedule_showall district_no \n" ,district_no)  // チE��チE��
+//    fmt.Fprintf( w, "d_schedule_showall start \n" )
+//    fmt.Fprintf( w, "d_schedule_showall district_no \n" ,district_no)
 
     var course_no , car_no , car_num int64
 
     var expected_num , ability_num float64
 
-    var d_schedule_headline type2.D_Schedule // 見�Eし�Eワークエリア確俁E
+    var d_schedule_headline type2.D_Schedule //   allocate work area for headline
+
 ///
-/// スケジュールチE�EタをゲチE��
+///      make deliver schdule
 ///
+
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
@@ -54,7 +56,6 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
@@ -62,10 +63,8 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
        return
     }
 
-//	q := datastore.NewQuery("D_Schedule").Order("Date")
 	query := datastore.NewQuery("D_Schedule").Order("Date")
 
-//	count, err := q.Count(c)
 	count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -76,7 +75,7 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 	d_schedule_view := make([]type2.D_Schedule, 0)
 
     keys, err := client.GetAll(ctx, query , &d_schedule)
-//	keys, err := q.GetAll(c, &d_schedule)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -90,12 +89,12 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 
     }
 ///
-/// エリアチE�EタをゲチE��
+///      get area inf in d.s.
 ///
 
 	d_area := datastore2.Datastore_sgh( "D_Area","trans2" ,district_no , w , r  )
 
-	// 空インターフェイス変数よりバリュー値をゲチE��
+	// get value from interface data
 
     d_area_value, _ := d_area.([]type2.D_Area)
 
@@ -114,18 +113,18 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
             course_no = district_no * 100 + d_area_valuew.Area_No
 
 ///
-///        荷物予想のための、計算式をリニューアル
+///      renewal expression for expecting deliver number
 ///
 
             datastore2.Datastore_sgh( "Sgh_Ai","initialize" ,course_no , w , r  )
 
-            ai.Ai_sgh(course_no ,w , r )              //　エリアごとに計算式を算�E
+            ai.Ai_sgh(course_no ,w , r )              //　make expression for each area and put itin d.s.
 
 ///
-///        エリアごとの配達生産性等�EチE�Eタを算�Eし、エリアファイルにセチE��
+///        calculate Productivity for each area
 ///
 
-            d_area_valuew.Number_Total ,d_area_valuew.Time_Total ,d_area_valuew.Productivity = cal3.Deliver_course_no( course_no ,w , r   ) // エリア生産性を算�E
+            d_area_valuew.Number_Total ,d_area_valuew.Time_Total ,d_area_valuew.Productivity = cal3.Deliver_course_no( course_no ,w , r   ) // エリア生産性を算�E
 
             if d_area_valuew.Productivity >= 0. {
 
@@ -133,25 +132,25 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 
 		    }
 
-//            fmt.Fprintf( w, "d_schedule_showall 配達能劁E %f\n" ,ability_num )  // チE��チE��
-//            fmt.Fprintf( w, "d_schedule_showall 配達能劁E-P %f\n" ,d_area_valuew.Productivity )  // チE��チE��
+//            fmt.Fprintf( w, "d_schedule_showall 配達能劁E %f\n" ,ability_num )
+//            fmt.Fprintf( w, "d_schedule_showall 配達能劁E-P %f\n" ,d_area_valuew.Productivity )
 
             key := datastore.IDKey("D_Area", d_area_valuew.Id, nil)
 
             if _, err := client.Put(ctx, key, &d_area_valuew ); err != nil {
 
-//            key := datastore.NewKey(c, "D_Area", "", d_area_valuew.Id, nil)
-//	        if _, err := datastore.Put(c, key, &d_area_valuew); err != nil {  // チE�Eタストアから1レコードアチE�EチE�EチE		      http.Error(w,err.Error(), http.StatusInternalServerError)
+              http.Error(w,err.Error(), http.StatusInternalServerError)
 		      return
 		    }
 
           }
 
-
         }
 
 ///
-///        配達地区の予想荷物数を算�E(エリア単位�E配達予想数のΣ�E�E///
+///        calculate deliver number which is expected for each area
+///
+
         for _, d_area_valuew := range d_area_value {
 
           course_no = district_no * 100 + d_area_valuew.Area_No
@@ -162,15 +161,15 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
         }
 
 ///
-///     スケジュールを評価する
+///      judge schedule
 ///
         ability_per := ability_num / d_schedulew.Expected_Num  * 100.
 
-//        fmt.Fprintf( w, "d_schedule_showall 配達能劁E %f\n" ,ability_num )  // チE��チE��
-//        fmt.Fprintf( w, "d_schedule_showall 予想個数 %f\n" ,d_schedulew.Expected_Num )  // チE��チE��
-//        fmt.Fprintf( w, "d_schedule_showall 判定　パ�EセンチE%f\n" ,ability_per )  // チE��チE��
+//        fmt.Fprintf( w, "d_schedule_showall 配達能劁E %f\n" ,ability_num )
+//        fmt.Fprintf( w, "d_schedule_showall 予想個数 %f\n" ,d_schedulew.Expected_Num )
+//        fmt.Fprintf( w, "d_schedule_showall 判定　パ�EセンチE%f\n" ,ability_per )
 
-        if ability_per >= 100. {                       // 号車名をセチE��
+        if ability_per >= 100. {
 
            d_schedulew.Judge = "this member can excute this job"
 
@@ -185,37 +184,36 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 	    }
 
 ///
-///     先頭の見�Eしを作�E
+///        make head line
 ///
         if count2 == 1 {
 
-          car_district := trans.Car_district( district_no ,w , r  )           // 号車情報をゲチE��
+          car_district := trans.Car_district( district_no ,w , r  )           //   get car inf.
 
-//          fmt.Fprintf( w, "d_schedule_showall 号車数 \n" ,len(car_district))  // チE��チE��
+//          fmt.Fprintf( w, "d_schedule_showall car number \n" ,len(car_district))
 
           car_num = int64 ( len(car_district) )
-          d_schedule_headline.Id = 77     // 見�Eし用のID　”７７”　をセチE��
+          d_schedule_headline.Id = 77     //    set　number "77" for juding headline
           d_schedule_headline.Course_Num = car_num
 
           for pos2, car_districtw := range car_district {
 
 ///
-///  　　　号車ごとの配達生産性等�EチE�Eタを算�Eし、号車ファイルにセチE��
+///  　　　make expression for each car and put itin d.s.
 ///
-            car_no ,_ =strconv.ParseInt( car_districtw.Car_Name ,10 ,64)   // 斁E���Eをint64に変換
+            car_no ,_ =strconv.ParseInt( car_districtw.Car_Name ,10 ,64)   // make an integer64
 
             car_districtw.Number_Total ,car_districtw.Time_Total ,car_districtw.Productivity = cal3.Deliver_car_no ( car_no ,w , r   )
 
             key := datastore.IDKey("Car", car_districtw.Id, nil)
 
-            if _, err := client.Put(ctx, key, &car_districtw ); err != nil {                                                                // 号車生産性を算�E
-//            key := datastore.NewKey(c, "Car", "", car_districtw.Id, nil)
-//	        if _, err := datastore.Put(c, key, &car_districtw); err != nil {
+            if _, err := client.Put(ctx, key, &car_districtw ); err != nil {
+
 		      http.Error(w,err.Error(), http.StatusInternalServerError)
 		      return
 		    }
 
-            if pos2 == 0 {                       // 号車名をセチE��
+            if pos2 == 0 {                       // set car name
 
               d_schedule_headline.Car_Name_01 = car_districtw.Car_Name
 
@@ -260,7 +258,7 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 
           }
 ///
-///     先頭の見�EしをセチE��
+///     set head line
 ///
           d_schedule_view = append(d_schedule_view, type2.D_Schedule {  d_schedule_headline.Id        ,
 
@@ -295,9 +293,9 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 
         }
 ///
-///     スケジュールチE�EタをセチE��
+///      set schedule inf.
 ///
-        d_schedulew.Course_Num = car_num     // コース数セチE��
+        d_schedulew.Course_Num = car_num     //  cource number
 
         d_schedule_view = append(d_schedule_view, type2.D_Schedule { keys_wk[pos]     ,
 
@@ -330,12 +328,11 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
                                                                     d_schedulew.Car_Name_10        })
 
 
-//            fmt.Fprintf( w, "d_schedule_showall pos %v   \n" , pos  )  // チE��チE��
+//            fmt.Fprintf( w, "d_schedule_showall pos %v   \n" , pos  )
       }
 	}
 
-// チE��プレート�EヘッダーをGET
-
+//  set template
 
        monitor := template.Must(template.New("html").Parse(html2.D_schedule_showall_04))
 
@@ -345,7 +342,7 @@ func D_schedule_showall(w http.ResponseWriter, r *http.Request, district_no int6
 
      }
 
-// モニターに表示
+//     show schedule inf. on web
 
 	err = monitor.Execute(w, d_schedule_view)
 	if err != nil {

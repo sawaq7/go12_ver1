@@ -2,8 +2,6 @@ package deliver_delete
 
 import (
 
-//	"google.golang.org/appengine"
-//	"google.golang.org/appengine/datastore"
 	"net/http"
 	"strconv"
 //	"fmt"
@@ -14,9 +12,13 @@ import (
     "os"
                                             )
 
+///
+/// 縲縲   delete delivery inf.
+///
+
 func Deliver_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "deliver_delete start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "deliver_delete start \n" )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -26,7 +28,6 @@ func Deliver_delete(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -36,25 +37,23 @@ func Deliver_delete(w http.ResponseWriter, r *http.Request) {
     }
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "deliver_delete : id %v\n", id )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "deliver_delete : id %v\n", id )
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "deliver_delete : delidw %v\n", delidw )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "deliver_delete : delid %v\n", delid )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "deliver_delete : delidw %v\n", delidw )
+//    fmt.Fprintf( w, "deliver_delete : delid %v\n", delid )
 
     key := datastore.IDKey("Deliver", delid, nil)
 
     if err := client.Delete(ctx, key ); err != nil {
-//	key := datastore.NewKey(c, "Deliver", "", delid, nil)
-//	if err := datastore.Delete(c, key); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ ///
-
+    ///     show deliver inf. on web
 	process.Deliver_showall1(w , r )
 
 }

@@ -2,8 +2,6 @@ package trans5
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -16,7 +14,7 @@ import (
                                                 )
 
 ///
-/// 地区のエリアチE�EタをゲチE��する
+///      when record equal guest no , select data for Guest_Reserve_Minor in d.s.
 ///
 
 func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Reserve_Minor ) {
@@ -25,10 +23,10 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_reserve_minor_slice  : 構造体　”エリア惁E��”�Eスライス
+//     OUT guest_reserve_minor_slice  :  slice of struct (Guest_Reserve_Minor)
 
-//    fmt.Fprintf( w, "trans.guest_reserve_minor start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "trans.guest_reserve_minor guest_no \n" ,guest_no)  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_reserve_minor start \n" )
+//    fmt.Fprintf( w, "trans.guest_reserve_minor guest_no \n" ,guest_no)
 
     var i_count int64
 
@@ -40,7 +38,6 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -50,10 +47,9 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 	}
 
     query := datastore.NewQuery("Guest_Reserve_Minor").Order("Date")
-//	q := datastore.NewQuery("Guest_Reserve_Minor").Order("Date")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -63,10 +59,11 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 	guest_reserve_minor_slice := make([]type6.Guest_Reserve_Minor, 0)
 
     keys, err := client.GetAll(ctx, query , &guest_reserve_minor)
-//	keys, err := q.GetAll(c, &guest_reserve_minor)
+
     if err != nil {
+
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -78,15 +75,19 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 
     }
 
+///
+///   	when record equal guest no , select data for Guest_Payment in d.s.
+///
+
 	i_count = 0
 
 	for pos, guest_reserve_minorw := range guest_reserve_minor {
 
-//	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)  // チE��チE��
+//	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)
 
-///  機�EによりチェチE��頁E��をセチE��
+///  機�EによりチェチE��頁E��をセチE��
 
-      if guest_no == guest_reserve_minorw.Guest_No {
+      if guest_no == guest_reserve_minorw.Guest_No {     // select by guest no
 
          i_count ++
 

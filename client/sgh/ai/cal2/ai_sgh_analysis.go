@@ -10,19 +10,19 @@ import (
 
                                                 )
 ///
-///  コースNOごとにAI式を計算して荷物の数を予想する
+///    calcurate ai expression and expect delivery number  for each cource no
 ///
 
 func Ai_sgh_analysis(w http.ResponseWriter, r *http.Request, course_no int64 , deliver_date string )(expected_num float64 ) {
 
 //     IN    w      　  : レスポンスライター
-//     IN    r      　  : リクエストパラメータを乗車するドライバ�E
-//     IN  course_no    : コースNo
-//     IN deliver_date  : 配達日
-//    OUT  expected_num : 予想荷物数
+//     IN    r      　  : リクエストパラメータを乗車するドライバ�E
+//     IN  course_no    :
+//     IN deliver_date  :
+//    OUT  expected_num :
 
-//    fmt.Fprintf( w, "cal2.ai_sgh_analysis start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "cal2.ai_sgh_analysis course_no \n" ,course_no)  // チE��チE��
+//    fmt.Fprintf( w, "cal2.ai_sgh_analysis start \n" )
+//    fmt.Fprintf( w, "cal2.ai_sgh_analysis course_no \n" ,course_no)
 
     var expression string
 
@@ -33,28 +33,27 @@ func Ai_sgh_analysis(w http.ResponseWriter, r *http.Request, course_no int64 , d
     expected_num = 0.
 
 ///
-/// AI 条件式を計算すめE///
+///     get ai expression
+///
 
-    sgh_ai := datastore2.Datastore_sgh( "Sgh_Ai","trans" ,course_no , w , r  )  // AI 条件式をゲチE��
+    sgh_ai := datastore2.Datastore_sgh( "Sgh_Ai","trans" ,course_no , w , r  )
 
-// 空インターフェイス変数よりバリュー値をゲチE��
+//    get value from interface data
 
     sgh_ai_value, _ := sgh_ai.([]type2.Sgh_Ai)
-
-
 
 	for _ , sgh_ai_valuew := range sgh_ai_value {
 
 
 
-	  deliver_date_real := date1.Date_realdata_get( w  ,deliver_date )   // タイムチE�Eタ作�E
+	  deliver_date_real := date1.Date_realdata_get( w  ,deliver_date )   //    make time data
 
-      date_sub := deliver_date_real.Sub(sgh_ai_valuew.Date_Basic_Real)  // 基準日からの経過日数を計算！E座標！E
-      xx := float64(date_sub/(3600000000000*24))  //　日付に変換
+      date_sub := deliver_date_real.Sub(sgh_ai_valuew.Date_Basic_Real)
+      xx := float64(date_sub/(3600000000000*24))
 
 	  for ii = 0 ; ii < sgh_ai_valuew.Item_Num ; ii++ {
 
-	    if ii == 0 {                       // 計算式�E係数をセチE��
+	    if ii == 0 {
 
 	      expression = sgh_ai_valuew.Item1_Name
 	      factor     = sgh_ai_valuew.Item1_Factor
@@ -81,16 +80,16 @@ func Ai_sgh_analysis(w http.ResponseWriter, r *http.Request, course_no int64 , d
 	      factor     = sgh_ai_valuew.Item5_Factor
 
 	    }
-//        fmt.Fprintf( w, "cal2.ai_sgh_analysis expression \n" ,expression)  // チE��チE��
+//        fmt.Fprintf( w, "cal2.ai_sgh_analysis expression \n" ,expression)
 	    switch expression {
 
 
-          case "*" :         // 乗算�E場吁E
+          case "*" :
              expected_num = expected_num + xx * factor
 
              break;
 
-          case "+" :         // 加算�E場吁E
+          case "+" :
              expected_num = expected_num + factor
 
              break;
@@ -102,8 +101,8 @@ func Ai_sgh_analysis(w http.ResponseWriter, r *http.Request, course_no int64 , d
 
 	}
 
-//	fmt.Fprintf( w, "cal2.ai_sgh_analysis expected_num \n" ,expected_num)  // チE��チE��
-//	fmt.Fprintf( w, "cal2.ai_sgh_analysis normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "cal2.ai_sgh_analysis expected_num \n" ,expected_num)
+//	fmt.Fprintf( w, "cal2.ai_sgh_analysis normal end \n" )
 
     return	expected_num
 

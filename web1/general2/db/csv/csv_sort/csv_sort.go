@@ -4,8 +4,6 @@ import (
 
 	    "net/http"
 //	    "fmt"
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 
 	    "strconv"
 	    "html/template"
@@ -23,12 +21,12 @@ import (
 
 func Csv_sort(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "sky/csv_sort start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "sky/csv_sort start \n" )
 
     var err error
 
 ///
-///     ソートする、�ENOをゲチE��
+///     get column for sorting
 ///
 
     string_data := r.FormValue("sort_column")
@@ -39,7 +37,8 @@ func Csv_sort(w http.ResponseWriter, r *http.Request) {
 
     for pos, stringsw := range strings {
 
-      sort_key_no[pos] ,err = strconv.Atoi(stringsw)  // 整数匁E	  if err != nil {
+      sort_key_no[pos] ,err = strconv.Atoi(stringsw)  //  make an integer
+      if err != nil {
 	   http.Error(w,err.Error(), http.StatusInternalServerError)
 
 		return
@@ -47,22 +46,21 @@ func Csv_sort(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	fmt.Fprintf( w, "sky/csv_sort : sort_key_no %v\n", sort_key_no )  // チE��チE��
+//	fmt.Fprintf( w, "sky/csv_sort : sort_key_no %v\n", sort_key_no )
 
 ///
-///   プロジェクト名をゲチE��
+///   get project name
 ///
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // チE��チE��
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )
 
       project_name = "sample-7777"
 
 	}
 
-//    c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, project_name)
@@ -72,25 +70,26 @@ func Csv_sort(w http.ResponseWriter, r *http.Request) {
     }
 
 ///
-/// 　　　csv惁E��をソートする　
+/// 　　sort csv inf.　
 ///
 
-	csv_inf := trans3.Csv_inf ( w ,r )  ///  csv惁E��をゲチE��
+	csv_inf := trans3.Csv_inf ( w ,r )  //  get csv inf.
 
-	csv_inf2 := sort2.Csv_inf( w ,r ,csv_inf ,sort_key_no )  ///  csv惁E��をソートすめE
+	csv_inf2 := sort2.Csv_inf( w ,r ,csv_inf ,sort_key_no )  //   sort csv inf.
+
 ///
-/// 　　　チE�Eタストアに、csv惁E��を�EセチE��する　
+/// 　　　set csv inf. in d.s.　
 ///
 
     for _, csv_inf2w := range csv_inf2 {
 
-//   	  fmt.Fprintf( w, "process3.csv_column_join2 csv_inf2w %v\n", csv_inf2w )  // チE��チE��
+//   	  fmt.Fprintf( w, "process3.csv_column_join2 csv_inf2w %v\n", csv_inf2w )
 
-//      key := datastore.NewKey(c, "Csv_Inf", "", csv_inf2w.Id, nil)  //　アクセスキーゲチE��
-      key := datastore.IDKey("Csv_Inf", csv_inf2w.Id, nil)
 
-      if _, err := client.Put(ctx, key, &csv_inf2w ); err != nil {
-//      if _, err := datastore.Put(c, key, &csv_inf2w); err != nil {  // チE�Eタストアに再セチE��
+      key := datastore.IDKey("Csv_Inf", csv_inf2w.Id, nil)   //　get access key
+
+      if _, err := client.Put(ctx, key, &csv_inf2w ); err != nil {   // put csv inf. in d.s.
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	  }
@@ -98,17 +97,18 @@ func Csv_sort(w http.ResponseWriter, r *http.Request) {
     }
 
 ///
-///　　web にcsv惁E��を表示
+///　　   show csv inf. on web
 ///
 
-     monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // チE��プレート�EヘッダーをGET
+     monitor := template.Must( template.New("html").Parse( html5.Csv_show ))
+                                                                //  set templateT
 
      err = monitor.Execute ( w, csv_inf2 )
 	 if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	 }
 
-//	fmt.Fprintf( w, "sky/csv_sort : normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "sky/csv_sort : normal end \n" )
 
 }
 

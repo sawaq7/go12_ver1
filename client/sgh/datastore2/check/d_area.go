@@ -1,12 +1,10 @@
 package check
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
-//	    "html/template"
-//	    "web/htmls/sgh"
+
 	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
 
@@ -15,9 +13,9 @@ import (
 	    "os"
                                                 )
 
-///                           ///
-/// 蝨ｰ蛹ｺ縺ｮ繧ｨ繝ｪ繧｢謨ｰ繧偵ご繝・ヨ縺吶ｋ ///
-///                          ///
+///
+///      get area number of district
+///
 
 func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 ) {
 
@@ -25,7 +23,7 @@ func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 )
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 //     IN 縲district_no : 蝨ｰ蛹ｺNo
 
-//    fmt.Fprintf( w, "d_area start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_area start \n" )
 
     var area_number int64
 
@@ -37,15 +35,12 @@ func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 )
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("D_Area").Order("District_No")
-//	q := datastore.NewQuery("D_Area").Order("District_No")
 
-//	count, err := q.Count(c)
 	count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -55,7 +50,7 @@ func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 )
 	d_area      := make([]type2.D_Area, 0, count)
 
     if _, err := client.GetAll(ctx, query , &d_area); err != nil {
-//	if _, err := q.GetAll(c, &d_area); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return area_number
 	} else {
@@ -70,7 +65,7 @@ func D_area(w http.ResponseWriter, r *http.Request ,district_no int64)  (int64 )
         }
 	  }
 	}
-//    fmt.Fprintf( w, "d_area area_number \n" , area_number)  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_area area_number \n" , area_number)
 	return area_number
 }
 

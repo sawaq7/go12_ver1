@@ -1,6 +1,3 @@
-///
-/// 水琁E��　�E��Eンニングの公式：摩擦係数を求める！E///　　　　λ = 124.5 * nの2乁E/ Dの1/3剰
-
 package equation
 
 
@@ -9,10 +6,16 @@ import (
         "math"
 	  		  )
 
+///
+///    Manning formula
+///
+
 func Suiri_Manningu2( n float64 ,D float64 ) float64 {
 
-//     IN    n          : マンニング粗度係数
-//     IN    �E�(�E�！E   : 管の冁E��E//    OUT    out1�E�E/s) : 摩擦係数
+//     IN    n
+//     IN    D
+
+//    OUT           : ramuda
 
    var ramuda float64
 
@@ -26,9 +29,7 @@ func Suiri_Manningu2( n float64 ,D float64 ) float64 {
 
    fmt.Println ("Suiri_Manningu2 rwork　" ,rwork)
    fmt.Println ("Suiri_Manningu2 rwork2　" ,rwork2)
-   fmt.Println ("Suiri_Manningu2 ramuda (マ�Eニング�E�E ,ramuda)
-
-
+   fmt.Println ("Suiri_Manningu2 ramuda " ,ramuda)
 
 return ramuda
 }

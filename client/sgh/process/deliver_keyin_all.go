@@ -16,25 +16,25 @@ func Deliver_keyin_all(w http.ResponseWriter, r *http.Request) {
 //     IN    w      　: レスポンスライター
 //     IN    r      　: リクエストパラメータ
 
-    fmt.Fprintf( w, "process.deliver_keyin_all start \n" )  // チE��チE��
+    fmt.Fprintf( w, "process.deliver_keyin_all start \n" )
 
-// チE��プレート�EヘッダーをGET
+//    set template
 
      monitor := template.Must(template.New("html").Parse(html2.Deliver_keyin_all))
 
-// チE�Eタストアーから、表示用チE�EタをGET
+//  get deliver inf in d.s.
 
      general_work := make([]type5.General_Work, 2)
-     general_work[0].Int64_Work = 0          // 地区惁E��
-     general_work[1].Int64_Work = 0          //　コースNO
+     general_work[0].Int64_Work = 0          //  district no
+     general_work[1].Int64_Work = 0          //　cource no
 
      deliver_view := datastore2.Datastore_sgh( "Deliver" ,"trans" ,general_work , w , r  )
 
-     // 空インターフェイス変数よりバリュー値をゲチE��
+     //   get value from interface data
 
      value, _ := deliver_view.([]type2.Deliver)
 
-// モニターに表示
+//    show deliver inf. on web
 
 	err := monitor.Execute(w, value)
 

@@ -1,6 +1,3 @@
-///
-/// 速度水頭を求めめE///   hv = v2剰 / 2g
-
 package equation
 
 import (
@@ -9,21 +6,23 @@ import (
 	    "github.com/sawaq7/go12_ver1/basic/declare"
 	  		          )
 
+///
+///   calculate verocity head
+///
+
 func Suiri_Vhead( velocity float64 ) float64 {
 
-//     IN    verocity(m/s�E�E : 流E��E//    OUT    one        : 速度水頭　�E�　vの2剰　/2*g
+//     IN    verocity
+//    OUT    one        : verocity head　
 
    var hv float64
 
-//　重力加速度をget
-
-//   gravi := maths.Math_Gravi_Get()
+  ///　 get gravitational-acceleration
    gravi := declare.Math_Const_gravi
 
-
    hv = velocity * velocity / (2*gravi)
-   fmt.Println ("Suiri_vhead 速度水頭  " ,hv)
-
+   fmt.Println ("Suiri_vhead hv  " ,hv)
 
 return hv
+
 }

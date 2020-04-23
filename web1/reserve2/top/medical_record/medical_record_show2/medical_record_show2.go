@@ -2,8 +2,6 @@ package medical_record_show2
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 
@@ -20,7 +18,7 @@ import (
 
 func Medical_record_show2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "medical_record_show2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "medical_record_show2 start \n" )
 
 
 	var guest_medical_record type6.Guest_Medical_Record
@@ -36,23 +34,21 @@ func Medical_record_show2(w http.ResponseWriter, r *http.Request) {
 
     guest_no := general_work[0].Int64_Work
 
-//	fmt.Fprintf( w, "medical_record_show2 : guest_medical_record.Guest_No %v\n", guest_medical_record.Guest_No )  // 繝・ヰ繝・け
-//	fmt.Fprintf( w, "medical_record_show2 : guest_medical_record.Guest_Name %v\n", guest_medical_record.Guest_Name )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "medical_record_show2 : guest_medical_record.Guest_No %v\n", guest_medical_record.Guest_No )
+//	fmt.Fprintf( w, "medical_record_show2 : guest_medical_record.Guest_Name %v\n", guest_medical_record.Guest_Name )
 
-// 遨ｺ繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繧､繧ｹ螟画焚繧医ｊ繝舌Μ繝･繝ｼ蛟､繧偵ご繝・ヨ
+//    value, _ := count.(int64)   // get value from interface data
 
-//    value, _ := count.(int64)
-
-//	fmt.Fprintf( w, "medical_record_show2 count %v   \n" , count  )  // 繝・ヰ繝・け
-//	fmt.Fprintf( w, "medical_record_show2 district_no %v   \n" , district_no  )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "medical_record_show2 count %v   \n" , count  )
+//	fmt.Fprintf( w, "medical_record_show2 district_no %v   \n" , district_no  )
 
     guest_medical_record.Date   = r.FormValue("date")
     guest_medical_record.Text   = r.FormValue("text2")
 
-//	fmt.Fprintf( w, "medical_record_show2 : guest_medical_record.Text %v\n", guest_medical_record.Text )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "medical_record_show2 : guest_medical_record.Text %v\n", guest_medical_record.Text )
 
 ///
-///        繝・・繧ｿ繧ｹ繝医い繝ｼ縺ｫ繝・・繧ｿ繧偵そ繝・ヨ
+///      set medical record .inf. in d.s
 ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
@@ -63,7 +59,6 @@ func Medical_record_show2(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -75,17 +70,17 @@ func Medical_record_show2(w http.ResponseWriter, r *http.Request) {
     new_key := datastore.IncompleteKey("Guest_Medical_Record", nil)
 
     if _, err = client.Put(ctx, new_key, &guest_medical_record ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Guest_Medical_Record", nil), &guest_medical_record); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 ///
-///       繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ
+///         show medical recode inf. on web
 ///
 
     process4.Medical_record_show(w , r ,guest_no)
 
-//	fmt.Fprintf( w, "medical_record_show2 : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "medical_record_show2 : normal end \n" )
 
 }

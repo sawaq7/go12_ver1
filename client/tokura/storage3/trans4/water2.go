@@ -7,7 +7,7 @@ import (
 
 	    "bufio"
 
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 	    "io"
 
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
@@ -15,23 +15,23 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　　
-///   ストレチE��から水路ファイル惁E��をGETする
+///   ストレチE��から水路ファイル惁E��をGETする
 ///                          　　　　　　　　　　　
 
 func Water2( w http.ResponseWriter, r *http.Request )  ([]type4.Water2 ) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     OUT        　　  : 水路ファイル・チE�Eタストアのスライス
+//     OUT        　　  : 水路ファイル・チE�Eタストアのスライス
 
-//   fmt.Fprintf( w, "trans4.water2 start \n" )  // チE��チE��
+//   fmt.Fprintf( w, "trans4.water2 start \n" )  // チE��チE��
 
     bucket := "sample-7777"
     filename1 := "Water2.txt"
 
     water2_view := make([]type4.Water2, 0)   //   Water2　の表示エリアを確俁E
 ///
-///     Water2 ファイル�E�ストレチE���E�オープン
+///     Water2 ファイル�E�ストレチE���E�オープン
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename1 , w , r  )
@@ -42,7 +42,7 @@ func Water2( w http.ResponseWriter, r *http.Request )  ([]type4.Water2 ) {
 
     defer reader.Close()
 
-// ファイルリーダー(string用�E�を�E��E��E�
+// ファイルリーダー(string用�E�を�E��E��E�
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -51,7 +51,7 @@ func Water2( w http.ResponseWriter, r *http.Request )  ([]type4.Water2 ) {
     for {
 
       index ++     // レコードカウンターをカウンチE
-//      fmt.Fprintf(w, "trans4.water2 : lndex %v\n", index )  // チE��チE��
+//      fmt.Fprintf(w, "trans4.water2 : lndex %v\n", index )  // チE��チE��
 
 // ファイルを１行read
 
@@ -59,23 +59,23 @@ func Water2( w http.ResponseWriter, r *http.Request )  ([]type4.Water2 ) {
 
       num := len(line)
 
-//      fmt.Fprintf(w, "trans4.water2 : num %v\n", num )  // チE��チE��
+//      fmt.Fprintf(w, "trans4.water2 : num %v\n", num )  // チE��チE��
 
       if num > 1 {
 
-//         fmt.Fprintf(w, "trans4.water2 : line %s\n", line )  // チE��チE��
+//         fmt.Fprintf(w, "trans4.water2 : line %s\n", line )  // チE��チE��
 
 ///
-///   ラインチE�Eタを、構造体にセチE��
+///   ラインチE�Eタを、構造体にセチE��
 ///
 
          water2_struct := struct_set.Water2( w , line )
 
-         water2_view = append( water2_view ,water2_struct )   // ラインチE�Eタを追加
+         water2_view = append( water2_view ,water2_struct )   // ラインチE�Eタを追加
 
       } else if num == 0 {
 
-//          io.WriteString(w, "\n trans4.water2 : data end \n")   //チE��チE��
+//          io.WriteString(w, "\n trans4.water2 : data end \n")   //チE��チE��
 
          break
 

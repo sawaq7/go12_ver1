@@ -15,37 +15,37 @@ import (
 
 func Pipe_line_st_wl_show( wname string ,w http.ResponseWriter, r *http.Request) {
 
-//     IN  wname : 豌ｴ霍ｯ蜷・縲縲縲縲
+//     IN  wname :  water-name縲縲縲縲
 //     IN     w  : 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN     r  : 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ繝ｼ
 
 
-//    fmt.Fprintf( w, "process2.pipe_line_st_wl_show start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "process2.pipe_line_st_wl_show start \n" )
 
-//    fmt.Fprintf( w, "process2.pipe_line_st_wl_show wname %v   \n" , wname  )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "process2.pipe_line_st_wl_show wname %v   \n" , wname  )
 
     var idmy int64
 
 ///
-///     繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+///     set template
 ///
 
      monitor := template.Must(template.New("html").Parse(html4.Pipe_line_st_wl_keyin))
 
 ///
-///     繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲∬｡ｨ遉ｺ逕ｨ繝・・繧ｿ繧竪ET
+///       get water-line-inf.
 ///
 
        water_line_view_minor , _ := storage3.Storage_tokura( "Water_Line" ,"trans" ,wname , idmy , w , r  )
 
 //     water_line_view := trans4.Water_line ( wname , w ,r )
 
-       water_line_view, _ := water_line_view_minor.([]type4.Water_Line)  // 繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繧､繧ｹ蝙九ｒ蝙句､画鋤
+       water_line_view, _ := water_line_view_minor.([]type4.Water_Line)
 
-//     fmt.Fprintf( w, "process2.pipe_line_st_wl_show : len(water_line_view) %v\n", len(water_line_view) )  // 繝・ヰ繝・け
+//     fmt.Fprintf( w, "process2.pipe_line_st_wl_show : len(water_line_view) %v\n", len(water_line_view) )
 
 ///
-///     繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+///     show water-line-inf. on web
 ///
 
 	err := monitor.Execute(w, water_line_view)

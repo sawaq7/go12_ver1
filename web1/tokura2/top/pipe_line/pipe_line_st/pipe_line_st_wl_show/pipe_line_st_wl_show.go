@@ -15,30 +15,28 @@ import (
                                                   )
 
 ///
-///         入力した水路ラインのチE�Eタを表示する
+///         show new water-line on web
 ///
 
 func Pipe_line_st_wl_show(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "sky/pipe_line_st_wl_show start \n"  )  // チE��チE��
-
-/// key-in チE�EタをGET ///
+//   fmt.Fprintf( w, "sky/pipe_line_st_wl_show start \n"  )
 
    var water_line type4.Water_Line
 
    var idmy ,idmy2 int64
 
 ///
-///         チE��ポラリーファイルより、水路名をゲチE��
+///        get water-name in temp.-file
 ///
      water2_temp_minor , _ := storage3.Storage_tokura( "Water2_Temp" ,"trans" ,idmy , idmy2 , w , r  )
 
-     water2_temp, _ := water2_temp_minor.([]type4.Water2_Temp)  // インターフェイス型を型変換
+     water2_temp, _ := water2_temp_minor.([]type4.Water2_Temp)
 
 //   water2_temp := trans4.Water2_temp ( w ,r )
 
 ///
-///         持E��した水路の既存�E水路ラインの数をゲチE��
+///        get an existing water-line's number which was selected
 ///
 
     record_number_temp , _ := storage3.Storage_tokura( "Water_Line" ,"check" ,water2_temp[0].Name , idmy , w , r  )
@@ -49,45 +47,44 @@ func Pipe_line_st_wl_show(w http.ResponseWriter, r *http.Request) {
 
 	for _, water2_tempw := range water2_temp {
 
-       water_line.Name = water2_tempw.Name          /// 水路名�EセチE��
-       water_line.Id   = record_number + int64( 1 ) /// idのセチE��
+       water_line.Name = water2_tempw.Name
+       water_line.Id   = record_number + int64( 1 )
 
     }
 
-	water_line.Section = r.FormValue("section")  // 区間名をゲチE��
+	water_line.Section = r.FormValue("section")
 
-	f_facter := r.FormValue("f_facter")                   // 摩擦係数をゲチE��
-	water_line.Friction_Factor,_ =strconv.ParseFloat(f_facter,64)  //　float64　に変換
+	f_facter := r.FormValue("f_facter")
+	water_line.Friction_Factor,_ =strconv.ParseFloat(f_facter,64)
 
-	velocity := r.FormValue("velocity")                   // 速度をゲチE��
-	water_line.Velocity,_ =strconv.ParseFloat(velocity,64)         //　float64　に変換
+	velocity := r.FormValue("velocity")
+	water_line.Velocity,_ =strconv.ParseFloat(velocity,64)
 
-	p_diameter := r.FormValue("p_diameter")      // 摩擦係数をゲチE��
-	water_line.Pipe_Diameter,_ =strconv.ParseFloat(p_diameter,64)  //　float64　に変換
+	p_diameter := r.FormValue("p_diameter")
+	water_line.Pipe_Diameter,_ =strconv.ParseFloat(p_diameter,64)
 
-	p_length := r.FormValue("p_length")      // 摩擦係数をゲチE��
+	p_length := r.FormValue("p_length")
 	water_line.Pipe_Length,_ =strconv.ParseFloat(p_length,64)  //　float64　に変換
 
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Name %v\n", water_line.Name )  // チE��チE��
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Section %v\n", water_line.Section )  // チE��チE��
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Friction_Factor %v\n", water_line.Friction_Factor )  // チE��チE��
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Velocity %v\n", water_line.Velocity )  // チE��チE��
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Diameter %v\n", water_line.Pipe_Diameter )  // チE��チE��
-//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Length %v\n", water_line.Pipe_Length )  // チE��チE��
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Name %v\n", water_line.Name )
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Section %v\n", water_line.Section )
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Friction_Factor %v\n", water_line.Friction_Factor )
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Velocity %v\n", water_line.Velocity )
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Diameter %v\n", water_line.Pipe_Diameter )
+//	fmt.Fprintf( w, "sky/pipe_line_st_wl_show : water_line.Pipe_Length %v\n", water_line.Pipe_Length )
 
 ///                           　　　　　　　　　　　
-///   ストレチE��ファイルに水路ラインファイル惁E��を書ぁE///                          　　　　　　　　　　　
+///       put water-line inf. in storage
+///                          　　　　　　　　　　　
 
     _ , _ = storage3.Storage_tokura( "Water_Line" ,"put" ,water_line , idmy , w , r  )
 
 //   put1.Water_line( w , r ,water_line )
 
 ///
-///             モニター表示
+///           show water-line inf. on web
 ///
 
    process2.Pipe_line_st_wl_show ( water_line.Name ,w , r )
 
-
 }
-

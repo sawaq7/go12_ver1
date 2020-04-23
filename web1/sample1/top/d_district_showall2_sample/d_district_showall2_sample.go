@@ -12,12 +12,14 @@ import (
 
 func D_district_showall2_sample(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_district_showall2_sample start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_showall2_sample start \n" )
 
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ ///
+///
+///   show district inf. on web
+///
 
    process1000.D_district_showall1_sample(w , r )
 
-//	fmt.Fprintf( w, "d_district_showall2_sample : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "d_district_showall2_sample : normal end \n" )
 
 }

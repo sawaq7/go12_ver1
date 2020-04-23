@@ -13,30 +13,32 @@ import (
 
 func Csv_column_exchange(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "sky/csv_column_exchange start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "sky/csv_column_exchange start \n" )
 
 ///
-/// 入力データをGET 　
+///     get input data　
 ///
 
-    exchange_column1_minor := r.FormValue("column1")  // 削除する列をゲチE��
+    exchange_column1_minor := r.FormValue("column1")  //  get column no.
 
-	exchange_column1 ,err := strconv.Atoi(exchange_column1_minor)  // 整数匁E	if err != nil {
+	exchange_column1 ,err := strconv.Atoi(exchange_column1_minor)  //   make an integer
+	if err != nil {
 	   http.Error(w,err.Error(), http.StatusInternalServerError)
 
 		return
 	}
 
-    exchange_column2_minor := r.FormValue("column2")  // 削除する列をゲチE��
+    exchange_column2_minor := r.FormValue("column2")  //  get column no. for deleting
 
-	exchange_column2 ,err := strconv.Atoi(exchange_column2_minor)  // 整数匁E	if err != nil {
+	exchange_column2 ,err := strconv.Atoi(exchange_column2_minor)  // make an integer
+	if err != nil {
 	   http.Error(w,err.Error(), http.StatusInternalServerError)
 
 		return
 	}
 
 ///
-///    持E��しぁE行を追加する
+///     add column
 ///
 
     if exchange_column1 < exchange_column2 {
@@ -48,7 +50,7 @@ func Csv_column_exchange(w http.ResponseWriter, r *http.Request) {
 
 ///
 ///
-///    持E��しぁE行を削除する
+///     delete column
 ///
 
     if exchange_column1 >= exchange_column2 {
@@ -60,12 +62,12 @@ func Csv_column_exchange(w http.ResponseWriter, r *http.Request) {
 	process3.Csv_column_delete ( w , r ,exchange_column1  )
 
 ///
-/// 　　　web上に、csv惁E��を表示する　
+/// 　　　csv inf. show web　
 ///
 
-    csv_inf := trans3.Csv_inf ( w ,r )  //     csv惁E��をゲチE��
+    csv_inf := trans3.Csv_inf ( w ,r )  //     get csv inf.
 
-    monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // チE��プレート�EヘッダーをGET
+    monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // set template
 
      err = monitor.Execute ( w, csv_inf )
 	 if err != nil {

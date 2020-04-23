@@ -2,8 +2,6 @@ package initialize
 
 import (
 
-//	      "google.golang.org/appengine"
-//	      "google.golang.org/appengine/datastore"
 	      "net/http"
 //	      "fmt"
 
@@ -25,7 +23,7 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//   fmt.Fprintf( w, "initialize.sgh_ai start \n" )  // 繝・ヰ繝・け
+//   fmt.Fprintf( w, "initialize.sgh_ai start \n" )
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -35,7 +33,6 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, project_name)
@@ -45,21 +42,20 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
     }
 
     query := datastore.NewQuery("Sgh_Ai").Order("Course_No")
-//	q := datastore.NewQuery("Sgh_Ai").Order("Course_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-//    fmt.Fprintf( w, "initialize.sgh_ai count \n" ,count )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "initialize.sgh_ai count \n" ,count )
 
 	sgh_ai     := make([]type2.Sgh_Ai, 0, count)
 
 	keys, err := client.GetAll(ctx, query , &sgh_ai)
-//	keys, err := q.GetAll(c, &sgh_ai )
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -73,27 +69,24 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 
     }
 ///
-/// 繧ｳ繝ｼ繧ｹNo縺ｮ險育ｮ怜ｼ上ｒ蜑企勁
+///        delete expression of course-no
 ///
 
 	for pos2, sgh_aiw := range sgh_ai {
 
       if  course_no == sgh_aiw.Course_No {
 
-//        key := datastore.NewKey(c, "Sgh_Ai" , "", keys[pos2].IntID(), nil)
         key := datastore.IDKey("Sgh_Ai", keys_wk[pos2], nil)
 
         if err := client.Delete(ctx, key ); err != nil {
-//	    if err := datastore.Delete(c, key  ); err != nil {
 
 		  http.Error(w, err.Error(), http.StatusInternalServerError)
 		  return
 	    }
 	  }
-//      fmt.Fprintf( w, "initialize.sgh_ai pos2 %v   \n" , pos2  )  // 繝・ヰ繝・け
+//      fmt.Fprintf( w, "initialize.sgh_ai pos2 %v   \n" , pos2  )
 
     }
 
 	return
 }
-

@@ -11,31 +11,37 @@ import (
 //	    "time"
                                                 )
 
+///
+///     show  area inf. in d.s.
+///
 
 func D_district_area(w http.ResponseWriter, r *http.Request ,district_no int64) {
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN  district_no  : 地域No
+//     IN  district_no  : district no
 
-//    fmt.Fprintf( w, "d_district_area start \n" )  // チE��チE��}
+//    fmt.Fprintf( w, "d_district_area start \n" )
 
-// チE��プレート�EヘッダーをGET
+//     set template
 
      monitor := template.Must(template.New("html").Parse(html2.D_district_area))
 //     monitor := template.Must(template.New("html").Parse(html2.D_district_area_type2))
 
-// チE�Eタストアーから、表示用チE�EタをGET
+//    get area inf in d.s.
 
     d_area_view := datastore2.Datastore_sgh( "D_Area","trans" ,district_no , w , r  )
 
 
-// 空インターフェイス変数よりバリュー値をゲチE��
+//    get value from interface data
 
     value, _ := d_area_view.([]type2.D_Area)
 
-// モニターに表示
-//   fmt.Fprintf( w, "d_district_area d_area_view %v\n" ,d_area_view)  // チE��チE��
+///
+///     show area inf. on web
+///
+
+//   fmt.Fprintf( w, "d_district_area d_area_view %v\n" ,d_area_view)  // チE��チE��
 
 	err := monitor.Execute(w, value)
 

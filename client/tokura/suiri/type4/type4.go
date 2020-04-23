@@ -1,7 +1,8 @@
 package type4
 
 ///
-///    豌ｴ霍ｯ繝輔ぃ繧､繝ｫ・・繧ｹ繝医Ξ繝・ず繝ｻ繝輔Μ繝ｼ・・///
+///     water data
+///
 
 type  Struct_Colle    struct  {
 
@@ -11,46 +12,59 @@ type  Struct_Colle    struct  {
 }
 
 ///
-///    豌ｴ霍ｯ繝輔ぃ繧､繝ｫ・・繧ｹ繝医Ξ繝・ず繝ｻ繝輔Μ繝ｼ・・///
+///    water
 
 type  Water    struct           {
-	      No             string   // 繝・・繧ｿID
-	      Name           string   // 豌ｴ霍ｯ蜷・	      High           string   // 豌ｴ霍ｯ鬮・	    Roughness_factor string   // 邊礼ｲ剃ｿよ焚
+	      No             string   //
+	      Name           string   // water name
+	      High           string   // water high
+	      Roughness_factor string
 }
 
 ///
-///    豌ｴ霍ｯ繝輔ぃ繧､繝ｫ・・///
+///    water
+///
 
 type  Water2    struct           {
-          Id             int64      //縲繝・・繧ｿid  * 繧ｹ繝医Ξ繝・ず縺ｮ蝣ｴ蜷医・繝ｬ繧ｳ繝ｼ繝丑O
-	      Name           string     // 豌ｴ霍ｯ蜷・	      High           float64    // 豌ｴ霍ｯ鬮・	    Roughness_Factor float64    // 邊礼ｲ剃ｿよ焚
+          Id             int64
+	      Name           string     // water name
+	      High           float64    // water high
+	      Roughness_Factor float64
 }
 ///
-///    豌ｴ霍ｯ繝輔ぃ繧､繝ｫ・・繝・・繧ｿ繧ｹ繝医い繝ｻ繝・Φ繝昴Λ繝ｪ繝ｼ・・///
+///    water temp.-file
 
-type  Water2_Temp    struct           {       //  繝・・繧ｿ縺ｯ1繝ｬ繧ｳ繝ｼ繝・          Id             int64      //縲繝・・繧ｿid
-	      Name           string     // 豌ｴ霍ｯ蜷・	      High           float64    // 豌ｴ霍ｯ鬮・	    Roughness_Factor float64    // 邊礼ｲ剃ｿよ焚
+type  Water2_Temp    struct           {
+          Id             int64
+	      Name           string     // water name
+	      High           float64    // water high
+	      Roughness_Factor float64
 }
 ///
-///    豌ｴ霍ｯ繝ｩ繧､繝ｳ繝輔ぃ繧､繝ｫ(繝・・繧ｿ繧ｹ繝医い・・///
+///    water line
+///
 
 type  Water_Line    struct           {
-          Id              int64    // 繝・・繧ｿid縲縲* 繧ｹ繝医Ξ繝・ず縺ｮ蝣ｴ蜷医・縲∵ｰｴ霍ｯ蜊倅ｽ阪・繝ｬ繧ｳ繝ｼ繝丑O
-	      Name            string   // 豌ｴ霍ｯ蜷・	      Section         string   // 蛹ｺ髢灘錐
-	      Friction_Factor float64  // 鞫ｩ謫ｦ菫よ焚
-	      Velocity        float64  // 騾溷ｺｦ
-	      Pipe_Diameter   float64  // 邂｡蠕・	      Pipe_Length     float64  // 邂｡髟ｷ
+          Id              int64
+	      Name            string   // water name
+	      Section         string   // water section
+	      Friction_Factor float64
+	      Velocity        float64
+	      Pipe_Diameter   float64
+	      Pipe_Length     float64
 }
 
 ///
-///    蟆取ｰｴ蜍ｾ驟咲ｷ壹ヵ繧｡繧､繝ｫ(繧ｰ繝ｩ繝包ｼ・///
-///  *** 逕ｻ蜒上ヵ繧｡繧､繝ｫ陦ｨ遉ｺ逕ｨ縲struct "Image_Show" 縺ｨ縲蜷後ヵ繧ｩ繝ｼ繝槭ャ繝・
+///    water slope line
+///   the format of this  and縲struct "Image_Show" is same
 type  Water_Slope    struct           {
 
-          Id              int64    // 繝・・繧ｿid
-	      File_Name       string   // 繝輔ぃ繧､繝ｫ蜷・	      Url             string   // url
+          Id              int64    //
+	      File_Name       string
+	      Url             string
 
 }
+
 ///
 ///    hydro-static information
 ///

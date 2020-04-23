@@ -2,8 +2,6 @@ package trans5
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -16,19 +14,19 @@ import (
                                                 )
 
 ///
-/// 地区のエリアチE�EタをゲチE��する
+///      when record equal guest no , select data for Guest_Medical_Xray in d.s.
 ///
 
 func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Medical_Xray ) {
 
-//     IN  guest_no  　 : ゲスチEO.
+//     IN  guest_no  　 : id
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_medical_xray_slice  : 構造体　”エリア惁E��”�Eスライス
+//     OUT guest_medical_xray_slice  : slice of struct (Guest_Medical_Xray)
 
-//    fmt.Fprintf( w, "trans.guest_medical_xray start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "trans.guest_medical_xray guest_no \n" ,guest_no)  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_medical_xray start \n" )
+//    fmt.Fprintf( w, "trans.guest_medical_xray guest_no \n" ,guest_no)
 
     var i_count int64
 
@@ -40,7 +38,6 @@ func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request 
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -50,10 +47,9 @@ func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request 
 	}
 
     query := datastore.NewQuery("Guest_Medical_Xray").Order("Date")
-//	q := datastore.NewQuery("Guest_Medical_Xray").Order("Date")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -63,10 +59,10 @@ func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request 
 	guest_medical_xray_slice := make([]type6.Guest_Medical_Xray, 0)
 
     keys, err := client.GetAll(ctx, query , &guest_medical_xray)
-//	keys, err := q.GetAll(c, &guest_medical_xray)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -78,15 +74,17 @@ func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request 
 
     }
 
+///
+///       when record equal guest no , select data for Guest_Medical_Xray in d.s.
+///
+
 	i_count = 0
 
 	for pos, guest_medical_xrayw := range guest_medical_xray {
 
-//	  fmt.Fprintf( w, "trans.guest_medical_xray guest_medical_xrayw %v\n" ,guest_medical_xrayw)  // チE��チE��
+//	  fmt.Fprintf( w, "trans.guest_medical_xray guest_medical_xrayw %v\n" ,guest_medical_xrayw)
 
-///  機�EによりチェチE��頁E��をセチE��
-
-      if guest_no == guest_medical_xrayw.Guest_No {
+      if guest_no == guest_medical_xrayw.Guest_No {     // select by guest no
 
          i_count ++
 

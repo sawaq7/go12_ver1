@@ -1,6 +1,3 @@
-///
-/// 豌ｴ逅・ｭｦ縲・医ぎ繝ｳ繧ｮ繝ｬ繝ｼ繝ｻ繧ｯ繝・ち繝ｼ縺ｮ蜈ｬ蠑擾ｼ・///
-
 package equation
 
 
@@ -9,11 +6,17 @@ import (
         "math"
 	  		  )
 
+///
+///     formura of Gangirei
+///        genre : hydraulics
+
 func Suiri_Gangirei1( n float64 ,R float64 ,I float64 ) float64 {
 
-//     IN    n          : 邊怜ｺｦ菫よ焚
-//     IN    R(・搾ｼ・    : 蠕・ｷｱ
-//     IN    I          : 蜍墓ｰｴ蜍ｾ驟・//    OUT    one・・/s)  : 騾溷ｺｦ
+//     IN    n
+//     IN    R
+//     IN    I          :
+
+//     OUT              : velocity
 
    var C1 ,C2 ,C3,V float64
 

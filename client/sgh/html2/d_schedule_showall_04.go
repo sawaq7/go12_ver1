@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>チE�Eタストアの更新・削除</title>
+        <title>datastore update/delete</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -104,7 +104,7 @@ package html2
                <form method="GET" action="/d_schedule_copy" >
                  <td>
                    <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                   <input type="submit"  size="2" value="コピ�E"  />
+                   <input type="submit"  size="2" value="コピ�E"  />
                  </td>
                </form>
              </tr>

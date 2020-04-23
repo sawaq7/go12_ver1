@@ -17,26 +17,27 @@ import (
 
 func Csv_match_exp2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_match_exp2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "csv_match_exp2 start \n" )
 
     var err error
 
     var csv_records  type5.Csv_Records
 
-    csv_inf := trans3.Csv_inf ( w ,r )  ///      csv諠・ｱ繧偵ご繝・ヨ
+    csv_inf := trans3.Csv_inf ( w ,r )  ///     get csv inf.
 
 
-    column_no1w := r.FormValue("column_no1")  // 蛻湧O繧偵ご繝・ヨ
+    column_no1w := r.FormValue("column_no1")  //   get column no.
 
-	column_no1 ,err := strconv.Atoi(column_no1w)  // 謨ｴ謨ｰ蛹・	if err != nil {
+	column_no1 ,err := strconv.Atoi(column_no1w)  //  make an integer
+	if err != nil {
 //	     http.Error(w,err.Error(), http.StatusInternalServerError)
 //         return
     } else {
 
-      expression1 := r.FormValue("expression1")  // 蠑上ｒ繧ｲ繝・ヨ
+      expression1 := r.FormValue("expression1")  //    get expression
 	  if expression1 == " " {
 
-//	    fmt.Fprintf( w, "csv_match_exp1 : expression1 is exsiting (no1)\n" )  // 繝・ヰ繝・け
+//	    fmt.Fprintf( w, "csv_match_exp1 : expression1 is exsiting (no1)\n" )
 	    return
 	  }
 
@@ -48,17 +49,18 @@ func Csv_match_exp2(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	column_no2w := r.FormValue("column_no2")  // 蛻湧O繧偵ご繝・ヨ
+	column_no2w := r.FormValue("column_no2")  //   get column no.
 
-	column_no2 ,err := strconv.Atoi(column_no2w)  // 謨ｴ謨ｰ蛹・	if err != nil {
+	column_no2 ,err := strconv.Atoi(column_no2w)  // make an integer
+	if err != nil {
 //	     http.Error(w,err.Error(), http.StatusInternalServerError)
 //         return
     } else {
 
-      expression2 := r.FormValue("expression2")  // 蠑上ｒ繧ｲ繝・ヨ
+      expression2 := r.FormValue("expression2")  //   get expression
 	  if expression2 == " " {
 
-//	    fmt.Fprintf( w, "csv_match_exp2 : expression2 is exsiting (no2)\n" )  // 繝・ヰ繝・け
+//	    fmt.Fprintf( w, "csv_match_exp2 : expression2 is exsiting (no2)\n" )
 	    return
 	  }
 
@@ -70,17 +72,18 @@ func Csv_match_exp2(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-    column_no3w := r.FormValue("column_no3")  // 蛻湧O繧偵ご繝・ヨ
+    column_no3w := r.FormValue("column_no3")  //  get column no.
 
-	column_no3 ,err := strconv.Atoi(column_no3w)  // 謨ｴ謨ｰ蛹・	if err != nil {
+	column_no3 ,err := strconv.Atoi(column_no3w)  //  make an integer
+	if err != nil {
 //	     http.Error(w,err.Error(), http.StatusInternalServerError)
 //         return
     } else {
 
-      expression3 := r.FormValue("expression3")  // 蠑上ｒ繧ｲ繝・ヨ
+      expression3 := r.FormValue("expression3")  // get project expression
 	  if expression3 == " " {
 
-//	    fmt.Fprintf( w, "csv_match_exp3 : expression3 is exsiting (no3)\n" )  // 繝・ヰ繝・け
+//	    fmt.Fprintf( w, "csv_match_exp3 : expression3 is exsiting (no3)\n" )
 	    return
 	  }
 
@@ -91,26 +94,26 @@ func Csv_match_exp2(w http.ResponseWriter, r *http.Request) {
 	  csv_records.Records_Num ++
 
 	}
-	logical := r.FormValue("logical")  // 隲也炊螟画焚繧偵ご繝・ヨ
+	logical := r.FormValue("logical")  //  get logic variable
 
 //    _ = logical
 
-//	fmt.Fprintf( w, "csv_match_exp2 : logical %v\n", logical )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "csv_match_exp2 : logical %v\n", logical )
 
     csv_inf4 := operator.Operator2( csv_records  ,logical ,w , r  )
 
 ///
-///縲縲web 縺ｫcsv諠・ｱ繧定｡ｨ遉ｺ
+///縲縲show csv inf. on web
 ///
 
-     monitor := template.Must( template.New("html").Parse( html5.Csv_match_exp )) // 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+     monitor := template.Must( template.New("html").Parse( html5.Csv_match_exp )) // set template
 
      err = monitor.Execute ( w, csv_inf4 )
 	 if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	 }
 
-//	fmt.Fprintf( w, "csv_match_exp2 : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "csv_match_exp2 : normal end \n" )
 
 }
 

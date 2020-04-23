@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>car no 単佁E</title>
+        <title>car-list</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>

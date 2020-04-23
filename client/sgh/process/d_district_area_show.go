@@ -10,29 +10,34 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
                                                 )
 
+///
+///     show  area inf. in d.s.
+///
 
 func D_district_area_show(w http.ResponseWriter, r *http.Request ,district_no int64) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
-//     IN 縲district_no : 蝨ｰ蛹ｺNo
+//     IN 縲district_no : district no
 
-//    fmt.Fprintf( w, "d_district_area_show start \n" )  // 繝・ヰ繝・け}
+//    fmt.Fprintf( w, "d_district_area_show start \n" )
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+//     set template
 
 //     monitor := template.Must(template.New("html").Parse(html2.D_district_area_show))
      monitor := template.Must(template.New("html").Parse(html2.D_district_area))
 
-// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲∬｡ｨ遉ｺ逕ｨ繝・・繧ｿ繧竪ET
+//    get area inf in d.s.
 
      d_area_view := datastore2.Datastore_sgh( "D_Area","trans" ,district_no , w , r  )
 
-// 遨ｺ繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繧､繧ｹ螟画焚繧医ｊ繝舌Μ繝･繝ｼ蛟､繧偵ご繝・ヨ
+//   get value from interface data
 
     value, _ := d_area_view.([]type2.D_Area)
 
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+///
+///     show area inf. on web
+///
 
 	err := monitor.Execute(w, value)
 	if err != nil {

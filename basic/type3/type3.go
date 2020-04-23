@@ -26,9 +26,10 @@ type Point struct {
 }
 
 ///
-///    最小二乗法！Eeast squares method�E�E///
+///    Eeast squares method
+///
 
-type Ls_Method struct {   // 使用するか検討中
+type Ls_Method struct {
 
         X   float64
         Y   float64

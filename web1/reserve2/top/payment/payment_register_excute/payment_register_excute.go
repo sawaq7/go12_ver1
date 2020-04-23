@@ -2,8 +2,6 @@ package payment_register_excute
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 
@@ -18,13 +16,17 @@ import (
 	    "os"
                                                   )
 
+///                         　　　　
+///     register payment inf. for guest which is selected in d.s.
+///
+
 func Payment_register_excute(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "payment_register_excute start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "payment_register_excute start \n" )
 
 	var guest_payment type6.Guest_Payment
 
-///  temporary-fileより、地区NO・地区名をGET
+///  get guest no and guest name in guest temp inf.
 
 //    flexible_out := datastore2.Datastore_sgh( "D_District_Temp" ,"check" ,idmy , w , r  )
 
@@ -35,33 +37,32 @@ func Payment_register_excute(w http.ResponseWriter, r *http.Request) {
     guest_payment.Guest_No   = general_work[0].Int64_Work
     guest_payment.Guest_Name = general_work[0].String_Work
 
-//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Guest_No %v\n", guest_payment.Guest_No )  // チE��チE��
-//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Guest_Name %v\n", guest_payment.Guest_Name )  // チE��チE��
-
-// 空インターフェイス変数よりバリュー値をゲチE��
+//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Guest_No %v\n", guest_payment.Guest_No )
+//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Guest_Name %v\n", guest_payment.Guest_Name )
 
 //    value, _ := count.(int64)
 
-//	fmt.Fprintf( w, "payment_register_excute count %v   \n" , count  )  // チE��チE��
-//	fmt.Fprintf( w, "payment_register_excute district_no %v   \n" , district_no  )  // チE��チE��
+//	fmt.Fprintf( w, "payment_register_excute count %v   \n" , count  )
+//	fmt.Fprintf( w, "payment_register_excute district_no %v   \n" , district_no  )
 
     guest_payment.Date   = r.FormValue("date")
 
     guest_payment.Item   = r.FormValue("item")
 
 	amount               := r.FormValue("amount")
-	amountw ,err := strconv.Atoi(amount)  // 斁E���E整数匁E	if err != nil {
+	amountw ,err := strconv.Atoi(amount)  // make an integer
+	if err != nil {
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 
 		return
 	}
 
-	guest_payment.Amount = int64(amountw)   // 整数の64ビット化
+	guest_payment.Amount = int64(amountw)   // make an integer64
 
-//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Item %v\n", guest_payment.Item )  // チE��チE��
-//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Amount %v\n", guest_payment.Amount )  // チE��チE��
+//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Item %v\n", guest_payment.Item )
+//	fmt.Fprintf( w, "payment_register_excute : guest_payment.Amount %v\n", guest_payment.Amount )
 
-/// チE�EタストアーにチE�EタをセチE�� ///
+/// チE�EタストアーにチE�EタをセチE�� ///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -71,7 +72,6 @@ func Payment_register_excute(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -83,15 +83,18 @@ func Payment_register_excute(w http.ResponseWriter, r *http.Request) {
     new_key := datastore.IncompleteKey("Guest_Payment", nil)
 
     if _, err = client.Put(ctx, new_key, &guest_payment ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Guest_Payment", nil), &guest_payment); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// モニター　再表示 ///
+
+///
+///      show payment inf. on web
+///
 
 	process4.Payment_register(w , r ,guest_payment.Guest_No)
 
-//	fmt.Fprintf( w, "payment_register_excute : normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "payment_register_excute : normal end \n" )  // チE��チE��
 
 }

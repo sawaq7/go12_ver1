@@ -1,8 +1,7 @@
 package trans
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -16,24 +15,24 @@ import (
                                                 )
 
 ///
-/// 地区のエリアチE�EタをゲチE��する
+///     get area inf.
 ///
 
 func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type2.D_Area ) {
 
-//     IN  funct  　　　: ファンクション
-//     　　　　　�E�！E 地区NO
-//     　　　　　�E�！E カーNO
-//     　　　　　�E�！E プライベ�EチEO
-//     IN  some_no  　　: 吁E��NO
+//     IN  funct  　　　: function
+//     　　　　　1:  area no
+//     　　　　　2:  car no
+//     　　　　　3:  private no
+//     IN  some_no      : if flag
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT d_area_view  : 構造体　”エリア惁E��”�Eスライス
+//     OUT d_area_view  : slice of struct ( D_Area )
 
-//    fmt.Fprintf( w, "trans.d_area start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "trans.d_area funct \n" ,funct )  // チE��チE��
-//    fmt.Fprintf( w, "trans.d_area some_no \n" ,some_no)  // チE��チE��
+//    fmt.Fprintf( w, "trans.d_area start \n" )
+//    fmt.Fprintf( w, "trans.d_area funct \n" ,funct )
+//    fmt.Fprintf( w, "trans.d_area some_no \n" ,some_no)
 
     var check_no int64
 
@@ -45,7 +44,6 @@ func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -55,9 +53,7 @@ func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )
 	}
 
     query := datastore.NewQuery("D_Area").Order("Area_No")
-//	q := datastore.NewQuery("D_Area").Order("Area_No")
 
-//	count, err := q.Count(c)
 	count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -67,12 +63,10 @@ func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )
 	d_area      := make([]type2.D_Area, 0, count)
 	d_area_view := make([]type2.D_Area, 0)
 
-
-//	keys, err := q.GetAll(c, &d_area)
 	keys, err := client.GetAll(ctx, query , &d_area)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -86,17 +80,17 @@ func D_area(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )
 
 	for pos, d_areaw := range d_area {
 
-//	  fmt.Fprintf( w, "trans.d_area d_areaw %v\n" ,d_areaw)  // チE��チE��
+//	  fmt.Fprintf( w, "trans.d_area d_areaw %v\n" ,d_areaw)
 
-///  機�EによりチェチE��頁E��をセチE��
+///  branch flag set from function key
 
-	  if funct == 0 {   // 地区NOの場吁E
+	  if funct == 0 {   //  when func. eq. area
 	     check_no = d_areaw.District_No
 
-	  }else if funct == 1 {   // カーNOの場吁E
+	  }else if funct == 1 {   //  when func. eq. car
 	     check_no = 1
 
-	  }else if funct == 2 {   // 個人NOの場吁E
+	  }else if funct == 2 {   //  when func. eq. private
 	     check_no = 2
 
 	  }

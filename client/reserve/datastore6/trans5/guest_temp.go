@@ -2,8 +2,6 @@ package trans5
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -15,7 +13,7 @@ import (
 	    "os"                                       )
 
 ///
-/// 蝨ｰ蛹ｺ縺ｮ繧ｨ繝ｪ繧｢繝・・繧ｿ繧偵ご繝・ヨ縺吶ｋ
+///       when record equal reserve_date , select data for Guest_Temp in d.s.
 ///
 
 func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp ) {
@@ -23,9 +21,9 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//     OUT guest_temp_slice  : 讒矩菴薙窶昴お繝ｪ繧｢諠・ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT guest_temp_slice  : slice of struct (Guest_Temp)
 
-//    fmt.Fprintf( w, "trans.guest_temp start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.guest_temp start \n" )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -35,7 +33,6 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -45,10 +42,9 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 	}
 
     query := datastore.NewQuery("Guest_Temp")
-//	q := datastore.NewQuery("Guest_Temp")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -58,10 +54,11 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 	guest_temp_slice := make([]type6.Guest_Temp, 0)
 
     keys, err := client.GetAll(ctx, query , &guest_temp)
-//	keys, err := q.GetAll(c, &guest_temp)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // 繝・ヰ繝・け
+
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -75,7 +72,7 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 
 	for pos, guest_tempw := range guest_temp {
 
-//	  fmt.Fprintf( w, "trans.guest_temp guest_tempw %v\n" ,guest_tempw)  // 繝・ヰ繝・け
+//	  fmt.Fprintf( w, "trans.guest_temp guest_tempw %v\n" ,guest_tempw)
 
       guest_temp_slice = append(guest_temp_slice, type6.Guest_Temp { keys_wk[pos]            ,
                                                                      guest_tempw.Guest_No    ,
@@ -83,10 +80,8 @@ func Guest_temp( w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Temp )
 
 	}
 
-//	fmt.Fprintf( w, "trans.guest_temp : guest_temp_slice %v\n", guest_temp_slice )  // 繝・ヰ繝・け
-
-//    fmt.Fprintf( w, "trans.guest_temp : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "trans.guest_temp : guest_temp_slice %v\n", guest_temp_slice )
+//  fmt.Fprintf( w, "trans.guest_temp : normal end \n" )
 
     return	guest_temp_slice
 }
-

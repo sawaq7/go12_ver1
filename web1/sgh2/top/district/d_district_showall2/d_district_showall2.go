@@ -10,17 +10,18 @@ import (
 //	    "time"
                                                   )
 
-/// main 驟埼＃蝨ｰ蝓溘・繝・・繧ｿ繧定｡ｨ遉ｺ縺吶ｋ ///
+///
+/// 縲縲   show district inf.
+///
 
 func D_district_showall2(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_district_showall2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_showall2 start \n" )
 
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ ///
-
+   //    show district inf.  on web
    process.D_district_showall1(w , r )
 
-//	fmt.Fprintf( w, "d_district_showall2 : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "d_district_showall2 : normal end \n" )
 
 
 

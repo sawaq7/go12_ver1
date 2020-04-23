@@ -10,17 +10,20 @@ import (
                                                   )
 
 ///
-/// 蟆取ｰｴ蜍ｾ驟咲ｷ壹Μ繧ｹ繝医ｒ陦ｨ遉ｺ縺吶ｋ縲・///
+///     show water-slope-line list on web
+///
 
 func Water_slope_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "water_slope_show start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "water_slope_show start \n" )
 
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ ///
+///
+/// 縲縲縲縲縲show water-slope-line inf. on web
+///
 
     process2.Water_slope_show(w , r )
 
-//	fmt.Fprintf( w, "water_slope_show : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "water_slope_show : normal end \n" )
 
 }
 

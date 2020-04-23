@@ -5,7 +5,7 @@ package html6
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>uodate/delete in D.S.</title>
         <link rel="stylesheet" href="css/medical/reserve_situation.css" type="text/css">
      </head>
      <body>

@@ -10,14 +10,17 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
                                                 )
-/// 驟埼＃繝・・繧ｿ繧定｡ｨ遉ｺ縺吶ｋ ///
+
+///
+///     register deliver inf. for each private in d.s.
+///
 
 func Deliver_keyin_private(w http.ResponseWriter, r *http.Request) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//    fmt.Fprintf( w, "deliver1_show start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "deliver1_show start \n" )
 
 	c := appengine.NewContext(r)
 
@@ -33,7 +36,9 @@ func Deliver_keyin_private(w http.ResponseWriter, r *http.Request) {
 
     monitor := template.Must(template.New("html").Parse(html2.Deliver_keyin_private))
 
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+///
+///     show deliver inf. for each private on web
+///
 
 	err = monitor.Execute(w, deliver_view)
 	if err != nil {

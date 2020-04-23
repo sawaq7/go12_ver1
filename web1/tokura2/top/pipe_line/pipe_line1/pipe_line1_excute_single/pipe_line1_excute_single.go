@@ -1,19 +1,19 @@
 ////////////////////////////////////////////////////////////////////////
 ///                                                                  ///
-///   動水勾配線データを作�Eする　　　　　　　　　　　　　　　　　　　  ///
+///   make water-slope-line　　　　　　　　　　　　　　　　　　　  ///
 ///                                                                  ///
 ////////////////////////////////////////////////////////////////////////
 
 package pipe_line1_excute_single
 
 import (
-	      "fmt"
+//	      "fmt"
 	      "io"
 	      "strings"
 	      "net/http"
 	      "bufio"
 	      "github.com/sawaq7/go12_ver1/client/tokura/suiri"
-	      "storage2"
+	      "github.com/sawaq7/go12_ver1/storage2"
 	      "strconv"
 	      "cloud.google.com/go/storage"
 
@@ -25,14 +25,12 @@ import (
 
 func Pipe_line1_excute_single(w http.ResponseWriter, r *http.Request) {
 
-// 実行する水路を判定すめE
-
     water_id , err := strconv.Atoi(r.FormValue("water_id"))
-    fmt.Fprintf( w, "pipe_line1_excute_single  water_id %v\n", water_id )  // チE��チE��
+//    fmt.Fprintf( w, "pipe_line1_excute_single  water_id %v\n", water_id )
 
 	if err  != nil {
 
-	   fmt.Fprintf( w, "pipe_line1_excute_single :error water_id"  )  // チE��チE��
+//	   fmt.Fprintf( w, "pipe_line1_excute_single :error water_id"  )
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
@@ -42,27 +40,27 @@ func Pipe_line1_excute_single(w http.ResponseWriter, r *http.Request) {
     filename1 := "water_inf.txt"
     filename2 := "grade_line.txt"
 
-// 導水勾配線ファイル�E�Erade_line.txt�E�　�E�Erite file�E�EクリエイチE
+///     create water-slope-line
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename2 , w , r  )
 
-    writer, _ := writer_minor.(*storage.Writer)  // インターフェイス型を型変換
+    writer, _ := writer_minor.(*storage.Writer)
 
 //    writer := storage2.File_Create( w ,r ,bucket ,filename2 )
 
 	defer writer.Close()
 
-// 水路惁E��ファイル　�E�Eead file�E�Eオープン
+///    open water-inf-file
 
 //    reader := storage2.File_Open(w ,r ,bucket ,filename1)
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename1 , w , r  )
 
-    reader, _ := reader_minor.(io.ReadCloser)  // インターフェイス型を型変換
+    reader, _ := reader_minor.(io.ReadCloser)
 
     defer reader.Close()
 
-// ファイルリーダー(string用�E�を�E��E��E�
+//    get file-reader
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -70,75 +68,74 @@ func Pipe_line1_excute_single(w http.ResponseWriter, r *http.Request) {
 
     for {
 
-      index ++     // レコードカウンターをカウンチE
+      index ++
 
-      fmt.Fprintf(w, "pipe_line1_excute_single : lndex %v\n", index )  // チE��チE��
+//      fmt.Fprintf(w, "pipe_line1_excute_single : lndex %v\n", index )
 
-// ファイルを１行read
+///   read one-record
 
       line ,_  := sreader.ReadString('\n')
 
-//斁E��単位にスペ�Eスで刁E��
-
+      // change water data from string-type to string-array-type by spliting brank
       str := strings.Fields(line)
 
       num := len(str)
 
-      fmt.Fprintf(w, "pipe_line1_excute_single : num %v\n", num )  // チE��チE��
+//      fmt.Fprintf(w, "pipe_line1_excute_single : num %v\n", num )
 
       if num != 0 {
          if index == 1 || index != water_id {
 
-// ヘッダーは、スルーする
+         //   skip header
 
-             fmt.Fprintf(w, "pipe_line1_excute_single (header) : line %s\n", line )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_single (header) : line %s\n", line )
 
           }else{
-             fmt.Fprintf(w, "pipe_line1_excute_single (the other): line %s\n", line )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_single (the other): line %s\n", line )
 
-/// 動水勾配線データを作�E
+///    make water-slope-line
 
              ad_hp ,ad_hl ,ad_vhead ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := suiri.Kansui1( line  )
 
-             fmt.Fprintf(w, "pipe_line1_excute_single : ad_hp %s\n", ad_hp )  // チE��チE��
-//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_hl %s\n", ad_hl )  // チE��チE��
-//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_vhead %s\n", ad_vhead )  // チE��チE��
-//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_eneup %s\n", ad_eneup )  // チE��チE��
-//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_enedown %s\n", ad_enedown )  // チE��チE��
-//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_glineup %s\n", ad_glineup )  // チE��チE��
-//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_glinedown %s\n", ad_glinedown )  // チE��チE��
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_hp %s\n", ad_hp )
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_hl %s\n", ad_hl )
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_vhead %s\n", ad_vhead )
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_eneup %s\n", ad_eneup )
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_enedown %s\n", ad_enedown )
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_glineup %s\n", ad_glineup )
+//             fmt.Fprintf(w, "pipe_line1_excute_single : ad_glinedown %s\n", ad_glinedown )
 
-// ポイント損失惁E��をwrite
+///     write point-loss
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_hp )
                storage2.File_write ( w ,writer ,ad_hp )
 
-// ライン損失惁E��をwrite
+///    write line-loss
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_hl )
                storage2.File_write ( w ,writer ,ad_hl )
 
-// 速度水頭惁E��をwrite
+///     write vilocity-head
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_vhead )
                storage2.File_write ( w ,writer ,ad_vhead )
 
-// エネルギー線upをwrite
+///     write enegy-line-up
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_eneup )
                storage2.File_write ( w ,writer ,ad_eneup )
 
-// エネルギー線downをwrite
+///     write enegy-line-down
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_enedown )
                storage2.File_write ( w ,writer ,ad_enedown )
 
-// 動水勾配線upをwrite
+///     write water-slope-line-up
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_glineup )
                storage2.File_write ( w ,writer ,ad_glineup )
 
-// 動水勾配線downをwrite
+///     write water-slope-line-down
 
 //               storage2.File_Write ( w ,bucket ,filename2 ,writer ,ad_glinedown )
                storage2.File_write ( w ,writer ,ad_glinedown )
@@ -147,7 +144,7 @@ func Pipe_line1_excute_single(w http.ResponseWriter, r *http.Request) {
 
       } else if num == 0 {
 
-          io.WriteString(w, "\n pipe_line1_excute_single : data end \n")   //チE��チE��
+//          io.WriteString(w, "\n pipe_line1_excute_single : data end \n")
 
          break
 
@@ -156,7 +153,7 @@ func Pipe_line1_excute_single(w http.ResponseWriter, r *http.Request) {
 
 // end process
 
-	fmt.Fprintf(w, "\n pipe_line1_excute_single : Calculate succeeded.\n" )
+//	fmt.Fprintf(w, "\n pipe_line1_excute_single : Calculate succeeded.\n" )
 
 	return
 }

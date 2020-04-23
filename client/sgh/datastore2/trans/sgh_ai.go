@@ -1,7 +1,7 @@
 package trans
 
 import (
-//	    "google.golang.org/appengine"
+
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
@@ -15,9 +15,9 @@ import (
         "os"
                                                 )
 
-///                       　    ///
-/// コースNoの条件式をゲチE��する ///
-///                       　   ///
+///                       　
+///     make expression for each course
+///                       　
 
 
 func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )  (sgh_ai_view []type2.Sgh_Ai ) {
@@ -26,11 +26,11 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )  (sgh_ai_
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT sgh_ai_view  : 構造体　”条件式”�Eスライス
+//     OUT sgh_ai_view  : slice of struct ( Sgh_Ai )
 
-//    fmt.Fprintf( w, "trans.sgh_ai start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.sgh_ai start \n" )
 
-//    fmt.Fprintf( w, "trans.sgh_ai course_no %v\n" ,course_no )  // チE��チE��
+//    fmt.Fprintf( w, "trans.sgh_ai course_no %v\n" ,course_no )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -40,16 +40,14 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )  (sgh_ai_
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("Sgh_Ai").Order("Course_No")
-//    q := datastore.NewQuery("Sgh_Ai").Order("Course_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return nil
@@ -107,12 +105,12 @@ func Sgh_ai( course_no int64 ,w http.ResponseWriter, r *http.Request )  (sgh_ai_
                                                                     sgh_aiw.Item5_Name    ,
                                                                     sgh_aiw.Item5_Factor           })
 
-//        fmt.Fprintf( w, "trans.sgh_ai sgh_aiw.Expression %v\n" ,sgh_aiw.Expression )  // チE��チE��
+//        fmt.Fprintf( w, "trans.sgh_ai sgh_aiw.Expression %v\n" ,sgh_aiw.Expression )
 
       }
 	}
 
-//    fmt.Fprintf( w, "trans.sgh_ai normal end \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.sgh_ai normal end \n" )
     return	sgh_ai_view
 }
 

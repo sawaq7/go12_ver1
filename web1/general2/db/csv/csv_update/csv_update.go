@@ -3,8 +3,7 @@ package csv_update
 import (
 
 	    "strconv"
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //        "github.com/sawaq7/go12_ver1/general/type5"
@@ -14,14 +13,13 @@ import (
 
 func Csv_update(w http.ResponseWriter, r *http.Request) {
 
-//	   fmt.Fprintf( w, "sky_csv_update start %v\n" )  // 繝・ヰ繝・け
+//	   fmt.Fprintf( w, "sky_csv_update start %v\n" )
 
-/// 謖・ｮ壹＠縺溘ョ繝ｼ繧ｿid繧竪ET ///
-
+                              ///    get the id which is selected for updating
     updidw , err := strconv.Atoi(r.FormValue("id"))
-	if err  != nil {
 
-//	   fmt.Fprintf( w, "sky_csv_update :error updidw %v\n", updidw )  // 繝・ヰ繝・け
+	if err  != nil {
+//	   fmt.Fprintf( w, "sky_csv_update :error updidw %v\n", updidw )
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
@@ -29,17 +27,17 @@ func Csv_update(w http.ResponseWriter, r *http.Request) {
     updid := int64(updidw)
 
 ///
-///    驟埼＃諠・ｱ縺ｮ螟画峩
+///       change csv inf.
 ///
 
 	process3.Csv_update(w , r ,updid)
 
 ///
-///    繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ
+///      show csv inf. on web
 ///
 
 	process3.Csv_inf ( w , r )
 
-//	fmt.Fprintf( w, "csv_update normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "csv_update normal end \n" )
 
 }

@@ -16,11 +16,13 @@ func Medical_record_show(w http.ResponseWriter, r *http.Request ,guest_no int64)
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
-//     IN  guest_no     : 繧ｲ繧ｹ繝・o
+//     IN  guest_no     :  guest no
 
-//    fmt.Fprintf( w, "medical_record_show start \n" )  // 繝・ヰ繝・け}
+//    fmt.Fprintf( w, "medical_record_show start \n" )
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+///
+///     set template
+///
 
     monitor := template.Must(template.New("html").Parse(html6.Medical_record_show))
 

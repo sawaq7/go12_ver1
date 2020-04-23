@@ -1,8 +1,7 @@
 package trans
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -14,16 +13,16 @@ import (
 	    "os"                                       )
 
 ///
-///  private 繝輔ぃ繧､繝ｫ縺九ｉ縲繝励Λ繧､繝吶・繝域ュ蝣ｱ繧偵ご繝・ヨ縺吶ｋ
+///     get private inf.
 ///
 
 func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Private ) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
-//     OUT private_view  : 讒矩菴薙窶昴お繝ｪ繧｢諠・ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT private_view  : slice of struct ( Private )
 
-//    fmt.Fprintf( w, "trans.private start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.private start \n" )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -33,16 +32,14 @@ func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Pr
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("Private").Order("Worker_No")
-//	q := datastore.NewQuery("Private").Order("Worker_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -52,10 +49,10 @@ func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Pr
 	private_view = make([]type2.Private, 0)
 
     keys, err := client.GetAll(ctx, query , &private)
-//	keys, err := q.GetAll(c, &private)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // 繝・ヰ繝・け
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -69,7 +66,7 @@ func Private(w http.ResponseWriter, r *http.Request )  ( private_view []type2.Pr
 
 	for pos, privatew := range private {
 
-//	  fmt.Fprintf( w, "trans.private privatew %v\n" ,privatew)  // 繝・ヰ繝・け
+//	  fmt.Fprintf( w, "trans.private privatew %v\n" ,privatew)
 
       private_view = append(private_view, type2.Private { keys_wk[pos]            ,
                                                           privatew.Worker_No      ,

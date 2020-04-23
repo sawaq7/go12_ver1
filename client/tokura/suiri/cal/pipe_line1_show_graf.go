@@ -3,8 +3,7 @@ package cal
 import (
 
 //	    "strconv"
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "net/http"
 	    "fmt"
@@ -23,17 +22,19 @@ import (
                                                    )
 
 ///
-/// グラチEファイル�E�導水勾配線群�E�を、ウエブ上に表示するとともに
-/// チE�EタストアにグラチEファイル惁E��を登録する、E///
+/// グラチEファイル�E�導水勾配線群�E�を、ウエブ上に表示するとともに
+/// チE�EタストアにグラチEファイル惁E��を登録する、E///
 
 
 func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name string) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     IN  f_name 　　  : ファイル吁E
-	var g type4.Water_Slope // 画像ファイル表示用構造体　”type5.Image_Show”と同フォーマッチE
-//    fmt.Fprintf( w, "pipe_line1_show_graf start \n" )  // チE��チE��
+//     IN  f_name 　　  : file-name
+
+	var g type4.Water_Slope // ”Water_Slope" and type5.Image_Show”is same format
+
+//    fmt.Fprintf( w, "pipe_line1_show_graf start \n" )
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -44,7 +45,6 @@ func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name strin
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
@@ -59,38 +59,34 @@ func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name strin
 	const publicURL = "https://storage.googleapis.com/%s/%s"
 	g.Url = fmt.Sprintf(publicURL, bucket, g.File_Name)
 
-//	fmt.Fprintf( w, "pipe_line1_show_graf : g.File_Name %v\n", g.File_Name )  // チE��チE��
-//	fmt.Fprintf( w, "pipe_line1_show_graf : g.Url %v\n", g.Url )  // チE��チE��
+//	fmt.Fprintf( w, "pipe_line1_show_graf : g.File_Name %v\n", g.File_Name )
+//	fmt.Fprintf( w, "pipe_line1_show_graf : g.Url %v\n", g.Url )
 
 ///
-/// チE�EタストアーにニューチE�EタをセチE��
+///     put new data in d.s.
 ///
 
     new_key := datastore.IncompleteKey("Water_Slope", nil)
 
     if _, err = client.Put(ctx, new_key, &g ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Water_Slope", nil), &g); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 ///
-/// チE��プレート�EヘッダーをGET
+///     set template
 ///
 
-//     monitor := template.Must(template.New("html").Parse(html5.Image_file_show))
      monitor := template.Must(template.New("html").Parse(html4.Pipe_line1_show_graf))
 
 ///
-/// モニターに表示
+///     show water-slope inf. on web
 ///
 
 	err = monitor.Execute(w, g)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
-
-//    get.Image_file_show( w ,r  ,bucket ,f_name)   test excute
-
 
 }

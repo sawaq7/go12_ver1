@@ -12,17 +12,17 @@ import (
                                                 )
 
 ///
-/// 該当するコースNOのエリア惁E��をゲチE��する
+/// 該当するコースNOのエ
 ///
 
 func D_area_course_no(w http.ResponseWriter, r *http.Request ,course_no  int64)  (d_area_course_no []type2.D_Area ) {
 
 //     IN    w      　　     : レスポンスライター
 //     IN    r      　　     : リクエストパラメータ
-//     IN 　course_no        : コースNo
-//     OUT d_area_course_no  : 該当するコースNOのエリア惁E��　(構造体　”エリア惁E��”�Eスライス)
+//     IN 　course_no        : course no
+//     OUT d_area_course_no  : slice of struct ( D_Area ) wcich match course no
 
-//    fmt.Fprintf( w, "trans.d_area_course_no start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.d_area_course_no start \n" )
 
 	c := appengine.NewContext(r)
 
@@ -67,7 +67,7 @@ func D_area_course_no(w http.ResponseWriter, r *http.Request ,course_no  int64) 
         }
 	  }
 	}
-//    fmt.Fprintf( w, "trans.d_area_course_no normal end \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.d_area_course_no normal end \n" )
 
 	return d_area_course_no
 }

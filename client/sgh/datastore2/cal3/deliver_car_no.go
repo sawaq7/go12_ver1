@@ -12,7 +12,7 @@ import (
 
                                                 )
 ///
-///    配達ファイルより、該当するコースNOの生産性を算�Eする
+///    配達ファイルより、該当するコースNOの生産性を算�Eする
 ///
 
 func Deliver_car_no( car_no int64 ,w http.ResponseWriter, r *http.Request  ) (int64 ,float64 ,float64 ) {
@@ -24,25 +24,25 @@ func Deliver_car_no( car_no int64 ,w http.ResponseWriter, r *http.Request  ) (in
 //    OUT time_total    : 配達時間のΣ (h)
 //    OUT productivity  : 配達生産性　(　配達個数のΣ　/ 配達時間のΣ
 
-//    fmt.Fprintf( w, "cal3.deliver_car_no start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "cal3.deliver_car_no : car_no %v\n"  ,  car_no )  // チE��チE��
+//    fmt.Fprintf( w, "cal3.deliver_car_no start \n" )
+//    fmt.Fprintf( w, "cal3.deliver_car_no : car_no %v\n"  ,  car_no )
 
     var number_total int64
 
     var time_total ,productivity float64
 
-// チE�Eタストアーから、該当する号車No.のチE�EタをGET
+///
+///       get car-no in d.s.
+///
 
-//     deliver_view := trans.Deliver ( 1 ,car_no ,w ,r ) /// セレクトデータをＧ�E��E�
+//     deliver_view := trans.Deliver ( 1 ,car_no ,w ,r )
 
-//     deliver_view2 := sort.Deliver ( w ,deliver_view )       /// 2重ソーチE日付�E号車！E
+//     deliver_view2 := sort.Deliver ( w ,deliver_view )
      general_work := make([]type5.General_Work, 2)
-     general_work[0].Int64_Work = 1          // カー惁E��
+     general_work[0].Int64_Work = 1
      general_work[1].Int64_Work = car_no
 
-     deliver_view := datastore2.Datastore_sgh( "Deliver" ,"trans"  ,general_work , w , r  )
-
-     // 空インターフェイス変数よりバリュー値をゲチE��
+     deliver_view := datastore2.Datastore_sgh( "Deliver" ,"trans"  ,general_work , w , r )
 
      value, _ := deliver_view.([]type2.Deliver)
 
@@ -50,15 +50,15 @@ func Deliver_car_no( car_no int64 ,w http.ResponseWriter, r *http.Request  ) (in
      time_total   = 0.
 
 ///
-/// 生産性用のチE�Eタを作�Eする
+///        make data for productivity
 ///　
 
      for _, deliverw := range value {
 
-       if deliverw.Car_No ==  car_no  {        // 該当するカーNOかチェチE��
+       if deliverw.Car_No ==  car_no  {        //   check  car-no which fit these conditions
 
           number_total = number_total  + deliverw.Number
-          time_total   = time_total  + 10.                 // "temp" 配達ファイルのフォーマット追加後に修正
+          time_total   = time_total  + 10.
 
        }
 	 }
@@ -75,13 +75,11 @@ func Deliver_car_no( car_no int64 ,w http.ResponseWriter, r *http.Request  ) (in
      }
 
 
-//     fmt.Fprintf( w, "cal3.deliver_car_no : number_total %v\n"  ,  number_total )  // チE��チE��
-//     fmt.Fprintf( w, "cal3.deliver_car_no : time_total %f\n"  ,  time_total )  // チE��チE��
-//     fmt.Fprintf( w, "cal3.deliver_car_no : productivity %f\n"  , productivity )  // チE��チE��
+//     fmt.Fprintf( w, "cal3.deliver_car_no : number_total %v\n"  ,  number_total )
+//     fmt.Fprintf( w, "cal3.deliver_car_no : time_total %f\n"  ,  time_total )
+//     fmt.Fprintf( w, "cal3.deliver_car_no : productivity %f\n"  , productivity )
 
-//     fmt.Fprintf( w, "cal3.deliver_car_no normal end \n" )  // チE��チE��
+//     fmt.Fprintf( w, "cal3.deliver_car_no normal end \n" )
 
      return number_total ,time_total , productivity
-
-
 }

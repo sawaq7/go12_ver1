@@ -1,8 +1,7 @@
 package trans2
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 
@@ -14,15 +13,16 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　　
-/// チE�Eタストアーから導水勾配線�E惁E��をGETする�E�導水勾配線ファイル�E�E///                          　　　　　　　　　　　
+///    get water-slope-line
+///                          　　　　　　　　　　　
 
 func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope ) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     OUT        　　  : 導水勾配線�Eスライス
+//     OUT        　　  : water-slope-line slice
 
-//    fmt.Fprintf( w, "trans2.Water_slope start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans2.Water_slope start \n" )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -32,16 +32,14 @@ func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("Water_Slope").Order("File_Name")
-//	q := datastore.NewQuery("Water_Slope").Order("File_Name")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -52,10 +50,10 @@ func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope
 	water_slope_view := make([]type4.Water_Slope, 0)
 
     keys, err := client.GetAll(ctx, query , &water_slope)
-//	keys, err := q.GetAll(c, &water_slope)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "water_slope err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "water_slope err \n" ,err)
 		return	nil
 	}
 
@@ -68,8 +66,6 @@ func Water_slope( w http.ResponseWriter, r *http.Request )  ([]type4.Water_Slope
     }
 
 	for pos, water_slopew := range water_slope {
-
-///  機�EによりチェチE��頁E��をセチE��
 
          water_slope_view = append(water_slope_view, type4.Water_Slope { keys_wk[pos]       ,
                                                                          water_slopew.File_Name  ,

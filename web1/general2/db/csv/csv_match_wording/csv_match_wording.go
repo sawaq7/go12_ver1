@@ -11,7 +11,7 @@ import (
 
 func Csv_match_wording(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_match_wording start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "csv_match_wording start \n" )
 
      var s_dmy string
 
@@ -23,6 +23,6 @@ func Csv_match_wording(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-//	fmt.Fprintf( w, "csv_match_wording : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "csv_match_wording : normal end \n" )
 
 }

@@ -11,18 +11,18 @@ import (
 //	    "time"
                                                 )
 
-///                           ///
-/// 蝨ｰ蛹ｺ縺ｮ繧ｨ繝ｪ繧｢謨ｰ繧偵ご繝・ヨ縺吶ｋ ///
-///        test test test                  ///
+///
+///      get deliver inf.
+///
 
 func Deliver2( w http.ResponseWriter, r *http.Request )  ([]type2.Deliver ) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//     OUT deliver_view : 讒矩菴薙窶晞・驕疲ュ蝣ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT deliver_view : slice of struct ( Deliver )
 
-//    fmt.Fprintf( w, "trans.Deliver2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.Deliver2 start \n" )
 
     var line_counter int64
 
@@ -36,8 +36,6 @@ func Deliver2( w http.ResponseWriter, r *http.Request )  ([]type2.Deliver ) {
         return	nil
 	}
 
-// import struct for accessing datastore get from github.com/sawaq7/go12_ver1/client/sgh/type2/sgh.go
-
 	deliver      := make([]type2.Deliver, 0, count)
 
 	deliver_view := make([]type2.Deliver, 0)
@@ -45,7 +43,7 @@ func Deliver2( w http.ResponseWriter, r *http.Request )  ([]type2.Deliver ) {
 	keys, err := q.GetAll(c, &deliver)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // 繝・ヰ繝・け
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 

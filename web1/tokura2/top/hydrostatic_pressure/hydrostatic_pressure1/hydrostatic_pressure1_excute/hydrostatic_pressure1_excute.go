@@ -8,15 +8,15 @@ import (
 	     "strconv"
 	     "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
-//        "github.com/sawaq7/go12_ver1/client/tokura/html4"
-         "github.com/sawaq7/go12_ver1/general/html5"
+        "github.com/sawaq7/go12_ver1/client/tokura/html4"
+
 	                                  )
 
 func Hydrostatic_pressure1_excute(w http.ResponseWriter, r *http.Request) {
 
    var seisui type4.Seisui
 
-// 入力データをGET
+//   get key-in data
 
 	seisui.Omega = r.FormValue("omega")
 	seisui.D1    = r.FormValue("d1")
@@ -24,7 +24,7 @@ func Hydrostatic_pressure1_excute(w http.ResponseWriter, r *http.Request) {
 	seisui.P     = r.FormValue("p")
 	seisui.H     = r.FormValue("h")
 
-// string を　float に変換
+///      change data-type from string to float
 
 	r_omega,_ :=strconv.ParseFloat(seisui.Omega,64)
 	r_d1,_ :=strconv.ParseFloat(seisui.D1,64)
@@ -37,17 +37,14 @@ func Hydrostatic_pressure1_excute(w http.ResponseWriter, r *http.Request) {
 
     seisui.P2 =  suiri.Seisui1( a1 ,a2  ,r_p  ,r_omega  ,r_h  )
 
-// チE��プレート�EヘッダーをGET
+///      set template
 
-    monitor := template.Must(template.New("html").Parse(html5.Storage_bucket_list))
-//    monitor := template.Must( template.New("html").Parse( html4.Hydrostatic_pressure2_show) )
+    monitor := template.Must( template.New("html").Parse( html4.Hydrostatic_pressure2_show) )
 
-// 吁E��入力データを表示
 
-//    err := monitor.Execute(w, seisui)
-    var str_dmy string
+///    show the result of calculating on web
 
-	err := monitor.Execute( w, str_dmy )
+    err := monitor.Execute(w, seisui)
     if err != nil {
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

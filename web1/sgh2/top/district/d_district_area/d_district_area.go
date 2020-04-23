@@ -2,8 +2,6 @@ package d_district_area
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 //	    "github.com/sawaq7/go12_ver1/client/sgh"
@@ -18,9 +16,13 @@ import (
         "os"
                                                   )
 
+///
+/// 縲縲   show area inf. for each district
+///
+
 func D_district_area(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_district_area start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_area start \n" )
 
     var g type2.D_District
 
@@ -37,7 +39,6 @@ func D_district_area(w http.ResponseWriter, r *http.Request) {
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
@@ -48,28 +49,26 @@ func D_district_area(w http.ResponseWriter, r *http.Request) {
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
 	if err  != nil {
-//	   fmt.Fprintf( w, "d_district_area :error updidw %v\n", updidw )  // 繝・ヰ繝・け
+//	   fmt.Fprintf( w, "d_district_area :error updidw %v\n", updidw )
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "d_district_area : updidw %v\n", updidw )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "d_district_area : updid %v\n", updid )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_area : updidw %v\n", updidw )
+//    fmt.Fprintf( w, "d_district_area : updid %v\n", updid )
 
     key := datastore.IDKey("D_District", updid, nil)
 
     if err := client.Get(ctx, key , &g ) ; err != nil {
-//	key := datastore.NewKey(c, "D_District", "", updid, nil)
-//	if err := datastore.Get(c, key, &g); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 
-// temporary-file繧偵う繝九す繝｣繝ｩ繧､繧ｺ  & 繧ｻ繝・ヨ//
+//     ini. and set temp.-file
 
-//    _ = datastore2.D_store( "D_District_Temp" ,"initialize" ,idmy , w , r  )
     _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
     g2.District_No   = g.District_No
@@ -78,18 +77,14 @@ func D_district_area(w http.ResponseWriter, r *http.Request) {
     new_key := datastore.IncompleteKey("D_District_Temp", nil)
 
     if _, err = client.Put(ctx, new_key, &g2 ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "D_District_Temp", nil), &g2); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ ///
-
+    //    show area inf. on web
 	process.D_district_area(w , r ,g.District_No)
 
-//	fmt.Fprintf( w, "d_district_area : normal end \n" )  // 繝・ヰ繝・け
-
-
-
+//	fmt.Fprintf( w, "d_district_area : normal end \n" )
 
 }

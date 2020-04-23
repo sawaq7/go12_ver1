@@ -13,11 +13,11 @@ func Hydrostatic_pressure1_show(w http.ResponseWriter, r *http.Request) {
 
    var seisui type4.Seisui
 
-// チE��プレート�EヘッダーをGET
+///      set template
 
 	monitor := template.Must( template.New("html").Parse( html4.Hydrostatic_pressure1_show) )
 
-// 吁E��入力データを表示
+///    kei-in item of seisui on web
 
 	err := monitor.Execute(w, seisui)
 

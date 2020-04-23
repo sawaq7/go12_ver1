@@ -1,8 +1,7 @@
 package process
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 	    "fmt"
 	    "html/template"
@@ -12,23 +11,26 @@ import (
 //	    "time"
                                                 )
 
+///
+///     show deliver inf. in d.s.
+///
 
 func Deliver_showall_exam(w http.ResponseWriter, r *http.Request) {
 
 //     IN    w      　: レスポンスライター
 //     IN    r      　: リクエストパラメータ
 
-    fmt.Fprintf( w, "process.deliver_show_all_exam start \n" )  // チE��チE��
+    fmt.Fprintf( w, "process.deliver_show_all_exam start \n" )
 
-// チE��プレート�EヘッダーをGET
+//   set template
 
      monitor := template.Must(template.New("html").Parse(html2.Deliver_showall1))
 
-// チE�Eタストアーから、表示用チE�EタをGET
+//   get deliver inf in d.s.
 
      deliver_view := trans.Deliver2 (w ,r )
 
-// モニターに表示
+//   show dliver inf. on web
 
 	err := monitor.Execute(w, deliver_view)
 	if err != nil {

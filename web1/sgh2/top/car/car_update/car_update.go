@@ -3,8 +3,7 @@ package car_update
 import (
 
 	    "strconv"
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 	    "github.com/sawaq7/go12_ver1/client/sgh/process"
@@ -20,20 +19,20 @@ func Car_update(w http.ResponseWriter, r *http.Request) {
 
 	var car type2.Car
 
-//    fmt.Fprintf( w, "car_update start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "car_update start \n" )
 
 	updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "car_update :error updidw %v\n", updidw )  // 繝・ヰ繝・け
+//	   fmt.Fprintf( w, "car_update :error updidw %v\n", updidw )
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "car_update : updidw %v\n", updidw )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "car_update : updid %v\n", updid )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "car_update : updidw %v\n", updidw )
+//    fmt.Fprintf( w, "car_update : updid %v\n", updid )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -43,7 +42,6 @@ func Car_update(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -55,26 +53,27 @@ func Car_update(w http.ResponseWriter, r *http.Request) {
     key := datastore.IDKey("Car", updid, nil)
 
     if err := client.Get(ctx, key , &car ) ; err != nil {
-//	key := datastore.NewKey(c, "Car", "", updid, nil)
-//	if err := datastore.Get(c, key, &car); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-    car.Car_Name   = r.FormValue("car_name")      // 蜿ｷ霆雁錐繧偵ご繝・ヨ
-	car.Car_Explain = r.FormValue("car_explain")  // 蜿ｷ霆願ｪｬ譏弱ｒ繧ｲ繝・ヨ
+    car.Car_Name   = r.FormValue("car_name")
+	car.Car_Explain = r.FormValue("car_explain")
 
-//	fmt.Fprintf( w, "car_update : car.Car_Name %v\n", car.Car_Name )  // 繝・ヰ繝・け
-//	fmt.Fprintf( w, "car_update : car.Car_Explain %v\n", car.Car_Explain )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "car_update : car.Car_Name %v\n", car.Car_Name )
+//	fmt.Fprintf( w, "car_update : car.Car_Explain %v\n", car.Car_Explain )
 
-// 繝・・繧ｿ繧ｹ繝医い縺九ｉ1繝ｬ繧ｳ繝ｼ繝峨い繝・・繝・・繝・
-    if _, err = client.Put(ctx, key, &car ); err != nil {
-//	if _, err := datastore.Put( c, key, &car ); err != nil {
+
+    if _, err = client.Put(ctx, key, &car ); err != nil {     //  put one record
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 蜿ｷ霆頑ュ蝣ｱ繧定｡ｨ遉ｺ ///
+///
+///     show car inf. on web
+///
 
 	process.Car_show( w , r ,car.District_No )
 

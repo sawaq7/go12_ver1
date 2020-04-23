@@ -4,10 +4,11 @@ import (
 
 	    "net/http"
 	    "github.com/sawaq7/go12_ver1/client/sgh/process"
-                                                  )
+                                                           )
 
-/// main 個人番号を�E力すめE///
-
+///
+/// 　　   key-in private inf.
+///
 
 func init() {
 	http.HandleFunc("/deliver_keyin_private", handler)
@@ -17,10 +18,10 @@ func init() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-/// モニター表示 ///
+///
+///     show private inf. which was keied-in on web
+///
 
-//   deliver.Deliver1_show(w , r )
    process.Deliver_keyin_private(w , r )
 
 }
-

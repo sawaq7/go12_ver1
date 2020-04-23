@@ -2,8 +2,6 @@ package trans5
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -16,7 +14,7 @@ import (
                                                 )
 
 ///
-/// 蝨ｰ蛹ｺ縺ｮ繧ｨ繝ｪ繧｢繝・・繧ｿ繧偵ご繝・ヨ縺吶ｋ
+///       when record equal guest no , select data for Guest_Payment in d.s.
 ///
 
 func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Payment ) {
@@ -25,10 +23,10 @@ func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//     OUT guest_payment_slice  : 讒矩菴薙窶昴お繝ｪ繧｢諠・ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT guest_payment_slice  : slice of struct (Guest_Payment)
 
-//    fmt.Fprintf( w, "trans.guest_payment start \n" )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "trans.guest_payment guest_no \n" ,guest_no)  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.guest_payment start \n" )
+//    fmt.Fprintf( w, "trans.guest_payment guest_no \n" ,guest_no)
 
     var i_count int64
 
@@ -40,7 +38,6 @@ func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -50,10 +47,9 @@ func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([
 	}
 
     query := datastore.NewQuery("Guest_Payment").Order("Date")
-//	q := datastore.NewQuery("Guest_Payment").Order("Date")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -63,10 +59,10 @@ func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([
 	guest_payment_slice := make([]type6.Guest_Payment, 0)
 
     keys, err := client.GetAll(ctx, query , &guest_payment)
-//	keys, err := q.GetAll(c, &guest_payment)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // 繝・ヰ繝・け
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -78,15 +74,17 @@ func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([
 
     }
 
+///
+///   	when record equal guest no , select data for Guest_Payment in d.s.
+///
+
 	i_count = 0
 
 	for pos, guest_paymentw := range guest_payment {
 
-//	  fmt.Fprintf( w, "trans.guest_payment guest_paymentw %v\n" ,guest_paymentw)  // 繝・ヰ繝・け
+//	  fmt.Fprintf( w, "trans.guest_payment guest_paymentw %v\n" ,guest_paymentw)
 
-///  讖溯・縺ｫ繧医ｊ繝√ぉ繝・け鬆・岼繧偵そ繝・ヨ
-
-      if guest_no == guest_paymentw.Guest_No {
+      if guest_no == guest_paymentw.Guest_No {     // select by guest no
 
          i_count ++
 

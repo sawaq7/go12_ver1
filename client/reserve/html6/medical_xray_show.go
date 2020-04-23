@@ -5,9 +5,9 @@ package html6
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>チE�Eタストアの更新・削除</title>
+        <title>uodate/delete in D.S.</title>
         <link rel="stylesheet" href="css/sgh/d_district_area.css" type="text/css">
-        <style type="text/css"> /* マウスポインタの設定！Entense用�E�E/
+        <style type="text/css">
             .intense {
             cursor: url("./plus_cursor.png"), pointer; /* マウスポインタを指宁E*/
             display: inline-block;   /* 横方向に並べる指宁E*/

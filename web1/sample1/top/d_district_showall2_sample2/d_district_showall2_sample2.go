@@ -2,9 +2,6 @@ package d_district_showall2_sample2
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
-
 	    "net/http"
 //	    "fmt"
         "html/template"
@@ -20,7 +17,7 @@ import (
 
 func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "d_district_showall2_sample2 start \n" )  // 繝・ヰ繝・け
+//   fmt.Fprintf( w, "d_district_showall2_sample2 start \n" )
 
    projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -30,7 +27,6 @@ func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -40,10 +36,9 @@ func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 	}
 
     query := datastore.NewQuery("D_District_Sample").Order("District_No")
-//	q := datastore.NewQuery("D_District_Sample").Order("District_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -53,7 +48,7 @@ func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
 	d_district_view := make([]type1000.D_District, 0)
 
     keys, err := client.GetAll(ctx, query , &d_district_sample)
-//	keys, err := q.GetAll(c, &d_district_sample)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
 
@@ -77,18 +72,21 @@ func D_district_showall2_sample2(w http.ResponseWriter, r *http.Request) {
                                                                          d_district_samplew.D_Area_Small_Slice })
 
 	}
-
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+///
+///    set template
+///
 
    monitor := template.Must(template.New("html").Parse(html1000.D_district_showall1_sample))
 
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+///
+///     show district inf. on web
 
+///
 	err = monitor.Execute(w, d_district_view)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-//	fmt.Fprintf( w, "d_district_showall2_sample2 normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "d_district_showall2_sample2 normal end \n" )
 
 }

@@ -2,14 +2,12 @@ package water_slope_delete
 
 import (
 
-//	"google.golang.org/appengine"
-//	"google.golang.org/appengine/datastore"
 	"net/http"
 	"strconv"
 //	"fmt"
 	"github.com/sawaq7/go12_ver1/client/tokura/suiri/process2"
 	"github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
-	"storage2"
+	"github.com/sawaq7/go12_ver1/storage2"
 
 	"cloud.google.com/go/datastore"
     "context"
@@ -17,12 +15,12 @@ import (
                                             )
 
 ///
-///   導水勾配線を削除する
+///     delete water-slope-line
 ///
 
 func Water_slope_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "water_slope_delete start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "water_slope_delete start \n" )
 
     var g type4.Water_Slope
 
@@ -35,7 +33,6 @@ func Water_slope_delete(w http.ResponseWriter, r *http.Request) {
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
@@ -44,18 +41,18 @@ func Water_slope_delete(w http.ResponseWriter, r *http.Request) {
     }
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "water_slope_delete : id %v\n", id )  // チE��チE��
+//    fmt.Fprintf( w, "water_slope_delete : id %v\n", id )
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "water_slope_delete : delidw %v\n", delidw )  // チE��チE��
-//    fmt.Fprintf( w, "water_slope_delete : delid %v\n", delid )  // チE��チE��
+//    fmt.Fprintf( w, "water_slope_delete : delidw %v\n", delidw )
+//    fmt.Fprintf( w, "water_slope_delete : delid %v\n", delid )
 
 
 
 ///
-///   バケチE��名�Eファイル名をセチE��
+///   バケチE��名�Eファイル名をセチE��
 ///
 
     key := datastore.IDKey("Water_Slope", delid, nil)
@@ -68,22 +65,23 @@ func Water_slope_delete(w http.ResponseWriter, r *http.Request) {
 
     file_name   := g.File_Name
 	bucket_name := "sample-7777"
+
 ///
-///   導水勾配線情報を削除する
+///   delete water-slope-line
 ///
+
     if err := client.Delete(ctx, key ); err != nil {
 
-//    key := datastore.NewKey(c, "Water_Slope", "", delid, nil)
-//	if err := datastore.Delete(c, key); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	storage2.File_Delete ( w , r  ,bucket_name ,file_name  )
 
-// モニター　表示 ///
+///
+/// 　　　　　show water-slope inf. on web
+///
 
     process2.Water_slope_show(w , r )
 
-//	http.Redirect(w, r, "/", http.StatusFound)
 }

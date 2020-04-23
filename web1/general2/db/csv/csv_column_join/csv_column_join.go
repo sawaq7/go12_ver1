@@ -17,22 +17,23 @@ import (
 
 func Csv_column_join(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "sky/csv_column_join start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "sky/csv_column_join start \n" )
 
     var err error
 
 ///
-///        入力データをGET 　
+///        get input data　
 ///
 
-    string_data := r.FormValue("join_column")  // 追加する列をゲチE��
-    strings := strings2.String_no_get( w , r , string_data  )
+    string_data := r.FormValue("join_column")
+    strings := strings2.String_no_get( w , r , string_data  )  // get some numbers
 
     join_no := make( []int, len(strings) )
 
     for pos, stringsw := range strings {
 
-      join_no[pos] ,err = strconv.Atoi(stringsw)  // 整数匁E	  if err != nil {
+      join_no[pos] ,err = strconv.Atoi(stringsw)  //  make an interer
+      if err != nil {
 	   http.Error(w,err.Error(), http.StatusInternalServerError)
 
 		return
@@ -40,10 +41,10 @@ func Csv_column_join(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	filename := r.FormValue("join_file")  // 追加するファイル名をゲチE��
+	filename := r.FormValue("join_file")  // get file name which is added
 
 ///
-/// 列単位�EチE�Eタを加える 　
+///       add some columns 　
 ///
 
     for _ , join_now := range join_no {
@@ -53,16 +54,16 @@ func Csv_column_join(w http.ResponseWriter, r *http.Request) {
 	}
 
 ///
-/// 　　　web上に、csv惁E��を表示する　
+/// 　　　csv inf. show web　
 ///
 
-    csv_inf := trans3.Csv_inf ( w ,r )  //     csv惁E��をゲチE��
+    csv_inf := trans3.Csv_inf ( w ,r )  //     get csv inf.
 
-//    fmt.Fprintf( w, "sky/csv_column_join : csv_in %v\n", csv_inf )  // チE��チE��
+//    fmt.Fprintf( w, "sky/csv_column_join : csv_in %v\n", csv_inf )
 
-    monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // チE��プレート�EヘッダーをGET
+    monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // set template
 
-    err = monitor.Execute ( w, csv_inf )   // web上に、csv惁E��を表示する　
+    err = monitor.Execute ( w, csv_inf )   //   show csv inf. on web　
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

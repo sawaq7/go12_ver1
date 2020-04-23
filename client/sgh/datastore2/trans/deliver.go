@@ -1,8 +1,7 @@
 package trans
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -16,31 +15,28 @@ import (
                                                 )
 
 ///
-///   　　　　　該当する�E達情報をゲチE��する
+///   　　　get deliver inf.
 ///
 
 
 func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request )  (deliver2 []type2.Deliver ) {
 
 //     IN  funct  　　　: ファンクション
-//     　　　　　�E�！E 地区NO
-//     　　　　　�E�！E カーNO
-//     　　　　　�E�！E プライベ�EチEO
-//     IN  some_no  　　: 吁E��NO
+//     　　　　　1:  area no
+//     　　　　　2:  car no
+//     　　　　　3:  private no
+
+//     IN  some_no  　　: if flag
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT deliver_view : 構造体　”�E達情報”�Eスライス
+//     OUT deliver_view : slice of struct ( Deliver )
 
-//    fmt.Fprintf( w, "trans.Deliver start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans.Deliver start \n" )
 
     var check_no  int64
 
     var line_counter int64
-
-///
-///     配達惁E��をゲチE��する
-///
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -50,16 +46,14 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("Deliver").Order("Date")
-//	q := datastore.NewQuery("Deliver").Order("Date")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -68,12 +62,10 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 	deliver      := make([]type2.Deliver, 0, count)
 	deliver_view := make([]type2.Deliver, 0)
 
-
-//	keys, err := q.GetAll(c, &deliver)
     keys, err := client.GetAll(ctx, query , &deliver)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
         return	nil
 	}
 
@@ -89,15 +81,15 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
 	for pos, deliverw := range deliver {
 
-///  機�EによりチェチE��頁E��をセチE��
+///  branch flag set from function key
 
-	  if funct == 0 {   // コースNOの場吁E
+	  if funct == 0 {             //  when func. eq. area
 	     check_no = deliverw.Course_No
 
-	  }else if funct == 1 {   // カーNOの場吁E
+	  }else if funct == 1 {      //  when func. eq. car
 	     check_no = deliverw.Car_No
 
-	  }else if funct == 2 {   // 個人NOの場吁E
+	  }else if funct == 2 {      //  when func. eq. private
 	     check_no = deliverw.Private_No
 
 	  }
@@ -105,8 +97,8 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
          line_counter ++
 
-         deliverw.Id      = keys_wk[pos]    //  チE�EタストアidをセチE��
-         deliverw.Line_No = line_counter         //  行NOをセチE��
+         deliverw.Id      = keys_wk[pos]
+         deliverw.Line_No = line_counter
 
          deliver_view = append ( deliver_view, deliverw )
 
@@ -129,17 +121,16 @@ func Deliver(funct int64 ,some_no int64 ,w http.ResponseWriter, r *http.Request 
 
          line_counter ++
 
-         deliverw.Id      = keys_wk[pos]    //  チE�EタストアidをセチE��
-         deliverw.Line_No = line_counter         //  行NOをセチE��
+         deliverw.Id      = keys_wk[pos]
+         deliverw.Line_No = line_counter
 
          deliver_view = append ( deliver_view, deliverw )
-
 
       }
 	}
 
 ///
-/// 配達惁E��を、E重sortする
+///    sort deliver by double sort
 ///           key1 : Date  , key2 : Car_No
 
     deliver2 = sort.Deliver( w ,deliver_view  )

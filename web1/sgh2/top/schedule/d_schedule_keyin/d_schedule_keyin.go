@@ -4,8 +4,7 @@ import (
 
 	    "net/http"
 	    "github.com/sawaq7/go12_ver1/client/sgh/process"
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "github.com/sawaq7/go12_ver1/client/sgh/datastore2"
   	    "strconv"
 //	    "fmt"
@@ -18,7 +17,7 @@ import (
                                                  )
 
 ///
-/// 謖・ｮ壹＠縺溷慍蝓溘・繧ｹ繧ｱ繧ｸ繝･繝ｼ繝ｫ繧定｡ｨ遉ｺ
+///    show schedulr inf. by an area which was selected
 ///
 
 func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
@@ -38,16 +37,12 @@ func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
        return
     }
-
-
-/// 蝨ｰ蛹ｺ諠・ｱ繝輔ぃ繧､繝ｫ縺九ｉ蝨ｰ蛹ｺNO 繧竪ET
 
 	idw , err := strconv.Atoi(r.FormValue("id"))
 	if err != nil {
@@ -56,40 +51,37 @@ func D_schedule_keyin(w http.ResponseWriter, r *http.Request) {
 	}
 
     id := int64(idw)
-//    fmt.Fprintf( w, "sky d_schedule_keyin : id %v\n", id )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "sky d_schedule_keyin : id %v\n", id )
 
     key := datastore.IDKey("D_District", id, nil)
 
     if err := client.Get(ctx, key , &g ) ; err != nil {
-//    key := datastore.NewKey(c, "D_District", "", id, nil)
-//    if err := datastore.Get(c, key ,&g); err!= nil {
 
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 ///
-/// 繧ｫ繝ｬ繝ｳ繝医・蝨ｰ蛹ｺ諠・ｱ繧偵い繝・・繝・・繝・///
+///    get district-no and district-name of current
 
     g2.District_No   = g.District_No
     g2.District_Name = g.District_Name
-//    fmt.Fprintf( w, "sky d_schedule_keyin : g2.District_No %v\n", g2.District_No )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "sky d_schedule_keyin : g2.District_No %v\n", g2.District_No )
 
-// temporary-file繧偵う繝九す繝｣繝ｩ繧､繧ｺ
+//      ini. temp. file
 
     _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
      new_key := datastore.IncompleteKey("D_District_Temp", nil)
 
     if _, err = client.Put(ctx, new_key, &g2 ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "D_District_Temp", nil), &g2); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 繧ｹ繧ｱ繧ｸ繝･繝ｼ繝ｫ繧定｡ｨ遉ｺ ///
+///    show schedule inf. on web
 
    process.D_schedule_showall(w , r , g.District_No )
 
 }
-

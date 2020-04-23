@@ -7,13 +7,13 @@ import (
                                                   )
 
 ///
-///    main　チE�Eターベ�Eスのアクセスリストを表示する
+///        show d.b. access list inf. on web
 ///
 
 func Db_access_list(w http.ResponseWriter, r *http.Request) {
 
 ///
-/// モニター表示
+///     show d.b. access list inf. on web
 ///
 
     process3.Db_access_list(w , r )

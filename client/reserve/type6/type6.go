@@ -10,78 +10,84 @@ import (
 //
 
 //
-// guest information　�E�地区惁E���E�E//
+//      Guest information　
+//
 
-type Guest struct {            /// ゲスト情報
+type Guest struct {            ///    guest inf. for d.s.
 
-       Id            int64           //　チE�Eタid
-       Guest_No      int64           // ゲスチEO.
-	   Guest_Name    string          // ゲスト名
+       Id            int64           //　id
+       Guest_No      int64           // guest no
+	   Guest_Name    string          // guest name
 
 
    }
 
-type Guest_Temp struct {         /// 一時ファイル用
+type Guest_Temp struct {         ///    guest inf. for temp.
 
-       Id          int64           //　チE�Eタid
-       Guest_No    int64           // ゲスチEO.
-	   Guest_Name  string          // ゲスト名
+       Id          int64           //　id
+       Guest_No    int64           // guest no
+	   Guest_Name  string          // guest name
 
-
-   }
-//
-// reservation information　
-//
-
-type Guest_Reserve_Minor struct {               ///  予紁E��報
-
-       Id             int64          // チE�Eタid
-       Line_No        int64          // 行NO.
-       Date           string         // 予紁E��
-       Guest_No       int64          // ゲスチEO.
-	   Guest_Name     string         // ゲスト名
-	   Start_Time     string         // 開始時閁E	   End_Time       string         // 終亁E��閁E
-   }
-//
-// reservation information　
-//
-
-type Guest_Reserve_View struct {               ///  表示用予紁E��報
-
-       Id             int64          // チE�Eタid
-       Line_No        int64          // 行NO.
-       Date           string         // 予紁E��
-       Guest_No       int64          // ゲスチEO.
-	   Guest_Name     string         // ゲスト名
-	   Start_Time     string         // 開始時閁E	   End_Time       string         // 終亁E��閁E	   File_Name      string        // ファイル吁E	   Url            string        // url
 
    }
 //
 // reservation information　
 //
 
-type Guest_Medical_Record struct {   ///  カルチE��報
+type Guest_Reserve_Minor struct {               ///  reserve inf.
 
-       Id             int64          // チE�Eタid
-       Line_No        int64          // 行NO.
-       Date           string         // 予紁E��
-       Guest_No       int64          // ゲスチEO.
-	   Guest_Name     string         // ゲスト名
-	   Text           string         // 本斁E
+       Id             int64          //
+       Line_No        int64          // line no
+       Date           string         // reservation date
+       Guest_No       int64          // guest no
+	   Guest_Name     string         // guest name
+	   Start_Time     string         // start time
+	   End_Time       string         // end time
+   }
+//
+// reservation information　
+//
+
+type Guest_Reserve_View struct {               ///  reserve inf. for temp.
+
+       Id             int64          //
+       Line_No        int64          // line no
+       Date           string         // reservation date
+       Guest_No       int64          // guest no
+	   Guest_Name     string         // guest name
+	   Start_Time     string         // start time
+	   End_Time       string         // end time
+	   File_Name      string         // file name
+	   Url            string         // url
+
+   }
+//
+// reservation information　
+//
+
+type Guest_Medical_Record struct {   ///  medical record inf.
+
+       Id             int64          //
+       Line_No        int64          // line no
+       Date           string         // consultation day
+       Guest_No       int64          // guest no
+	   Guest_Name     string         // guest name
+	   Text           string         // text
    }
 
 //
 // reservation information　
 //
 
-type Guest_Medical_Xray struct {   ///  レントゲン写真
+type Guest_Medical_Xray struct {   ///  medical xray inf.
 
-       Id             int64          // チE�Eタid
-       Line_No        int64          // 行NO.
-       Date           string         // 撮影日
-       Guest_No       int64          // ゲスチEO.
-	   Guest_Name     string         // ゲスト名
-	   File_Name      string         // ファイル吁E	   Url            string         // url
+       Id             int64          //
+       Line_No        int64          // line no
+       Date           string         // filming date
+       Guest_No       int64          // guest no
+	   Guest_Name     string         // guest name
+	   File_Name      string         // file name
+	   Url            string         // url
 
 	 }
 
@@ -89,13 +95,13 @@ type Guest_Medical_Xray struct {   ///  レントゲン写真
 // reservation information　
 //
 
-type Guest_Payment struct {               ///  予紁E��報
+type Guest_Payment struct {       ///  payment inf.
 
-       Id             int64          // チE�Eタid
-       Line_No        int64          // 行NO.
-       Date           string         // 予紁E��
-       Guest_No       int64          // ゲスチEO.
+       Id             int64          //
+       Line_No        int64          // line no
+       Date           string         // pay day
+       Guest_No       int64          // guest no
 	   Guest_Name     string         // ゲスト名
-	   Item           string         // 支払頁E��
-	   Amount         int64          // 支払��顁E
+	   Item           string         // guest name
+	   Amount         int64          // amount paid
    }

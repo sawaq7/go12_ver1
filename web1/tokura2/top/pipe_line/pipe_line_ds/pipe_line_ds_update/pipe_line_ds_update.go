@@ -13,16 +13,12 @@ import (
 
 func Pipe_line_ds_update(w http.ResponseWriter, r *http.Request) {
 
-//	fmt.Fprintf( w, "sky_pipe_line_ds_update start %v\n" )  // 繝・ヰ繝・け
-
-///
-///      謖・ｮ壹＠縺溘ョ繝ｼ繧ｿid繧竪ET
-///
+//	fmt.Fprintf( w, "sky_pipe_line_ds_update start %v\n" )
 
     updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "sky_pipe_line_ds_update :error updidw %v\n", updidw )  // 繝・ヰ繝・け
+//	   fmt.Fprintf( w, "sky_pipe_line_ds_update :error updidw %v\n", updidw )
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
@@ -30,13 +26,13 @@ func Pipe_line_ds_update(w http.ResponseWriter, r *http.Request) {
     updid := int64(updidw)
 
 ///
-///       驟埼＃諠・ｱ縺ｮ螟画峩
+///       update water-line inf.
 ///
 
 	process2.Pipe_line_ds_update(w , r ,updid)
 
 ///
-///        繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ
+///        show water-line inf.
 ///
 
 	process2.Pipe_line_ds_show(w , r )

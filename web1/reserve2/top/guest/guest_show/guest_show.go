@@ -9,20 +9,20 @@ import (
 //	    "strconv"
 //	    "time"
                                                   )
-
-/// main 鬘ｧ螳｢諠・ｱ繧定｡ｨ遉ｺ縺吶ｋ ///
+///
+///     show guest inf. on web
+///
 
 func Guest_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "guest_show start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "guest_show start \n" )
 
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ ///
+///
+///     show guest inf. on web
+///
 
    process4.Guest_show(w , r )
 
-//	fmt.Fprintf( w, "guest_show : normal end \n" )  // 繝・ヰ繝・け
-
-
-
+//	fmt.Fprintf( w, "guest_show : normal end \n" )
 
 }

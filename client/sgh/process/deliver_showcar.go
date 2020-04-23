@@ -1,8 +1,7 @@
 package process
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 	    "fmt"
 	    "html/template"
@@ -15,7 +14,9 @@ import (
 //	    "time"
                                                 )
 
-/// sub  car no ごとの　配達チE�Eタを表示する　 ///
+///
+///     show deliver inf. for each car no in d.s.
+///
 
 func Deliver_showcar(w http.ResponseWriter, r *http.Request ,car_no int64) {
 
@@ -23,28 +24,26 @@ func Deliver_showcar(w http.ResponseWriter, r *http.Request ,car_no int64) {
 //     IN    r      　　: リクエストパラメータ
 //     IN  car_no　　   : カーNo
 
-    fmt.Fprintf( w, "deliver_showcar start \n" )  // チE��チE��
-    fmt.Fprintf( w, "deliver_showcar : car_no %v\n", car_no )  // チE��チE��
+    fmt.Fprintf( w, "deliver_showcar start \n" )
+    fmt.Fprintf( w, "deliver_showcar : car_no %v\n", car_no )
 
-// チE��プレート�EヘッダーをGET
+//      set template
 
      monitor := template.Must(template.New("html").Parse(html2.Deliver_showcar))
 
-// チE�Eタストアーから、表示用チE�EタをGET
+//    get deliver inf in d.s.
 
      general_work := make([]type5.General_Work, 2)
-     general_work[0].Int64_Work = 1          // 地区惁E��
-     general_work[1].Int64_Work = car_no  //　カーNO
+     general_work[0].Int64_Work = 1          //   district no
+     general_work[1].Int64_Work = car_no  //　  car no
 
-//     deliver_view := datastore2.D_store( "Deliver" ,"trans"  ,general_work , w , r  )
      deliver_view := datastore2.Datastore_sgh( "Deliver" ,"trans"  ,general_work , w , r  )
 
-     // 空インターフェイス変数よりバリュー値をゲチE��
+    //  get value from interface data
 
      value, _ := deliver_view.([]type2.Deliver)
 
-
-// モニターに表示
+///     show deliver inf. on web
 
 	err := monitor.Execute(w, value)
 //	err := monitor.Execute(w, deliver_view)

@@ -1,8 +1,7 @@
 package process2
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 	    "strconv"
 //	    "fmt"
@@ -17,8 +16,8 @@ import (
 
 func Pipe_line_ds_wl_update(w http.ResponseWriter, r *http.Request ,updid int64) {
 
-//    fmt.Fprintf( w, "pipe_line_ds_wl_update start \n" )  // ãƒEƒãƒE‚¯
-//    fmt.Fprintf( w, "pipe_line_ds_wl_update : updid %v\n", updid )  // ãƒEƒãƒE‚¯
+//    fmt.Fprintf( w, "pipe_line_ds_wl_update start \n" )
+//    fmt.Fprintf( w, "pipe_line_ds_wl_update : updid %v\n", updid )
 
 
     var g type4.Water_Line
@@ -43,36 +42,35 @@ func Pipe_line_ds_wl_update(w http.ResponseWriter, r *http.Request ,updid int64)
     key := datastore.IDKey("Water_Line", updid, nil)
 
     if err := client.Get(ctx, key , &g ) ; err != nil {
-//	key := datastore.NewKey(c, "Water_Line", "", updid, nil)
-//	if err := datastore.Get(c, key, &g); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	g.Name = r.FormValue("water_name")  // æ°´è·¯åã‚’ã‚²ãƒEƒˆ
-	g.Section = r.FormValue("section")  // åŒºé–“åã‚’ã‚²ãƒEƒˆ
+	g.Name = r.FormValue("water_name")
+	g.Section = r.FormValue("section")
 
-	f_facter := r.FormValue("f_facter")                   // æ‘©æ“¦ä¿‚æ•°ã‚’ã‚²ãƒEƒˆ
-	g.Friction_Factor,_ =strconv.ParseFloat(f_facter,64)  //ã€€float64ã€€ã«å¤‰æ›
+	f_facter := r.FormValue("f_facter")
+	g.Friction_Factor,_ =strconv.ParseFloat(f_facter,64)
 
-	velocity := r.FormValue("velocity")                   // é€Ÿåº¦ã‚’ã‚²ãƒEƒˆ
-	g.Velocity,_ =strconv.ParseFloat(velocity,64)         //ã€€float64ã€€ã«å¤‰æ›
+	velocity := r.FormValue("velocity")
+	g.Velocity,_ =strconv.ParseFloat(velocity,64)
 
-	p_diameter := r.FormValue("p_diameter")      // æ‘©æ“¦ä¿‚æ•°ã‚’ã‚²ãƒEƒˆ
-	g.Pipe_Diameter,_ =strconv.ParseFloat(p_diameter,64)  //ã€€float64ã€€ã«å¤‰æ›
+	p_diameter := r.FormValue("p_diameter")
+	g.Pipe_Diameter,_ =strconv.ParseFloat(p_diameter,64)
 
-	p_length := r.FormValue("p_length")      // æ‘©æ“¦ä¿‚æ•°ã‚’ã‚²ãƒEƒˆ
-	g.Pipe_Length,_ =strconv.ParseFloat(p_length,64)  //ã€€float64ã€€ã«å¤‰æ›
+	p_length := r.FormValue("p_length")      // æ‘©æ“¦ä¿‚æ•°ã‚’ã‚²ãƒEï¿½ï¿½
+	g.Pipe_Length,_ =strconv.ParseFloat(p_length,64)
 
-//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Name %v\n", g.Name )  // ãƒEƒãƒE‚¯
-//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Section %v\n", g.Section )  // ãƒEƒãƒE‚¯
-//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Friction_Factor %v\n", g.Friction_Factor )  // ãƒEƒãƒE‚¯
-//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Velocity %v\n", g.Velocity )  // ãƒEƒãƒE‚¯
-//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Pipe_Diameter %v\n", g.Pipe_Diameter )  // ãƒEƒãƒE‚¯
-//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Pipe_Length %v\n", g.Pipe_Length )  // ãƒEƒãƒE‚¯
+//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Name %v\n", g.Name )
+//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Section %v\n", g.Section )
+//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Friction_Factor %v\n", g.Friction_Factor )
+//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Velocity %v\n", g.Velocity )
+//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Pipe_Diameter %v\n", g.Pipe_Diameter )
+//	fmt.Fprintf( w, "pipe_line_ds_wl_update : g.Pipe_Length %v\n", g.Pipe_Length )
 
     if _, err := client.Put(ctx, key, &g ); err != nil {
-//	if _, err := datastore.Put(c, key, &g); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}

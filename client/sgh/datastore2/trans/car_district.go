@@ -1,8 +1,7 @@
 package trans
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -15,9 +14,9 @@ import (
         "os"
                                                 )
 
-///                           ///
-/// 蝨ｰ蛹ｺ縺ｮ繧ｨ繝ｪ繧｢謨ｰ繧偵ご繝・ヨ縺吶ｋ ///
-///                          ///
+///
+///     get car inf which run on district
+///
 
 func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request )  ( car_district_view []type2.Car ) {
 
@@ -25,9 +24,9 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//     OUT car_district_view  : 讒矩菴薙窶昴お繝ｪ繧｢諠・ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT car_district_view  :   slice of struct ( Car )
 
-//    fmt.Fprintf( w, "trans.car_district start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.car_district start \n" )
 
      project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -38,7 +37,6 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
@@ -47,10 +45,9 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
     }
 
     query := datastore.NewQuery("Car").Order("Car_No")
-//    q := datastore.NewQuery("Car").Order("Car_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -60,10 +57,11 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 	car_district_view = make([]type2.Car, 0)
 
     keys, err := client.GetAll(ctx, query , &car_district)
-//	keys, err := q.GetAll(c, &car_district)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // 繝・ヰ繝・け
+
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -77,7 +75,7 @@ func Car_district( district_no int64  ,w http.ResponseWriter, r *http.Request ) 
 
 	for pos, car_districtw := range car_district {
 
-//	  fmt.Fprintf( w, "trans.car_district car_districtw %v\n" ,car_districtw)  // 繝・ヰ繝・け
+//	  fmt.Fprintf( w, "trans.car_district car_districtw %v\n" ,car_districtw)
 
 
       if district_no == car_districtw.District_No {

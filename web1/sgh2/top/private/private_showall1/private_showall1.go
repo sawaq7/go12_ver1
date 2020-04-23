@@ -9,17 +9,17 @@ import (
 //	    "time"
                                                   )
 
+///
+/// 縲縲   show private inf. on web
+///
+
 func Private_showall1(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "private_showall1 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "private_showall1 start \n" )
 
-/// 繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ ///
-
+    //    show private inf.  on web
 	process.Private_showall1(w , r )
 
-//	fmt.Fprintf( w, "private_showall1 : normal end \n" )  // 繝・ヰ繝・け
-
-
-
+//	fmt.Fprintf( w, "private_showall1 : normal end \n" )
 
 }

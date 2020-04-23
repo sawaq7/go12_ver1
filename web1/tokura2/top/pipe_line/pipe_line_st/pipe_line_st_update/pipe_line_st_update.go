@@ -13,38 +13,43 @@ import (
 
                                                   )
 
+///
+///     update water inf. in storage
+///
+
 func Pipe_line_st_update(w http.ResponseWriter, r *http.Request) {
 
     var water2 type4.Water2
 
 ///
-///          key-in 繝・・繧ｿ繧竪ET
+///          get key-in data
 ///
 
-    updidw , err := strconv.Atoi(r.FormValue("id"))     // id繧偵ご繝・ヨ
+    updidw , err := strconv.Atoi(r.FormValue("id"))
 	if err  != nil {
 
-//	   fmt.Fprintf( w, "sky_pipe_line_ds_update :error updidw %v\n", updidw )  // 繝・ヰ繝・け
+//	   fmt.Fprintf( w, "sky_pipe_line_ds_update :error updidw %v\n", updidw )
 
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-    water2.Id = updid                      // 繝ｬ繧ｳ繝ｼ繝永d繧ｻ繝・ヨ
+    water2.Id = updid
 
-	water2.Name = r.FormValue("water_name")  // 豌ｴ霍ｯ蜷阪ｒ繧ｲ繝・ヨ
+	water2.Name = r.FormValue("water_name")
 
-	water_high := r.FormValue("water_high")      // 豌ｴ霍ｯ鬮倥ｒ繧ｲ繝・ヨ
-	water2.High,_ =strconv.ParseFloat(water_high,64)  //縲float64縲縺ｫ螟画鋤
+	water_high := r.FormValue("water_high")
+	water2.High,_ =strconv.ParseFloat(water_high,64)
 
-	r_facter := r.FormValue("r_facter")      // 邊礼ｲ剃ｿよ焚繧偵ご繝・ヨ
-	water2.Roughness_Factor,_ =strconv.ParseFloat(r_facter,64)  //縲float64縲縺ｫ螟画鋤
+	r_facter := r.FormValue("r_facter")
+	water2.Roughness_Factor,_ =strconv.ParseFloat(r_facter,64)
 
-//	fmt.Fprintf( w, "sky.pipe_line_st_update : water2.Name %v\n", water2.Name )  // 繝・ヰ繝・け
-//	fmt.Fprintf( w, "sky.pipe_line_st_update : water2.High %v\n", water2.High )  // 繝・
+//	fmt.Fprintf( w, "sky.pipe_line_st_update : water2.Name %v\n", water2.Name )
+//	fmt.Fprintf( w, "sky.pipe_line_st_update : water2.High %v\n", water2.High )
+
 ///
-///         繧ｹ繝医Ξ繝・ず縺ｫ繧｢繝・・繝・・繝医ョ繝ｼ繧ｿ繧偵そ繝・ヨ
+///        put Water2 inf.  on storage
 ///
 
     _ , _ = storage3.Storage_tokura( "Water2" ,"put3" ,updid , water2 , w , r  )
@@ -52,7 +57,7 @@ func Pipe_line_st_update(w http.ResponseWriter, r *http.Request) {
 //	put1.Water2_update ( w , r ,updid ,water2 )
 
 ///
-///           繝｢繝九ち繝ｼ陦ｨ遉ｺ
+///          show water inf. on web
 ///
 
    process2.Pipe_line_st_show(w , r )

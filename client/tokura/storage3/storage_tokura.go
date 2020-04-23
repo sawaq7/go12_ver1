@@ -18,45 +18,49 @@ import (
                                                 )
 
 ///
-///     クライアント�EストレチE��のアクセスルーチン �E�　for tokura　)
-///     Storage_クライアント名
+///      Storege_tokura  main routine
+///
 
 
 func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,flexible_in2 interface{} ,w http.ResponseWriter, r *http.Request )  (flexible_out1 interface{} ,flexible_out2 interface{}) {
 
-//     IN    fname       : チE�Eタストアのファイル吁E//     IN    function    : ファンクション　
-//        　　　　　　　　　�E�　trans ,check ,initialize ,sort　etc
-//     IN flexible_in1　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN flexible_in2　  : 吁E��インプットデータ　�E�別紙参照�E�E//     IN    w      　　 : レスポンスライター
+//     IN    fname       : file-name
+//     IN    function    : 　
+//        　　　　　　　　　trans ,check ,initialize ,sort　etc
+//     IN flexible_in1　  : see attachment
+//     IN flexible_in2　  : see attachment
+//     IN    w      　　 : レスポンスライター
 //     IN    r      　　 : リクエストパラメータ
 
-//     out flexible_out1  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E//     out flexible_out2  : 吁E��アウト�EチE��チE�Eタ　�E�別紙参照�E�E
-//    fmt.Fprintf( w, "storage_tokura start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "storage_tokura function \n" ,function )  // チE��チE��
-//    fmt.Fprintf( w, "storage_tokura fname \n" ,fname )  // チE��チE��
+//     out1 flexible_out1  : see attachment
+//     out2 flexible_out2  : see attachment
+
+
+//    fmt.Fprintf( w, "storage_tokura start \n" )
+//    fmt.Fprintf( w, "storage_tokura function \n" ,function )
+//    fmt.Fprintf( w, "storage_tokura fname \n" ,fname )
 
 ///
-///  ファンクション・ファイル名により吁E��処琁E��刁E��して行う、E///
+///     select process  by function and file-name
+///
 
 	switch function {
 
-///
-///  トランスの場吁E///
-
-      case "trans" :     // trans の場吁E
+      case "trans" :
         switch fname {
 
-          case "Water_Line" :     // 水路ラインファイルの場吁E
+          case "Water_Line" :
             value, _ := flexible_in1.(string)
             flexible_out1 = trans4.Water_line ( value , w ,r )
 
           break;
 
-          case "Water2" :     // 水路ファイルの場吁E
+          case "Water2" :
             flexible_out1 = trans4.Water2 ( w ,r )
 
           break;
 
-          case "Water2_Temp" :     // 水路チE��ポラリーファイルの場吁E
+          case "Water2_Temp" :
             flexible_out1 = trans4.Water2_temp( w , r  )
 
           break;
@@ -65,14 +69,11 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
         }
       break;
 
-///
-///  初期化�E場吁E///
-
       case "initialize" :
 
         switch fname {
 
-          case "Water2_Temp" :     // 水路チE��ポラリーファイルの場吁E
+          case "Water2_Temp" :
             value, _ := flexible_in1.(type4.Water2_Temp)
 
             initialize3.Water2_temp (w , r ,value)
@@ -83,15 +84,11 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
       break;
 
-
-///
-///  チェチE��の場吁E///
-
       case "check" :
 
         switch fname {
 
-          case "Water_Line" :  // 水路ラインファイルの場吁E
+          case "Water_Line" :
             value, _ := flexible_in1.(string)
 
             flexible_out1 = check4.Water_line_re_num( value  ,w , r  )
@@ -102,14 +99,11 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
       break;
 
-///
-///  削除の場吁E///
-
       case "delete" :
 
         switch fname {
 
-          case "Water_Line" :  // 水路ラインファイルの場吁E
+          case "Water_Line" :
             value, _ := flexible_in1.(int64)
             value2, _ := flexible_in2.(string)
 
@@ -117,7 +111,7 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
           break;
 
-          case "Water2" :  // 水路ファイルの場吁E
+          case "Water2" :
             delid, _ := flexible_in1.(int64)
 
             delete1.Water2( w , r ,delid )
@@ -127,14 +121,12 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
         }
 
       break;
-///
-///      プット�E場吁E///
 
-      case "put" :     // アチE�EチE�EチE
+
+      case "put" :
         switch fname {
 
-          case "Water_Line" :     // 水路ラインファイルの場吁E
-            // 空インターフェイス変数よりバリュー値をゲチE��
+          case "Water_Line" :
 
             value, _ := flexible_in1.(type4.Water_Line)
 
@@ -142,11 +134,11 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
           break;
 
-          case "Water_Slope" :     // 導水勾配線ファイルの場吁E
+          case "Water_Slope" :
 
           break;
 
-          case "Water2" :        // 水路ファイル
+          case "Water2" :
 
             water2, _ := flexible_in1.( type4.Water2 )
 
@@ -158,11 +150,10 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
       break;
 
-      case "put2" :     // put2 の場吁E
+      case "put2" :
         switch fname {
 
-          case "Water_Line" :     // 水路ラインファイルの場吁E
-            // 空インターフェイス変数よりバリュー値をゲチE��
+          case "Water_Line" :
 
             value, _ := flexible_in1.([]type5.General_Work)
             value2, _ := flexible_in2.(type4.Water_Line)
@@ -171,7 +162,7 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
           break;
 
-          case "Water2" :        // 水路ファイル
+          case "Water2" :
 
             water2, _ := flexible_in1.( type4.Water2 )
 
@@ -183,10 +174,10 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
       break;
 
-      case "put3" :     // put3 の場吁E
+      case "put3" :
         switch fname {
 
-          case "Water2" :        // 水路ファイル
+          case "Water2" :
 
             updid, _ := flexible_in1.( int64 )
             water2, _ := flexible_in2.( type4.Water2 )
@@ -200,19 +191,18 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
       break;
 
 
-      case "put_test" :              // test用
+      case "put_test" :
 
         switch fname {
 
-          case "Water_Line" :     // 水路ラインファイルの場吁E
-            // 空インターフェイス変数よりバリュー値をゲチE��
+          case "Water_Line" :
 
             general_work_value, _ := flexible_in1.([]type5.General_Work)
             struct_colle_value, _ := flexible_in2.(type4.Struct_Colle)
 
 //            fmt.Fprintf( w, "storage_tokura : general_work_value %v\n", general_work_value )
-//            fmt.Fprintf( w, "storage_tokura : struct_colle_value.Water_Line_Slice %v\n", struct_colle_value.Water_Line_Slice )  // チE��チE��
-//            fmt.Fprintf( w, "storage_tokura : struct_colle_value.Water2_Slice %v\n", struct_colle_value.Water2_Slice )  // チE��チE��
+//            fmt.Fprintf( w, "storage_tokura : struct_colle_value.Water_Line_Slice %v\n", struct_colle_value.Water_Line_Slice )
+//            fmt.Fprintf( w, "storage_tokura : struct_colle_value.Water2_Slice %v\n", struct_colle_value.Water2_Slice )
 
             flexible_out1 = general_work_value
             flexible_out2 = struct_colle_value
@@ -223,11 +213,10 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
 
       break;
 
-      case "struct_set" :        // 構造体セチE��の場吁E
+      case "struct_set" :
         switch fname {
 
-          case "Water2" :     // 水路ファイルの場吁E
-            // 空インターフェイス変数よりバリュー値をゲチE��
+          case "Water2" :
 
             line, _ := flexible_in1.(string)
 
@@ -238,7 +227,6 @@ func Storage_tokura( fname string ,function string ,flexible_in1 interface{} ,fl
         }
 
       break;
-
 
     }
 

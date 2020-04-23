@@ -2,8 +2,6 @@ package d_schedule_delete
 
 import (
 
-//	"google.golang.org/appengine"
-//	"google.golang.org/appengine/datastore"
 	"net/http"
 	"strconv"
 //	"fmt"
@@ -20,15 +18,15 @@ func D_schedule_delete(w http.ResponseWriter, r *http.Request) {
 
     var idmy int64
 
-//    fmt.Fprintf( w, "d_schedule_delete start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_schedule_delete start \n" )
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "d_schedule_delete : id %v\n", id )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_schedule_delete : id %v\n", id )
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "d_schedule_delete : delidw %v\n", delidw )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_schedule_delete : delidw %v\n", delidw )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -38,7 +36,6 @@ func D_schedule_delete(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -50,13 +47,12 @@ func D_schedule_delete(w http.ResponseWriter, r *http.Request) {
     key := datastore.IDKey("D_Schedule", delid, nil)
 
     if err := client.Delete(ctx, key ); err != nil {
-//	key := datastore.NewKey(c, "D_Schedule"       , "", delid, nil)
-//	if err := datastore.Delete(c, key); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-//蝨ｰ蛹ｺ諠・ｱ繧竪ET
+///  get district no
 
     flexible_out := datastore2.Datastore_sgh( "D_District_Temp" ,"check" ,idmy , w , r  )
 
@@ -64,7 +60,7 @@ func D_schedule_delete(w http.ResponseWriter, r *http.Request) {
 
     district_no := value2[0].Int64_Work
 
-/// 繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ ///
+///  show schedule inf. on web
 
 	process.D_schedule_showall(w , r ,district_no)
 

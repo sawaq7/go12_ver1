@@ -13,7 +13,7 @@ import (
                                                 )
 
 ///
-/// 持E��した地区のエリアをゲチE��
+/// 持E��した地区のエリアをゲチE��
 ///
 
 func D_area_district_3d(w http.ResponseWriter, r *http.Request , district_no int64)  ([]type1000.D_Area_2 ) {
@@ -22,9 +22,9 @@ func D_area_district_3d(w http.ResponseWriter, r *http.Request , district_no int
 //     IN    r      　　: リクエストパラメータ
 //     IN 　district_no : 地区No
 
-//     OUT d_area_view  : 構造体　”エリア惁E��”�Eスライス
+//     OUT d_area_view  :
 
-    fmt.Fprintf( w, "trans.d_area_district_3d district_no \n" ,district_no)  // チE��チE��
+    fmt.Fprintf( w, "trans.d_area_district_3d district_no \n" ,district_no)
 
     c := appengine.NewContext(r)
 

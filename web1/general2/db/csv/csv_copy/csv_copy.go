@@ -2,8 +2,6 @@ package csv_copy
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 
@@ -21,23 +19,22 @@ import (
 
 func Csv_copy(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "csv_copy start \n" )  // „ÉÅEÉê„ÉÅEÇØ
+//    fmt.Fprintf( w, "csv_copy start \n" )
 
     var csv_inf type5.Csv_Inf
 
 ///
-///   „Éó„É≠„Ç∏„Çß„ÇØ„ÉàÂêç„Çí„Ç≤„ÉÅEÉà
+///   „Éó„É≠„Ç∏„Çß„ÇØ„ÉàÂêç„Çí„Ç≤„ÉÅEÔøΩÔøΩ
 ///
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )  // „ÉÅEÉê„ÉÅEÇØ
+//      fmt.Fprintf( w, "storage_bucket_list :  projectID unset \n"  )
 
       project_name = "sample-7777"
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, project_name)
@@ -47,22 +44,17 @@ func Csv_copy(w http.ResponseWriter, r *http.Request) {
     }
 
 	id := r.FormValue("id")
-//    fmt.Fprintf( w, "csv_copy  : id %v\n", id )  // „ÉÅEÉê„ÉÅEÇØ
+//    fmt.Fprintf( w, "csv_copy  : id %v\n", id )
 
 	copy_idw ,_ := strconv.Atoi(id)
 	copy_id := int64(copy_idw)
 
-//    fmt.Fprintf( w, "csv_copy  : copy_idw %v\n", copy_idw )  // „ÉÅEÉê„ÉÅEÇØ
-//    fmt.Fprintf( w, "csv_copy  : copy_id %v\n", copy_id )  // „ÉÅEÉê„ÉÅEÇØ
-
-
-
-//	key := datastore.NewKey(c, "Csv_Inf", "", copy_id, nil)
+//    fmt.Fprintf( w, "csv_copy  : copy_idw %v\n", copy_idw )
+//    fmt.Fprintf( w, "csv_copy  : copy_id %v\n", copy_id )
 
     key := datastore.IDKey("Csv_Inf", copy_id, nil)
 
     if err := client.Get(ctx, key , &csv_inf ) ; err != nil {
-//	if  err := datastore.Get(c, key,  &csv_inf); err != nil {
 
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
@@ -74,18 +66,13 @@ func Csv_copy(w http.ResponseWriter, r *http.Request) {
       http.Error(w,err.Error(), http.StatusInternalServerError)
     }
 
-//    if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Csv_Inf", nil), &csv_inf ); err != nil {
-//		http.Error(w,err.Error(), http.StatusInternalServerError)
-//		return
-//	}
-
 ///
-///    „É¢„Éã„Çø„Éº„ÄÄÂÜçË°®Á§∫
+///      show csv inf. on web
 ///
 
 	process3.Csv_inf ( w , r )
 
-//	fmt.Fprintf( w, "csv_copy : normal end \n" )  // „ÉÅEÉê„ÉÅEÇØ
+//	fmt.Fprintf( w, "csv_copy : normal end \n" )
 
 
 

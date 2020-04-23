@@ -11,18 +11,18 @@ import (
                       )
 
 ///
-///     譁・ｭ怜・繧医ｊ縲∵焚蟄励ｒ謚ｽ蜃ｺ縺吶ｋ
+///     extract numeric in string data
 ///
 
 func String_no_get ( w http.ResponseWriter, r *http.Request , string_data string  )  ([]string ) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
-//     IN  string_data  : 譁・ｭ怜・
+//     IN  string_data  :
 
-//     OUT strings  : 蛻・牡蠕後・譁・ｭ怜・鄒､
+//     OUT strings  :   numeric data
 
-//    fmt.Fprintf( w, "string_no_get start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "string_no_get start \n" )
 
     string_data2 := strings.Split ( string_data, " "  )
 
@@ -37,14 +37,14 @@ func String_no_get ( w http.ResponseWriter, r *http.Request , string_data string
 //    rep := regexp.MustCompile(`[0-9]`)
 //    str := rep.ReplaceAllString(str_test, "C")
 
-//    fmt.Fprintf( w, "string_no_get str %c\n" ,str )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "string_no_get str %c\n" ,str )
 
 
 //    string_work := string_data2[0]
 
 //    for _, string_workw := range string_work {
 
-//      fmt.Fprintf( w, "string_no_get string_workw %c\n" ,string_workw )  // 繝・ヰ繝・け
+//      fmt.Fprintf( w, "string_no_get string_workw %c\n" ,string_workw )
 
 //	}
 
@@ -54,36 +54,36 @@ func String_no_get ( w http.ResponseWriter, r *http.Request , string_data string
 
       if judge == false {
 
-//	     fmt.Fprintf( w, "string_no_get string isn't numeric \n"  )  // 繝・ヰ繝・け
+//	     fmt.Fprintf( w, "string_no_get string isn't numeric \n"  )
 
 	     return string_data2
 
 	  }
     }
 
-//    fmt.Fprintf( w, "string_no_get normal end \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "string_no_get normal end \n" )
 
     return	string_data2
 }
 
 ///
-///     豁｣隕剰｡ｨ迴ｾ繧医ｊ縲∵枚蟄怜・繧貞愛螳壹☆繧・///
+///     豁｣隕剰｡ｨ迴ｾ繧医ｊ縲∵枚蟄暦ｿｽE繧貞愛螳壹☆繧・///
 
 func String_check ( w http.ResponseWriter, r *http.Request , reg_exp string, string_data string  )  ( bool ) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 //     IN  reg_exp      : 豁｣隕剰｡ｨ迴ｾ
-//     IN  string_data  : 譁・ｭ怜・
+//     IN  string_data  :
 
 //     OUT judge        : true
 //                      : false
 
-//    fmt.Fprintf( w, "string_check start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "string_check start \n" )
 
     judge := regexp.MustCompile( reg_exp ).Match( []byte(string_data) )
 
-//    fmt.Fprintf( w, "string_check normal end \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "string_check normal end \n" )
 
     return	judge
 }

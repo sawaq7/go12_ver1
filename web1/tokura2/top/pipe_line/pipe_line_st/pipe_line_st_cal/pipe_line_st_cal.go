@@ -14,21 +14,21 @@ import (
 
 func Pipe_line_st_cal(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "sky/pipe_line_st_cal start \n"  )  // ãƒEƒãƒE‚¯
+//   fmt.Fprintf( w, "sky/pipe_line_st_cal start \n"  )
 
    var water type4.Water2
 
    var idmy ,idmy2 int64
 
 ///
-///       ã‚«ãƒ¬ãƒ³ãƒˆãEæ°´è·¯æƒE ±ã‚’ã‚²ãƒEƒˆ
+///        get current water-name
 ///
 
    water2_temp_minor , _ := storage3.Storage_tokura( "Water2_Temp" ,"trans" ,idmy , idmy2 , w , r  )
 
    //    water2_temp := trans4.Water2_temp( w , r  )
 
-   water2_temp, _ := water2_temp_minor.([]type4.Water2_Temp)  // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹å‹ã‚’å‹å¤‰æ›
+   water2_temp, _ := water2_temp_minor.([]type4.Water2_Temp)  // get value from interface data
 
 
 
@@ -37,35 +37,35 @@ func Pipe_line_st_cal(w http.ResponseWriter, r *http.Request) {
 	water.Roughness_Factor = water2_temp[0].Roughness_Factor
 
 ///
-///    æ°´è·¯ãƒ©ã‚¤ãƒ³ã®ãƒEEã‚¿ã‚’ã‚²ãƒEƒˆ
+///    get water-linr inf.
 ///
       water_line_minor , _ := storage3.Storage_tokura( "Water_Line" ,"trans" ,water.Name , idmy , w , r  )
 //    water_line := trans4.Water_line ( water.Name , w ,r )
 
-      water_line, _ := water_line_minor.([]type4.Water_Line)  // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹å‹ã‚’å‹å¤‰æ›
+      water_line, _ := water_line_minor.([]type4.Water_Line)
 
 ///
-///       å‹•æ°´å‹¾é…ç·šãEè¨ˆç®E///
+///         calculate water-slope-line
 
     p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,water_line  )
 
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : p_number %v\n", p_number )  // ãƒEƒãƒE‚¯
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_eneup %v\n", ad_eneup )  // ãƒEƒãƒE‚¯
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_enedown %v\n", ad_enedown )  // ãƒEƒãƒE‚¯
-//   fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_glineup %v\n", ad_glineup )  // ãƒEƒãƒE‚¯
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_glinedown %v\n", ad_glinedown )  // ãƒEƒãƒE‚¯
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_eneup len %v\n", len(ad_eneup) )  // ãƒEƒãƒE‚¯
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : p_number %v\n", p_number )
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_eneup %v\n", ad_eneup )
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_enedown %v\n", ad_enedown )
+//   fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_glineup %v\n", ad_glineup )
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_glinedown %v\n", ad_glinedown )
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : ad_eneup len %v\n", len(ad_eneup) )
 
 ///
-///           ã‚°ãƒ©ãƒ•ãEä½œæE
+///           make graf on wab
 ///
 
     f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
 
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : f_name %v\n", f_name )  // ãƒEƒãƒE‚¯
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : f_name %v\n", f_name )  // ãƒEï¿½ï¿½ãƒEï¿½ï¿½
 
 ///
-///           ã‚°ãƒ©ãƒ•ãEè¡¨ç¤º
+///           show graf on wab
 ///
 
     cal.Pipe_line1_show_graf( w ,r ,f_name )

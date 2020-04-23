@@ -12,7 +12,7 @@ import (
                                                 )
 
 ///
-///縲縲縲繧ｳ繝ｼ繧ｹNo縺ｮ險育ｮ怜ｼ上ｒ蜑企勁
+///縲縲縲delete expression for each course-no
 ///
 
 func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
@@ -21,7 +21,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//    fmt.Fprintf( w, "initialize.Ai_sgh start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "initialize.Ai_sgh start \n" )
 
 	c := appengine.NewContext(r)
 
@@ -33,7 +33,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 		return
 	}
 
-//    fmt.Fprintf( w, "initialize.Ai_sgh count \n" ,count )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "initialize.Ai_sgh count \n" ,count )
 
 	sgh_ai     := make([]type2.Sgh_Ai, 0, count)
 	keys, err := q.GetAll(c, &sgh_ai )
@@ -43,7 +43,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
     }
 
 ///
-/// 繧ｳ繝ｼ繧ｹNo縺ｮ險育ｮ怜ｼ上ｒ蜑企勁
+///                  delete expression for each course-no
 ///
 
 	for pos2, sgh_aiw := range sgh_ai {
@@ -58,7 +58,7 @@ func Ai_sgh( course_no int64 ,w http.ResponseWriter, r *http.Request )   {
 		  return
 	    }
 	  }
-//      fmt.Fprintf( w, "initialize.Ai_sgh pos2 %v   \n" , pos2  )  // 繝・ヰ繝・け
+//      fmt.Fprintf( w, "initialize.Ai_sgh pos2 %v   \n" , pos2  )
 
     }
 

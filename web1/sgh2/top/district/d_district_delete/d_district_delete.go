@@ -2,8 +2,6 @@ package d_district_delete
 
 import (
 
-//	"google.golang.org/appengine"
-//	"google.golang.org/appengine/datastore"
 	"net/http"
 	"strconv"
 //	"fmt"
@@ -14,9 +12,13 @@ import (
     "os"
                                             )
 
+///
+/// 縲縲   delete district inf. in d.s.
+///
+
 func D_district_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "d_district_delete start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_delete start \n" )
 
 	project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -26,7 +28,6 @@ func D_district_delete(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, project_name)
@@ -36,25 +37,21 @@ func D_district_delete(w http.ResponseWriter, r *http.Request) {
     }
 
     id := r.FormValue("id")
-//    fmt.Fprintf( w, "d_district_delete : id %v\n", id )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_delete : id %v\n", id )
 
 	delidw ,_ := strconv.Atoi(id)
 	delid := int64(delidw)
 
-//    fmt.Fprintf( w, "d_district_delete : delidw %v\n", delidw )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "d_district_delete : delid %v\n", delid )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "d_district_delete : delidw %v\n", delidw )
+//    fmt.Fprintf( w, "d_district_delete : delid %v\n", delid )
 
     if err := client.Delete(ctx, datastore.IDKey("D_District", delid, nil)); err != nil {
-//	key := datastore.NewKey(c, "D_District", "", delid, nil)
-//	if err := datastore.Delete(c, key); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 繝｢繝九ち繝ｼ縲蜀崎｡ｨ遉ｺ ///
-
+    //    show district inf. on web
 	process.D_district_showall1(w , r )
 
-
-//	http.Redirect(w, r, "/", http.StatusFound)
 }

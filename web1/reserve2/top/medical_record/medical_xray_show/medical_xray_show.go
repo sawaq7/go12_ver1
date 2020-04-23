@@ -7,9 +7,6 @@ import (
 
 	    "strconv"
 
-//        "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
-
 	    "github.com/sawaq7/go12_ver1/client/reserve/type6"
 	    "github.com/sawaq7/go12_ver1/client/reserve/datastore6/initialize3"
 	    "github.com/sawaq7/go12_ver1/client/reserve/process4"
@@ -22,13 +19,13 @@ import (
 
 func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "medical_xray_show start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "medical_xray_show start \n" )
 
     var guest type6.Guest
 
     var guest2 type6.Guest_Temp
 
-/// 謖・ｮ壹＠縺殕ine-no繧竪ET縺励※謨ｴ謨ｰ蛹・///
+///    get line no and make an integer
 
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
@@ -46,7 +43,6 @@ func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -59,17 +55,14 @@ func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
     key := datastore.IDKey("Guest", updid, nil)
 
     if err := client.Get(ctx, key , &guest ) ; err != nil {
-//	key := datastore.NewKey(c, "Guest", "", updid, nil)
-//	if err := datastore.Get(c, key, &guest); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-// temporary-file繧偵う繝九す繝｣繝ｩ繧､繧ｺ  & 繧ｻ繝・ヨ//
-
 //    _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
-    initialize3.Guest_temp (w ,r )
+    initialize3.Guest_temp (w ,r )    // initialize guest temp. inf
 
     guest2.Guest_No   = guest.Guest_No
     guest2.Guest_Name = guest.Guest_Name
@@ -77,18 +70,18 @@ func Medical_xray_show(w http.ResponseWriter, r *http.Request) {
     new_key := datastore.IncompleteKey("Guest_Temp", nil)
 
     if _, err = client.Put(ctx, new_key, &guest2 ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Guest_Temp", nil), &guest2); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 ///
-///          繝ｬ繝ｳ繝医ご繝ｳ蜀咏悄繝ｪ繧ｹ繝医ｒ陦ｨ遉ｺ
+///          show xray inf. on web
 ///
 
     process4.Medical_xray_show(w , r ,guest.Guest_No)
 
-//	fmt.Fprintf( w, "medical_xray_show : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "medical_xray_show : normal end \n" )
 
 }
 

@@ -10,14 +10,17 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/sgh/type2"
 //	    "time"
                                                 )
-/// 驟埼＃繝・・繧ｿ繧定｡ｨ遉ｺ縺吶ｋ ///
+
+///
+///     register deliver inf. for each car in d.s.
+///
 
 func Deliver_keyin_car(w http.ResponseWriter, r *http.Request) {
 
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//    fmt.Fprintf( w, "deliver_keyin_car start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "deliver_keyin_car start \n" )
 
 var line_counter int64
 
@@ -30,8 +33,6 @@ var line_counter int64
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-// import struct for accessing datastore get from github.com/sawaq7/go12_ver1/client/sgh/type2/sgh.go
 
 	deliver      := make([]type2.Deliver, 0, count)
 	deliver_view := make([]type2.Deliver, 0)
@@ -66,11 +67,12 @@ var line_counter int64
 
 	}
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+//   set template
 
      monitor := template.Must(template.New("html").Parse(html2.Deliver_keyin_car))
-
-// 繝｢繝九ち繝ｼ縺ｫ陦ｨ遉ｺ
+///
+///     show deliver inf. for each car on web
+///
 
 	err = monitor.Execute(w, deliver_view)
 	if err != nil {

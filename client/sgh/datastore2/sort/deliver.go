@@ -10,7 +10,7 @@ import (
                                                 )
 
 ///
-/// 配達惁E��を、E重sortする
+///       sort by double
 ///           key1 : Date  , key2 : Car_No
 
 
@@ -18,21 +18,20 @@ func Deliver(w http.ResponseWriter ,deliver []type2.Deliver  )  (deliver2 []type
 
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
-//     IN 　deliver     : 構造体　”�E達情報”�Eスライス
+//     IN 　deliver     : slice of struct ( Deliver )
 
-//     OUT  deliver2    : ソート後�E構造体　”�E達情報”�Eスライス
+//     OUT  deliver2    : it's the slice of struct ( Deliver ) which is  sorted
 
     var j_min , j_flag   int
     var carno_save ,line_counter int64
     var date_save  string
 
-//    fmt.Fprintf( w, "sort.deliver start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "sort.deliver start \n" )
 
 	count := len(deliver)
 
-	deliver2 = make([]type2.Deliver, 0)  /// ソートテーブルを確俁E
-	skip_check := make([]int ,count)        /// スキチE�Eの判定フラグチE�Eブルを確俁E
-    line_counter = 0
+	deliver2 = make([]type2.Deliver, 0)
+	skip_check := make([]int ,count)
 
 	for  i := 0 ; i < count ; i++  {
 
@@ -42,16 +41,16 @@ func Deliver(w http.ResponseWriter ,deliver []type2.Deliver  )  (deliver2 []type
 
 
 
-	    if skip_check[j] != 1  {  /// ソート済みか否か�EチェチE��
+	    if skip_check[j] != 1  {  ///  whether or not process skips
 
-	      if j_flag  == -1  {     ///  初期値のセチE��
+	      if j_flag  == -1  {
 
 	        j_min = j
 	        date_save  = deliver[j].Date
 	        carno_save = deliver[j].Car_No
 	        j_flag = 0
 
-	        /// 最小値、�EセチE��
+	        ///  set min  value
 
 	      }  else if ( date_save >  deliver[j].Date )                                   ||
 	                 ( date_save == deliver[j].Date && carno_save > deliver[j].Car_No )     {
@@ -64,13 +63,13 @@ func Deliver(w http.ResponseWriter ,deliver []type2.Deliver  )  (deliver2 []type
 	    }
       }
 
-/// min値をテーブルにセチE��
+                            ///  set table min value
       line_counter ++
       deliver[j_min].Line_No = line_counter
 
       deliver2 = append ( deliver2,  deliver[j_min] )
 
-/// ソート済フラグをセチE��
+/// ソート済フラグをセチE��
 
       skip_check[j_min] = 1
 

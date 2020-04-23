@@ -13,20 +13,22 @@ import (
 //	    "time"
                                                   )
 
-/// main 莠育ｴ・憾豕√ｒ陦ｨ遉ｺ縺吶ｋ ///
+///
+///     show reserve situation3 inf.
+///
 
 func Reserve_situation3(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "reserve_situation3 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "reserve_situation3 start \n" )
 
     reserve_date  := r.FormValue("reserve_date")
 
 ///
-///    繝｢繝九ち繝ｼ縲陦ｨ遉ｺ
+///     show reserve situation3 inf.
 ///
 
     reserve.Reserve2( w , r ,reserve_date)
 
-//	fmt.Fprintf( w, "reserve_situation3 : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "reserve_situation3 : normal end \n" )
 
 }

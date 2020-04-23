@@ -1,8 +1,7 @@
 package payment_register
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //	    "github.com/sawaq7/go12_ver1/client/sgh"
@@ -16,12 +15,14 @@ import (
         "cloud.google.com/go/datastore"
         "context"
         "os"
-
-                                                  )
+                                                                                )
+///                         縲縲縲縲
+///     register payment inf. in d.s.
+///
 
 func Payment_register(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "payment_register start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "payment_register start \n" )
 
     var guest type6.Guest
 
@@ -30,14 +31,14 @@ func Payment_register(w http.ResponseWriter, r *http.Request) {
     updidw , err := strconv.Atoi(r.FormValue("id"))
 
 	if err  != nil {
-//	   fmt.Fprintf( w, "payment_register :error updidw %v\n", updidw )  // 繝・ヰ繝・け
+//	   fmt.Fprintf( w, "payment_register :error updidw %v\n", updidw )
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
 	}
     updid := int64(updidw)
 
-//    fmt.Fprintf( w, "payment_register : updidw %v\n", updidw )  // 繝・ヰ繝・け
-//    fmt.Fprintf( w, "payment_register : updid %v\n", updid )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "payment_register : updidw %v\n", updidw )
+//    fmt.Fprintf( w, "payment_register : updid %v\n", updid )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -47,7 +48,6 @@ func Payment_register(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -59,14 +59,13 @@ func Payment_register(w http.ResponseWriter, r *http.Request) {
 	key := datastore.IDKey("Guest", updid, nil)
 
     if err := client.Get(ctx, key , &guest ) ; err != nil {
-//	key := datastore.NewKey(c, "Guest", "", updid, nil)
-//	if err := datastore.Get(c, key, &guest); err != nil {
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 
-// temporary-file繧偵う繝九す繝｣繝ｩ繧､繧ｺ  & 繧ｻ繝・ヨ//
+//    initialize guest tmp. file
 
 //    _ = datastore2.Datastore_sgh( "D_District_Temp" ,"initialize" ,idmy , w , r  )
 
@@ -78,16 +77,18 @@ func Payment_register(w http.ResponseWriter, r *http.Request) {
     new_key := datastore.IncompleteKey("Guest_Temp", nil)
 
     if _, err = client.Put(ctx, new_key, &guest2 ); err != nil {
-//	if _, err := datastore.Put(c, datastore.NewIncompleteKey(c, "Guest_Temp", nil), &guest2); err != nil {
+
 		http.Error(w,err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-/// 繝｢繝九ち繝ｼ縲陦ｨ遉ｺ ///
+///
+///       show payment inf. on web
+///
 
 	process4.Payment_register(w , r ,guest.Guest_No)
 
-//	fmt.Fprintf( w, "reserve_register : normal end \n" )  // 繝・ヰ繝・け
+//	fmt.Fprintf( w, "reserve_register : normal end \n" )
 
 
 

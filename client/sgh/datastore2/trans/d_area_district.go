@@ -1,8 +1,7 @@
 package trans
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -16,7 +15,7 @@ import (
                                                 )
 
 ///
-/// 謖・ｮ壹＠縺溷慍蛹ｺ縺ｮ繧ｨ繝ｪ繧｢繧偵ご繝・ヨ
+///    get area inf. which match district no
 ///
 
 func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)  ([]type2.D_Area ) {
@@ -25,9 +24,9 @@ func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 //     IN 縲district_no : 蝨ｰ蛹ｺNo
 
-//     OUT d_area_view  : 讒矩菴薙窶昴お繝ｪ繧｢諠・ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT d_area_view  : slice of struct ( D_Area )
 
-//    fmt.Fprintf( w, "trans.d_area_district district_no \n" ,district_no)  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.d_area_district district_no \n" ,district_no)
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -38,7 +37,6 @@ func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)
 	}
 
     ctx := context.Background()
-//	c := appengine.NewContext(r)
 
     client, err := datastore.NewClient(ctx, project_name)
     if err != nil {
@@ -47,10 +45,9 @@ func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)
     }
 
     query := datastore.NewQuery("D_Area").Order("Area_No")
-//	q := datastore.NewQuery("D_Area").Order("Area_No")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -60,7 +57,7 @@ func D_area_district(w http.ResponseWriter, r *http.Request , district_no int64)
 	d_area_view := make([]type2.D_Area, 0)
 
     keys, err := client.GetAll(ctx, query , &d_area)
-//	keys, err := q.GetAll(c, &d_area)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil

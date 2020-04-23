@@ -1,8 +1,3 @@
-///
-/// 豌ｴ逅・ｭｦ縲邂｡縺ｮ髟ｷ縺輔ｒ豎ゅａ繧具ｼ医・繝ｼ繧ｼ繝ｳ繝ｻ繧ｦ繧､繝ｪ繧｢繝繧ｹ縺ｮ蜈ｬ蠑擾ｼ・///
-///
-
-
 package equation
 
 
@@ -10,16 +5,23 @@ import (
 	    "fmt"
         "math"
         "github.com/sawaq7/go12_ver1/basic/maths/sum"
-	  		              )
+	  		                                            )
+
+///
+///      formura of Hezen Williams
+///
 
 func Suiri_Heizen2( ch float64 ,D float64 ,velocity float64  ,high float64 ) float64 {
 
-//     IN    ch         : 豬・滉ｿよ焚
-//     IN    D(・搾ｼ・    : 邂｡縺ｮ蜀・ｾ・//     IN velocity(m/s) : 豬・・//     IN    high・・)   : 謳榊､ｱ豌ｴ鬆ｭ
-//    OUT    one・・)    : 邂｡縺ｮ髟ｷ縺・
+//     IN    ch         :
+//     IN    D
+//     IN velocity
+//     IN    high
+
+//    OUT    one    : tube length
+
    var length ,Q float64
 
-// 豬・㍼繧呈ｱゅａ繧・
    Q = sum.Circle_Area(D/2.0 ) * velocity
 
    rwork := math.Pow( ch ,-1.85)

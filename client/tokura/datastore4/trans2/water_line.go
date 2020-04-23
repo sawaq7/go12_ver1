@@ -1,13 +1,10 @@
 package trans2
 
 import (
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "fmt"
 
-//	    "html/template"
-//	    "web/htmls/sgh"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 //	    "time"
 
@@ -17,20 +14,21 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　
-/// チE�Eタストアーから水路ライン惁E��をGETする�E�水路ラインファイル�E�E///                          　　　　　　　　　　　
-
+///    get water-line                         　　　　　　　　　　　
+///
 
 func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Request )  ([]type4.Water_Line ) {
 
-//     IN  funct : ファンクション　0:すべての水路ラインを表示
-//               　　　　　　　　　1:持E��した水路名�E水路ラインを表示
-//     IN  wname : 水路吁E//     IN    w   : レスポンスライター
+//     IN  funct : ファンクション　0:   show all water-line
+//               　　　　　　　　　1:   show water-line which was selected
+//     IN  wname :  water-name
+//     IN    w   : レスポンスライター
 //     IN    r   : リクエストパラメータ
-//     OUT  one  : 水路ラインのスライス
+//     OUT  one  : water-line slice
 
-//    fmt.Fprintf( w, "trans.water_line start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "trans.water_line funct %v   \n" , funct  )  // チE��チE��
-//    fmt.Fprintf( w, "trans.water_line wname %v   \n" , wname  )  // チE��チE��
+//    fmt.Fprintf( w, "trans.water_line start \n" )
+//    fmt.Fprintf( w, "trans.water_line funct %v   \n" , funct  )
+//    fmt.Fprintf( w, "trans.water_line wname %v   \n" , wname  )
 
     projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
@@ -40,15 +38,12 @@ func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Reque
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
 
     query := datastore.NewQuery("Water_Line").Order("Section")
-//	q := datastore.NewQuery("Water_Line").Order("Section")
 
-//	count, err := q.Count(c)
     count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -59,12 +54,10 @@ func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Reque
 
 	water_line_view := make([]type4.Water_Line, 0)
 
-
-//	keys, err := q.GetAll(c, &water_line)
 	keys, err := client.GetAll(ctx, query , &water_line)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "water_line err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "water_line err \n" ,err)
 //		return	water_line_view
 	}
 
@@ -78,7 +71,6 @@ func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Reque
 
 	for pos, water_linew := range water_line {
 
-///  機�EによりチェチE��頁E��をセチE��
       if  funct == 0 {
 
          water_line_view = append(water_line_view, type4.Water_Line {  keys_wk[pos]         ,

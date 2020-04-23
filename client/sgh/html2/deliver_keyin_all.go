@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>チE�Eタストアの更新・削除</title>
+        <title>datastore update/delete</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -32,17 +32,17 @@ package html2
 
             <td >
               <form method="GET"  align="center" action="/deliver_showall2">
-                <input type="submit" value="配達履歴�E�Ell)" />
+                <input type="submit" value="配達履歴�E�Ell)" />
               </form>
                                                                              </td>
             <td >
               <form method="GET" align="center" action="/deliver_keyin_car">
-                <input type="submit" value="配達履歴�E�Ear)" />
+                <input type="submit" value="配達履歴�E�Ear)" />
               </form>
                                                                              </td>
             <td >
               <form method="GET" align="center" action="/deliver_keyin_private">
-                <input type="submit" value="配達履歴�E�Erivate)" />
+                <input type="submit" value="配達履歴�E�Erivate)" />
               /form>
                                                                              </td>
            </section>

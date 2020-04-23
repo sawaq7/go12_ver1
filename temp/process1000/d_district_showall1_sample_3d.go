@@ -22,22 +22,16 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 //     IN    w      縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-    fmt.Fprintf( w, "d_district_showall1_sample_3d start \n" )  // 繝・ヰ繝・け
-
-//    d_district_view := make([]type1000.D_District, 0)
+    fmt.Fprintf( w, "d_district_showall1_sample_3d start \n" )
 
     d_district_view := make([]type1000.D_District_2, 0)
 
 
     c := appengine.NewContext(r)
 
-// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺九ｉ縲∬｡ｨ遉ｺ逕ｨ繝・・繧ｿ繧竪ET
-
     d_district := trans.D_district ( 0 ,0 ,w ,r )
 
     for _, d_districtw := range d_district {
-
-///  讖溯・縺ｫ繧医ｊ繝√ぉ繝・け鬆・岼繧偵そ繝・ヨ
 
       d_area_slice := trans1000.D_area_district ( w ,r ,d_districtw.District_No )
 
@@ -45,7 +39,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 
       d_area_small_slice := make([]type1000.D_Area_Small, 1)
 
-      fmt.Fprintf( w, "d_district_showall1_sample_3d len( d_area_slice ) %v\n" ,len( d_area_slice ))  // 繝・ヰ繝・け
+      fmt.Fprintf( w, "d_district_showall1_sample_3d len( d_area_slice ) %v\n" ,len( d_area_slice ))
       if len( d_area_slice ) != 0 {
 
         d_area_small_slice[0].Area_Name = d_area_slice[0].Area_Name
@@ -60,7 +54,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
                                                                       d_area_slice_3d               })
 
 
-/// 繝・・繧ｿ繧ｹ繝医い繝ｼ縺ｫ繝・・繧ｿ繧偵そ繝・ヨ ///
+///
       var d_district_work type1000.D_District
 
       d_district_work.District_No   = d_districtw.District_No
@@ -75,7 +69,7 @@ func D_district_showall1_sample_3d(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-// 繝・Φ繝励Ξ繝ｼ繝医・繝倥ャ繝繝ｼ繧竪ET
+//
 
     monitor := template.Must(template.New("html").Parse(html1000.D_district_showall1_sample_3d))
 

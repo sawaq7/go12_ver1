@@ -1,8 +1,3 @@
-///
-/// 豌ｴ逅・ｭｦ縲邂｡縺ｮ蜀・ｾ・ｒ豎ゅａ繧具ｼ医・繝ｼ繧ｼ繝ｳ繝ｻ繧ｦ繧､繝ｪ繧｢繝繧ｹ縺ｮ蜈ｬ蠑擾ｼ・///
-///
-
-
 package equation
 
 
@@ -11,14 +6,20 @@ import (
         "math"
               )
 
+///
+///      formura of Hezen Williams
+///         genre : hydraulics
+
 func Suiri_Heizen3( ch float64 ,I float64 ,Q float64  ) float64 {
 
-//     IN    ch         : 豬・滉ｿよ焚
-//     IN    I          : 蜍墓ｰｴ蜍ｾ驟・//     IN    Q(m/s) : 豬・・//     IN    high・・)   : 謳榊､ｱ豌ｴ鬆ｭ
-//    OUT    one・・)    : 邂｡縺ｮ髟ｷ縺・
+//     IN    ch
+//     IN    I
+//     IN    Q
+//     IN    high
+//    OUT    one      : tube length
+
    var D float64
 
-// 豬・㍼繧呈ｱゅａ繧・
    rwork := math.Pow( ch ,-0.38)
    rwork2 := math.Pow( I,-0.205)
    rwork3 := math.Pow( Q,0.38)

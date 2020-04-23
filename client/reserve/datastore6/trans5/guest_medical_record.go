@@ -2,8 +2,6 @@ package trans5
 
 import (
 
-//	    "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
 	    "net/http"
 //	    "fmt"
 //	    "html/template"
@@ -17,14 +15,14 @@ import (
 
 func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Medical_Record ) {
 
-//     IN  guest_no  　 : ゲスチEO.
+//     IN  guest_no  　 : guest no
 //     IN    w      　　: レスポンスライター
 //     IN    r      　　: リクエストパラメータ
 
-//     OUT guest_medical_record_slice  : 構造体　”エリア惁E��”�Eスライス
+//     OUT guest_medical_record_slice  :  slice of struct ( Guest_Medical_Record )
 
-//    fmt.Fprintf( w, "trans.guest_medical_record start \n" )  // チE��チE��
-//    fmt.Fprintf( w, "trans.guest_medical_record guest_no \n" ,guest_no)  // チE��チE��
+//    fmt.Fprintf( w, "trans.guest_medical_record start \n" )
+//    fmt.Fprintf( w, "trans.guest_medical_record guest_no \n" ,guest_no)
 
     var i_count int64
 
@@ -36,7 +34,6 @@ func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Reques
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, projectID)
@@ -46,10 +43,9 @@ func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Reques
 	}
 
     query := datastore.NewQuery("Guest_Medical_Record").Order("Date")
-//	q := datastore.NewQuery("Guest_Medical_Record").Order("Date")
 
     count, err := client.Count(ctx, query)
-//	count, err := q.Count(c)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return	nil
@@ -59,10 +55,10 @@ func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Reques
 	guest_medical_record_slice := make([]type6.Guest_Medical_Record, 0)
 
     keys, err := client.GetAll(ctx, query , &guest_medical_record)
-//	keys, err := q.GetAll(c, &guest_medical_record)
+
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)  // チE��チE��
+//		fmt.Fprintf( w, "d_district_area_show err \n" ,err)
 		return	nil
 	}
 
@@ -78,10 +74,9 @@ func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Reques
 
 	for pos, guest_medical_recordw := range guest_medical_record {
 
-//	  fmt.Fprintf( w, "trans.guest_medical_record guest_medical_recordw %v\n" ,guest_medical_recordw)  // チE��チE��
+//	  fmt.Fprintf( w, "trans.guest_medical_record guest_medical_recordw %v\n" ,guest_medical_recordw)
 
-///  機�EによりチェチE��頁E��をセチE��
-
+                                           // select data which is match guest no
       if guest_no == guest_medical_recordw.Guest_No {
 
          i_count ++

@@ -16,7 +16,7 @@ import (
 
 func Csv_column_delete(w http.ResponseWriter, r *http.Request) {
 
-//    fmt.Fprintf( w, "sky/csv_column_delete start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "sky/csv_column_delete start \n" )
 
     var err error
 
@@ -24,7 +24,7 @@ func Csv_column_delete(w http.ResponseWriter, r *http.Request) {
 /// 入力データをGET 　
 ///
 
-    string_data := r.FormValue("delete_column")  // 削除する列をゲチE��
+    string_data := r.FormValue("delete_column")
 
     strings := strings2.String_no_get( w , r , string_data  )
 
@@ -32,7 +32,8 @@ func Csv_column_delete(w http.ResponseWriter, r *http.Request) {
 
     for pos, stringsw := range strings {
 
-      delete_no[pos] ,err = strconv.Atoi(stringsw)  // 整数匁E	  if err != nil {
+      delete_no[pos] ,err = strconv.Atoi(stringsw)  // make an integer
+      if err != nil {
 	   http.Error(w,err.Error(), http.StatusInternalServerError)
 
 		return
@@ -41,7 +42,7 @@ func Csv_column_delete(w http.ResponseWriter, r *http.Request) {
 	}
 
 ///
-///         列を削除する　
+///         delete column　
 ///
 
 	for _ , delete_now := range delete_no {
@@ -51,12 +52,12 @@ func Csv_column_delete(w http.ResponseWriter, r *http.Request) {
 	}
 
 ///
-/// 　　　web上に、csv惁E��を表示する　
+/// 　　　csv inf. show web　
 ///
 
-    csv_inf := trans3.Csv_inf ( w ,r )  //     csv惁E��をゲチE��
+    csv_inf := trans3.Csv_inf ( w ,r )  //     get csv inf.
 
-    monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // チE��プレート�EヘッダーをGET
+    monitor := template.Must( template.New("html").Parse( html5.Csv_show )) // set template
 
      err = monitor.Execute ( w, csv_inf )
 	 if err != nil {

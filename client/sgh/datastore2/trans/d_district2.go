@@ -12,23 +12,23 @@ import (
         "context"
         "os"                                      )
 
-///                           ///
-/// 蝨ｰ蛹ｺ諠・ｱ繧偵ご繝・ヨ縺吶ｋ ///
-///                          ///
+///
+///      get district inf.
+///
 
 func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_View ) {
 
 //     IN    w      縲縲縲縲: 繝ｬ繧ｹ繝昴Φ繧ｹ繝ｩ繧､繧ｿ繝ｼ
 //     IN    r      縲縲縲縲: 繝ｪ繧ｯ繧ｨ繧ｹ繝医ヱ繝ｩ繝｡繝ｼ繧ｿ
 
-//     OUT d_district_view  : 讒矩菴薙窶晏慍蛹ｺ諠・ｱ窶昴・繧ｹ繝ｩ繧､繧ｹ
+//     OUT d_district_view  : slice of struct ( D_District )
 
-//    fmt.Fprintf( w, "trans.d_district2 start \n" )  // 繝・ヰ繝・け
+//    fmt.Fprintf( w, "trans.d_district2 start \n" )
 
     project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
     if project_name == "" {
-//      fmt.Fprintf( w, "trans.d_district2 :  projectID unset \n"  )  // 繝・ヰ繝・け
+//      fmt.Fprintf( w, "trans.d_district2 :  projectID unset \n"  )
 
       project_name = "sample-7777"
 
@@ -56,7 +56,7 @@ func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_
     keys, err := client.GetAll(ctx, query , &d_district)
     if err != nil {
        http.Error(w, err.Error(), http.StatusInternalServerError)
-//		fmt.Fprintf( w, "d_district2 err \n" ,err)  // 繝・ヰ繝・け
+//		fmt.Fprintf( w, "d_district2 err \n" ,err)
 		return	nil
 	}
 
@@ -69,8 +69,6 @@ func D_district2( w http.ResponseWriter, r *http.Request )  ([]type2.D_District_
     }
 
 	for pos, d_districtw := range d_district {
-
-///  讖溯・縺ｫ繧医ｊ繝√ぉ繝・け鬆・岼繧偵そ繝・ヨ
 
         d_area_slice :=   D_area_district ( w ,r ,d_districtw.District_No )
 
