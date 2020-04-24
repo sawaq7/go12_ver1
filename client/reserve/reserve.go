@@ -18,10 +18,15 @@ import (
     "strconv"
     "html/template"
 
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
-	"github.com/gonum/plot/plotter"
- 	"github.com/gonum/plot/plotutil"
+//	"github.com/gonum/plot/vg"
+//	"github.com/gonum/plot/vg/draw"
+//	"github.com/gonum/plot/plotter"
+// 	"github.com/gonum/plot/plotutil"
+
+ 	"gonum.org/v1/plot/vg"
+	"gonum.org/v1/plot/vg/draw"
+    "gonum.org/v1/plot/plotter"
+ 	"gonum.org/v1/plot/plotutil"
                                             )
 
 // A BarChart presents grouped data with rectangular bars
