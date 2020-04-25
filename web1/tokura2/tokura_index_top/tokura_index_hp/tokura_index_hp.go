@@ -17,11 +17,11 @@ func Tokura_index_hp(w http.ResponseWriter, r *http.Request) {
 
    var cdmy string
 
-/// チE��プレート�EヘッダーをGET
+///     set template
 
     monitor := template.Must(template.New("html").Parse(html4.Tokura_index_hp))
 
-// モニターに表示
+///           show tokura's hp menu on web
 
 	err := monitor.Execute(w, cdmy)
 	if err != nil {

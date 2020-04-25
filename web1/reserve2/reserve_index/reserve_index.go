@@ -8,18 +8,18 @@ import (
                                                   )
 
 ///
-/// show the menu of medical' applications
+/// show the menu of medical's applications
 ///
 
 func Reserve_index(w http.ResponseWriter, r *http.Request) {
 
    var cdmy string
 
-/// チE��プレート�EヘッダーをGET
+///      set template
 
     monitor := template.Must(template.New("html").Parse(html6.Reserve_index))
 
-// モニターに表示
+///           show medical's menu on web
 
 	err := monitor.Execute(w, cdmy)
 	if err != nil {
