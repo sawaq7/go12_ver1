@@ -62,7 +62,7 @@ func Pipe_line_st_cal(w http.ResponseWriter, r *http.Request) {
 
     f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
 
-//    fmt.Fprintf( w, "sky/pipe_line_st_cal : f_name %v\n", f_name )  // チE��チE��
+//    fmt.Fprintf( w, "sky/pipe_line_st_cal : f_name %v\n", f_name )
 
 ///
 ///           show graf on wab

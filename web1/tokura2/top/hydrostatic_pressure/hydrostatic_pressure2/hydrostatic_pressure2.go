@@ -7,7 +7,7 @@ import (
 	    "bufio"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri"
 	    "github.com/sawaq7/go12_ver1/basic/maths/sum"
-	    "storage2"
+	    "github.com/sawaq7/go12_ver1/storage2"
 	    "net/http"
 	    "io"
 	    "cloud.google.com/go/storage"
