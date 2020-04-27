@@ -17,6 +17,9 @@ import (
 
 func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+
 //   fmt.Fprintf( w, "sky/pipe_line_ds_cal start \n"  )
 
    var water type4.Water2
@@ -86,7 +89,7 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 ///       calculate water-slope-line
 ///
 
-    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
+//    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
@@ -97,13 +100,12 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 ///    make graf
 
-    f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
+//    f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : f_name %v\n", f_name )
 
 ///    show graf
 
-    cal.Pipe_line1_show_graf( w ,r ,f_name )
+//    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
-

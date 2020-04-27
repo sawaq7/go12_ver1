@@ -19,11 +19,11 @@ import (
 
 func Water_line( funct int64 ,wname string ,w http.ResponseWriter, r *http.Request )  ([]type4.Water_Line ) {
 
-//     IN  funct : ファンクション　0:   show all water-line
+//     IN  funct : function     　0:   show all water-line
 //               　　　　　　　　　1:   show water-line which was selected
 //     IN  wname :  water-name
-//     IN    w   : レスポンスライター
-//     IN    r   : リクエストパラメータ
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
 //     OUT  one  : water-line slice
 
 //    fmt.Fprintf( w, "trans.water_line start \n" )

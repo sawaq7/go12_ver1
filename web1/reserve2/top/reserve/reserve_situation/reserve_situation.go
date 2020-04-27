@@ -18,6 +18,9 @@ import (
 
 func Reserve_situation(w http.ResponseWriter, r *http.Request) {
 
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+
 //    fmt.Fprintf( w, "reserve_situation start \n" )
 
     reserve_date  := r.FormValue("reserve_date")
