@@ -107,6 +107,12 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 /// グラフの作成 ///
 
+    p_number := 1
+    ad_eneup := make([]type3.Point ,20 ,50)
+   ad_enedown := make([]type3.Point ,20 ,50)
+   ad_glineup := make([]type3.Point ,20 ,50)
+   ad_glinedown := make([]type3.Point ,20 ,50)
+
     f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : f_name %v\n", f_name )  // デバック
