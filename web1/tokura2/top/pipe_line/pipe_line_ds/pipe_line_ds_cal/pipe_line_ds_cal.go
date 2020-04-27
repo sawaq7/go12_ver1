@@ -5,7 +5,7 @@ import (
 //        "google.golang.org/appengine"
 //	    "google.golang.org/appengine/datastore"
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "github.com/sawaq7/go12_ver1/basic/type3"
@@ -21,8 +21,6 @@ import (
 func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 //   fmt.Fprintf( w, "sky/pipe_line_ds_cal start \n"  )  // デバック
-
-/// key-in データをGET ///
 
    var water type4.Water2
 
@@ -126,8 +124,8 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : f_name %v\n", f_name )  // デバック
 
 /// グラフの表示 ///
-    f_name := "1"
-    cal.Pipe_line1_show_graf( w ,r ,f_name )
+//    f_name := "1"
+//    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
 
