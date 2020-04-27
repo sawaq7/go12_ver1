@@ -87,11 +87,13 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 //    water_line := trans2.Water_line (1  ,water.Name , w ,r )
 
-      water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
+//      water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
+
+      _ := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
 
 
-     value, _ := water_line.([]type4.Water_Line)    // 空インターフェイス変数よりバリュー値をゲット
+//     value, _ := water_line.([]type4.Water_Line)    // 空インターフェイス変数よりバリュー値をゲット
 
 ///
 ///         動水勾配線の計算
