@@ -1,7 +1,7 @@
 package equation
 
 import (
-	    "fmt"
+//	    "fmt"
 //	    "github.com/sawaq7/go12_ver1/basic/maths"
 	    "github.com/sawaq7/go12_ver1/basic/declare"
 	  		          )
@@ -21,7 +21,7 @@ func Suiri_Vhead( velocity float64 ) float64 {
    gravi := declare.Math_Const_gravi
 
    hv = velocity * velocity / (2*gravi)
-   fmt.Println ("Suiri_vhead hv  " ,hv)
+//   fmt.Println ("Suiri_vhead hv  " ,hv)
 
 return hv
 

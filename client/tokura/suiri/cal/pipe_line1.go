@@ -39,9 +39,8 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
    ad_hp := make([]float64 ,20 ,50)        //　hp　
    ad_hl := make([]float64 ,20 ,50)        //　hl　
    ad_vhead := make([]float64 ,20 ,50)     //　vhead
+
    ad_eneup := make([]type3.Point ,20 ,50)     //　eneup
-
-
    ad_enedown := make([]type3.Point ,20 ,50)   //　enedown
    ad_glineup := make([]type3.Point ,20 ,50)   //　glineup
    ad_glinedown := make([]type3.Point ,20 ,50) //　glinedown
@@ -105,11 +104,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
      ad_hl[index] = hl
 
-//     fmt.Println("cal.pipe_line1 hl(ad)　%v\n" ,ad_hl)
-
      ad_vhead[index] = vhead
-
-//     fmt.Println("cal.pipe_line1 vhead(ad)　%v\n" ,ad_vhead)
 
 //　 make energy-line (down)
 
@@ -132,16 +127,13 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
       ad_eneup[index].X = x_eneup   //　make x,y coordinate
       ad_eneup[index].Y = y_eneup
-//         fmt.Println("cal.pipe_line1 eneup(ad)" ,ad_eneup)
 
-//　 ake energy-line (up)
+//　 make energy-line (up)
 
       y_enedown = y_eneup - hp
 
       ad_enedown[index].X = x_eneup
       ad_enedown[index].Y = y_eneup - hp
-
-//         fmt.Println("cal.pipe_line1 enedown(ad)" ,ad_enedown)
 
 //　    make water-slope-line
 
@@ -150,16 +142,12 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
       ad_glineup[index].X = x_eneup
       ad_glineup[index].Y = y_eneup - vhead
 
-//         fmt.Println("cal.pipe_line1 glinedown(ad)" ,ad_glineup)
-
 ///    make water-slope-line
 
       ad_glinedown[index].X = x_eneup
       ad_glinedown[index].Y = y_glineup - hp
 
-//         fmt.Println("cal.pipe_line1 glinedown(ad)" ,ad_glinedown)
       index ++
-
 
    }
 
