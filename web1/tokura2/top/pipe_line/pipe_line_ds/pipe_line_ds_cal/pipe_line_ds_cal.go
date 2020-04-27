@@ -8,7 +8,7 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
-	    "github.com/sawaq7/go12_ver1/basic/type3"
+//	    "github.com/sawaq7/go12_ver1/basic/type3"
 //	    "strconv"
 //	    "fmt"
 
