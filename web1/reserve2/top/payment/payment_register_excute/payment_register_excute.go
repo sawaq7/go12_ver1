@@ -95,6 +95,6 @@ func Payment_register_excute(w http.ResponseWriter, r *http.Request) {
 
 	process4.Payment_register(w , r ,guest_payment.Guest_No)
 
-//	fmt.Fprintf( w, "payment_register_excute : normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "payment_register_excute : normal end \n" )
 
 }

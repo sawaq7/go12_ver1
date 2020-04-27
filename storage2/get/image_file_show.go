@@ -13,14 +13,15 @@ import (
                              )
 
 ///
-/// 画像ファイルを、ウエブ上に表示する、E///
-
+///       show image-inf. on web
+///
 
 func  Image_file_show( w http.ResponseWriter ,r *http.Request ,bucket string ,filename string) {
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
-//     IN  bucket     : bucket-name     IN  filename   : filename
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket     : bucket-name
+//     IN  filename   : filename
 
 	var g type5.Image_Show
 
@@ -35,12 +36,12 @@ func  Image_file_show( w http.ResponseWriter ,r *http.Request ,bucket string ,fi
 	g.Url = fmt.Sprintf(publicURL, bucket, filename)
 
 
-// templateをGET
+///   set template
 
      monitor := template.Must(template.New("html").Parse(html5.Image_file_show))
 //     monitor := template.Must(template.New("html").Parse(html4.Pipe_line1_show_graf))
 
-// モニターに表示
+///    show image-inf. on web
 
 	err := monitor.Execute(w, g)
 	if err != nil {

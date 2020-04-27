@@ -22,14 +22,14 @@ import (
                                                    )
 
 ///
-/// グラチEファイル�E�導水勾配線群�E�を、ウエブ上に表示するとともに
-/// チE�EタストアにグラチEファイル惁E��を登録する、E///
+/// show graf of water-slope-line and register it in d.s.
+///
 
 
 func  Pipe_line1_show_graf( w http.ResponseWriter ,r *http.Request ,f_name string) {
 
-//     IN     w         : レスポンスライター
-//     IN     r         : リクエストパラメーター
+//     IN     w         : response-writer
+//     IN     r         : request-parameter
 //     IN  f_name 　　  : file-name
 
 	var g type4.Water_Slope // ”Water_Slope" and type5.Image_Show”is same format

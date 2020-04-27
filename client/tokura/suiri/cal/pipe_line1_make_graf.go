@@ -23,13 +23,14 @@ import (
                                                    )
 
 ///
-/// 導水勾配線群よりグラフを作り、ストレチE��に保存する、E///
+///       make graf and reserve it in storage from water-slope-lines
+///
 
 func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_eneup []type3.Point ,
                            ad_enedown []type3.Point ,ad_glineup []type3.Point ,ad_glinedown []type3.Point ) (f_name string) {
 
-//     IN     w         : レスポンスライター
-//     IN     r         : リクエストパラメーター
+//     IN     w         : response-writer
+//     IN     r         : request-parameter
 //     IN  p_number 　　: point number
 //     IN  ad_eneup  　 : energy-line-up slice
 //     IN  ad_enedown   : energy-line-down slice
@@ -95,22 +96,22 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 ///    make data for graf　
 ///
 
- 	if err := plotutil.AddLinePoints(p, "エネルギー緁Eup)", ad_eneup_xys); err != nil {
+ 	if err := plotutil.AddLinePoints(p, "energy-line-up)", ad_eneup_xys); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
-    if err := plotutil.AddLinePoints(p, "エネルギー緁Edown)", ad_enedown_xys ); err != nil {
+    if err := plotutil.AddLinePoints(p, "energy-line-down)", ad_enedown_xys ); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
- 	if err := plotutil.AddLinePoints(p, "動水勾配緁Eup)", ad_glineup_xys ); err != nil {
+ 	if err := plotutil.AddLinePoints(p, "water-slope-line-up)", ad_glineup_xys ); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}
 
- 	if err := plotutil.AddLinePoints(p, "動水勾配緁Edown)", ad_glinedown_xys ); err != nil {
+ 	if err := plotutil.AddLinePoints(p, "water-slope-line-down)", ad_glinedown_xys ); err != nil {
  	   http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
  	}

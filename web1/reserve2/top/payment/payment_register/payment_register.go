@@ -90,7 +90,4 @@ func Payment_register(w http.ResponseWriter, r *http.Request) {
 
 //	fmt.Fprintf( w, "reserve_register : normal end \n" )
 
-
-
-
 }

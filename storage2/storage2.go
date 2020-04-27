@@ -22,14 +22,14 @@ import (
                                         )
 
 
-///                                                                      ///
-///   Bucket_Handler_Get : get bucket handler for Google Cloud Storage.  ///
-///                                              type-2                  ///
+///
+///   Bucket_Handler_Get : get bucket handler for Google Cloud Storage.
+///                                              type-2
 
 func Bucket_Handler_Get(w http.ResponseWriter ,r *http.Request ,bucket string) (*storage.BucketHandle) {
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
+//     IN    w      : response-writer
+//     IN    r      : request- parameter
 //     IN  bucket   :
 //     OUT  one     : bucket handler
 
@@ -45,14 +45,14 @@ func Bucket_Handler_Get(w http.ResponseWriter ,r *http.Request ,bucket string) (
 	return client.Bucket(bucket)
 }
 
-///                                                                 ///
-///    File_Open : open file in Google Cloud Storage.             ///
-///                                                                 ///
+///
+///    File_Open : open file in Google Cloud Storage.
+///
 
 func File_Open(w http.ResponseWriter ,r *http.Request ,bucket string ,filename string)(io.ReadCloser) {
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
+//     IN    w      : response-writer
+//     IN    r      : request- parameter
 //     IN  bucket     :
 //     IN  filename   :
 //     OUT  one       : reader for storage
@@ -74,17 +74,18 @@ func File_Open(w http.ResponseWriter ,r *http.Request ,bucket string ,filename s
     return rc
 }
 
-///                                                               ///
-///   File_Create : create a file in Google Cloud Storage.  ///
-///                        type-2                                 ///
+///
+///   File_Create : create a file in Google Cloud Storage.
+///                        type-2
 
 func File_Create ( w http.ResponseWriter ,r *http.Request ,bucket string ,filename string ) ( *storage.Writer ){
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
-//     IN  bucket     :
-//     IN  filename   : ファイル吁E
-//     OUT  one       : ストレチE��用ライター
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket     : bucket-name
+//     IN  filename   : file-name
+
+//     OUT  one       : writer for storage
 
 //    fmt.Fprintf( w, "File_Create start \n" )
 
@@ -98,26 +99,27 @@ func File_Create ( w http.ResponseWriter ,r *http.Request ,bucket string ,filena
 
 	wc.ContentType = "text/plain; charset=utf-8"
 	wc.ACL = []storage.ACLRule{{Entity: storage.AllUsers, Role: storage.RoleReader}}
-//	wc.ContentType = fh.Header.Get("Content-Type")
-	wc.CacheControl = "public, max-age=86400"  // Entries are immutable, be aggressive about caching (1 day).
 
-//	fmt.Fprintf(gcs_gae.W, "StorageCreate: ファイルアドレス　%d\n", wc  )
+	wc.CacheControl = "public, max-age=86400"
+	   // Entries are immutable, be aggressive about caching (1 day).
 
 	return wc
 }
 
-///                                                               ///
-///   File_Create : create a file in Google Cloud Storage.  ///
-///                        type-2                                 ///
+///
+///   File_Create : create a file in Google Cloud Storage.
+///                        type-2
 
 func File_Create2 ( w http.ResponseWriter ,r *http.Request ,bucket string ,filename string ,content_type string  ) ( *storage.Writer ){
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
-//     IN  bucket     :
-//     IN  filename   : ファイル吁E
-//     IN  content_type   :
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket     : bucket-name
+//     IN  filename   : file-name
+//     IN  content_type   :  content-type
+
 //     OUT  one       : writer for storage
+
 //    fmt.Fprintf( w, "File_Create2 start \n" )
 
 /// get bucket handler for storage
@@ -130,10 +132,11 @@ func File_Create2 ( w http.ResponseWriter ,r *http.Request ,bucket string ,filen
 
 	wc.ContentType = content_type
 	wc.ACL = []storage.ACLRule{{Entity: storage.AllUsers, Role: storage.RoleReader}}
-//	wc.ContentType = fh.Header.Get("Content-Type")
-	wc.CacheControl = "public, max-age=86400"  // Entries are immutable, be aggressive about caching (1 day).
 
-//	fmt.Fprintf(gcs_gae.W, "StorageCreate: ファイルアドレス　%d\n", wc  )
+	wc.CacheControl = "public, max-age=86400"
+	    // Entries are immutable, be aggressive about caching (1 day).
+
+//	fmt.Fprintf(gcs_gae.W, "StorageCreate: wc　%d\n", wc  )
 
 	return wc
 }
@@ -144,9 +147,9 @@ func File_Create2 ( w http.ResponseWriter ,r *http.Request ,bucket string ,filen
 
 func File_Copy ( w http.ResponseWriter , r *http.Request ,bucket string ,fileName string ,fileName2 string){
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
-//     IN  bucket   : バケチE��吁E
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket   : bucket-name
 //     IN  filename    : the basic's file
 //     IN  filename2   : the file which is copied
 
@@ -170,15 +173,15 @@ func File_Copy ( w http.ResponseWriter , r *http.Request ,bucket string ,fileNam
 
 }
 
-///                                                           ///
-///   StorageRename : rename a file in Google Cloud Storage.      ///
-///                                                           ///
+///
+///   StorageRename : rename a file in Google Cloud Storage.
+///
 
 func File_Rename ( w http.ResponseWriter ,r *http.Request ,bucket string ,fileName1 string ,fileName2 string ) {
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
-//     IN  bucket   :
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket   : bucket-name
 //     IN  filename1   : old file name
 //     IN  filename2   : new file name
 
@@ -196,9 +199,9 @@ func File_Rename ( w http.ResponseWriter ,r *http.Request ,bucket string ,fileNa
 
 func File_Delete ( w http.ResponseWriter , r *http.Request ,bucket string ,fileName string  ) {
 
-//     IN    w      : レスポンスライター
-//     IN    r      : リクエストパラメータ
-//     IN  bucket   :
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket   : bucket-name
 //     IN  filename    : the file which is deleted
 
 //    fmt.Fprintf( w, "File_Delete start \n" )
@@ -224,8 +227,8 @@ func File_Delete ( w http.ResponseWriter , r *http.Request ,bucket string ,fileN
 
 func File_write ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string ) {
 
-//     IN    w      : レスポンスライター
-//     IN    wc       : ストレチE��用ライター
+//     IN    w      : request- parameter
+//     IN    wc       : writer for storage
 //     IN  ldata      : one line data
 
 //    fmt.Fprintf( w, "File_Write start \n" )
@@ -236,13 +239,13 @@ func File_write ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string ) {
 
 	    count ++  //　one count
 
-// 一行、書き込み
+///    write one-line
 
         fmt.Fprintf(wc ,"%s " ,ldata[i] )
 
    }
 
-// 改行すめE
+///   line feed
 
    fmt.Fprintf(wc ,"\n" )
 
@@ -254,19 +257,19 @@ func File_write ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string ) {
 
 func File_Write_Line ( w http.ResponseWriter ,wc *storage.Writer ,ldata string ) {
 
-//     IN    w      : レスポンスライター
-//     IN    wc       : writer for storage
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
 //     IN  ldata      : line data
 
 //    fmt.Fprintf( w, "File_Write_Line start \n" )
 
 ///
-///    一行、書き込み
+///    write one-line
 ///
 
         fmt.Fprintf(wc ,"%s" ,ldata )
 
-// 改行する
+///     line feed
 
 //   fmt.Fprintf(wc ,"\n" )
 
@@ -278,8 +281,8 @@ func File_Write_Line ( w http.ResponseWriter ,wc *storage.Writer ,ldata string )
 
 func File_Write_Csv ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string ) {
 
-//     IN    w      : レスポンスライター
-//     IN    wc       : ストレチE��用ライター
+//     IN    w      : response-writer
+//     IN    wc       :  writer for storage
 //     IN  ldata      : line　data
 
 //    fmt.Fprintf( w, "File_Write_Csv start \n" )
@@ -308,7 +311,7 @@ func File_Write_Csv ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string 
      }
 
 ///
-///    改行する
+///    line feed
 ///
 
 
@@ -324,8 +327,8 @@ func File_Write_Csv ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string 
 
 func File_Write_Csv2 ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string ) {
 
-//     IN    w      : レスポンスライター
-//     IN    wc       : ストレチE��用ライター
+//     IN    w      : response-writer
+//     IN    wc       : writer for storage
 //     IN  ldata      : line data
 
     var ldata_all string
@@ -356,11 +359,11 @@ func File_Write_Csv2 ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string
      }
 
 ///
-///    write する
+///    write  one-line-data
 ///
 
-     fmt.Fprintf( wc ,"%s" ,ldata_all )  //  write line data
-     fmt.Fprintf( wc ,"\n" )         //  改行する
+     fmt.Fprintf( wc ,"%s" ,ldata_all )  //  one-line-data
+     fmt.Fprintf( wc ,"\n" )         //  line feed
 
    return
 
@@ -372,11 +375,11 @@ func File_Write_Csv2 ( w http.ResponseWriter ,wc *storage.Writer ,ldata []string
 
 func File_Write_Struct ( w http.ResponseWriter ,wc *storage.Writer ,lf_flag int64 ,ldata interface{} ) {
 
-//     IN    w     　 : レスポンスライター
-//     IN    wc       : ストレチE��用ライター
-//     IN  lf_flag    : 改行フラグ
-//                      0 * 改行しなぁE
-//                      1 * 改行すめE
+//     IN    w     　 : response-writer
+//     IN    wc       : writer for storage
+//     IN  lf_flag    : flag for line-feed
+//                      0 * line feed
+//                      1 * don't line feed
 //     IN  ldata      : the one record which is written for struct
 
 //    fmt.Fprintf( w, "File_Write_Struct start \n" )
@@ -386,11 +389,11 @@ func File_Write_Struct ( w http.ResponseWriter ,wc *storage.Writer ,lf_flag int6
 ///
     if lf_flag == 1 {
 
-      fmt.Fprintf( wc ,"\n" )      // 改行する
+      fmt.Fprintf( wc ,"\n" )      // line feed
 
 	}
 
-	fmt.Fprintf( wc ,"%v" ,ldata )  //  構造体をファイルに書き込む
+	fmt.Fprintf( wc ,"%v" ,ldata )  //  write data with format of struct in file
 
 
 //	fmt.Fprintf(w, "File_Write_Struct: ldata %v\n", ldata )
@@ -403,9 +406,9 @@ func File_Write_Struct ( w http.ResponseWriter ,wc *storage.Writer ,lf_flag int6
 
 func Bucket_List ( w http.ResponseWriter ,r *http.Request, project string) ([]string) {
 
-//     IN    w        : レスポンスライター
-//     IN    r     　 : リクエストパラメータ
-//     IN  project    : プロジェクト名
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  project    : project-name
 
 //     OUT  one       :
 
@@ -415,7 +418,6 @@ func Bucket_List ( w http.ResponseWriter ,r *http.Request, project string) ([]st
 
     buckets := make([]string, 0)
 
-//	ctx := appengine.NewContext(r)
 	ctx := context.Background()
 
 //	fmt.Fprintf( w, "ctx: %v\n", ctx)
@@ -466,17 +468,16 @@ func Bucket_List2 ( w http.ResponseWriter ,r *http.Request ,client *storage.Clie
 
 func Object_List( w http.ResponseWriter ,r *http.Request, bucket string) ( []string ) {
 
-//     IN    w        : レスポンスライター
-//     IN    r     　 : リクエストパラメータ
-//     IN  bucket     :
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket   : bucket-name
 
-//     OUT  one       : オブジェクトリスト
+//     OUT  one     : object list
 
 //	fmt.Fprintf( w, "Object_List start \n" )
 
 	var objects []string
 
-//	ctx := appengine.NewContext(r)
 	ctx := context.Background()
 
 //	fmt.Fprintf( w, "ctx: %v\n", ctx)
@@ -495,7 +496,7 @@ func Object_List( w http.ResponseWriter ,r *http.Request, bucket string) ( []str
 		}
 		objects = append(objects, attrs.Name)
 
-//		fmt.Fprintf( w, "Object_List : attrs.Created %v\n", attrs.Created )  //チE��チE��
+//		fmt.Fprintf( w, "Object_List : attrs.Created %v\n", attrs.Created )
 
 	}
 
@@ -508,13 +509,13 @@ func Object_List( w http.ResponseWriter ,r *http.Request, bucket string) ( []str
 
 func Object_List_Detail ( w http.ResponseWriter ,r *http.Request, bucket string) ( objects_inf []type5.Storage_B_O_View ) {
 
-//     IN    w        : レスポンスライター
-//     IN    r     　 : リクエストパラメータ
-//     IN  bucket     :
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  bucket   : bucket-name
 
 //     OUT  one       : object list
 
-//	fmt.Fprintf( w, "Object_List_Detail start \n" )  // チE��チE��
+//	fmt.Fprintf( w, "Object_List_Detail start \n" )
 
 	var idmy int64
 
@@ -522,7 +523,6 @@ func Object_List_Detail ( w http.ResponseWriter ,r *http.Request, bucket string)
 
 	objects_inf = make([]type5.Storage_B_O_View, 0)
 
-//	ctx := appengine.NewContext(r)
 	ctx := context.Background()
 
 //	fmt.Fprintf( w, "Object_List_Detail ctx: %v\n", ctx)
@@ -547,7 +547,7 @@ func Object_List_Detail ( w http.ResponseWriter ,r *http.Request, bucket string)
 //                                                                    attrs.Created
                                                                     attrs.Updated    })
 
-//		fmt.Fprintf( w, "Object_List_Detail : attrs.Created %v\n", attrs.Created )  //チE��チE��
+//		fmt.Fprintf( w, "Object_List_Detail : attrs.Created %v\n", attrs.Created )
 //		fmt.Fprintf( w, "Object_List_Detail : attrs.ContentType: %v\n", attrs.Name )
 
 

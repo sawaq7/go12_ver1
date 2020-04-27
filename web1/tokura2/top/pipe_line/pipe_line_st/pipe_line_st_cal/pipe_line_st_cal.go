@@ -14,6 +14,9 @@ import (
 
 func Pipe_line_st_cal(w http.ResponseWriter, r *http.Request) {
 
+//     IN     w         : response-writer
+//     IN     r         : request-parameter
+
 //   fmt.Fprintf( w, "sky/pipe_line_st_cal start \n"  )
 
    var water type4.Water2
@@ -46,6 +49,7 @@ func Pipe_line_st_cal(w http.ResponseWriter, r *http.Request) {
 
 ///
 ///         calculate water-slope-line
+///
 
     p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,water_line  )
 
@@ -71,4 +75,3 @@ func Pipe_line_st_cal(w http.ResponseWriter, r *http.Request) {
     cal.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
-

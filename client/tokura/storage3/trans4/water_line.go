@@ -31,6 +31,7 @@ func Water_line( wname string ,w http.ResponseWriter, r *http.Request )  ([]type
     filename1 := "Water_Line.txt"
 
     water_line_view := make([]type4.Water_Line, 0)
+
 ///
 ///     open Water_Line file
 ///
@@ -90,4 +91,3 @@ func Water_line( wname string ,w http.ResponseWriter, r *http.Request )  ([]type
    return	water_line_view
 
 }
-

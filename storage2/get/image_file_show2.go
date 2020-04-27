@@ -11,24 +11,29 @@ import (
                          )
 
 ///
-/// 画像ファイルを、ウエブ上に表示する、Epart2
+///         show image-inf. on web ( part2 )
 ///
 
 
 func  Image_file_show2( w http.ResponseWriter ,r *http.Request ,image_show type5.Image_Show ) {
 
-//     IN    w       : レスポンスライター
-//     IN    r       : リクエストパラメータ
-//     IN image_show : 構造体　”画像データ E
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN image_show : struct ( type5.Image_Show )
+
 //    fmt.Fprintf( w, "image_file_show2 start \n" )
 
 //	fmt.Fprintf( w, "image_file_show2 : image_show.File_Name %v\n", image_show.File_Name )
 
-//   template get
+///
+///   template get
+///
 
      monitor := template.Must(template.New("html").Parse(html5.Image_file_show))
 
-// モニターに表示
+///
+///   show image-inf. on web
+///
 
 	err := monitor.Execute(w, image_show)
 	if err != nil {

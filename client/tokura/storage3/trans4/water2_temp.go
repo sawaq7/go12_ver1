@@ -20,8 +20,8 @@ import (
 
 func Water2_temp( w http.ResponseWriter, r *http.Request )  ([]type4.Water2_Temp ) {
 
-//     IN     w         : レスポンスライター
-//     IN     r         : リクエストパラメーター
+//     IN     w         : response-writer
+//     IN     r         : request-parameter
 
 //     OUT        　　  : water inf.
 
@@ -31,6 +31,7 @@ func Water2_temp( w http.ResponseWriter, r *http.Request )  ([]type4.Water2_Temp
     filename1 := "Water2_Temp.txt"
 
     water2_temp_view := make([]type4.Water2_Temp, 0)
+
 ///
 ///     open Water2_Temp in storage
 ///
@@ -86,4 +87,3 @@ func Water2_temp( w http.ResponseWriter, r *http.Request )  ([]type4.Water2_Temp
    return	water2_temp_view
 
 }
-

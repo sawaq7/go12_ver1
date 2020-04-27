@@ -34,7 +34,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 //   fmt.Println ("cal.pipe_line1 water %v\n",water )
 //   fmt.Println ("cal.pipe_line1 water_line %v\n",water_line )
 
-// 動水勾配線用チE�Eタ・ワーク用のスライス・index・eflagを　initialize
+//     initialize various slice for water-slope-line
 
    ad_hp := make([]float64 ,20 ,50)        // ①　hp　
    ad_hl := make([]float64 ,20 ,50)        // ②　hl　
@@ -114,7 +114,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
 //     fmt.Println("cal.pipe_line1 vhead(ad)　%v\n" ,ad_vhead)
 
-//　 make energy-line
+//　 make energy-line (down)
 
       if index == 0 {
 
@@ -137,7 +137,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
       ad_eneup[index].Y = y_eneup
 //         fmt.Println("cal.pipe_line1 eneup(ad)" ,ad_eneup)
 
-//　 エネルギー線を作�E (down)
+//　 ake energy-line (up)
 
       y_enedown = y_eneup - hp
 
@@ -146,7 +146,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
 //         fmt.Println("cal.pipe_line1 enedown(ad)" ,ad_enedown)
 
-//　 動水勾配線を作�E (up)
+//　    make water-slope-line
 
 
       y_glineup = y_eneup - vhead

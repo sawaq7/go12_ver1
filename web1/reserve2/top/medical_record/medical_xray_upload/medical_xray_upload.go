@@ -24,6 +24,9 @@ import (
 
 func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+
 //    fmt.Fprintf( w, "medical_xray_upload start \n" )
 
     var bucket  string
@@ -43,12 +46,12 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	fmt.Fprintf( w, "medical_xray_upload : fh %v\n", fh )  // チE��チE��
+//	fmt.Fprintf( w, "medical_xray_upload : fh %v\n", fh )
 
 
 //	st_writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,fh.Filename , w , r  )
 
-//    st_writer, _ := st_writer_minor.(*storage.Writer)  // インターフェイス型を型変換
+//    st_writer, _ := st_writer_minor.(*storage.Writer)
 
     f_name   :=  fh.Filename
 
@@ -82,7 +85,7 @@ func Medical_xray_upload(w http.ResponseWriter, r *http.Request) {
 //    guest_name := guest_temp_slice[0].Guest_Name
 //        _ = guest_temp_slice[0].Guest_Name
 
-    date_w := time.Now()        // 日付をセチE��
+    date_w := time.Now()
 
     guest_medical_xray.Date   = fmt.Sprintf("%04d/%02d/%02d/%02d/%02d/%02d",date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 

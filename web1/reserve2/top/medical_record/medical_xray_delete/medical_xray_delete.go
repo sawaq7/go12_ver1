@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"storage2"
+	"github.com/sawaq7/go12_ver1/storage2"
 //	"fmt"
 
 	"github.com/sawaq7/go12_ver1/client/reserve/process4"
@@ -19,6 +19,9 @@ import (
                                             )
 
 func Medical_xray_delete(w http.ResponseWriter, r *http.Request) {
+
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
 
 //    fmt.Fprintf( w, "medical_xray_delete start \n" )
 
@@ -50,7 +53,7 @@ func Medical_xray_delete(w http.ResponseWriter, r *http.Request) {
 //    fmt.Fprintf( w, "medical_xray_delete : delid %v\n", delid )
 
 ///
-///     xray ファイルを削除
+///     delete x-ray-file
 ///
 
     key := datastore.IDKey("Guest_Medical_Xray", delid, nil)           ///    get id for delete
@@ -60,8 +63,6 @@ func Medical_xray_delete(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-///    delete xray file in storage
 
     bucket := "sample-7777"
 

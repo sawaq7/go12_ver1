@@ -26,8 +26,8 @@ func Datastore_tokura( fname string ,function string ,flexible_in interface{} ,w
 //     IN    function    : 　
 //        　　　　　　　　　trans ,check ,initialize ,sort　etc
 //     IN flexible_in　  : see attachment
-//     IN    w      　　 : レスポンスライター
-//     IN    r      　　 : リクエストパラメータ
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
 
 //     out flexible_out  : see attachment
 

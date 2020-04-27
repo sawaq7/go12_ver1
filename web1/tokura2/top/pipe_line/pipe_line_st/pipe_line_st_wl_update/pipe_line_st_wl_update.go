@@ -33,7 +33,7 @@ func Pipe_line_st_wl_update(w http.ResponseWriter, r *http.Request) {
 
       water2_temp_minor , _ := storage3.Storage_tokura( "Water2_Temp" ,"trans" ,idmy1 , idmy2 , w , r  )
 
-      water2_temp, _ := water2_temp_minor.([]type4.Water2_Temp)  // インターフェイス型を型変換
+      water2_temp, _ := water2_temp_minor.([]type4.Water2_Temp)
 
 //    water2_temp := trans4.Water2_temp( w , r  )
 
