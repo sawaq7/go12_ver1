@@ -12,23 +12,23 @@ package html4
 	 <body>
 
 	   <form method="GET"  action="/pipe_line1_excute_all" >
-         <input type="submit" value="管水路(st-free-all)" />
+         <input type="submit" value="p l(st-free-all)" />
        </form>
 
        <form method="GET"  action="/pipe_line1_show" >
-         <input type="submit" value="管水路(st-free-single)" />
+         <input type="submit" value="p l(st-free-single)" />
        </form>
 
        <form method="GET"  action="/pipe_line_ds_keyin" >
-         <input type="submit" value="管水路(ds)" />
+         <input type="submit" value="p l(ds)" />
        </form>
 
        <form method="GET"  action="/pipe_line_st_keyin" >
-         <input type="submit" value="管水路(st)" />
+         <input type="submit" value="p l(st)" />
        </form>
 
        <form method="GET"  action="/water_slope_show" >
-         <input type="submit" value="導水勾配緁E />
+         <input type="submit" value="watel slope />
        </form>
 
 	</body>

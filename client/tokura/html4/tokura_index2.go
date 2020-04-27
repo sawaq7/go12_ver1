@@ -36,7 +36,7 @@ package html4
 		  <ul>
 			    <li>
 			      <div>
-			        <h1  align="center">靁E水 圧</h1>
+			        <h1  align="center">h p</h1>
 			        <form method="GET"  action="/tokura_index_hp" >
 
 			          <input type="image" src="images/illust_members_nakamura2.png" width="80" height="80"
@@ -48,7 +48,7 @@ package html4
                 <li>
 				  <div>
 
-                    <h1  align="center">管 水 路</h1>
+                    <h1  align="center">p l</h1>
 				    <form method="GET"  action="/tokura_index_pl" >
                       <input type="image" src="images/illust_finger.png" width="80" height="80"
                                                                            name="List" alt="png" />
