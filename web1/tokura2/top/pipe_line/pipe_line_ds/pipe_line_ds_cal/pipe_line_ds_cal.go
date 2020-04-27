@@ -2,15 +2,14 @@ package pipe_line_ds_cal
 
 import (
 
-//        "google.golang.org/appengine"
-//	    "google.golang.org/appengine/datastore"
+
 	    "net/http"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "github.com/sawaq7/go12_ver1/basic/type3"
 //	    "strconv"
-//	    "fmt"
+	    "fmt"
 
         "cloud.google.com/go/datastore"
         "context"
@@ -20,7 +19,7 @@ import (
 
 func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
-//   fmt.Fprintf( w, "sky/pipe_line_ds_cal start \n"  )  // デバック
+//   fmt.Fprintf( w, "sky/pipe_line_ds_cal start \n"  )
 
    var water type4.Water2
 
@@ -32,33 +31,30 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-//	c := appengine.NewContext(r)
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, project_name)
 
     query := datastore.NewQuery("Water2_Temp").Order("Name")
-//    q2 := datastore.NewQuery("Water2_Temp").Order("Name")
 
-//	count, err := q2.Count(c)
     count, err := client.Count(ctx, query)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal  \n" ,count )  // デバック
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal  \n" ,count )
 
     water_temp      := make([]type4.Water2, 0, count)
 
     keys, err := client.GetAll(ctx, query , &water_temp)
-//	keys, err := q2.GetAll(c, &water_temp )
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
     }
 
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : len(water) %v\n", len(water) )  // デバック
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : len(water) %v\n", len(water) )
 
     keys_wk := make([]int64, count)
 
@@ -80,18 +76,20 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
     }
 
 ///
-///      水路ラインのデータをゲット
+///      get water-line inf.
 ///
 
 //    water_line := trans2.Water_line (1  ,water.Name , w ,r )
 
-//      water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
+      water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
-      _ = datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
+//      _ = datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
 
 
-//     value, _ := water_line.([]type4.Water_Line)    // 空インターフェイス変数よりバリュー値をゲット
+     value, _ := water_line.([]type4.Water_Line)
+
+         fmt.Fprintf( w, "sky/pipe_line_ds_cal : value %v\n", value )
 
 ///
 ///         動水勾配線の計算
