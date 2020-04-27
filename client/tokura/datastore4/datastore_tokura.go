@@ -44,13 +44,6 @@ func Datastore_tokura( fname string ,function string ,flexible_in interface{} ,w
       case "trans" :
         switch fname {
 
-//          case "Deliver" :
-
-//            value, _ := flexible_in.([]type5.General_Work)
-//            flexible_out = trans.Deliver ( value[0].Int64_Work  ,value[1].Int64_Work  ,w ,r )
-
-//          break;
-
           case "Water_Line" :
             value, _ := flexible_in.(string)
 
