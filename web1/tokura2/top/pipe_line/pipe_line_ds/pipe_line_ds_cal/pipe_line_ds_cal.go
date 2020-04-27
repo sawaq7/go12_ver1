@@ -4,7 +4,7 @@ import (
 
 
 	    "net/http"
-//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "github.com/sawaq7/go12_ver1/basic/type3"
@@ -95,7 +95,7 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 ///         動水勾配線の計算
 ///
 
-//    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
+    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )  // デバック
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )  // デバック
