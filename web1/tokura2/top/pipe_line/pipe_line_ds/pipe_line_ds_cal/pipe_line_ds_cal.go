@@ -97,11 +97,11 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
     p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )  // デバック
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )  // デバック
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )  // デバック
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )  // デバック
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )  // デバック
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )  // デバック
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )  // デバック/
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )  // デバック
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )  // デバック
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )  // デバック
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )  // デバック
 
 /// グラフの作成 ///
