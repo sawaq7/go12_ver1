@@ -16,7 +16,7 @@ import (
 
 func Water2_temp( w http.ResponseWriter, water2_temp_string string )  ( type4.Water2_Temp ) {
 
-//     IN         w             : レスポンスライター
+//     IN         w         : response-writer
 //     IN   water2_string   : water(in)
 
 //     OUT  water2_struct   : water(out)
