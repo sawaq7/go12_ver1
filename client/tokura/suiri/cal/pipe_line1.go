@@ -13,7 +13,7 @@ import (
 
 func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
-//     IN  wdeta :    water data
+//     IN  water :    water data
 
 	//    OUT  one   : point loss
 	//    OUT  two   : line loss
@@ -36,22 +36,19 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
 //     initialize various slice for water-slope-line
 
-   ad_hp := make([]float64 ,20 ,50)        // ①　hp　
-   ad_hl := make([]float64 ,20 ,50)        // ②　hl　
-   ad_vhead := make([]float64 ,20 ,50)     // ③　vhead
-   ad_eneup := make([]type3.Point ,20 ,50)     // ④　eneup
+   ad_hp := make([]float64 ,20 ,50)        //　hp　
+   ad_hl := make([]float64 ,20 ,50)        //　hl　
+   ad_vhead := make([]float64 ,20 ,50)     //　vhead
+   ad_eneup := make([]type3.Point ,20 ,50)     //　eneup
 
 
-   ad_enedown := make([]type3.Point ,20 ,50)   // ⑤　enedown
-   ad_glineup := make([]type3.Point ,20 ,50)   // ⑥　glineup
-   ad_glinedown := make([]type3.Point ,20 ,50) // ⑦　glinedown
-
-
-
+   ad_enedown := make([]type3.Point ,20 ,50)   //　enedown
+   ad_glineup := make([]type3.Point ,20 ,50)   //　glineup
+   ad_glinedown := make([]type3.Point ,20 ,50) //　glinedown
 
    eflag := 0
 
-   line_num := len(water_line) //
+   line_num := len(water_line)
 
 //   fmt.Println ("cal.pipe_line1 line_num　%v\n",line_num )
 
