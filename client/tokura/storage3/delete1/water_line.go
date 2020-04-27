@@ -14,16 +14,17 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　　
-///   水路ラインファイルから持E��したライン惁E��を削除する
+///   delete one-record in Water_Line file
 ///                          　　　　　　　　　　　
 
 func Water_line( w http.ResponseWriter, r *http.Request ,delid int64 ,wname string  ) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     IN   delid       : 削除するラインNO　　struct : Water_Line
-//     IN    wname      : 水路吁E
-//    fmt.Fprintf( w, "delete1.water_line start \n" )  // チE��チE��
+//     IN   delid       :
+//     IN    wname      : water-name
+
+//    fmt.Fprintf( w, "delete1.water_line start \n" )
 
     var lf_flag int64
 
@@ -32,32 +33,32 @@ func Water_line( w http.ResponseWriter, r *http.Request ,delid int64 ,wname stri
     filename2 := "Water_Line_2.txt"
 
 ///
-/// 　　　ファイルのリネ�Eム
+/// 　　　rename file-name
 ///
 
     storage2.File_Rename ( w ,r ,bucket ,filename1 ,filename2 )
 
 ///
-///      差し替えた、水路ファイルを　�E�Eead file�E�Eオープン
+///      open water-file which was renamed
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename2 , w , r  )
 
-    reader, _ := reader_minor.(io.ReadCloser)  // インターフェイス型を型変換
+    reader, _ := reader_minor.(io.ReadCloser)
 
 //    reader := storage2.File_Open(w ,r ,bucket ,filename2)
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
 ///
-///      新しく水路ファイルを作�E
+///        make new water-file
 ///
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename1 , w , r  )
 
-    writer, _ := writer_minor.(*storage.Writer)  // インターフェイス型を型変換
+    writer, _ := writer_minor.(*storage.Writer)
 
-//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )   // "Water_Line.txt"を�E度作�E
+//    writer := storage2.File_Create( w ,r ,bucket ,filename1 )
 
     defer writer.Close()
 
@@ -65,44 +66,45 @@ func Water_line( w http.ResponseWriter, r *http.Request ,delid int64 ,wname stri
     lf_flag   = 1
 
 ///
-///   Water_Line　ファイルを読む
+///   read Water_Line　file
 ///
 
     for {
 
-      line ,_  := sreader.ReadString('\n')   // ファイルを１行read
+      line ,_  := sreader.ReadString('\n')    // read one-record
 
       num := len(line)
 
-//      fmt.Fprintf(w, "delete1.water_line : line %s\n", line )  // チE��チE��
-//      fmt.Fprintf(w, "delete1.water_line : num %v\n", num )  // チE��チE��
+//      fmt.Fprintf(w, "delete1.water_line : line %s\n", line )
+//      fmt.Fprintf(w, "delete1.water_line : num %v\n", num )
 
       if num  > 1 {
 
          id_count ++
 
-         water_line_struct := struct_set.Water_line( w , line )  //　ラインチE�EタをWater_Lineのフォーマットに変換
+         water_line_struct := struct_set.Water_line( w , line )  //　change format which is struct
 
-         if delid != water_line_struct.Id   {     // 削除レコードをスキチE�E
+         if delid != water_line_struct.Id   {
 
            if delid <  water_line_struct.Id   &&
-              wname == water_line_struct.Name    {    //レコードNOの調整
+              wname == water_line_struct.Name    {
 
              water_line_struct.Id --
 
-//             fmt.Fprintf(w, "delete1.water_line : water_line_struct.Id 1 %v\n", water_line_struct.Id )  // チE��チE��
+///             fmt.Fprintf(w, "delete1.water_line : water_line_struct.Id 1 %v\n", water_line_struct.Id )
            }
 
            storage2.File_Write_Struct ( w ,writer ,lf_flag ,water_line_struct )
 
-         }else if water_line_struct.Name != wname { //　水路名が違う場合ライチE
+         }else if water_line_struct.Name != wname {    //　when water-name is difficult
+
            storage2.File_Write_Struct ( w ,writer ,lf_flag ,water_line_struct )
 
          }
 
-      } else if num == 0 {    // リード終亁E��チェチE��
+      } else if num == 0 {    // check whether or not end
 
-          io.WriteString(w, "\n delete1.water_line : data end \n")   //チE��チE��
+          io.WriteString(w, "\n delete1.water_line : data end \n")
 
          break
 
@@ -111,7 +113,7 @@ func Water_line( w http.ResponseWriter, r *http.Request ,delid int64 ,wname stri
    }
 
 ///
-/// ワークファイルを削除
+///       delete work-file
 ///
 
    storage2.File_Delete ( w , r ,bucket ,filename2 )
@@ -119,5 +121,3 @@ func Water_line( w http.ResponseWriter, r *http.Request ,delid int64 ,wname stri
   return
 
 }
-
-

@@ -15,35 +15,35 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　　
-///   持E��した水路の水路ライン惁E��をGETする
+///      get water inf.
 ///                          　　　　　　　　　　　
 
 func Water_line( wname string ,w http.ResponseWriter, r *http.Request )  ([]type4.Water_Line ) {
 
-//     IN   wname       : 水路吁E　　　　
+//     IN   wname       : water-name　　
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     OUT        　　  : 水路ファイル・チE�Eタストアのスライス
+//     OUT        　　  : water-line inf.
 
-//    fmt.Fprintf( w, "trans4.water_line start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans4.water_line start \n" )
 
     bucket := "sample-7777"
     filename1 := "Water_Line.txt"
 
-    water_line_view := make([]type4.Water_Line, 0)   //   Water_Line　の表示エリアを確俁E
+    water_line_view := make([]type4.Water_Line, 0)
 ///
-///     Water_Line ファイル�E�ストレチE���E�オープン
+///     open Water_Line file
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename1 , w , r  )
 
-    reader, _ := reader_minor.(io.ReadCloser)  // インターフェイス型を型変換
+    reader, _ := reader_minor.(io.ReadCloser)
 
 //    reader := storage2.File_Open(w ,r ,bucket ,filename1)
 
     defer reader.Close()
 
-// ファイルリーダー(string用�E�を�E��E��E�
+//   get file reader
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -51,36 +51,36 @@ func Water_line( wname string ,w http.ResponseWriter, r *http.Request )  ([]type
 
     for {
 
-      index ++     // レコードカウンターをカウンチE
-//      fmt.Fprintf(w, "trans4.water_line : lndex %v\n", index )  // チE��チE��
+      index ++
+//      fmt.Fprintf(w, "trans4.water_line : lndex %v\n", index )
 
-// ファイルを１行read
+//     get file-reader
 
       line ,_  := sreader.ReadString('\n')
 
       num := len(line)
 
-//      fmt.Fprintf(w, "trans4.water_line : num %v\n", num )  // チE��チE��
+//      fmt.Fprintf(w, "trans4.water_line : num %v\n", num )
 
       if num > 1 {
 
-//        fmt.Fprintf(w, "trans4.water_line : line %s\n", line )  // チE��チE��
+//        fmt.Fprintf(w, "trans4.water_line : line %s\n", line )
 
 ///
-///   ラインチE�Eタを、構造体にセチE��
+///   set water-temp.-inf.
 ///
 
          water_line_struct := struct_set.Water_line( w , line )
 
-         if water_line_struct.Name == wname {                         // 水路名が同じかチェチE��
+         if water_line_struct.Name == wname {               //   whether or not water name is same with it
 
-           water_line_view = append( water_line_view ,water_line_struct )   // ラインチE�Eタを追加
+           water_line_view = append( water_line_view ,water_line_struct )   // add one-record
 
          }
 
       } else if num == 0 {
 
-//          io.WriteString(w, "\n trans4.water_line : data end \n")   //チE��チE��
+//          io.WriteString(w, "\n trans4.water_line : data end \n")
 
          break
 

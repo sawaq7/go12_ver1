@@ -12,40 +12,41 @@ import (
                                         )
 
 ///                           　　　　　　　　　　　
-///   ストレチE��ファイルに水路ファイル惁E��を書ぁE///                          　　　　　　　　　　　
+///   write current water-inf. in temp.-file
+///                          　　　　　　　　　　　
 
 func Water2_temp( w http.ResponseWriter, r *http.Request ,water_inf type4.Water2_Temp ) {
 
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
-//     IN   water_inf   : 水路惁E��の構造体　　struct : Water2
+//     IN   water_inf   : slice of struct's format which is type4.Water2_Temp
 
-//    fmt.Fprintf( w, "initialize3.water2_temp start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "initialize3.water2_temp start \n" )
 
     bucket := "sample-7777"
 
     filename1 := "Water2_Temp.txt"
 
 ///
-///    　　　既存�E"Water2_Temp.txt"を削除
+///    　delete existing "Water2_Temp.txt"
 ///
 
     storage2.File_Delete ( w , r  ,bucket  ,filename1  )
 
 ///
-///    　　　新規�E"Water2_Temp.txt"を作�E
+///    　　make　new "Water2_Temp.txt"
 ///
 
     writer_minor , _ := storage2.Storage_basic( "create" ,bucket ,filename1 , w , r  )
 
-    writer, _ := writer_minor.(*storage.Writer)  // インターフェイス型を型変換
+    writer, _ := writer_minor.(*storage.Writer)
 
 //    writer := storage2.File_Create( w ,r ,bucket ,filename1 )
 
     defer writer.Close()
 
 ///
-///    　　　持E��した水路惁E��をセチE��
+///    　　　write Water2_temp by format which is struct
 ///
 
     lf_flag := int64( 0 )
@@ -56,5 +57,3 @@ func Water2_temp( w http.ResponseWriter, r *http.Request ,water_inf type4.Water2
     return
 
 }
-
-

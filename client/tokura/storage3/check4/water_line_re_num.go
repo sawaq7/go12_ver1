@@ -14,35 +14,35 @@ import (
                                                 )
 
 ///                           　　　　　　　　　　　
-///   持E��した水路名�E水路ライン数をゲチE��
+///     get water-line inf.
 ///                          　　　　　　　　　　　
 
 func Water_line_re_num( wname string ,w http.ResponseWriter, r *http.Request )  (record_number int64) {
 
-//     IN   wname       : 水路吁E　　　　
+//     IN   wname       : water-name　　　　
 //     IN     w         : レスポンスライター
 //     IN     r         : リクエストパラメーター
 
-//     OUT        　　  : 水路ライン数
+//     OUT        　　  : water-number
 
-//    fmt.Fprintf( w, "trans4.water_line_re_num start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "trans4.water_line_re_num start \n" )
 
     bucket := "sample-7777"
     filename1 := "Water_Line.txt"
 
 ///
-///     Water_Line ファイル�E�ストレチE���E�オープン
+///     open Water_Line file
 ///
 
     reader_minor , _ := storage2.Storage_basic( "open" ,bucket ,filename1 , w , r  )
 
-    reader, _ := reader_minor.(io.ReadCloser)  // インターフェイス型を型変換
+    reader, _ := reader_minor.(io.ReadCloser)
 
 //    reader := storage2.File_Open(w ,r ,bucket ,filename1)
 
     defer reader.Close()
 
-// ファイルリーダー(string用�E�を�E��E��E�
+//      get file-reader
 
     sreader := bufio.NewReaderSize(reader, 4096)
 
@@ -52,36 +52,36 @@ func Water_line_re_num( wname string ,w http.ResponseWriter, r *http.Request )  
 
     for {
 
-      index ++     // レコードカウンターをカウンチE
-//      fmt.Fprintf(w, "trans4.water_line_re_num : lndex %v\n", index )  // チE��チE��
+      index ++
+//      fmt.Fprintf(w, "trans4.water_line_re_num : lndex %v\n", index )
 
-// ファイルを１行read
+//     read one-record
 
       line ,_  := sreader.ReadString('\n')
 
       num := len(line)
 
-//      fmt.Fprintf(w, "trans4.water_line_re_num : num %v\n", num )  // チE��チE��
+//      fmt.Fprintf(w, "trans4.water_line_re_num : num %v\n", num )
 
       if num > 1 {
 
-//         fmt.Fprintf(w, "trans4.water_line_re_num : line %s\n", line )  // チE��チE��
+//         fmt.Fprintf(w, "trans4.water_line_re_num : line %s\n", line )
 
 ///
-///   ラインチE�Eタを、構造体にセチE��
+///   change format which is struct
 ///
 
          water_line_struct := struct_set.Water_line( w , line )
 
          if water_line_struct.Name == wname {
 
-          record_number ++  // 水路ライン数追加
+          record_number ++  //   add water-line number
 
          }
 
       } else if num == 0 {
 
-//          io.WriteString(w, "\n trans4.water_line_re_num : data end \n")   //チE��チE��
+//          io.WriteString(w, "\n trans4.water_line_re_num : data end \n")
 
          break
 
@@ -91,4 +91,3 @@ func Water_line_re_num( wname string ,w http.ResponseWriter, r *http.Request )  
    return	record_number
 
 }
-
