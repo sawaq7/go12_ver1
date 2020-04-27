@@ -13,8 +13,10 @@ type  Struct_Colle    struct  {
 
 ///
 ///    water
+///
 
 type  Water    struct           {
+
 	      No             string   //
 	      Name           string   // water name
 	      High           string   // water high
@@ -26,6 +28,7 @@ type  Water    struct           {
 ///
 
 type  Water2    struct           {
+
           Id             int64
 	      Name           string     // water name
 	      High           float64    // water high
@@ -35,6 +38,7 @@ type  Water2    struct           {
 ///    water temp.-file
 
 type  Water2_Temp    struct           {
+
           Id             int64
 	      Name           string     // water name
 	      High           float64    // water high
@@ -57,9 +61,10 @@ type  Water_Line    struct           {
 ///
 ///    water slope line
 ///   the format of this  and　struct "Image_Show" is same
+
 type  Water_Slope    struct           {
 
-          Id              int64    //
+          Id              int64
 	      File_Name       string
 	      Url             string
 
