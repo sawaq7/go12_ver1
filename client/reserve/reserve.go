@@ -81,10 +81,10 @@ var (
 
 func Reserve(w http.ResponseWriter ,r *http.Request ) {
 
-//     IN     w         : レスポンスライター
-//     IN     r         : リクエストパラメーター
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
 
-//    fmt.Fprintf( w, "reserve start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "reserve start \n" )
 
     reserve_date  := r.FormValue("reserve_date")
 
@@ -92,12 +92,12 @@ func Reserve(w http.ResponseWriter ,r *http.Request ) {
 
     data_num := len(guest_reserve_minor_slice)
 
-//    fmt.Fprintf( w, "reserve guest_reserve_minor_slice[0].Guest_Name %v\n",guest_reserve_minor_slice[0].Guest_Name )  // チE��チE��
+//    fmt.Fprintf( w, "reserve guest_reserve_minor_slice[0].Guest_Name %v\n",guest_reserve_minor_slice[0].Guest_Name )
 
     rand.Seed(int64(0))
 
 ///
-/// グラフ�E枠を作�E　
+///     make frame of graff
 ///
 
  	p, err := plot.New()
@@ -111,19 +111,14 @@ func Reserve(w http.ResponseWriter ,r *http.Request ) {
  	p.X.Label.Text = "time"
  	p.Y.Label.Text = "guest"
 
-// 	p.X.Min = 0
-//    p.X.Max = 200
-//    p.Y.Min = 15
-//    p.Y.Max = 20
-
     p.BackgroundColor = color.RGBA{R: 102,G: 204, B: 255}
 
     size :=30.
 
-    wide := vg.Points(size) // 棒グラフ�E幁E
+    wide := vg.Points(size) //   set wide for fream og graf
 
-//    fmt.Println ("Reserve start ,vg.Inch" ,vg.Inch )  // チE��チE��
-//    fmt.Println ("Reserve start ,vg.Inch2" ,vg.Inch*2 )  // チE��チE��
+//    fmt.Println ("Reserve start ,vg.Inch" ,vg.Inch )
+//    fmt.Println ("Reserve start ,vg.Inch2" ,vg.Inch*2 )
 
 
   	time_max := make (plotter.Values ,data_num)
@@ -144,20 +139,7 @@ func Reserve(w http.ResponseWriter ,r *http.Request ) {
 
     }
 
-//  	time_max[0] = 10.
-//  	time_max[1] = 13.
-//  	time_max[2] = 18.
-//  	time_max[3] = 20.
-//  	time_max[4] = 21.
-//  	time_max := plotter.Values{ float64(time_max1), 21 ,22 ,23 ,24 } // 描画対象
-
-//    p.NominalY( name1, "yoshida", "tanaka", "kikuti", "okada") // 吁E��のラベル(X軸)
-
-    // 吁E��のラベル(X軸)
-
-//  	bars, _ := plotter.NewBarChart(time_max, wide)
-
-  	bars, _ := NewBarChart(time_max, wide)  // 終亁E��間セチE��
+  	bars, _ := NewBarChart(time_max, wide)
 
     bars.Values2 = make (plotter.Values ,data_num)
 
@@ -168,48 +150,48 @@ func Reserve(w http.ResponseWriter ,r *http.Request ) {
   	}
 
 //    bars.Values2[0] = 1.
-  	bars.LineStyle.Width = vg.Length(0) // 棒グラフ�E枠線�E太ぁE
+  	bars.LineStyle.Width = vg.Length(0) //    set line-size
 
-  	bars.Color = plotutil.Color(3)      // 棒グラフ�E色、Eから6まででplotutilにSoftColorsとして定義されてぁE��、E
+  	bars.Color = plotutil.Color(3)      //    set color
 
-//    fmt.Println ("Reserve main bars.Values " ,bars.Values )  // チE��チE��
-
-//  	bars.Offset = wide * 2                    // 棒グラフを表示する位置のオフセチE��(X方吁E。褁E��のグループを並べたいとき�E-wなどで位置を調整する、E
+//    fmt.Println ("Reserve main bars.Values " ,bars.Values )
 
     bars.Offset = 0
 //    bars.XMin = 2
 
-// 	bars.Horizontal = false             // trueにすると横向きの棒グラフになる、E
+// 	bars.Horizontal = false             //  if this is "true" , the graf is turned sideways
 
  	bars.Horizontal = true
 
 	p.Add(bars)
 ///
 
- 	bucket := "sample-7777"     // バケチE��名セチE��
+ 	bucket := "sample-7777"
 
 ///
-/// ファイル名を作�E
+///      make file-name
 ///
 
- 	date_w := time.Now()        // 日付をセチE��
+ 	date_w := time.Now()
     unique_no := fmt.Sprintf("%04d%02d%02d%02d%02d%02d",
 		date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 
     f_name := "reserve_" + unique_no + ".png"
 
 //    f_name := "reserve" + ".png"
-//    fmt.Fprintf( w, "reserve : f_name %v\n", f_name )  // チE��チE��
+//    fmt.Fprintf( w, "reserve : f_name %v\n", f_name )
 
-    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // 新ファイルを保孁E
+    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
+   ///  reserve in storage
 
        http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
  	}
 
 ///
-///   グラチEファイル(画像ファイル�E�をWEB上に表示
+///     show graf on web
 ///
+
  	var image_show type5.Image_Show
 
  	const publicURL = "https://storage.googleapis.com/%s/%s"
@@ -218,48 +200,44 @@ func Reserve(w http.ResponseWriter ,r *http.Request ) {
 
 	image_show.Url = fmt.Sprintf(publicURL, bucket, image_show.File_Name)
 
-//	fmt.Fprintf( w, "pipe_line1_show_graf : image_show.File_Name %v\n", image_show.File_Name )  // チE��チE��
-//	fmt.Fprintf( w, "pipe_line1_show_graf : image_show.Url %v\n", image_show.Url )  // チE��チE��
+//	fmt.Fprintf( w, "pipe_line1_show_graf : image_show.File_Name %v\n", image_show.File_Name )
+//	fmt.Fprintf( w, "pipe_line1_show_graf : image_show.Url %v\n", image_show.Url )
 
 	monitor := template.Must(template.New("html").Parse(html5.Image_file_show))
 //     monitor := template.Must(template.New("html").Parse(html4.Pipe_line1_show_graf))
-
-///
-/// モニターに表示
-///
 
 	err = monitor.Execute(w, image_show)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-//	storage2.File_Delete ( w , r  ,bucket ,f_name  ) // ファイルを削除
+//	storage2.File_Delete ( w , r  ,bucket ,f_name  )
 
 
 
-//    fmt.Fprintf( w, "reserve normal end \n" )  // チE��チE��
+//    fmt.Fprintf( w, "reserve normal end \n" )
 
 }
 
 func Reserve2(w http.ResponseWriter ,r *http.Request ,reserve_date string ) {
 
-//     IN     w         : レスポンスライター
-//     IN     r         : リクエストパラメーター
-//     IN  reserve_date : 予紁E��
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
+//     IN  reserve_date : reserve-date
 
 
-//    fmt.Fprintf( w, "reserve2 start \n" )  // チE��チE��
+//    fmt.Fprintf( w, "reserve2 start \n" )
 
     guest_reserve_minor_slice := trans5.Guest_reserve_minor3( reserve_date , w , r  )
 
     data_num := len(guest_reserve_minor_slice)
 
-//    fmt.Fprintf( w, "reserve guest_reserve_minor_slice[0].Guest_Name %v\n",guest_reserve_minor_slice[0].Guest_Name )  // チE��チE��
+//    fmt.Fprintf( w, "reserve guest_reserve_minor_slice[0].Guest_Name %v\n",guest_reserve_minor_slice[0].Guest_Name )
 
     rand.Seed(int64(0))
 
 ///
-/// グラフ�E枠を作�E　
+///       make frame of graff
 ///
 
  	p, err := plot.New()
@@ -282,10 +260,10 @@ func Reserve2(w http.ResponseWriter ,r *http.Request ,reserve_date string ) {
 
     size :=30.
 
-    wide := vg.Points(size) // 棒グラフ�E幁E
+    wide := vg.Points(size) //     //   set wide for fream og graf
 
-//    fmt.Println ("reserve2 start ,vg.Inch" ,vg.Inch )  // チE��チE��
-//    fmt.Println ("reserve2 start ,vg.Inch2" ,vg.Inch*2 )  // チE��チE��
+//    fmt.Println ("reserve2 start ,vg.Inch" ,vg.Inch )
+//    fmt.Println ("reserve2 start ,vg.Inch2" ,vg.Inch*2 )
 
 
   	time_max := make (plotter.Values ,data_num)
@@ -306,7 +284,7 @@ func Reserve2(w http.ResponseWriter ,r *http.Request ,reserve_date string ) {
 
     }
 
-  	bars, _ := NewBarChart(time_max, wide)  // 終亁E��間セチE��
+  	bars, _ := NewBarChart(time_max, wide)
 
     bars.Values2 = make (plotter.Values ,data_num)
 
@@ -316,50 +294,40 @@ func Reserve2(w http.ResponseWriter ,r *http.Request ,reserve_date string ) {
 
   	}
 
-  	bars.LineStyle.Width = vg.Length(0) // 棒グラフ�E枠線�E太ぁE
+  	bars.LineStyle.Width = vg.Length(0)
 
-  	bars.Color = plotutil.Color(3)      // 棒グラフ�E色、Eから6まででplotutilにSoftColorsとして定義されてぁE��、E
-
-//    fmt.Println ("reserve2 main bars.Values " ,bars.Values )  // チE��チE��
-
-//  	bars.Offset = wide * 2                    // 棒グラフを表示する位置のオフセチE��(X方吁E。褁E��のグループを並べたいとき�E-wなどで位置を調整する、E
+  	bars.Color = plotutil.Color(3)
 
     bars.Offset = 0
 //    bars.XMin = 2
 
-// 	bars.Horizontal = false             // trueにすると横向きの棒グラフになる、E
+// 	bars.Horizontal = false
 
  	bars.Horizontal = true
 
 	p.Add(bars)
 ///
 
- 	bucket := "sample-7777"     // バケチE��名セチE��
+ 	bucket := "sample-7777"
 
 ///
-/// ファイル名を作�E
+///     make file name
 ///
 
-// 	date_w := time.Now()        // 日付をセチE��
-//    unique_no := fmt.Sprintf("%04d%02d%02d%02d%02d%02d",
-//		date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
+    f_name := "reserve" + ".png"
 
-//    f_name := "reserve_" + unique_no + ".png"
+    storage2.File_Delete ( w , r  ,bucket ,f_name  ) //    delete old file
 
-    f_name := "reserve" + ".png"   // 一時的に再セチE��
+//    fmt.Fprintf( w, "reserve2 : f_name %v\n", f_name )
 
-    storage2.File_Delete ( w , r  ,bucket ,f_name  ) // 旧グラフファイルを削除
-
-//    fmt.Fprintf( w, "reserve2 : f_name %v\n", f_name )  // チE��チE��
-
-    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // 新ファイルを保孁E
+    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {  // reserve new file
 
        http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return
  	}
 
 ///
-///   グラチEファイル(画像ファイル�E�をWEB上に表示
+///       show graf on web
 ///
 
  	const publicURL = "https://storage.googleapis.com/%s/%s"
@@ -367,10 +335,7 @@ func Reserve2(w http.ResponseWriter ,r *http.Request ,reserve_date string ) {
 	guest_reserve_minor_slice[0].File_Name = f_name
     guest_reserve_minor_slice[0].Url       = fmt.Sprintf(publicURL, bucket, f_name )
 
-///
-/// モニターに表示 2
-///
-    // チE��プレート�EヘッダーをGET
+///    set template
 
     monitor2 := template.Must(template.New("html").Parse(html6.Reserve_situation2))
 
@@ -380,17 +345,16 @@ func Reserve2(w http.ResponseWriter ,r *http.Request ,reserve_date string ) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-//	fmt.Fprintf( w, "reserve2 normal end \n" )  // チE��チE��
+//	fmt.Fprintf( w, "reserve2 normal end \n" )
 
 }
-
 
 // NewBarChart returns a new bar chart with a single bar for each value.
 // The bars heights correspond to the values and their x locations correspond
 // to the index of their value in the Valuer.
 func NewBarChart(vs plotter.Valuer, width vg.Length) (*BarChart, error) {
 
-//    fmt.Println ("NewBarChart start " )  // チE��チE��
+//    fmt.Println ("NewBarChart start " )
 
 	if width <= 0 {
 		return nil, errors.New("Width parameter was not positive")
@@ -418,14 +382,14 @@ func NewBarChart(vs plotter.Valuer, width vg.Length) (*BarChart, error) {
 // which it is stacked.
 func (b *BarChart) BarHeight(i int) float64 {
 
-//    fmt.Println (" BarHeight start i" ,i)  // チE��チE��
+//    fmt.Println (" BarHeight start i" ,i)
 
 	ht := 0.0
 	if b == nil {
 
 //	   ht= ht + 2.
 
-//	   fmt.Println (" BarHeight ht " ,ht )  // チE��チE��
+//	   fmt.Println (" BarHeight ht " ,ht )
 
 		return ht
 	}
@@ -436,7 +400,7 @@ func (b *BarChart) BarHeight(i int) float64 {
 		ht += b.stackedOn.BarHeight(i)
 	}
 
-//	fmt.Println (" BarHeight end"  )  // チE��チE��
+//	fmt.Println (" BarHeight end"  )
 
 	return ht
 }
@@ -446,24 +410,20 @@ func (b *BarChart) BarHeight(i int) float64 {
 // chart upon which it is being stacked.
 func (b *BarChart) StackOn(on *BarChart) {
 
-//    fmt.Println ("StackOn start " )  // チE��チE��
+//    fmt.Println ("StackOn start " )
 
 	b.XMin = on.XMin
 	b.Offset = on.Offset
 	b.stackedOn = on
 }
-// Plot implements the plot.Plotter interface.
+
+///
+/// Plot implements the plot.Plotter interface.
+///
+
 func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 
-//    fmt.Println ("Plot start " )  // チE��チE��
-
-//   Values2 := make([]float64 ,20 ,50)
-
-//    Values2[0] = 1.
-//  	Values2[1] = 2.
-//  	Values2[2] = 3.
-//  	Values2[3] = 4.
-//  	Values2[4] = 5.
+//    fmt.Println ("Plot start " )
 
 	trCat, trVal := plt.Transforms(&c)
 	if b.Horizontal {
@@ -486,24 +446,19 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 		catMax := catMin + b.Width
 		bottom := b.stackedOn.BarHeight(i)
 
-//		fmt.Println ("Plot bottom " ,bottom )  // チE��チE��
+//		fmt.Println ("Plot bottom " ,bottom )
 
-//		valMin := trVal(bottom)
-
-//		valMin := trVal(bottom+Values2[i])
-
-//        b.Values2[i] = float64 ( 5 + i )
         valMin := trVal(bottom+b.Values2[i])
 
 		valMax := trVal(bottom + ht)
 
-//		fmt.Println ("Plot valMin " ,valMin )  // チE��チE��
+//		fmt.Println ("Plot valMin " ,valMin )
 
 		var pts []vg.Point
 		var poly []vg.Point
-		if !b.Horizontal {                // ノ�Eマルタイプ�E場吁E
+		if !b.Horizontal {
 
-//		   fmt.Println ("Plot type1 "  )  // チE��チE��
+//		   fmt.Println ("Plot type1 "  )
 
 			pts = []vg.Point{
 				{catMin, valMin},
@@ -512,9 +467,9 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 				{catMax, valMin},
 			}
 			poly = c.ClipPolygonY(pts)
-		} else {                        // XY軸送E�E場吁E
+		} else {                        // case XY
 
-//		   fmt.Println ("Plot type2 "  )  // チE��チE��
+//		   fmt.Println ("Plot type2 "  )
 
 			pts = []vg.Point{
 				{valMin, catMin},
@@ -525,30 +480,30 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 				{valMax, catMin},
 			}
 
-//			fmt.Println ("Plot 1" ,valMin, catMin)  // チE��チE��
-//            fmt.Println ("Plot 2" ,valMin, catMax)  // チE��チE��
-//            fmt.Println ("Plot 3" ,valMax, catMax)  // チE��チE��
-//            fmt.Println ("Plot 4" ,valMax, catMax)  // チE��チE��
+//			fmt.Println ("Plot 1" ,valMin, catMin)
+//            fmt.Println ("Plot 2" ,valMin, catMax)
+//            fmt.Println ("Plot 3" ,valMax, catMax)
+//            fmt.Println ("Plot 4" ,valMax, catMax)
 
 			poly = c.ClipPolygonX(pts)
 		}
 
-//		fmt.Println ("Plot pts " ,pts )  // チE��チE��
+//		fmt.Println ("Plot pts " ,pts )
 
 		c.FillPolygon(b.Color, poly)
 
 		var outline [][]vg.Point
-		if !b.Horizontal {              // ノ�Eマルタイプ�E場吁E
+		if !b.Horizontal {              //    case normal
 
 			pts = append(pts, vg.Point{X: catMin, Y: valMin})
 			outline = c.ClipLinesY(pts)
-		} else {                       // XY軸送E�E場吁E
+		} else {                       //  case vy
 
 			pts = append(pts, vg.Point{X: valMin, Y: catMin})
 			outline = c.ClipLinesX(pts)
 		}
 
-//		fmt.Println ("Plot outline " ,outline )  // チE��チE��
+//		fmt.Println ("Plot outline " ,outline )
 
 		c.StrokeLines(b.LineStyle, outline...)
 	}
@@ -561,7 +516,7 @@ func (b *BarChart) Plot(c draw.Canvas, plt *plot.Plot) {
 // DataRange implements the plot.DataRanger interface.
 func (b *BarChart) DataRange() (xmin, xmax, ymin, ymax float64) {
 
-//    fmt.Println ("DataRange start " )  // チE��チE��
+//    fmt.Println ("DataRange start " )
 
 
 	catMin := b.XMin
@@ -575,24 +530,25 @@ func (b *BarChart) DataRange() (xmin, xmax, ymin, ymax float64) {
 		valMin = math.Min(valMin, math.Min(valBot, valTop))
 		valMax = math.Max(valMax, math.Max(valBot, valTop))
 	}
-	if !b.Horizontal {                              // ノ�Eマルタイプ�E場吁E
+	if !b.Horizontal {                              //  case normal
 		return catMin, catMax, valMin, valMax
 	}
-//	fmt.Println ("DataRange  valMin" ,valMin)  // チE��チE��
-//    fmt.Println ("DataRange  valMax" ,valMax)  // チE��チE��
-//    fmt.Println ("DataRange  catMin" ,catMin)  // チE��チE��
-//    fmt.Println ("DataRange  catMax" ,catMax)  // チE��チE��
+//	fmt.Println ("DataRange  valMin" ,valMin)
+//    fmt.Println ("DataRange  valMax" ,valMax)
+//    fmt.Println ("DataRange  catMin" ,catMin)
+//    fmt.Println ("DataRange  catMax" ,catMax)
 
-//    fmt.Println ("DataRange end " )  // チE��チE��
+//    fmt.Println ("DataRange end " )
 
 	return valMin, valMax, catMin, catMax
 }
 
 // GlyphBoxes implements the GlyphBoxer interface.
+
 func (b *BarChart) GlyphBoxes(plt *plot.Plot) []plot.GlyphBox {
 
-//    fmt.Println ("GlyphBoxes start " )  // チE��チE��
-//    fmt.Println ("GlyphBoxes plt " ,plt )  // チE��チE��
+//    fmt.Println ("GlyphBoxes start " )
+//    fmt.Println ("GlyphBoxes plt " ,plt )
 
 	boxes := make([]plot.GlyphBox, len(b.Values))
 	for i := range b.Values {
@@ -612,15 +568,16 @@ func (b *BarChart) GlyphBoxes(plt *plot.Plot) []plot.GlyphBox {
 		}
 	}
 
-//	fmt.Println ("GlyphBoxes end "  )  // チE��チE��
+//	fmt.Println ("GlyphBoxes end "  )
 
 	return boxes
 }
 
 // Thumbnail fulfills the plot.Thumbnailer interface.
+
 func (b *BarChart) Thumbnail(c *draw.Canvas) {
 
-//    fmt.Println ("Thumbnail start "  )  // チE��チE��
+//    fmt.Println ("Thumbnail start "  )
 
 	pts := []vg.Point{
 		{c.Min.X, c.Min.Y},
@@ -635,5 +592,5 @@ func (b *BarChart) Thumbnail(c *draw.Canvas) {
 	outline := c.ClipLinesY(pts)
 	c.StrokeLines(b.LineStyle, outline...)
 
-//	fmt.Println ("Thumbnail end "  )  // チE��チE��
+//	fmt.Println ("Thumbnail end "  )
 }

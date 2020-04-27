@@ -21,9 +21,9 @@ import (
 
 func Guest_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work) {
 
+//     IN    w      : response-writer
+//     IN    r      : request- paramete
 
-//     IN    w      　　     : レスポンスライター
-//     IN    r      　　     : リクエストパラメータ
 //     OUT general_work_out  : guest no ,guest name
 
 //    fmt.Fprintf( w, "check5/guest_temp start \n" )
