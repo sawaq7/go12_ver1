@@ -89,7 +89,7 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 //      water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
-      _ := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
+      _ = datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
 
 
