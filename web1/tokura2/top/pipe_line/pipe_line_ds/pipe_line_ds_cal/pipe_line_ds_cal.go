@@ -3,7 +3,7 @@ package pipe_line_ds_cal
 import (
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
@@ -83,7 +83,9 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
       water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
-     value, _ := water_line.([]type4.Water_Line)
+//     value, _ := water_line.([]type4.Water_Line)
+
+     _, _ = water_line.([]type4.Water_Line)
 
 ///
 ///       calculate water-slope-line
