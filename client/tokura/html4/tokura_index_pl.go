@@ -28,7 +28,7 @@ package html4
        </form>
 
        <form method="GET"  action="/water_slope_show" >
-         <input type="submit" value="watel slope />
+         <input type="submit" value="water slope" />
        </form>
 
 	</body>
