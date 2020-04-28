@@ -23,13 +23,13 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 //   fmt.Fprintf( w, "sky/pipe_line_ds_cal start \n"  )
 
 ///
-///         動水勾配線の計算
+///
 ///
 
 //      p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal4.Pipe_line1( w  ,r  )
  //     p_number  := cal4.Pipe_line1( w  ,r )
-         p_number  := cal4.Pipe_line2( )
-
+//         p_number  := cal4.Pipe_line2( )
+     p_number  := 1
     fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )
