@@ -3,7 +3,7 @@ package cal
 import (
 //	    "fmt"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 //	    "github.com/sawaq7/go12_ver1/basic/type3"
 //	    "strings"
 //	    "strconv"
@@ -11,7 +11,8 @@ import (
 
 // func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
-func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
+// func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
+   func Pipe_line1(   ) (int ){
 
 
 //     IN  wdeta :
@@ -55,14 +56,15 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
    eflag := 0
 
-   line_num := len(water_line) // set line-no
+//   line_num := len(water_line) // set line-no
+   line_num := 1 // set line-no
 
 //   fmt.Println ("cal.pipe_line1 line_num　%v\n",line_num )
 
-   Hmax := water.High   //   set water-high
+//   Hmax := water.High   //   set water-high
 
-   s_coeff := water.Roughness_Factor   //　set roughness_factor
-   _ = s_coeff
+//   s_coeff := water.Roughness_Factor   //　set roughness_factor
+
 
 ///
 ///  continue process while read records  until end-mark
@@ -70,8 +72,9 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
    index := 0
 
-   for pos, water_linew := range water_line {
-     count := pos + 1
+//   for pos, water_linew := range water_line {
+//     count := pos + 1
+       count := 1
      if count == line_num {
 
         eflag = 1
@@ -79,13 +82,13 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
      }
 
 //     f_coeff  := water_linew.Friction_Factor  //  set friction-factor
-       _  = water_linew.Friction_Factor  //  set friction-factor
 
 //     velocity := water_linew.Velocity         // set velocity
 
 //     diameter := water_linew.Pipe_Diameter    //  set diameter
 
-     length   := water_linew.Pipe_Length      // set pipe_length
+//     length   := water_linew.Pipe_Length      // set pipe_length
+       length   := 1.
 
 ///    cal. point-loss
 
@@ -127,7 +130,8 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
          b_length = 0.0   //  initialize offset of horizontal of x,y
 
          x_eneup  = 0.0
-         y_eneup = Hmax
+//         y_eneup = Hmax
+         y_eneup = 1.
 
       }else{
 
@@ -188,11 +192,11 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
       index ++
 
 
-   }
+//   }
 
 //   p_number := index   //  set point-no
 
 //   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
-     return
+     return index
 
 }

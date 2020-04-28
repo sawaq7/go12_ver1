@@ -99,7 +99,9 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 //    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 //      cal.Pipe_line1( water  ,value  )
-      cal.Pipe_line1( water  ,water_line  )
+//      cal.Pipe_line1( water  ,water_line  )
+       idata := cal.Pipe_line1
+       fmt.Fprintf( w, "sky/pipe_line_ds_cal : idata %v\n", idata )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )  // デバック
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )  // デバック/
