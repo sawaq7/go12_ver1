@@ -9,9 +9,9 @@ import (
 //	    "strconv"
     	                 )
 
-func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
+// func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
-
+func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
 //     IN  wdeta : 水路データ
 //    OUT  one   : ポイント損失のスライス
@@ -176,8 +176,9 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
    }
 
-   p_number := index   //  set point-no
+//   p_number := index   //  set point-no
 
-   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
+//   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
+     return
 
 }
