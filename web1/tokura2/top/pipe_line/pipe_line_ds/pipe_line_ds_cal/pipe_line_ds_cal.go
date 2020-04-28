@@ -4,7 +4,7 @@ import (
 
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal4"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal4"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
 //	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4/trans2"
