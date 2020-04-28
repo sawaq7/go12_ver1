@@ -1,7 +1,7 @@
 package cal4
 
 import (
-//	    "fmt"
+	    "fmt"
 	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/basic/type3"
@@ -16,11 +16,9 @@ import (
 
     	                                   )
 
-// func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
+// func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
-func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
-
-
+func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int  ) {
 
 //     IN  wdeta : 水路データ
 //    OUT  one   : ポイント損失のスライス
@@ -245,6 +243,13 @@ func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int ,[]type3.Point,[]
 /// ポイント数セット　///
    p_number := index
 
-   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
+   fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )
+    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )
+
+//    return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
+   return p_number
 
 }
