@@ -4,7 +4,7 @@ import (
 //	    "fmt"
 	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
-	    "github.com/sawaq7/go12_ver1/basic/type3"
+//	    "github.com/sawaq7/go12_ver1/basic/type3"
 //	    "strings"
 //	    "strconv"
     	                 )
@@ -43,10 +43,10 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 //   ad_glineup := make([]type3.Point ,20 ,50)   // 6　glineup
 //   ad_glinedown := make([]type3.Point ,20 ,50) // 7　glinedown
 
-   ad_eneup := make([]type3.Point, 0)
-   ad_enedown := make([]type3.Point, 0)
-   ad_glineup := make([]type3.Point, 0)
-   ad_glinedown := make([]type3.Point, 0)
+//   ad_eneup := make([]type3.Point, 0)
+//   ad_enedown := make([]type3.Point, 0)
+//   ad_glineup := make([]type3.Point, 0)
+//   ad_glinedown := make([]type3.Point, 0)
 
 
    eflag := 0
@@ -155,21 +155,21 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 ///　     set various inf.  in slice of struct
 ///
 
-      ad_eneup = append( ad_eneup , type3.Point {  ad_eneup_wk[0]  ,
-                                                   ad_eneup_wk[1]  ,
-                                                   ad_eneup_wk[2]   })
+//      ad_eneup = append( ad_eneup , type3.Point {  ad_eneup_wk[0]  ,
+//                                                   ad_eneup_wk[1]  ,
+//                                                   ad_eneup_wk[2]   })
 
-      ad_enedown = append( ad_enedown , type3.Point {  ad_enedown_wk[0]  ,
-                                                       ad_enedown_wk[1] ,
-                                                       ad_enedown_wk[2]   })
+//      ad_enedown = append( ad_enedown , type3.Point {  ad_enedown_wk[0]  ,
+//                                                       ad_enedown_wk[1] ,
+//                                                       ad_enedown_wk[2]   })
 
-      ad_glineup = append( ad_glineup , type3.Point {  ad_glineup_wk[0]  ,
-                                                       ad_glineup_wk[1]  ,
-                                                       ad_glineup_wk[2]   })
+//      ad_glineup = append( ad_glineup , type3.Point {  ad_glineup_wk[0]  ,
+//                                                       ad_glineup_wk[1]  ,
+//                                                       ad_glineup_wk[2]   })
 
-      ad_glinedown = append( ad_glinedown , type3.Point {  ad_glinedown_wk[0]  ,
-                                                           ad_glinedown_wk[1]  ,
-                                                           ad_glinedown_wk[2]  })
+//      ad_glinedown = append( ad_glinedown , type3.Point {  ad_glinedown_wk[0]  ,
+//                                                           ad_glinedown_wk[1]  ,
+//                                                           ad_glinedown_wk[2]  })
 
       index ++
 
