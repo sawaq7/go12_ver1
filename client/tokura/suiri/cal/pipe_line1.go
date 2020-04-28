@@ -9,8 +9,6 @@ import (
 //	    "strconv"
     	                 )
 
-// func Pipe_line1( wdeta string  ) ([]string ,[]string ,[]string ,[]string,[]string ,[]string ,[]string ) {
-
 func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
 
@@ -30,39 +28,41 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
    var hp ,hl ,b_hl,vhead float64
 
+   var ad_eneup_wk ,ad_enedown_wk  ,ad_glineup_wk ,ad_glinedown_wk  [3]float64
 
+///
+///     allocate various-work-area
+///
 
-//   fmt.Println ("cal.pipe_line1 water %v\n",water )
-//   fmt.Println ("cal.pipe_line1 water_line %v\n",water_line )
+   ad_hp := make([]float64 ,20 ,50)        // 1　hp　
+   ad_hl := make([]float64 ,20 ,50)        // 2　hl　
+   ad_vhead := make([]float64 ,20 ,50)         // 3 　vhead
 
-// 動水勾配線用データ・ワーク用のスライス・index・eflagを　initialize
+//   ad_eneup := make([]type3.Point ,20 ,50)     // 4 　eneup
+//   ad_enedown := make([]type3.Point ,20 ,50)   // 5　enedown
+//   ad_glineup := make([]type3.Point ,20 ,50)   // 6　glineup
+//   ad_glinedown := make([]type3.Point ,20 ,50) // 7　glinedown
 
-   ad_hp := make([]float64 ,20 ,50)        // ①　hp　
-   ad_hl := make([]float64 ,20 ,50)        // ②　hl　
-   ad_vhead := make([]float64 ,20 ,50)     // ③　vhead
-   ad_eneup := make([]type3.Point ,20 ,50)     // ④　eneup
-
-
-   ad_enedown := make([]type3.Point ,20 ,50)   // ⑤　enedown
-   ad_glineup := make([]type3.Point ,20 ,50)   // ⑥　glineup
-   ad_glinedown := make([]type3.Point ,20 ,50) // ⑦　glinedown
-
-
+   ad_eneup := make([]type3.Point, 0)
+   ad_enedown := make([]type3.Point, 0)
+   ad_glineup := make([]type3.Point, 0)
+   ad_glinedown := make([]type3.Point, 0)
 
 
    eflag := 0
 
-   line_num := len(water_line) // 水路ライン数セット
+   line_num := len(water_line) // set line-no
 
 //   fmt.Println ("cal.pipe_line1 line_num　%v\n",line_num )
 
-   Hmax := water.High   // 水路H-MAXをセット
+   Hmax := water.High   //   set water-high
 
-   s_coeff := water.Roughness_Factor   //　粗度係数をセット
+   s_coeff := water.Roughness_Factor   //　set roughness_factor
 
 ///
-///   1水路ライン、read
+///  continue process while read records  until end-mark
 ///
+
    index := 0
    for pos, water_linew := range water_line {
      count := pos + 1
@@ -72,37 +72,34 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
      }
 
+     f_coeff  := water_linew.Friction_Factor  //  set friction-factor
 
-     f_coeff  := water_linew.Friction_Factor  // 摩擦係数をセット
+     velocity := water_linew.Velocity         // set velocity
 
-     velocity := water_linew.Velocity         // 速度をセット
+     diameter := water_linew.Pipe_Diameter    //  set diameter
 
-     diameter := water_linew.Pipe_Diameter    // 管径
+     length   := water_linew.Pipe_Length      // set pipe_length
 
-     length   := water_linew.Pipe_Length      // 管長
+///    cal. point-loss
 
-/// ポイント損失を求める
-
-     vhead = equation.Suiri_Vhead( velocity )  //速度水頭を求める
+     vhead = equation.Suiri_Vhead( velocity )  //    cal. velocity-head
      hp = f_coeff * vhead
 
-//     fmt.Println("cal.pipe_line1 hp" ,hp)  // デバック
+///
+///    cal. line-loss
+///
 
-/// ライン損失を求める
-
-     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // 摩擦係数を求める
-     vhead := equation.Suiri_Vhead( velocity )               //速度水頭を求める
+     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // cal. friction-factor
+     vhead := equation.Suiri_Vhead( velocity )               // cal. velocity-head
      hl = ramuda * (length / diameter) * vhead
 
-//     fmt.Println("cal.pipe_line1 hl" ,hl)  // デバック
-
-// 動水勾配線用データを作成する
+///
+///      make various data for water-slope-line
+///
 
      ad_hp[index] = hp
 
-//     fmt.Println("cal.pipe_line1 hp(ad)" ,ad_hp)  // デバック
-
-     if eflag == 1 {     // ラストデータの場合、速度水頭と摩擦損失は０
+     if eflag == 1 {     // if i'ts last process , velocity-head and friction-loss is zero
 
         hl    = 0.0
         vhead = 0.0
@@ -110,19 +107,12 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
      ad_hl[index] = hl
 
-//     fmt.Println("cal.pipe_line1 hl(ad)　%v\n" ,ad_hl)  // デバック
-
      ad_vhead[index] = vhead
-
-//     fmt.Println("cal.pipe_line1 vhead(ad)　%v\n" ,ad_vhead)  // デバック
-
-//　 エネルギー線を作成 (up)
-
-
 
       if index == 0 {
 
-         b_length = 0.0   //  x,y座標 水平方向のオフセットをinitialize
+         b_length = 0.0   //  initialize offset of horizontal of x,y
+
          x_eneup  = 0.0
          y_eneup = Hmax
 
@@ -132,45 +122,61 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
 
       }
 
+///　  make energy-line(up)
+
       x_eneup  = x_eneup + b_length
 
-      b_length = length    //  水平方向のオフセットをリセット
+      b_length = length    //  reset offset of horizontal
       b_hl     = hl
 
-      ad_eneup[index].X = x_eneup //　x,y座標の作成
-      ad_eneup[index].Y = y_eneup
-//         fmt.Println("cal.pipe_line1 eneup(ad)" ,ad_eneup)  // デバック
+      ad_eneup_wk[0] = x_eneup //　make coordinate of x,y
+      ad_eneup_wk[1] = y_eneup
 
-//　 エネルギー線を作成 (down)
+///　  make energy-line(down)
 
       y_enedown = y_eneup - hp
 
-      ad_enedown[index].X = x_eneup
-      ad_enedown[index].Y = y_eneup - hp
+      ad_enedown_wk[0] = x_eneup
+      ad_enedown_wk[1] = y_eneup - hp
 
-//         fmt.Println("cal.pipe_line1 enedown(ad)" ,ad_enedown)  // デバック
-
-//　 動水勾配線を作成 (up)
+///　 make water-slope-line (up)
 
 
       y_glineup = y_eneup - vhead
-      ad_glineup[index].X = x_eneup
-      ad_glineup[index].Y = y_eneup - vhead
+      ad_glineup_wk[0] = x_eneup
+      ad_glineup_wk[1] = y_eneup - vhead
 
-//         fmt.Println("cal.pipe_line1 glinedown(ad)" ,ad_glineup)  // デバック
+///　 make water-slope-line (up)
 
-//　 動水勾配線を作成 (up)
+      ad_glinedown_wk[0] = x_eneup
+      ad_glinedown_wk[1] = y_glineup - hp
 
-      ad_glinedown[index].X = x_eneup
-      ad_glinedown[index].Y = y_glineup - hp
+///
+///　     set various inf.  in slice of struct
+///
 
-//         fmt.Println("cal.pipe_line1 glinedown(ad)" ,ad_glinedown)  // デバック
+      ad_eneup = append( ad_eneup , type3.Point {  ad_eneup_wk[0]  ,
+                                                   ad_eneup_wk[1]  ,
+                                                   ad_eneup_wk[2]   })
+
+      ad_enedown = append( ad_enedown , type3.Point {  ad_enedown_wk[0]  ,
+                                                       ad_enedown_wk[1] ,
+                                                       ad_enedown_wk[2]   })
+
+      ad_glineup = append( ad_glineup , type3.Point {  ad_glineup_wk[0]  ,
+                                                       ad_glineup_wk[1]  ,
+                                                       ad_glineup_wk[2]   })
+
+      ad_glinedown = append( ad_glinedown , type3.Point {  ad_glinedown_wk[0]  ,
+                                                           ad_glinedown_wk[1]  ,
+                                                           ad_glinedown_wk[2]  })
+
       index ++
 
 
    }
-/// ポイント数セット　///
-   p_number := index
+
+   p_number := index   //  set point-no
 
    return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
 
