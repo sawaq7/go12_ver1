@@ -2,7 +2,7 @@ package cal
 
 import (
 //	    "fmt"
-	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 //	    "github.com/sawaq7/go12_ver1/basic/type3"
 //	    "strings"
@@ -13,14 +13,14 @@ import (
 
 func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
-//     IN  wdeta : 水路データ
-//    OUT  one   : ポイント損失のスライス
-//    OUT  two   : ライン損失のスライス
-//    OUT  three : 速度水頭のスライス
-//    OUT  four  : エネルギー線（up）のスライス
-//    OUT  five  : エネルギー線（down）のスライス
-//    OUT  six   : 導水勾配線（up）のスライス
-//    OUT  seven : 導水勾配線（down）のスライス
+//     IN  wdeta :
+//    OUT  one   :
+//    OUT  two   :
+//    OUT  three :
+//    OUT  four  :
+//    OUT  five  :
+//    OUT  six   :
+//    OUT  seven :
 
 
    var b_length float64
@@ -34,9 +34,9 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 ///     allocate various-work-area
 ///
 
-   ad_hp := make([]float64 ,20 ,50)        // 1　hp　
-   ad_hl := make([]float64 ,20 ,50)        // 2　hl　
-   ad_vhead := make([]float64 ,20 ,50)         // 3 　vhead
+   ad_hp := make([]float64 ,20 )        // 1　hp　
+   ad_hl := make([]float64 ,20 )        // 2　hl　
+   ad_vhead := make([]float64 ,20 )         // 3 　vhead
 
 //   ad_eneup := make([]type3.Point ,20 ,50)     // 4 　eneup
 //   ad_enedown := make([]type3.Point ,20 ,50)   // 5　enedown
@@ -58,6 +58,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
    Hmax := water.High   //   set water-high
 
    s_coeff := water.Roughness_Factor   //　set roughness_factor
+   _ = s_coeff
 
 ///
 ///  continue process while read records  until end-mark
@@ -72,26 +73,33 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
      }
 
-     f_coeff  := water_linew.Friction_Factor  //  set friction-factor
+//     f_coeff  := water_linew.Friction_Factor  //  set friction-factor
+       _  = water_linew.Friction_Factor  //  set friction-factor
 
-     velocity := water_linew.Velocity         // set velocity
+//     velocity := water_linew.Velocity         // set velocity
 
-     diameter := water_linew.Pipe_Diameter    //  set diameter
+//     diameter := water_linew.Pipe_Diameter    //  set diameter
 
      length   := water_linew.Pipe_Length      // set pipe_length
 
 ///    cal. point-loss
 
-     vhead = equation.Suiri_Vhead( velocity )  //    cal. velocity-head
-     hp = f_coeff * vhead
+//     vhead = equation.Suiri_Vhead( velocity )  //    cal. velocity-head
+     vhead = 1.
+//     hp = f_coeff * vhead
+     hp = 1.
 
 ///
 ///    cal. line-loss
 ///
 
-     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // cal. friction-factor
-     vhead := equation.Suiri_Vhead( velocity )               // cal. velocity-head
-     hl = ramuda * (length / diameter) * vhead
+//     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // cal. friction-factor
+     ramuda := 1.
+     _ = ramuda
+//     vhead := equation.Suiri_Vhead( velocity )               // cal. velocity-head
+     vhead = 1.
+//     hl = ramuda * (length / diameter) * vhead
+     hl = 1.
 
 ///
 ///      make various data for water-slope-line
