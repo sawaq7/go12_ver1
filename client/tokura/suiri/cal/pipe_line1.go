@@ -13,6 +13,7 @@ import (
 
 func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
+
 //     IN  wdeta :
 //    OUT  one   :
 //    OUT  two   :
@@ -24,19 +25,22 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 
 
    var b_length float64
-   var x_eneup ,y_eneup  ,y_enedown ,y_glineup float64
+   var x_eneup ,y_eneup  ,y_enedown  float64
+
+   var y_glineup float64
+
 
    var hp ,hl ,b_hl,vhead float64
 
-   var ad_eneup_wk ,ad_enedown_wk  ,ad_glineup_wk ,ad_glinedown_wk  [3]float64
+//   var ad_eneup_wk ,ad_enedown_wk  ,ad_glineup_wk ,ad_glinedown_wk  [3]float64
 
 ///
 ///     allocate various-work-area
 ///
 
    ad_hp := make([]float64 ,20 )        // 1　hp　
-   ad_hl := make([]float64 ,20 )        // 2　hl　
-   ad_vhead := make([]float64 ,20 )         // 3 　vhead
+//   ad_hl := make([]float64 ,20 )        // 2　hl　
+//   ad_vhead := make([]float64 ,20 )         // 3 　vhead
 
 //   ad_eneup := make([]type3.Point ,20 ,50)     // 4 　eneup
 //   ad_enedown := make([]type3.Point ,20 ,50)   // 5　enedown
@@ -65,6 +69,7 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
 ///
 
    index := 0
+
    for pos, water_linew := range water_line {
      count := pos + 1
      if count == line_num {
@@ -113,9 +118,9 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
         vhead = 0.0
      }
 
-     ad_hl[index] = hl
+//     ad_hl[index] = hl
 
-     ad_vhead[index] = vhead
+//     ad_vhead[index] = vhead
 
       if index == 0 {
 
@@ -137,27 +142,28 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
       b_length = length    //  reset offset of horizontal
       b_hl     = hl
 
-      ad_eneup_wk[0] = x_eneup //　make coordinate of x,y
-      ad_eneup_wk[1] = y_eneup
+//      ad_eneup_wk[0] = x_eneup //　make coordinate of x,y
+//      ad_eneup_wk[1] = y_eneup
 
 ///　  make energy-line(down)
 
       y_enedown = y_eneup - hp
 
-      ad_enedown_wk[0] = x_eneup
-      ad_enedown_wk[1] = y_eneup - hp
+//      ad_enedown_wk[0] = x_eneup
+//      ad_enedown_wk[1] = y_eneup - hp
 
 ///　 make water-slope-line (up)
 
 
       y_glineup = y_eneup - vhead
-      ad_glineup_wk[0] = x_eneup
-      ad_glineup_wk[1] = y_eneup - vhead
+      _ = y_glineup
+//      ad_glineup_wk[0] = x_eneup
+//      ad_glineup_wk[1] = y_eneup - vhead
 
 ///　 make water-slope-line (up)
 
-      ad_glinedown_wk[0] = x_eneup
-      ad_glinedown_wk[1] = y_glineup - hp
+//      ad_glinedown_wk[0] = x_eneup
+//      ad_glinedown_wk[1] = y_glineup - hp
 
 ///
 ///　     set various inf.  in slice of struct
