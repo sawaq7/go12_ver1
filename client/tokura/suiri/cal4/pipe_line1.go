@@ -1,24 +1,17 @@
-package cal4
+package cal
 
 import (
-	    "fmt"
+//	    "fmt"
 	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/basic/type3"
-	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strings"
 //	    "strconv"
-        "os"
-        "cloud.google.com/go/datastore"
-        "context"
-        "net/http"
+    	                 )
+
+func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
 
-    	                                   )
-
-// func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
-
-func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int  ) {
 
 //     IN  wdeta : 水路データ
 //    OUT  one   : ポイント損失のスライス
@@ -35,7 +28,7 @@ func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int  ) {
 
    var hp ,hl ,b_hl,vhead float64
 
-   var water type4.Water2
+
 
 //   fmt.Println ("cal.pipe_line1 water %v\n",water )
 //   fmt.Println ("cal.pipe_line1 water_line %v\n",water_line )
@@ -52,73 +45,7 @@ func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int  ) {
    ad_glineup := make([]type3.Point ,20 ,50)   // ⑥　glineup
    ad_glinedown := make([]type3.Point ,20 ,50) // ⑦　glinedown
 
-   project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
-    if project_name == "" {
-
-      project_name = "sample-7777"
-
-	}
-
-    ctx := context.Background()
-
-    client, err := datastore.NewClient(ctx, project_name)
-
-    query := datastore.NewQuery("Water2_Temp").Order("Name")
-
-    count, err := client.Count(ctx, query)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-	}
-
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal  \n" ,count )
-
-    water_temp      := make([]type4.Water2, 0, count)
-
-    keys, err := client.GetAll(ctx, query , &water_temp)
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-    }
-
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : len(water) %v\n", len(water) )
-
-    keys_wk := make([]int64, count)
-
-	for ii, keysw := range keys {
-
-       keys_wk[ii] = keysw.ID
-
-    }
-
-	for pos2, waterw := range water_temp {
-
-//       water.Id   = keys[pos2].IntID()
-       water.Id   = keys_wk[pos2]
-
-	   water.Name = waterw.Name
-	   water.High =  waterw.High
-	   water.Roughness_Factor = waterw.Roughness_Factor
-
-    }
-
-///
-///      get water-line inf.
-///
-
-//    water_line := trans2.Water_line (1  ,water.Name , w ,r )
-
-      water_line_minor := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
-
-//      _ = datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
-
-
-
-     water_line, _ := water_line_minor.([]type4.Water_Line)
-
-//         fmt.Fprintf( w, "sky/pipe_line_ds_cal : water %v\n", water )
 
 
    eflag := 0
@@ -243,13 +170,6 @@ func Pipe_line1(w http.ResponseWriter, r *http.Request  ) (int  ) {
 /// ポイント数セット　///
    p_number := index
 
-   fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )
-
-//    return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
-   return p_number
+   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
 
 }
