@@ -2,136 +2,129 @@ package cal
 
 import (
 //	    "fmt"
-//	    "github.com/sawaq7/go12_ver1/client/tokura/equation"
-//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
-//	    "github.com/sawaq7/go12_ver1/basic/type3"
+	    "client/tokura/equation"
+	    "client/tokura/suiri/type4"
+	    "basic/type3"
 //	    "strings"
 //	    "strconv"
     	                 )
 
-// func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
+// func Pipe_line1( wdeta string  ) ([]string ,[]string ,[]string ,[]string,[]string ,[]string ,[]string ) {
 
-// func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) {
-   func Pipe_line1(   ) (int ){
+func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
 
-//     IN  wdeta :
-//    OUT  one   :
-//    OUT  two   :
-//    OUT  three :
-//    OUT  four  :
-//    OUT  five  :
-//    OUT  six   :
-//    OUT  seven :
+
+//     IN  wdeta : 水路データ
+//    OUT  one   : ポイント損失のスライス
+//    OUT  two   : ライン損失のスライス
+//    OUT  three : 速度水頭のスライス
+//    OUT  four  : エネルギー線（up）のスライス
+//    OUT  five  : エネルギー線（down）のスライス
+//    OUT  six   : 導水勾配線（up）のスライス
+//    OUT  seven : 導水勾配線（down）のスライス
 
 
    var b_length float64
-   var x_eneup ,y_eneup  ,y_enedown  float64
-
-   var y_glineup float64
-
+   var x_eneup ,y_eneup  ,y_enedown ,y_glineup float64
 
    var hp ,hl ,b_hl,vhead float64
 
-//   var ad_eneup_wk ,ad_enedown_wk  ,ad_glineup_wk ,ad_glinedown_wk  [3]float64
 
-///
-///     allocate various-work-area
-///
 
-   ad_hp := make([]float64 ,20 )        // 1　hp　
-//   ad_hl := make([]float64 ,20 )        // 2　hl　
-//   ad_vhead := make([]float64 ,20 )         // 3 　vhead
+//   fmt.Println ("cal.pipe_line1 water %v\n",water )
+//   fmt.Println ("cal.pipe_line1 water_line %v\n",water_line )
 
-//   ad_eneup := make([]type3.Point ,20 ,50)     // 4 　eneup
-//   ad_enedown := make([]type3.Point ,20 ,50)   // 5　enedown
-//   ad_glineup := make([]type3.Point ,20 ,50)   // 6　glineup
-//   ad_glinedown := make([]type3.Point ,20 ,50) // 7　glinedown
+// 動水勾配線用データ・ワーク用のスライス・index・eflagを　initialize
 
-//   ad_eneup := make([]type3.Point, 0)
-//   ad_enedown := make([]type3.Point, 0)
-//   ad_glineup := make([]type3.Point, 0)
-//   ad_glinedown := make([]type3.Point, 0)
+   ad_hp := make([]float64 ,20 ,50)        // ①　hp　
+   ad_hl := make([]float64 ,20 ,50)        // ②　hl　
+   ad_vhead := make([]float64 ,20 ,50)     // ③　vhead
+   ad_eneup := make([]type3.Point ,20 ,50)     // ④　eneup
+
+
+   ad_enedown := make([]type3.Point ,20 ,50)   // ⑤　enedown
+   ad_glineup := make([]type3.Point ,20 ,50)   // ⑥　glineup
+   ad_glinedown := make([]type3.Point ,20 ,50) // ⑦　glinedown
+
+
 
 
    eflag := 0
 
-//   line_num := len(water_line) // set line-no
-   line_num := 1 // set line-no
+   line_num := len(water_line) // 水路ライン数セット
 
 //   fmt.Println ("cal.pipe_line1 line_num　%v\n",line_num )
 
-//   Hmax := water.High   //   set water-high
+   Hmax := water.High   // 水路H-MAXをセット
 
-//   s_coeff := water.Roughness_Factor   //　set roughness_factor
-
+   s_coeff := water.Roughness_Factor   //　粗度係数をセット
 
 ///
-///  continue process while read records  until end-mark
+///   1水路ライン、read
 ///
-
    index := 0
-
-//   for pos, water_linew := range water_line {
-//     count := pos + 1
-       count := 1
+   for pos, water_linew := range water_line {
+     count := pos + 1
      if count == line_num {
 
         eflag = 1
 
      }
 
-//     f_coeff  := water_linew.Friction_Factor  //  set friction-factor
 
-//     velocity := water_linew.Velocity         // set velocity
+     f_coeff  := water_linew.Friction_Factor  // 摩擦係数をセット
 
-//     diameter := water_linew.Pipe_Diameter    //  set diameter
+     velocity := water_linew.Velocity         // 速度をセット
 
-//     length   := water_linew.Pipe_Length      // set pipe_length
-       length   := 1.
+     diameter := water_linew.Pipe_Diameter    // 管径
 
-///    cal. point-loss
+     length   := water_linew.Pipe_Length      // 管長
 
-//     vhead = equation.Suiri_Vhead( velocity )  //    cal. velocity-head
-     vhead = 1.
-//     hp = f_coeff * vhead
-     hp = 1.
+/// ポイント損失を求める
 
-///
-///    cal. line-loss
-///
+     vhead = equation.Suiri_Vhead( velocity )  //速度水頭を求める
+     hp = f_coeff * vhead
 
-//     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // cal. friction-factor
-     ramuda := 1.
-     _ = ramuda
-//     vhead := equation.Suiri_Vhead( velocity )               // cal. velocity-head
-     vhead = 1.
-//     hl = ramuda * (length / diameter) * vhead
-     hl = 1.
+//     fmt.Println("cal.pipe_line1 hp" ,hp)  // デバック
 
-///
-///      make various data for water-slope-line
-///
+/// ライン損失を求める
+
+     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // 摩擦係数を求める
+     vhead := equation.Suiri_Vhead( velocity )               //速度水頭を求める
+     hl = ramuda * (length / diameter) * vhead
+
+//     fmt.Println("cal.pipe_line1 hl" ,hl)  // デバック
+
+// 動水勾配線用データを作成する
 
      ad_hp[index] = hp
 
-     if eflag == 1 {     // if i'ts last process , velocity-head and friction-loss is zero
+//     fmt.Println("cal.pipe_line1 hp(ad)" ,ad_hp)  // デバック
+
+     if eflag == 1 {     // ラストデータの場合、速度水頭と摩擦損失は０
 
         hl    = 0.0
         vhead = 0.0
      }
 
-//     ad_hl[index] = hl
+     ad_hl[index] = hl
 
-//     ad_vhead[index] = vhead
+//     fmt.Println("cal.pipe_line1 hl(ad)　%v\n" ,ad_hl)  // デバック
+
+     ad_vhead[index] = vhead
+
+//     fmt.Println("cal.pipe_line1 vhead(ad)　%v\n" ,ad_vhead)  // デバック
+
+//　 エネルギー線を作成 (up)
+
+
 
       if index == 0 {
 
-         b_length = 0.0   //  initialize offset of horizontal of x,y
-
+         b_length = 0.0   //  x,y座標 水平方向のオフセットをinitialize
          x_eneup  = 0.0
-//         y_eneup = Hmax
-         y_eneup = 1.
+         y_eneup = Hmax
 
       }else{
 
@@ -139,64 +132,46 @@ import (
 
       }
 
-///　  make energy-line(up)
-
       x_eneup  = x_eneup + b_length
 
-      b_length = length    //  reset offset of horizontal
+      b_length = length    //  水平方向のオフセットをリセット
       b_hl     = hl
 
-//      ad_eneup_wk[0] = x_eneup //　make coordinate of x,y
-//      ad_eneup_wk[1] = y_eneup
+      ad_eneup[index].X = x_eneup //　x,y座標の作成
+      ad_eneup[index].Y = y_eneup
+//         fmt.Println("cal.pipe_line1 eneup(ad)" ,ad_eneup)  // デバック
 
-///　  make energy-line(down)
+//　 エネルギー線を作成 (down)
 
       y_enedown = y_eneup - hp
 
-//      ad_enedown_wk[0] = x_eneup
-//      ad_enedown_wk[1] = y_eneup - hp
+      ad_enedown[index].X = x_eneup
+      ad_enedown[index].Y = y_eneup - hp
 
-///　 make water-slope-line (up)
+//         fmt.Println("cal.pipe_line1 enedown(ad)" ,ad_enedown)  // デバック
+
+//　 動水勾配線を作成 (up)
 
 
       y_glineup = y_eneup - vhead
-      _ = y_glineup
-//      ad_glineup_wk[0] = x_eneup
-//      ad_glineup_wk[1] = y_eneup - vhead
+      ad_glineup[index].X = x_eneup
+      ad_glineup[index].Y = y_eneup - vhead
 
-///　 make water-slope-line (up)
+//         fmt.Println("cal.pipe_line1 glinedown(ad)" ,ad_glineup)  // デバック
 
-//      ad_glinedown_wk[0] = x_eneup
-//      ad_glinedown_wk[1] = y_glineup - hp
+//　 動水勾配線を作成 (up)
 
-///
-///　     set various inf.  in slice of struct
-///
+      ad_glinedown[index].X = x_eneup
+      ad_glinedown[index].Y = y_glineup - hp
 
-//      ad_eneup = append( ad_eneup , type3.Point {  ad_eneup_wk[0]  ,
-//                                                   ad_eneup_wk[1]  ,
-//                                                   ad_eneup_wk[2]   })
-
-//      ad_enedown = append( ad_enedown , type3.Point {  ad_enedown_wk[0]  ,
-//                                                       ad_enedown_wk[1] ,
-//                                                       ad_enedown_wk[2]   })
-
-//      ad_glineup = append( ad_glineup , type3.Point {  ad_glineup_wk[0]  ,
-//                                                       ad_glineup_wk[1]  ,
-//                                                       ad_glineup_wk[2]   })
-
-//      ad_glinedown = append( ad_glinedown , type3.Point {  ad_glinedown_wk[0]  ,
-//                                                           ad_glinedown_wk[1]  ,
-//                                                           ad_glinedown_wk[2]  })
-
+//         fmt.Println("cal.pipe_line1 glinedown(ad)" ,ad_glinedown)  // デバック
       index ++
 
 
-//   }
+   }
+/// ポイント数セット　///
+   p_number := index
 
-//   p_number := index   //  set point-no
-
-//   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
-     return index
+   return p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown
 
 }
