@@ -9,8 +9,6 @@ import (
 //	    "strconv"
     	                 )
 
-// func Pipe_line1( wdeta string  ) ([]string ,[]string ,[]string ,[]string,[]string ,[]string ,[]string ) {
-
 func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]type3.Point,[]type3.Point ,[]type3.Point ,[]type3.Point ) {
 
 
