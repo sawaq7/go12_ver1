@@ -3,7 +3,7 @@ package pipe_line_ds_cal
 import (
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal4"
+	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 
 //	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4/trans2"
@@ -55,6 +55,6 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 ///
     f_name := "1"
-    cal4.Pipe_line1_show_graf( w ,r ,f_name )
+    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
