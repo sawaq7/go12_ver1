@@ -2,7 +2,6 @@ package pipe_line_ds_cal
 
 import (
 
-
 	    "net/http"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal4"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
@@ -52,10 +51,10 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
 //    f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
 
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : f_name %v\n", f_name )  // デバック
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : f_name %v\n", f_name )
 
-/// グラフの表示 ///
-//    f_name := "1"
-//    cal.Pipe_line1_show_graf( w ,r ,f_name )
+///
+    f_name := "1"
+    cal4.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
