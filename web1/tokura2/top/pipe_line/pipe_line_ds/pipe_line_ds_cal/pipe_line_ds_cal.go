@@ -48,7 +48,7 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
     water_temp      := make([]type4.Water2, 0, count)
 
     keys, err := client.GetAll(ctx, query , &water_temp)
-/
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
