@@ -3,15 +3,17 @@ package pipe_line_ds_cal_mod
 import (
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
-	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
 //	    "fmt"
 
-        "cloud.google.com/go/datastore"
-        "context"
-        "os"
+        "github.com/sawaq7/go12_ver1/storage2"
+
+//        "cloud.google.com/go/datastore"
+//        "context"
+//        "os"
 
                                                   )
 
@@ -21,58 +23,58 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 ///    get key-in data
 
-   var water type4.Water2
+//   var water type4.Water2
 
-   project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
+//   project_name := os.Getenv("GOOGLE_CLOUD_PROJECT")
 
-    if project_name == "" {
+//    if project_name == "" {
 
-      project_name = "sample-7777"
+//      project_name = "sample-7777"
 
-	}
+//	}
 
-    ctx := context.Background()
+//    ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, project_name)
+//    client, err := datastore.NewClient(ctx, project_name)
 
-    query := datastore.NewQuery("Water2_Temp").Order("Name")
+//    query := datastore.NewQuery("Water2_Temp").Order("Name")
 
-    count, err := client.Count(ctx, query)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+//    count, err := client.Count(ctx, query)
+//	if err != nil {
+//		http.Error(w, err.Error(), http.StatusInternalServerError)
+//		return
+//	}
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod  \n" ,count )
 
-    water_temp      := make([]type4.Water2, 0, count)
+//    water_temp      := make([]type4.Water2, 0, count)
 
-    keys, err := client.GetAll(ctx, query , &water_temp)
+//    keys, err := client.GetAll(ctx, query , &water_temp)
 
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-    }
+//	if err != nil {
+//		http.Error(w, err.Error(), http.StatusInternalServerError)
+//		return
+//    }
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : len(water) %v\n", len(water) )
 
-    keys_wk := make([]int64, count)
+//    keys_wk := make([]int64, count)
 
-	for ii, keysw := range keys {
+//	for ii, keysw := range keys {
 
-       keys_wk[ii] = keysw.ID
+//       keys_wk[ii] = keysw.ID
 
-    }
+//    }
 
-	for pos2, waterw := range water_temp {
+//	for pos2, waterw := range water_temp {
 
-       water.Id   = keys_wk[pos2]
+//       water.Id   = keys_wk[pos2]
 
-	   water.Name = waterw.Name
-	   water.High =  waterw.High
-	   water.Roughness_Factor = waterw.Roughness_Factor
+//	   water.Name = waterw.Name
+//	   water.High =  waterw.High
+//	   water.Roughness_Factor = waterw.Roughness_Factor
 
-    }
+//    }
 
 ///
 ///      get water-line inf.
@@ -80,17 +82,15 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 //    water_line := trans2.Water_line (1  ,water.Name , w ,r )
 
-      water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
+//     water_line := datastore4.Datastore_tokura( "Water_Line"  ,"trans"  ,water.Name , w , r  )
 
-
-
-     value, _ := water_line.([]type4.Water_Line)
+//     value, _ := water_line.([]type4.Water_Line)
 
 ///
 ///        cal. water-slope-line
 ///
 
-    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
+//    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : p_number %v\n", p_number )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_eneup %v\n", ad_eneup )
@@ -101,13 +101,18 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 ///    make graf
 
-    f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
+//    f_name := cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : f_name %v\n", f_name )
 
 ///     show graf on web
 
-    cal.Pipe_line1_show_graf( w ,r ,f_name )
+//    cal.Pipe_line1_show_graf( w ,r ,f_name )
+
+    f_name := "water_slope_20191117053036.png"
+    bucket := "sample_7777"
+
+    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
 
 }
 
