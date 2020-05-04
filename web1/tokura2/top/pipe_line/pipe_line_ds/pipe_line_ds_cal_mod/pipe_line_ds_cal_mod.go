@@ -3,7 +3,7 @@ package pipe_line_ds_cal_mod
 import (
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
@@ -88,11 +88,13 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
      value, _ := water_line.([]type4.Water_Line)
 
+     _ = value
+
 ///
 ///        cal. water-slope-line
 ///
 
-    cal.Pipe_line2( water  ,value  )
+//    cal.Pipe_line2( water  ,value  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : p_number %v\n", p_number )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_eneup %v\n", ad_eneup )
