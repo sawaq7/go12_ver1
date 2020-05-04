@@ -39,8 +39,6 @@ func Pipe_line1( water type4.Water2 ,water_line []type4.Water_Line  ) (int ,[]ty
    ad_hl := make([]float64 ,20 ,50)        // ②　hl　
    ad_vhead := make([]float64 ,20 ,50)     // ③　vhead
    ad_eneup := make([]type3.Point ,20 ,50)     // ④　eneup
-
-
    ad_enedown := make([]type3.Point ,20 ,50)   // ⑤　enedown
    ad_glineup := make([]type3.Point ,20 ,50)   // ⑥　glineup
    ad_glinedown := make([]type3.Point ,20 ,50) // ⑦　glinedown
