@@ -153,7 +153,11 @@ func Line_graph1( w http.ResponseWriter ,r *http.Request ) (f_name string) {
 
 ///     save graf data in storage
 
-    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
+    _ = bucket
+    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ) ; err != nil {
+
+//    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
+
        http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
 
