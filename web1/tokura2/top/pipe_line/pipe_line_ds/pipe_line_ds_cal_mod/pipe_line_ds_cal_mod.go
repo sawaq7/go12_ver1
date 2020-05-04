@@ -3,13 +3,13 @@ package pipe_line_ds_cal_mod
 import (
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+//	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 //	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
 //	    "fmt"
 
-//        "github.com/sawaq7/go12_ver1/storage2"
+        "github.com/sawaq7/go12_ver1/storage2"
 
 //        "cloud.google.com/go/datastore"
 //        "context"
@@ -20,6 +20,8 @@ import (
 func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 //   fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod start \n"  )
+
+
 
 ///    get key-in data
 
@@ -107,13 +109,13 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 ///     show graf on web
 
-      f_name := "water_slope_20191117053036.png"
-    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
+//    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
-//    bucket := "sample_7777"
+    bucket := "sample_7777"
+    f_name := "water_slope_20191117053036.png"
 
-//    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
+    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
 
 }
 
