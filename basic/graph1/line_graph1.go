@@ -26,8 +26,7 @@ import (
 ///       make graf and reserve it in storage from water-slope-lines
 ///
 
-func Line_graph1( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_eneup []type3.Point ,
-                           ad_enedown []type3.Point ,ad_glineup []type3.Point ,ad_glinedown []type3.Point ) (f_name string) {
+func Line_graph1( w http.ResponseWriter ,r *http.Request ) (f_name string) {
 
 //     IN     w         : response-writer
 //     IN     r         : request-parameter
@@ -38,6 +37,28 @@ func Line_graph1( w http.ResponseWriter ,r *http.Request ,p_number int ,ad_eneup
 //     IN  ad_glinedown : water-slope-line-down slice
 
 //   fmt.Fprintf( w, "pipe_line1_make_graf start \n" )
+
+   p_number := 2
+   ad_eneup := make([]type3.Point ,2)
+   ad_enedown := make([]type3.Point ,2)
+   ad_glineup := make([]type3.Point ,2)
+   ad_glinedown := make([]type3.Point ,2)
+
+   for i := 0; i < p_number; i++ {
+
+ 		ad_eneup[i].X = float64(i)
+ 		ad_eneup[i].Y = float64(i)
+
+ 		ad_enedown[i].X = float64(i)
+ 		ad_enedown[i].Y = float64(i)
+
+ 		ad_glineup[i].X = float64(i)
+ 		ad_glineup[i].Y = float64(i)
+
+ 		ad_glinedown[i].X = float64(i)
+ 		ad_glinedown[i].Y = float64(i)
+
+ 	}
 
    rand.Seed(int64(0))
 
