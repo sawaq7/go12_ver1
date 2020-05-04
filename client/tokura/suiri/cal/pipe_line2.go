@@ -13,14 +13,14 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 
 
 
-//     IN  wdeta : 水路データ
-//    OUT  one   : ポイント損失のスライス
-//    OUT  two   : ライン損失のスライス
-//    OUT  three : 速度水頭のスライス
-//    OUT  four  : エネルギー線（up）のスライス
-//    OUT  five  : エネルギー線（down）のスライス
-//    OUT  six   : 導水勾配線（up）のスライス
-//    OUT  seven : 導水勾配線（down）のスライス
+//     IN  wdeta :
+//    OUT  one   :
+//    OUT  two   :
+//    OUT  three :
+//    OUT  four  :
+//    OUT  five  :
+//    OUT  six   :
+//    OUT  seven :
 
 
    var b_length float64
@@ -33,34 +33,32 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 //   fmt.Println ("cal.pipe_line2 water %v\n",water )
 //   fmt.Println ("cal.pipe_line2 water_line %v\n",water_line )
 
-// 動水勾配線用データ・ワーク用のスライス・index・eflagを　initialize
+//   allocate various work-area
 
-   ad_hp := make([]float64 ,20 ,50)        // ①　hp　
-   ad_hl := make([]float64 ,20 ,50)        // ②　hl　
-   ad_vhead := make([]float64 ,20 ,50)     // ③　vhead
-   ad_eneup := make([]type3.Point ,20 ,50)     // ④　eneup
-
-
-   ad_enedown := make([]type3.Point ,20 ,50)   // ⑤　enedown
-   ad_glineup := make([]type3.Point ,20 ,50)   // ⑥　glineup
-   ad_glinedown := make([]type3.Point ,20 ,50) // ⑦　glinedown
+   ad_hp := make([]float64 ,20 ,50)        // hp　
+   ad_hl := make([]float64 ,20 ,50)        // 　hl　
+   ad_vhead := make([]float64 ,20 ,50)     // vhead
+   ad_eneup := make([]type3.Point ,20 ,50)     // 　eneup
 
 
-
+   ad_enedown := make([]type3.Point ,20 ,50)   // 　enedown
+   ad_glineup := make([]type3.Point ,20 ,50)   // 　glineup
+   ad_glinedown := make([]type3.Point ,20 ,50) // 　glinedown
 
    eflag := 0
 
-   line_num := len(water_line) // 水路ライン数セット
+   line_num := len(water_line)
 
 //   fmt.Println ("cal.pipe_line2 line_num　%v\n",line_num )
 
-   Hmax := water.High   // 水路H-MAXをセット
+   Hmax := water.High
 
-   s_coeff := water.Roughness_Factor   //　粗度係数をセット
+   s_coeff := water.Roughness_Factor
 
 ///
-///   1水路ライン、read
+///      read one record and process it
 ///
+
    index := 0
    for pos, water_linew := range water_line {
      count := pos + 1
@@ -71,36 +69,28 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
      }
 
 
-     f_coeff  := water_linew.Friction_Factor  // 摩擦係数をセット
+     f_coeff  := water_linew.Friction_Factor
 
-     velocity := water_linew.Velocity         // 速度をセット
+     velocity := water_linew.Velocity
 
-     diameter := water_linew.Pipe_Diameter    // 管径
+     diameter := water_linew.Pipe_Diameter
 
-     length   := water_linew.Pipe_Length      // 管長
+     length   := water_linew.Pipe_Length
 
-/// ポイント損失を求める
-
-     vhead = equation.Suiri_Vhead( velocity )  //速度水頭を求める
+     vhead = equation.Suiri_Vhead( velocity )
      hp = f_coeff * vhead
 
 //     fmt.Println("cal.pipe_line2 hp" ,hp)
 
-/// ライン損失を求める
-
-     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)  // 摩擦係数を求める
-     vhead := equation.Suiri_Vhead( velocity )               //速度水頭を求める
+     ramuda := equation.Suiri_Manningu2( s_coeff ,diameter)
+     vhead := equation.Suiri_Vhead( velocity )
      hl = ramuda * (length / diameter) * vhead
-
-//     fmt.Println("cal.pipe_line2 hl" ,hl)
-
-// 動水勾配線用データを作成する
 
      ad_hp[index] = hp
 
 //     fmt.Println("cal.pipe_line2 hp(ad)" ,ad_hp)
 
-     if eflag == 1 {     // ラストデータの場合、速度水頭と摩擦損失は０
+     if eflag == 1 {
 
         hl    = 0.0
         vhead = 0.0
@@ -114,13 +104,9 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 
 //     fmt.Println("cal.pipe_line2 vhead(ad)　%v\n" ,ad_vhead)
 
-//　 エネルギー線を作成 (up)
-
-
-
       if index == 0 {
 
-         b_length = 0.0   //  x,y座標 水平方向のオフセットをinitialize
+         b_length = 0.0   //  initialize offset of horizontal-direction of x,y-coordinate
          x_eneup  = 0.0
          y_eneup = Hmax
 
@@ -130,16 +116,18 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 
       }
 
+//　 make energy-line (up)
+
       x_eneup  = x_eneup + b_length
 
-      b_length = length    //  水平方向のオフセットをリセット
+      b_length = length    //  reset offset of horizontal-direction
       b_hl     = hl
 
-      ad_eneup[index].X = x_eneup //　x,y座標の作成
+      ad_eneup[index].X = x_eneup //　make x,y-coordinate
       ad_eneup[index].Y = y_eneup
 //         fmt.Println("cal.pipe_line2 eneup(ad)" ,ad_eneup)
 
-//　 エネルギー線を作成 (down)
+//　 make energy-line (down)
 
       y_enedown = y_eneup - hp
 
@@ -148,7 +136,7 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 
 //         fmt.Println("cal.pipe_line2 enedown(ad)" ,ad_enedown)
 
-//　 動水勾配線を作成 (up)
+//　 make water-slope-line (up)
 
 
       y_glineup = y_eneup - vhead
@@ -157,7 +145,7 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 
 //         fmt.Println("cal.pipe_line2 glinedown(ad)" ,ad_glineup)
 
-//　 動水勾配線を作成 (up)
+//　 make water-slope-line (down)
 
       ad_glinedown[index].X = x_eneup
       ad_glinedown[index].Y = y_glineup - hp
@@ -165,9 +153,10 @@ func Pipe_line2( water type4.Water2 ,water_line []type4.Water_Line  ) ( ) {
 //         fmt.Println("cal.pipe_line2 glinedown(ad)" ,ad_glinedown)
       index ++
 
-
    }
-/// ポイント数セット　///
+
+///   set point-number
+
    p_number := index
 
    _ = p_number
