@@ -16,7 +16,7 @@ import (
 // 	     "github.com/gonum/plot/plotutil"
 // 	     "github.com/gonum/plot/vg"
 
- 	     "gonum.org/v1/plot/vg"
+// 	     "gonum.org/v1/plot/vg"
 	     "gonum.org/v1/plot"
          "gonum.org/v1/plot/plotter"
  	     "gonum.org/v1/plot/plotutil"
@@ -154,13 +154,13 @@ func Line_graph1( w http.ResponseWriter ,r *http.Request ) (f_name string) {
 ///     save graf data in storage
 
     _ = bucket
-    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ) ; err != nil {
+//    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ) ; err != nil {
 
 //    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
 
-       http.Error(w, err.Error(), http.StatusInternalServerError)
-	   return " "
+//       http.Error(w, err.Error(), http.StatusInternalServerError)
+//	   return " "
 
- 	}
+// 	}
     return f_name
 }
