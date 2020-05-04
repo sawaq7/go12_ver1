@@ -7,7 +7,7 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
-	    "fmt"
+//	    "fmt"
 
         "github.com/sawaq7/go12_ver1/storage2"
 
@@ -92,13 +92,13 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 ///        cal. water-slope-line
 ///
 
-    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
+    cal.Pipe_line2( water  ,value  )
 
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : p_number %v\n", p_number )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_eneup %v\n", ad_eneup )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_enedown %v\n", ad_enedown )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_glineup %v\n", ad_glineup )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_glinedown %v\n", ad_glinedown )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : p_number %v\n", p_number )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_eneup %v\n", ad_eneup )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_enedown %v\n", ad_enedown )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_glineup %v\n", ad_glineup )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_glinedown %v\n", ad_glinedown )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : ad_eneup len %v\n", len(ad_eneup) )
 
 ///    make graf
