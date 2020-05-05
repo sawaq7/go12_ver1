@@ -11,15 +11,10 @@ import (
 //        "storage2"
         "time"
 
-// 	     "github.com/gonum/plot"
-// 	     "github.com/gonum/plot/plotter"
-// 	     "github.com/gonum/plot/plotutil"
-// 	     "github.com/gonum/plot/vg"
-
- 	     "gonum.org/v1/plot/vg"
-	     "gonum.org/v1/plot"
-         "gonum.org/v1/plot/plotter"
- 	     "gonum.org/v1/plot/plotutil"
+ 	     "github.com/sawaq7/go12_ver1/convert1/plot/vg"
+	     "github.com/sawaq7/go12_ver1/convert1/plot"
+         "github.com/sawaq7/go12_ver1/convert1/plot/plotter"
+ 	     "github.com/sawaq7/go12_ver1/convert1/plot/plotutil"
                                                    )
 
 ///
