@@ -107,18 +107,40 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 ///    make graf
 
-    f_name := graph1.Line_graph1( w ,r  )
+//    f_name := graph1.Line_graph1( w ,r  )
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : f_name %v\n", f_name )
 
 ///     show graf on web
 
+   p_number := 2
+   ad_eneup := make([]type3.Point ,2)
+   ad_enedown := make([]type3.Point ,2)
+   ad_glineup := make([]type3.Point ,2)
+   ad_glinedown := make([]type3.Point ,2)
 
-//    cal.Pipe_line1_show_graf( w ,r ,f_name )
+   for i := 0; i < p_number; i++ {
+
+ 		ad_eneup[i].X = float64(i)
+ 		ad_eneup[i].Y = float64(i)
+
+ 		ad_enedown[i].X = float64(i)
+ 		ad_enedown[i].Y = float64(i)
+
+ 		ad_glineup[i].X = float64(i)
+ 		ad_glineup[i].Y = float64(i)
+
+ 		ad_glinedown[i].X = float64(i)
+ 		ad_glinedown[i].Y = float64(i)
+
+ 	}
+
+   f_name :=  Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
+                           ad_enedown  ,ad_glineup ,ad_glinedown )
 
     bucket := "sample_7777"
-//    f_name := "water_slope_20191117053036.png"
 
+//    f_name := "water_slope_20191117053036.png"
     storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
 
 }
