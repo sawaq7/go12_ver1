@@ -3,11 +3,12 @@ package pipe_line_ds_cal_mod
 import (
 
 	    "net/http"
-	    "github.com/sawaq7/go12_ver1/basic/graph1"
+//	    "github.com/sawaq7/go12_ver1/basic/graph1"
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
 //	    "fmt"
+        "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 
         "github.com/sawaq7/go12_ver1/storage2"
 
@@ -15,7 +16,7 @@ import (
         "context"
         "os"
 
-//        "github.com/sawaq7/go12_ver1/basic/type3"
+        "github.com/sawaq7/go12_ver1/basic/type3"
 
                                                   )
 
@@ -135,7 +136,7 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
  	}
 
-   f_name :=  Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
+   f_name :=  cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
                            ad_enedown  ,ad_glineup ,ad_glinedown )
 
     bucket := "sample_7777"
