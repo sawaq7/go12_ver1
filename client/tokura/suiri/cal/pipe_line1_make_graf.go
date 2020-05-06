@@ -121,7 +121,7 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
     unique_no := fmt.Sprintf("%04d%02d%02d%02d%02d%02d",
 		date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 
-    f_name = "water_slope_" + unique_no + ".png"
+    f_name = "C:/Users/sawax/Go_Originalsrc/github.com/sawaq7/go12_ver/water_slope_" + unique_no + ".png"
 
 //    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )
 
