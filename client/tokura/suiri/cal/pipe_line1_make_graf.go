@@ -11,10 +11,10 @@ import (
 //        "storage2"
         "time"
 
- 	     "github.com/sawaq7/go12_ver1/convert1/plot/vg"
-	     "github.com/sawaq7/go12_ver1/convert1/plot"
-         "github.com/sawaq7/go12_ver1/convert1/plot/plotter"
- 	     "github.com/sawaq7/go12_ver1/convert1/plot/plotutil"
+ 	     "gonum.org/v1/plot/vg"
+	     "gonum.org/v1/plot"
+         "gonum.org/v1/plot/plotter"
+ 	     "gonum.org/v1/plot/plotutil"
                                                    )
 
 ///
@@ -111,7 +111,7 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 	   return " "
  	}
 
- 	bucket := "sample-7777"
+// 	bucket := "sample-7777"
 
 ///
 ///     make file-name
@@ -127,7 +127,9 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 
 ///     save graf data in storage
 
-    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
+    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ); err != nil {
+//    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
+
        http.Error(w, err.Error(), http.StatusInternalServerError)
 	   return " "
 
