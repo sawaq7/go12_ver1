@@ -16,7 +16,7 @@ import (
         "context"
         "os"
 
-        "github.com/sawaq7/go12_ver1/basic/type3"
+//        "github.com/sawaq7/go12_ver1/basic/type3"
 
                                                   )
 
@@ -91,8 +91,6 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
      value, _ := water_line.([]type4.Water_Line)
 
-     _ = value
-
 ///
 ///        cal. water-slope-line
 ///
@@ -112,32 +110,41 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal_mod : f_name %v\n", f_name )
 
-///     show graf on web
 
-   p_number := 2
-   ad_eneup := make([]type3.Point ,2)
-   ad_enedown := make([]type3.Point ,2)
-   ad_glineup := make([]type3.Point ,2)
-   ad_glinedown := make([]type3.Point ,2)
+//   p_number := 2
+//   ad_eneup := make([]type3.Point ,2)
+//   ad_enedown := make([]type3.Point ,2)
+//   ad_glineup := make([]type3.Point ,2)
+//   ad_glinedown := make([]type3.Point ,2)
 
-   for i := 0; i < p_number; i++ {
+//   for i := 0; i < p_number; i++ {
 
- 		ad_eneup[i].X = float64(i)
- 		ad_eneup[i].Y = float64(i)
+// 		ad_eneup[i].X = float64(i)
+// 		ad_eneup[i].Y = float64(i)
 
- 		ad_enedown[i].X = float64(i)
- 		ad_enedown[i].Y = float64(i)
+// 		ad_enedown[i].X = float64(i)
+// 		ad_enedown[i].Y = float64(i)
 
- 		ad_glineup[i].X = float64(i)
- 		ad_glineup[i].Y = float64(i)
+// 		ad_glineup[i].X = float64(i)
+// 		ad_glineup[i].Y = float64(i)
 
- 		ad_glinedown[i].X = float64(i)
- 		ad_glinedown[i].Y = float64(i)
+// 		ad_glinedown[i].X = float64(i)
+// 		ad_glinedown[i].Y = float64(i)
 
- 	}
+// 	}
+
+///
+///        cal. water-slope-line
+///
+
+    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 
    f_name :=  cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
                            ad_enedown  ,ad_glineup ,ad_glinedown )
+
+///
+///     show graf on web
+///
 
     bucket := "sample_7777"
 
