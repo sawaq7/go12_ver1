@@ -149,7 +149,6 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 		return f_name
 	}
 	_, err = c.WriteTo(w2)
-	return f_name
 
 //    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )
 
