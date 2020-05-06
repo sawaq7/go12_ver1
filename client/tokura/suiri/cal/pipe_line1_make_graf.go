@@ -8,8 +8,11 @@ import (
         "github.com/sawaq7/go12_ver1/basic/type3"
         "math/rand"
         "image/color"
-//        "storage2"
+        "storage2"
         "time"
+
+        "path/filepath"
+	    "strings"
 
  	     "gonum.org/v1/plot/vg"
 	     "gonum.org/v1/plot"
@@ -121,18 +124,43 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
     unique_no := fmt.Sprintf("%04d%02d%02d%02d%02d%02d",
 		date_w.Year(), date_w.Month(),date_w.Day(), date_w.Hour(), date_w.Minute(), date_w.Second())
 
-    f_name = "C:/Users/sawax/Go_Originalsrc/github.com/sawaq7/go12_ver/water_slope_" + unique_no + ".png"
+    f_name = "water_slope_" + unique_no + ".png"
+    bucket := "sample-7777"
+
+    w2 := storage2.File_Create ( w ,r ,bucket  ,f_name )
+
+    defer func() {
+
+		err := w2.Close()
+		if err != nil {
+		   http.Error(w, err.Error(), http.StatusInternalServerError)
+
+		}
+	}()
+
+    format := strings.ToLower(filepath.Ext(f_name))
+	if len(format) != 0 {
+		format = format[1:]
+	}
+	c, err := p.WriterTo(5*vg.Inch, 5*vg.Inch, format)
+	if err != nil {
+	   http.Error(w, err.Error(), http.StatusInternalServerError)
+
+		return f_name
+	}
+	_, err = c.WriteTo(w2)
+	return f_name
 
 //    fmt.Fprintf( w, "deliver_showall1 : f_name %v\n", f_name )
 
 ///     save graf data in storage
 
-    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ); err != nil {
+//    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ); err != nil {
 //    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
 
-       http.Error(w, err.Error(), http.StatusInternalServerError)
-	   return " "
+//       http.Error(w, err.Error(), http.StatusInternalServerError)
+//	   return " "
 
- 	}
+
     return f_name
 }
