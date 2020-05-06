@@ -8,7 +8,7 @@ import (
         "github.com/sawaq7/go12_ver1/basic/type3"
         "math/rand"
         "image/color"
-        "storage2"
+        "github.com/sawaq7/go12_ver1/storage2"
         "time"
 
         "path/filepath"
