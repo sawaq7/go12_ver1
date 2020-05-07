@@ -7,10 +7,10 @@ import (
 	    "github.com/sawaq7/go12_ver1/client/tokura/suiri/type4"
 	    "github.com/sawaq7/go12_ver1/client/tokura/datastore4"
 //	    "strconv"
-	    "fmt"
-        "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
+//	    "fmt"
+//        "github.com/sawaq7/go12_ver1/client/tokura/suiri/cal"
 
-//        "github.com/sawaq7/go12_ver1/storage2"
+        "github.com/sawaq7/go12_ver1/storage2"
 
         "cloud.google.com/go/datastore"
         "context"
@@ -91,6 +91,7 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 
      value, _ := water_line.([]type4.Water_Line)
 
+     _= value
 ///
 ///        cal. water-slope-line
 ///
@@ -137,14 +138,14 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 ///        cal. water-slope-line
 ///
 
-    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
+//    p_number ,ad_eneup ,ad_enedown ,ad_glineup ,ad_glinedown := cal.Pipe_line1( water  ,value  )
 
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )
-    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )
+//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )
 
 //   f_name :=  cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
 //                                                  ad_enedown  ,ad_glineup ,ad_glinedown )
@@ -155,8 +156,9 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
 ///     show graf on web
 ///
 
-//    f_name := "water_slope_20191117053036.png"
-//    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
+    bucket := "sample-7777"
+    f_name := "water_slope_20191117053036.png"
+    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
 
 //    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
