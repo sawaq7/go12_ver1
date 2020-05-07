@@ -33,7 +33,7 @@ package html4
               <td > <input type="submit" size="2"  value="登録" />           </td>
             </form>
 
-            <form method="GET" action="/pipe_line_ds_cal" >
+            <form method="GET" action="/pipe_line_ds_cal_mod" >
 
                <td>
 
