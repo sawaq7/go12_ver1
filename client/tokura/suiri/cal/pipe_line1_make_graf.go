@@ -114,8 +114,6 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 	   return " "
  	}
 
-// 	bucket := "sample-7777"
-
 ///
 ///     make file-name
 ///
@@ -127,7 +125,11 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
     f_name = "water_slope_" + unique_no + ".png"
     bucket := "sample-7777"
 
-    w2 := storage2.File_Create ( w ,r ,bucket  ,f_name )
+///
+///     save new file in storage
+///
+
+    w2 := storage2.File_Create ( w ,r ,bucket  ,f_name )  // create new file
 
     defer func() {
 
@@ -142,13 +144,13 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 	if len(format) != 0 {
 		format = format[1:]
 	}
-	c, err := p.WriterTo(5*vg.Inch, 5*vg.Inch, format)
+	c, err := p.WriterTo(5*vg.Inch, 5*vg.Inch, format)     // make data
 	if err != nil {
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 
 		return f_name
 	}
-	_, err2 := c.WriteTo(w2)
+	_, err2 := c.WriteTo(w2)    // write data in storage
 	if err2 != nil {
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 
