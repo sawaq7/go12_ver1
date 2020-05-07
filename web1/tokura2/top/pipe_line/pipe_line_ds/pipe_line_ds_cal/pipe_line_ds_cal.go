@@ -91,48 +91,7 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 
      value, _ := water_line.([]type4.Water_Line)
 
-     _= value
-///
-///        cal. water-slope-line
-///
-
-//    cal.Pipe_line2( water  ,value  )
-
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : p_number %v\n", p_number )
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup %v\n", ad_eneup )
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_enedown %v\n", ad_enedown )
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glineup %v\n", ad_glineup )
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )
-
-///    make graf
-
-//    f_name := graph1.Line_graph1( w ,r  )
-
-//    fmt.Fprintf( w, "sky/pipe_line_ds_cal : f_name %v\n", f_name )
-
-
-//   p_number := 2
-//   ad_eneup := make([]type3.Point ,2)
-//   ad_enedown := make([]type3.Point ,2)
-//   ad_glineup := make([]type3.Point ,2)
-//   ad_glinedown := make([]type3.Point ,2)
-
-//   for i := 0; i < p_number; i++ {
-
-// 		ad_eneup[i].X = float64(i)
-// 		ad_eneup[i].Y = float64(i)
-
-// 		ad_enedown[i].X = float64(i)
-// 		ad_enedown[i].Y = float64(i)
-
-// 		ad_glineup[i].X = float64(i)
-// 		ad_glineup[i].Y = float64(i)
-
-// 		ad_glinedown[i].X = float64(i)
-// 		ad_glinedown[i].Y = float64(i)
-
-// 	}
+//     _= value
 
 ///
 ///        cal. water-slope-line
@@ -147,20 +106,17 @@ func Pipe_line_ds_cal(w http.ResponseWriter, r *http.Request) {
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_glinedown %v\n", ad_glinedown )
 //    fmt.Fprintf( w, "sky/pipe_line_ds_cal : ad_eneup len %v\n", len(ad_eneup) )
 
+///
+///        make water-slope-line otherts,various-data
+///
+
    f_name :=  cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
                                                   ad_enedown  ,ad_glineup ,ad_glinedown )
 
-//   _ = f_name
-
-///
-///     show graf on web
-///
-
 //    bucket := "sample-7777"
-//    f_name := "water_slope_20191117053036.png"
+
 //    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
 
     cal.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
-
