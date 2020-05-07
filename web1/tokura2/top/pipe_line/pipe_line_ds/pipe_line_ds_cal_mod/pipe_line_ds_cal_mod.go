@@ -142,13 +142,16 @@ func Pipe_line_ds_cal_mod(w http.ResponseWriter, r *http.Request) {
    f_name :=  cal.Pipe_line1_make_graf( w ,r ,p_number ,ad_eneup ,
                                                   ad_enedown  ,ad_glineup ,ad_glinedown )
 
+   _ = f_name
+
 ///
 ///     show graf on web
 ///
 
 //    f_name := "water_slope_20191117053036.png"
 //    storage2.Storage_basic( "show1" ,bucket ,f_name , w , r  )
-    cal.Pipe_line1_show_graf( w ,r ,f_name )
+
+//    cal.Pipe_line1_show_graf( w ,r ,f_name )
 
 }
 
