@@ -148,23 +148,12 @@ func Pipe_line1_make_graf( w http.ResponseWriter ,r *http.Request ,p_number int 
 
 		return f_name
 	}
-	data, err2 := c.WriteTo(w2)
+	_, err2 := c.WriteTo(w2)
 	if err2 != nil {
 	   http.Error(w, err.Error(), http.StatusInternalServerError)
 
 		return f_name
 	}
-
-    fmt.Fprintf( w, "pipe_line1_make_graf : data %v\n", data )
-
-///     save graf data in storage
-
-//    if err := p.Save( 5*vg.Inch, 5*vg.Inch, f_name ); err != nil {
-//    if err := p.Save_Storage(w ,r ,5*vg.Inch, 5*vg.Inch, bucket , f_name ); err != nil {
-
-//       http.Error(w, err.Error(), http.StatusInternalServerError)
-//	   return " "
-
 
     return f_name
 }
