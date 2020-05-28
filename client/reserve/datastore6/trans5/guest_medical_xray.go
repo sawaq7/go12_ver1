@@ -20,8 +20,8 @@ import (
 func Guest_medical_xray( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Medical_Xray ) {
 
 //     IN  guest_no  　 : id
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //     OUT guest_medical_xray_slice  : slice of struct (Guest_Medical_Xray)
 

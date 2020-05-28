@@ -21,8 +21,8 @@ import (
 func Guest_reserve_minor2( reserve_date string ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Reserve_Minor ) {
 
 //     IN  reserve_date : reservation date
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //     OUT guest_reserve_minor2_slice  : slice of struct (Guest_Reserve_Minor)
 

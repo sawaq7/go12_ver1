@@ -1,6 +1,6 @@
-///                                           ///
-/// スライス(float) を一行にしてファイルに書ぁE///
-///                                          ///
+///
+///    float-datas of slice changes line-data and write in file
+///
 
 package rw
 
@@ -11,13 +11,13 @@ import (
 
 func Wrline1(  writer *os.File ,ldata []float64  ) {
 
-//     IN  writer : ファイルポインター
-//     IN  ldeta  : スライス�E�Eloat�E�データ
+//     IN  writer : file-writer
+//     IN  ldeta  : float-datas of slice
 
 fmt.Println ("func wrline1 ライター　",writer )
 fmt.Println ("func wrline1 ldata　",ldata )
 
-// チE�Eタをファイルに書き込む
+//     write float-data in file
 
    for  i := 0 ; i < len(ldata) ; i++ {
 
@@ -25,7 +25,7 @@ fmt.Println ("func wrline1 ldata　",ldata )
 
    }
 
-// 改行すめE
+//  line-feed
    fmt.Fprintf(writer ,"\n" )
 
    return

@@ -22,7 +22,7 @@ import (
 func Guest_temp(w http.ResponseWriter, r *http.Request )  ([]type5.General_Work) {
 
 //     IN    w      : response-writer
-//     IN    r      : request- paramete
+//     IN    r      : request-parameter
 
 //     OUT general_work_out  : guest no ,guest name
 

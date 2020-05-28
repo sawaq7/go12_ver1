@@ -19,8 +19,8 @@ import (
 
 func Guest_temp(w http.ResponseWriter, r *http.Request )   {
 
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //    fmt.Fprintf( w, "init3/guest_temp start \n" )
 

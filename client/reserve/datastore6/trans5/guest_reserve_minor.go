@@ -19,9 +19,9 @@ import (
 
 func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Reserve_Minor ) {
 
-//     IN  guest_no  　 : ゲスチEO.
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN  guest_no  　 : guest no
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //     OUT guest_reserve_minor_slice  :  slice of struct (Guest_Reserve_Minor)
 
@@ -84,8 +84,6 @@ func Guest_reserve_minor( guest_no int64 ,w http.ResponseWriter, r *http.Request
 	for pos, guest_reserve_minorw := range guest_reserve_minor {
 
 //	  fmt.Fprintf( w, "trans.guest_reserve_minor guest_reserve_minorw %v\n" ,guest_reserve_minorw)
-
-///  機�EによりチェチE��頁E��をセチE��
 
       if guest_no == guest_reserve_minorw.Guest_No {     // select by guest no
 

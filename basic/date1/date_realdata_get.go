@@ -15,7 +15,7 @@ import (
 
 func Date_realdata_get(w http.ResponseWriter ,date string) (date_real time.Time ){
 
-//     IN    w       : レスポンスライター
+//     IN    w       : response-writer
 //     IN  date　    : string type
 //    OUT  date_real : time type
 
@@ -23,7 +23,7 @@ func Date_realdata_get(w http.ResponseWriter ,date string) (date_real time.Time 
 
 
 ///
-/// タイムチE�Eタ作�E
+///    make time-data
 ///
 
     strings_slice := strings.Split( date, "/" )   //　split string data by mark "/"

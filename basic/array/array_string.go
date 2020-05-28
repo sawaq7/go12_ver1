@@ -14,22 +14,22 @@ import (
 
 func Array_string(funct int64 ,column_no int64 ,strings []string  )  ([]string ) {
 
-//     IN  funct  　　　: ファンクション
-//     　　　　　�E�！E 削除
-//     　　　　　�E�！E 挿入
-//     IN  column_no  　　: 基準�E配�E番号
-//     IN  strings  : 斁E���Eのスライス
+//     IN  funct  　　　: function
+//     　　　　　delete
+//     　　　　　insert
+//     IN  column_no  　　: column-number
+//     IN  strings  :  string-array
 
-//     OUT strings  : フォーマット変更後�E斁E���Eのスライス
+//     OUT strings  : string-array after processing
 
-    strings_new := make([]string ,len(strings)+1 )  // 出力エリアを確俁E
+    strings_new := make([]string ,len(strings)+1 )  //  allocate out-put area
     index:= 0
 
 	for pos, stringsw := range strings {
 
-//	  fmt.Fprintf( w, "array_string stringsw %v\n" ,stringsw)  // チE��チE��
+//	  fmt.Fprintf( w, "array_string stringsw %v\n" ,stringsw)
 
-      if funct  == 0 {     // 　　　削除の場吁E
+      if funct  == 0 {     // 　　　when column delete
         if int64(pos+1)  == column_no {
 
 
@@ -41,11 +41,11 @@ func Array_string(funct int64 ,column_no int64 ,strings []string  )  ([]string )
 
         }
 
-      } else {           // 　　　挿入の場吁E
+      } else {           // 　　　when column insert
         if int64(pos+1)  == column_no {
 
 
-          index ++           // 空のチE�EタをセチE��
+          index ++           //    set space-data
 
           strings_new[index] = stringsw
 

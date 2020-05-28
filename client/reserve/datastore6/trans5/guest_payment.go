@@ -19,9 +19,9 @@ import (
 
 func Guest_payment( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Payment ) {
 
-//     IN  guest_no  　 : ゲスチEO.
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN  guest_no  　 : guest no
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //     OUT guest_payment_slice  : slice of struct (Guest_Payment)
 

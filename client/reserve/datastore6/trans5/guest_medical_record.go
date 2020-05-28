@@ -16,8 +16,8 @@ import (
 func Guest_medical_record( guest_no int64 ,w http.ResponseWriter, r *http.Request )  ([]type6.Guest_Medical_Record ) {
 
 //     IN  guest_no  　 : guest no
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //     OUT guest_medical_record_slice  :  slice of struct ( Guest_Medical_Record )
 

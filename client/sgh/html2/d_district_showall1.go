@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>datastore update/delete</title>
+        <title>データストアの更新・削除</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -87,7 +87,7 @@ package html2
              <form method="GET" action="/car_show" >
                <td>
                   <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                  <input type="submit"  size="2" value="号軁E  />
+                  <input type="submit"  size="2" value="号車"  />
                </td>
              </form>
 

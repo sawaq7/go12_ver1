@@ -2,7 +2,7 @@ package sum
 
 import (
         "fmt"
-//        "github.com/sawaq7/go12_ver1/basic/maths"
+
         "github.com/sawaq7/go12_ver1/basic/declare"
                        )
 
