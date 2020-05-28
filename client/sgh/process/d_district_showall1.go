@@ -18,8 +18,8 @@ import (
 
 func D_district_showall1(w http.ResponseWriter, r *http.Request) {
 
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
 //    fmt.Fprintf( w, "d_district_show_all1 start \n" )
 
@@ -27,7 +27,7 @@ func D_district_showall1(w http.ResponseWriter, r *http.Request) {
 
      monitor := template.Must(template.New("html").Parse(html2.D_district_showall1))
 
-// チE�Eタストアーから、表示用チE�EタをGET
+//   get district-data
 
      d_district_view := trans.D_district2 ( w ,r )
 
