@@ -5,7 +5,7 @@ package html2
    <html>
      <head>
         <meta charset="UTF-8">
-        <title>データストアの更新・削除</title>
+        <title>district-information</title>
         <link rel="stylesheet" href="css/member1_show.css" type="text/css">
      </head>
      <body>
@@ -20,7 +20,7 @@ package html2
               <td > <input type="text" name="district_no"  size="5" />               </td>
               <td > <input type="text" name="district_name" size="10" />            </td>
 
-              <td > <input type="submit" size="2"  value="登録" />           </td>
+              <td > <input type="submit" size="2"  value="register" />           </td>
             </form>
        </section>
        <section id="main">
@@ -29,8 +29,8 @@ package html2
          <table border="2" cellpadding="8" align="center" bgcolor="#00ced1">
          <h2 align="center">List Of Deliverly Situation</h2>
 
-           <tr> <th>district-no</th> <th>district-name</th> <th>access1</th> <th>access2</th>
-                                           <th>access3</th> <th>access4</th> <th>access5</th> </tr>
+           <tr> <th>district-no</th> <th>district-name</th> <th>area in district</th> <th>change district inf.</th>
+                                           <th>change district inf.</th> <th>show schedule inf.</th> <th>show schedule inf.</th> </tr>
            {{range .}}
              <tr>
 
@@ -60,7 +60,7 @@ package html2
                </td>
 
                <td>
-                  <input type="submit"  size="2" value="変更"  />
+                  <input type="submit"  size="2" value="change"  />
                </td>
              </form>
 
@@ -68,26 +68,26 @@ package html2
 
                <td>
                   <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                  <input type="submit"  size="2" value="削除"  />
+                  <input type="submit"  size="2" value="delete"  />
                </td>
              </form>
              <form method="GET" action="/d_district_area" >
 
                <td>
                   <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                  <input type="submit"  size="2" value="エリア"  />
+                  <input type="submit"  size="2" value="area"  />
                </td>
              </form>
              <form method="GET" action="/d_schedule_keyin" >
                <td>
                   <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                  <input type="submit"  size="2" value="スケジュール"  />
+                  <input type="submit"  size="2" value="schedule"  />
                </td>
              </form>
              <form method="GET" action="/car_show" >
                <td>
                   <input type="hidden" name="id"  value="{{.Id|html}}"/>
-                  <input type="submit"  size="2" value="号車"  />
+                  <input type="submit"  size="2" value="car"  />
                </td>
              </form>
 
