@@ -15,8 +15,8 @@ import (
 func Ai_district_area(w http.ResponseWriter, r *http.Request ,district_no int64) {
 
 //     IN  district_no  :  district no
-//     IN    w      　　: レスポンスライター
-//     IN    r      　　: リクエストパラメータ
+//     IN    w      　　: response-writer
+//     IN    r      　　: request-parameter
 
     fmt.Fprintf( w, "ai_district_area start \n" )
 
